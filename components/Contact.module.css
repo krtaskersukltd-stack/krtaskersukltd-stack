@@ -1,0 +1,890 @@
+/* d:/kr-website-antigravity/components/Contact.module.css */
+
+.contactSec {
+  background: var(--white);
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  padding-inline: var(--container-pad);
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  background: var(--teal); /* Dark teal background */
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  min-height: 680px;
+  position: relative;
+}
+
+/* 1. Left Sidebar Column */
+.sidebar {
+  width: 32%;
+  min-width: 360px;
+  background: transparent;
+  padding: 48px;
+  border-right: 1px solid rgba(248, 247, 242, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebarContent {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* Custom Logo */
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoCircle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoMain {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.logoSub {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: rgba(248, 247, 242, 0.6);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+/* Social channels */
+.socialsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.socialsTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.socialsRow {
+  display: flex;
+  gap: 12px;
+}
+
+.socialBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(248, 247, 242, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialBtn:hover {
+  background: #D4F82A; /* Lime green */
+  border-color: #D4F82A;
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+/* Floating Concentric Circles Graphic */
+.circlesGraphic {
+  position: absolute;
+  right: -180px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  height: 360px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.concentricCircle {
+  position: absolute;
+  border: 1px solid rgba(248, 247, 242, 0.08);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatarNode {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. Right Form Column Area */
+.formArea {
+  flex: 1;
+  padding: 56px 64px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.formElement {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Steps Progress indicator */
+.progressRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  width: 90px;
+}
+
+.progressCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(248, 247, 242, 0.2);
+  background: transparent;
+  color: rgba(248, 247, 242, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.circleActive {
+  background: #D4F82A; /* Lime Green active background */
+  border-color: #D4F82A;
+  color: var(--teal);
+  box-shadow: 0 4px 15px rgba(212, 248, 42, 0.3);
+}
+
+.progressLabelNumber {
+  font-family: var(--font-accent);
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(248, 247, 242, 0.4);
+  letter-spacing: 0.02em;
+  margin-top: 6px;
+}
+
+.progressLabel {
+  font-family: var(--font-accent);
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(248, 247, 242, 0.4);
+  line-height: 1.2;
+}
+
+.labelActive {
+  color: #ffffff !important;
+}
+
+.progressBarLine {
+  flex: 1;
+  height: 2px;
+  background: rgba(248, 247, 242, 0.15);
+  margin: 0 -15px;
+  transform: translateY(-22px);
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.lineActive {
+  background: #D4F82A;
+}
+
+/* Form Body & Typography */
+.formBody {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.formStepTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.formStepSubtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: rgba(248, 247, 242, 0.7);
+  line-height: 1.2;
+  margin-bottom: 40px;
+}
+
+/* Services and Pills Layout */
+.pillsSection {
+  margin-bottom: 40px;
+}
+
+.sectionHeading {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pillBtn {
+  background: rgba(248, 247, 242, 0.06);
+  border: 1px solid rgba(248, 247, 242, 0.15);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pillBtn:hover {
+  background: rgba(248, 247, 242, 0.12);
+}
+
+.pillBtnSelected {
+  border-color: #D4F82A;
+  background: #D4F82A;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* Form Inputs Grid */
+.inputGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.inputCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputColFull {
+  grid-column: span 2;
+}
+
+.inputLabel {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.textInput {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  outline: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.5;
+  transition: box-shadow 0.2s ease;
+}
+
+.textInput::placeholder {
+  color: #718096;
+}
+
+.textInput:focus {
+  box-shadow: 0 0 0 2px #D4F82A;
+}
+
+.textareaInput {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  outline: none;
+  resize: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.5;
+  transition: box-shadow 0.2s ease;
+}
+
+.textareaInput::placeholder {
+  color: #718096;
+}
+
+.textareaInput:focus {
+  box-shadow: 0 0 0 2px #D4F82A;
+}
+
+/* Day & Time Pills */
+.pillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.timesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.dayTimePill {
+  background: rgba(248, 247, 242, 0.06);
+  border: 1px solid rgba(248, 247, 242, 0.15);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.dayTimePill:hover {
+  background: rgba(248, 247, 242, 0.12);
+}
+
+.dayTimePillSelected {
+  border-color: #D4F82A;
+  background: #D4F82A;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* Actions Row Buttons */
+.actionsRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 40px;
+}
+
+.btnGradient {
+  background: #D4F82A;
+  color: var(--teal);
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(212, 248, 42, 0.2);
+}
+
+/* Section-specific typography from the six-page Figma font guide. */
+.sectionHeader h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  color: var(--black);
+}
+
+.sectionHeader h2 span { color: var(--teal); }
+
+.sectionHeader p {
+  font-family: var(--font-body);
+  font-size: var(--fs-card-lg);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-heading);
+  color: var(--black);
+}
+
+.formStepTitle {
+  font-size: var(--fs-h2);
+  color: var(--cream);
+}
+
+.formStepSubtitle {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--cream);
+}
+
+.progressLabelNumber {
+  color: var(--cream);
+}
+
+.progressLabel {
+  font-size: var(--fs-step-label);
+  color: var(--cream);
+}
+
+.inputLabel { color: var(--cream); }
+
+.textInput,
+.textareaInput {
+  font-size: var(--fs-input);
+  font-weight: var(--fw-medium);
+  color: var(--black);
+}
+
+.btnGradient {
+  font-size: 18px;
+  font-weight: var(--fw-semibold);
+  color: var(--teal);
+}
+
+.bottomBlockTitle {
+  font-size: var(--fs-form-label);
+  color: var(--cream);
+}
+
+.bottomBlockText {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--cream);
+}
+
+:global(.page-home) .socialsTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+}
+
+:global(.page-about) .socialsTitle,
+:global(.page-work) .socialsTitle,
+:global(.page-blog) .socialsTitle,
+:global(.page-digital-marketing) .socialsTitle,
+:global(.page-digital-360) .socialsTitle {
+  font-family: var(--font-accent);
+  font-size: clamp(24px, 1.46vw, 28px);
+  font-weight: var(--fw-semibold);
+}
+
+.btnGradient:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btnFlat {
+  background: rgba(248, 247, 242, 0.08);
+  border: 1px solid rgba(248, 247, 242, 0.15);
+  border-radius: 8px;
+  padding: 14px 32px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnFlat:hover {
+  background: rgba(248, 247, 242, 0.15);
+}
+
+/* Success wrapper */
+.successWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  padding: 48px 0;
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #D4F82A;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.successTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.successDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(248, 247, 242, 0.7);
+  line-height: 1.6;
+  max-width: 420px;
+  margin-bottom: 32px;
+}
+
+/* Bottom details block inside formArea */
+.bottomContactRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(248, 247, 242, 0.15);
+}
+
+.bottomBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomBlockTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  text-transform: capitalize;
+}
+
+.bottomBlockText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(248, 247, 242, 0.7);
+  margin: 0;
+}
+
+.bottomLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bottomLink:hover {
+  color: #D4F82A;
+}
+
+/* 3. Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(248, 247, 242, 0.15);
+    padding: 40px;
+  }
+  .circlesGraphic {
+    display: none; /* Hide circles on mobile */
+  }
+  .formArea {
+    padding: 40px;
+  }
+  .bottomContactRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactSec {
+    padding: 60px 0;
+  }
+  .formStepTitle {
+    font-size: 28px;
+  }
+  .inputGrid {
+    grid-template-columns: 1fr;
+  }
+  .inputColFull {
+    grid-column: span 1;
+  }
+  .timesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .progressRow {
+    flex-wrap: wrap;
+    gap: 16px 8px;
+    justify-content: center;
+  }
+  .progressBarLine {
+    display: none; /* Hide line links on mobile to prevent layout breakage */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 30px 20px;
+  }
+  .formArea {
+    padding: 30px 20px;
+  }
+  .timesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pillsGrid {
+    flex-direction: column;
+  }
+  .pillBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Compact homepage redesign */
+.sectionHeader { margin-bottom: 35px; text-align: center; }
+.sectionHeader h2 { margin: 0; color: #111; font: 800 38px/1.05 'Cabinet Grotesk', sans-serif; letter-spacing: -.6px; }
+.sectionHeader h2 span { color: var(--teal); }
+.sectionHeader p { margin: 15px 0 0; color: #222; font: 400 12px/1.25 'Inter', sans-serif; }
+
+@media (min-width: 1025px) {
+  .contactSec { padding: 54px 0 62px; }
+  .card { min-height: 680px; border: 9px solid #efeee9; border-radius: 13px; box-shadow: none; }
+  .sidebar { width: 235px; min-width: 235px; padding: 27px 27px 24px; }
+  .sidebarContent { gap: 40px; }
+  .logoWrapper { width: 106px; height: 48px; overflow: hidden; }
+  .logoWrapper img { width: 106px; height: 48px; object-fit: fill; filter: brightness(0) invert(1); }
+  .socialsWrapper { gap: 10px; }
+  .socialsTitle { font-size: 15px; }
+  .socialBtn { width: 27px; height: 27px; }
+  .circlesGraphic { right: -162px; width: 390px; height: 390px; perspective: 700px; transform-style: preserve-3d; }
+  .concentricCircle { border-color: rgba(248,247,242,.65); }
+  .formArea { padding: 34px 42px 27px; }
+  .progressRow { margin-bottom: 24px; }
+  .progressCircle { width: 27px; height: 27px; }
+  .progressCircle svg { width: 13px; height: 13px; }
+  .progressStep { gap: 3px; }
+  .progressLabelNumber { margin-top: 3px; font-size: 8px; }
+  .progressLabel { font-size: 9px; }
+  .progressBarLine { transform: translateY(-15px); }
+  .formStepTitle { font-size: 20px; }
+  .formStepSubtitle { margin-bottom: 25px; font-size: 9px; line-height: 1.35; }
+  .inputGrid { gap: 14px 20px; }
+  .inputCol { gap: 5px; }
+  .inputLabel { font-size: 10px; }
+  .textInput { height: 34px; padding: 0 12px; border-radius: 6px; font-size: 10px; }
+  .textareaInput { min-height: 94px; padding: 12px; border-radius: 6px; font-size: 10px; }
+  .actionsRow { padding-top: 19px; }
+  .btnGradient { padding: 10px 24px; border-radius: 5px; font-size: 11px; }
+  .bottomContactRow { margin-top: 25px; padding-top: 20px; gap: 18px; }
+  .bottomBlockTitle { margin-bottom: 6px; font-size: 11px; }
+  .bottomBlockText { font-size: 8px; }
+}
+
+.avatarOrbit {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  margin: calc(var(--avatar-size) / -2);
+  animation: orbitClockwise var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+  transform-style: preserve-3d;
+}
+
+.avatarOrbit .avatarNode {
+  position: static;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  box-shadow: 0 8px 18px rgba(0,0,0,.35), 0 0 0 3px rgba(230,255,42,.15);
+  animation: avatarDepth var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+@keyframes orbitClockwise {
+  from { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+}
+
+@keyframes avatarDepth {
+  0%, 100% { transform: scale(.78) translateZ(-25px); filter: brightness(.8); }
+  50% { transform: scale(1.14) translateZ(45px); filter: brightness(1.12); }
+}
+
+.errorText {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: left;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .sectionHeader h2 { font-size: 34px; }
+  .avatarOrbit { display: none; }
+}
+
+@media (max-width: 520px) {
+  .sectionHeader h2 { font-size: 29px; }
+  .sectionHeader p { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatarOrbit, .avatarOrbit .avatarNode { animation-play-state: paused; }
+}
+
+/* Final Figma-matched desktop form scale */
+@media (min-width: 1025px) {
+  .contactSec { padding: var(--space-section) 0; }
+
+  .sectionHeader { margin-bottom: var(--space-block); }
+  .sectionHeader h2 { font-size: var(--fs-heading); line-height: var(--lh-heading); font-family: var(--font-display); font-weight: var(--fw-bold); }
+  .sectionHeader p { margin-top: 16px; font-size: var(--fs-body); line-height: var(--lh-body); }
+
+  .card {
+    min-height: 800px;
+    padding: 0;
+    gap: 34px;
+    border: 14px solid #efeee9;
+    border-radius: var(--radius-panel);
+    background: #efeee9;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    width: 365px;
+    min-width: 365px;
+    padding: 48px 55px 40px;
+    border: 0;
+    border-radius: var(--radius-panel);
+    background: var(--teal);
+  }
+
+  .sidebarContent { gap: 70px; }
+  .logoWrapper { width: 165px; height: 72px; }
+  .logoWrapper img { width: 165px; height: 72px; }
+  .circlesGraphic { right: -180px; width: 520px; height: 520px; }
+  .socialsTitle { font-size: var(--fs-h2); font-family: var(--font-display); font-weight: var(--fw-bold); }
+  .socialBtn { width: 48px; height: 48px; }
+
+  .formArea {
+    padding: 62px 80px 54px;
+    border-radius: var(--radius-panel);
+    background: var(--teal);
+  }
+
+  .progressRow { margin-bottom: 52px; }
+  .progressCircle { width: 43px; height: 43px; }
+  .progressCircle svg { width: 18px; height: 18px; }
+  .progressStep { gap: 8px; width: 110px; }
+  .progressLabelNumber { margin-top: 7px; font-size: var(--fs-step-word); letter-spacing: 0.02em; }
+  .progressLabel { font-size: var(--fs-step-label); font-weight: var(--fw-semibold); letter-spacing: 0.02em; }
+  .progressBarLine { transform: translateY(-25px); }
+
+  .formStepTitle { margin-bottom: 18px; font-size: var(--fs-h2); font-family: var(--font-display); font-weight: var(--fw-bold); }
+  .formStepSubtitle { margin-bottom: 42px; font-size: var(--fs-body); line-height: var(--lh-body); }
+  .inputGrid { gap: 30px 32px; }
+  .inputCol { gap: 12px; }
+  .inputLabel { font-size: var(--fs-form-label); font-family: var(--font-display); font-weight: var(--fw-bold); }
+  .textInput { height: 57px; padding: 0 17px; border-radius: var(--radius-button); font-size: var(--fs-input); font-family: var(--font-body); font-weight: var(--fw-medium); }
+  .textareaInput { min-height: 168px; padding: 20px; border-radius: var(--radius-button); font-size: var(--fs-input); font-family: var(--font-body); font-weight: var(--fw-medium); }
+
+  .actionsRow { padding-top: 35px; }
+  .btnGradient { min-height: 54px; padding: 14px 30px; border-radius: var(--radius-button); font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--fs-name); }
+  .btnFlat { min-height: 54px; font-size: var(--fs-button); border-radius: var(--radius-button); }
+
+  .bottomContactRow { margin-top: 50px; padding-top: 34px; gap: 40px; }
+  .bottomBlockTitle { margin-bottom: 18px; font-size: var(--fs-eyebrow); font-weight: var(--fw-semibold); }
+  .bottomBlockText { font-size: var(--fs-body); line-height: 1.5; }
+}
+
+@media (min-width: 1025px) and (max-width: 1250px) {
+  .sectionHeader h2 { font-size: var(--fs-heading); }
+  .card { min-height: 800px; gap: 22px; }
+  .sidebar { width: 300px; min-width: 300px; padding-left: 38px; padding-right: 38px; }
+  .formArea { padding-left: 48px; padding-right: 48px; }
+}

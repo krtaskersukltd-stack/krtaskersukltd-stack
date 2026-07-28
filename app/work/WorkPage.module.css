@@ -1,0 +1,870 @@
+/* d:/kr-website-antigravity/app/work/WorkPage.module.css */
+
+.workPage {
+  background: var(--white);
+  min-height: 100vh;
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* Common Container utility */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Section Tag styling (consistent with about page) */
+.sectionTag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--black);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTag::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--black);
+}
+
+/* 1. Hero / Intro Section */
+.heroSection { padding: 154px 0 64px; }
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(390px, 0.98fr);
+  gap: clamp(48px, 6vw, 96px);
+  align-items: end;
+}
+
+.leftHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-hero);
+  line-height: var(--lh-heading);
+  color: var(--black);
+  letter-spacing: -1.8px;
+  margin-top: 8px;
+  max-width: 760px;
+}
+
+.rightHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 2px;
+}
+
+.heroDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: var(--lh-body);
+  color: var(--black);
+  opacity: 1;
+  max-width: 590px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 12px;
+}
+
+.primaryBtn {
+  background: var(--teal);
+  color: var(--cream);
+  border: none;
+  border-radius: 6px;
+  padding: 11px 17px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(12, 70, 81, 0.2);
+}
+
+.secondaryBtn {
+  background: var(--lime);
+  color: var(--black);
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  padding: 10px 17px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--teal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: #d9ff00;
+  transform: translateY(-1px);
+}
+
+/* 2. Filters / Category Switcher */
+.filterSection {
+  padding: 34px 0 22px;
+}
+
+.filterTag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--black);
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.filterTag::before { content: '• '; }
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  justify-content: start;
+  align-items: center;
+  column-gap: clamp(44px, 5vw, 92px);
+  row-gap: 25px;
+  margin-top: -22px;
+  padding-left: 150px;
+}
+
+.filterBtn:nth-child(4) { grid-column: 1; }
+
+.filterBtn {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-heading);
+}
+
+.filterBtn:hover {
+  background: transparent;
+  color: var(--teal);
+}
+
+.activeFilter {
+  background: transparent;
+  color: var(--teal);
+}
+
+.filterCount {
+  font-size: var(--fs-h2);
+  opacity: 0.75;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  align-self: flex-end;
+  transform: translateY(2px);
+  transition: all 0.3s ease;
+}
+
+.activeFilter .filterCount {
+  background: transparent;
+  color: var(--teal);
+}
+
+/* 3. Case Studies Grid */
+.gridSection {
+  padding: 22px 0 100px;
+}
+
+.caseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 52px;
+  row-gap: 34px;
+  align-items: start;
+}
+
+.caseGrid > :nth-child(even) { margin-top: 76px; }
+
+/* Case Card Design */
+.caseCard {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+  padding: 0;
+  background: var(--cream);
+  border: 1px solid rgba(12, 70, 81, 0.45);
+}
+
+.cardImage {
+  width: 100%;
+  height: calc(100% - 36px);
+  object-fit: cover;
+  display: block;
+}
+
+.caseCard:hover .cardImageWrapper {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(12, 70, 81, 0.08);
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 13px;
+  background: var(--teal);
+  color: white;
+  font: 700 18px 'Cabinet Grotesk', sans-serif;
+}
+
+.mockupDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(248, 247, 242, 0.4);
+}
+
+.caseTechTag {
+  position: static;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--teal);
+  padding: 3px 7px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.casePreviewGraphic {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.graphicLine {
+  height: 6px;
+  background: rgba(248, 247, 242, 0.25);
+  border-radius: 3px;
+}
+
+.cardContent {
+  padding-top: 10px;
+}
+
+.cardClient {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.cardTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  color: var(--black);
+  margin-top: 4px;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.caseCard:hover .cardTitle {
+  color: var(--teal);
+}
+
+/* Testimonial Card */
+.testimonialCard {
+  background: transparent;
+  border-radius: 0;
+  padding: 12px 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: none;
+  min-height: 185px;
+  border: 0;
+}
+
+.quoteMark {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: var(--fs-quote-mark);
+  line-height: 1;
+  color: var(--black);
+  font-style: italic;
+  display: block;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  color: var(--black);
+  font-weight: 700;
+  margin: 0 0 12px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.authorSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.authorAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.authorImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.authorName {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-form-label);
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.authorRole {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fs-body);
+  color: var(--black);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* Call-to-action Card */
+.ctaCard {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 180px;
+}
+
+.ctaTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-heading);
+  color: var(--black);
+  letter-spacing: -1px;
+}
+
+.ctaDesc {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  color: var(--black);
+  margin: 6px 0 12px;
+}
+
+.ctaButton {
+  background: var(--teal);
+  color: var(--cream);
+  border: none;
+  padding: 7px 15px;
+  border-radius: 4px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-button);
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(12, 70, 81, 0.35);
+}
+
+/* 5. Client Results & Reviews Section */
+.reviewsSection {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.reviewsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+
+.reviewsTag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal);
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.reviewsHeading {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--black);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.limeText {
+  color: var(--teal);
+  position: relative;
+  display: inline-block;
+}
+
+.limeText::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 6px;
+  background-color: var(--lime);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.googleBadge {
+  background: #ffffff;
+  padding: 24px 36px;
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(12, 70, 81, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.googleLogoRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.googleLogoText {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--black);
+}
+
+.googleRatingsText {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.starsRow {
+  color: #FFD700;
+  font-size: 16px;
+  display: flex;
+  gap: 3px;
+}
+
+.badgeScore {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--black);
+}
+
+/* Reviews Carousel Container */
+.carouselContainer {
+  background: var(--teal);
+  color: var(--cream);
+  border-radius: 32px;
+  padding: 80px 100px;
+  box-shadow: 0 20px 50px rgba(12, 70, 81, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselTrack {
+  min-height: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carouselSlide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.carouselQuoteIcon {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 110px;
+  line-height: 0.5;
+  color: var(--lime);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.carouselQuote {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  color: var(--cream);
+  margin-bottom: 40px;
+}
+
+.carouselMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(248, 247, 242, 0.1);
+  padding-top: 30px;
+  margin-top: auto;
+}
+
+.metaRatingCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaGoogleLogo {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cream);
+}
+
+.metaGoogleRatings {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(248, 247, 242, 0.5);
+  font-weight: 600;
+}
+
+.metaStars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--lime);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.metaStar {
+  line-height: 1;
+}
+
+.metaScore {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--cream);
+  margin-left: 6px;
+}
+
+.carouselAuthor {
+  text-align: right;
+}
+
+.carouselAuthorName {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--lime);
+}
+
+.carouselAuthorRole {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(248, 247, 242, 0.6);
+  margin-top: 4px;
+}
+
+/* Slider Controls */
+.carouselNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.navArrow {
+  background: transparent;
+  border: 1px solid rgba(248, 247, 242, 0.3);
+  color: var(--cream);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.navArrow:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  transform: scale(1.05);
+}
+
+.navDots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(248, 247, 242, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.activeDot {
+  background: var(--lime);
+  width: 24px;
+  border-radius: 12px;
+}
+
+
+/* --- RESPONSIVENESS MEDIA QUERIES --- */
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 80px;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 60px;
+  }
+
+  .headerGrid {
+    gap: 40px;
+  }
+
+  .filterGrid {
+    grid-template-columns: repeat(4, max-content);
+    justify-content: start;
+    margin-top: 18px;
+    padding-left: 0;
+  }
+
+  .caseGrid {
+    gap: 30px;
+  }
+
+  .cardImageWrapper {
+    height: 380px;
+  }
+
+  .testimonialCard {
+    height: auto;
+    padding: 12px 4px;
+  }
+
+  .ctaCard {
+    height: auto;
+    padding: 35px 20px;
+  }
+
+  .carouselContainer {
+    padding: 60px;
+  }
+
+  .carouselQuote {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 992px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .rightHeader {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+
+  .caseGrid {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .caseGrid > :nth-child(even) { margin-top: 0; }
+
+  .cardImageWrapper { height: 350px; }
+  .testimonialCard, .ctaCard { height: auto; }
+
+  .reviewsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .googleBadge {
+    align-self: flex-start;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .heroSection {
+    padding: 128px 0 56px;
+  }
+
+  .heroTitle {
+    font-size: 38px;
+  }
+
+  .filterGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .reviewsHeading {
+    font-size: 36px;
+  }
+
+  .carouselContainer {
+    padding: 40px 30px;
+  }
+
+  .carouselQuote {
+    font-size: 22px;
+  }
+
+  .carouselMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .carouselAuthor {
+    text-align: left;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filterGrid {
+    gap: 8px;
+  }
+
+  .filterBtn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .cardImageWrapper { height: 300px; padding: 0; }
+  .testimonialCard, .ctaCard { height: auto; padding: 18px 4px; }
+
+  .ctaTitle {
+    font-size: 30px;
+  }
+
+  .quoteText {
+    font-size: 16px;
+  }
+
+}

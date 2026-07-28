@@ -1,0 +1,372 @@
+/* d:/kr-website-antigravity/app/blog/BlogPage.module.css */
+
+.blogPage {
+  background: var(--white);
+  min-height: 100vh;
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.heroSection {
+  padding: 145px 0 28px;
+  border-bottom: 0;
+}
+
+.sectionTag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--black);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTag::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--black);
+}
+
+.title {
+  display: none;
+}
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  column-gap: clamp(48px, 6vw, 105px);
+  row-gap: 24px;
+  padding-left: 150px;
+  margin-top: -25px;
+}
+
+.filterBtn:nth-child(4) { grid-column: 1; }
+
+.filterBtn {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 1.55vw, 28px);
+}
+
+.filterBtn:hover {
+  background: transparent;
+  color: var(--teal);
+}
+
+.activeFilter {
+  background: transparent;
+  color: var(--teal);
+}
+
+.filterLabel {
+  line-height: 1;
+}
+
+.filterCount {
+  font-size: 10px;
+  opacity: 0.7;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.activeFilter .filterCount {
+  background: transparent;
+  color: var(--teal);
+}
+
+.gridSection {
+  padding: 32px 0 100px;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 38px;
+  row-gap: 34px;
+}
+
+.secondGrid {
+  margin-top: 60px;
+}
+
+/* Newsletter Banner Block */
+.newsletterBanner {
+  background: var(--teal);
+  color: var(--cream);
+  border-radius: 8px;
+  padding: 45px 48px;
+  margin: 64px 0;
+  min-height: 350px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.newsletterContent {
+  display: block;
+  width: 58%;
+  position: relative;
+  z-index: 5;
+}
+
+.leftNews {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsTag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.newsTag::before { content: '• '; }
+
+.newsTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 3vw, 48px);
+  line-height: 1.18;
+  letter-spacing: -1px;
+}
+
+.yellowText {
+  color: var(--lime);
+}
+
+.rightNews {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  max-width: 460px;
+}
+
+.subText {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--lime);
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  background: var(--cream);
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 18px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: #898A8E;
+}
+
+.input:focus {
+  border-color: var(--lime);
+  background: rgba(248, 247, 242, 0.15);
+}
+
+.btnSubscribe {
+  background: var(--lime);
+  color: var(--teal);
+  border: none;
+  border-radius: 5px;
+  padding: 11px 16px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(230, 255, 42, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btnSubscribe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230, 255, 42, 0.45);
+}
+
+/* Background circles design */
+.circlesDesign {
+  position: absolute;
+  top: 50%;
+  right: 55px;
+  width: 310px;
+  height: 310px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.orbitImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: newsletterOrbit 20s linear infinite;
+}
+
+.centerVector {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes newsletterOrbit { to { transform: rotate(360deg); } }
+
+.newsletterBanner:hover .orbitImage { animation-play-state: paused; }
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 80px;
+  }
+
+  .title {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 60px;
+  }
+
+  .blogGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .filterGrid {
+    padding-left: 0;
+    margin-top: 18px;
+    column-gap: 40px;
+  }
+
+  .newsletterBanner {
+    padding: 50px;
+  }
+
+  .newsTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .newsletterContent {
+    width: 100%;
+    padding-right: 250px;
+  }
+
+  .circlesDesign {
+    width: 220px;
+    height: 220px;
+    right: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .filterGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .filterBtn:nth-child(4) { grid-column: auto; }
+
+  .newsletterBanner {
+    border-radius: 24px;
+    padding: 30px 24px;
+  }
+
+  .newsletterContent { padding-right: 0; }
+
+  .circlesDesign {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 34px auto 0;
+    transform: none;
+  }
+
+  .newsTitle {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .blogGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btnSubscribe {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}

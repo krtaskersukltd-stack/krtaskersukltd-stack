@@ -1,0 +1,24 @@
+/* d:/kr-website-antigravity/components/Logo.module.css */
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  width: 134px;
+  height: 64px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logoWrapper:hover .logoImage { transform: scale(1.04); }
+
+@media (max-width: 768px) {
+  .logoWrapper { width: 116px; height: 55px; }
+}

@@ -1,0 +1,261 @@
+/* ===== Outer Wrapper ===== */
+
+.outerWrap {
+  position: relative;
+  width: 100%;
+}
+
+/* ===== Hero Carousel Container ===== */
+
+.carouselContainer {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  background: transparent;
+  padding: 0;
+  /* Clip bottom half of ellipse — only top arc with ~5 cards visible */
+  max-height: 682px;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  padding: 0;
+  /* Push ellipse center down so only top arc peeks out */
+  padding-top: 80px;
+}
+
+.content {
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  z-index: 2;
+  height: 2000px;
+}
+
+.content::before {
+  float: left;
+  padding-top: 84%;
+  content: '';
+}
+
+.content::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+/* ===== Carousel Item (Card) ===== */
+
+.item {
+  width: 280px;
+  height: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: grab;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.6s ease;
+  box-shadow: 0 8px 32px rgba(12, 70, 81, 0.12);
+  will-change: transform;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item.active {
+  width: 320px;
+  height: 420px;
+  box-shadow: 0 20px 60px rgba(12, 70, 81, 0.25),
+              0 0 0 2px var(--lime);
+  z-index: 10;
+}
+
+/* ===== Card Child (Inner Content) ===== */
+
+.child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* ===== Card Image ===== */
+
+.cardImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.item:hover .cardImage,
+.item.active .cardImage {
+  transform: scale(1.08);
+}
+
+/* ===== Card Overlay ===== */
+
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 18px 18px;
+  background: linear-gradient(
+    0deg,
+    rgba(12, 70, 81, 0.85) 0%,
+    rgba(12, 70, 81, 0.4) 60%,
+    transparent 100%
+  );
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cardLabel {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cream);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.item.active .cardLabel {
+  font-size: 18px;
+}
+
+/* ===== Navigation Buttons ===== */
+
+.navButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  z-index: 20;
+}
+
+.navBtn {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--teal);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(12, 70, 81, 0.1);
+}
+
+.navBtn:hover {
+  background: var(--teal);
+  color: var(--cream);
+  box-shadow: 0 6px 20px rgba(12, 70, 81, 0.25);
+  transform: scale(1.08);
+}
+
+.navBtn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1200px) {
+  .carouselContainer {
+    max-height: 370px;
+  }
+
+  .item {
+    width: 240px;
+    height: 340px;
+  }
+
+  .item.active {
+    width: 280px;
+    height: 380px;
+  }
+
+  .wrapper {
+    height: 440px;
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .carouselContainer {
+    max-height: 310px;
+  }
+
+  .item {
+    width: 200px;
+    height: 280px;
+  }
+
+  .item.active {
+    width: 230px;
+    height: 310px;
+  }
+
+  .wrapper {
+    height: 380px;
+    padding-top: 50px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .carouselContainer {
+    max-height: 240px;
+  }
+
+  .item {
+    width: 160px;
+    height: 220px;
+  }
+
+  .item.active {
+    width: 180px;
+    height: 250px;
+  }
+
+  .wrapper {
+    height: 300px;
+    padding-top: 40px;
+  }
+
+  .cardLabel {
+    font-size: 13px;
+  }
+
+  .item.active .cardLabel {
+    font-size: 14px;
+  }
+
+  .navBtn {
+    width: 38px;
+    height: 38px;
+  }
+}

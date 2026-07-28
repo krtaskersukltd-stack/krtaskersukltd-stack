@@ -1,0 +1,285 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ================= BRAND COLOR TOKENS ================= */
+  --white: #ffffff;
+  --cream: #F8F7F2;
+  --teal: #0C4651;
+  --lime: #E6FF2A;
+  --black: #000000;
+  --gray: #898A8E;
+
+  /* ================= TYPE SCALE ================= */
+  /* clamp(mobile, fluid, DESKTOP-EXACT) — top value = exact Figma px */
+  --fs-display-xxl:    clamp(2.5rem, -0.14rem + 11.27vw, 10rem);   /* 40 → 160 */
+  --fs-display-footer: clamp(2.5rem, 0.74rem + 7.51vw, 7.5rem);    /* 40 → 120 */
+  --fs-stat-xl:        clamp(2.75rem, 1.08rem + 7.14vw, 7.5rem);   /* 44 → 120 */
+  --fs-hero-lg:        clamp(2.125rem, 1.11rem + 4.32vw, 5rem);    /* 34 → 80  */
+  --fs-hero:           clamp(2rem, 1.30rem + 3vw, 4rem);           /* 32 → 64  */
+  --fs-quote-mark:     clamp(2.5rem, 2.06rem + 1.88vw, 3.75rem);   /* 40 → 60  */
+  --fs-heading:        clamp(1.75rem, 1.31rem + 1.88vw, 3rem);     /* 28 → 48  */
+  --fs-process-num:    clamp(2.25rem, 1.99rem + 1.13vw, 3rem);     /* 36 → 48  */
+  --fs-h2:             clamp(1.5rem, 1.32rem + 0.75vw, 2rem);      /* 24 → 32  */
+  --fs-h2-light:       clamp(1.5rem, 1.32rem + 0.75vw, 2rem);      /* 24 → 32  */
+  --fs-ratings:        clamp(1.5rem, 1.32rem + 0.75vw, 2rem);      /* 24 → 32  */
+  --fs-accordion:      clamp(1.375rem, 1.20rem + 0.75vw, 2rem);    /* 22 → 32  */
+  --fs-stat:           clamp(1.375rem, 1.29rem + 0.38vw, 1.625rem);/* 22 → 26  */
+  --fs-form-label:     clamp(1.125rem, 0.99rem + 0.56vw, 1.5rem);  /* 18 → 24  */
+  --fs-card-lg:        clamp(1.125rem, 0.99rem + 0.56vw, 1.5rem);  /* 18 → 24  */
+  --fs-faq:            clamp(1.0625rem, 1.00rem + 0.28vw, 1.25rem);/* 17 → 20  */
+  --fs-step-label:     clamp(1.0625rem, 1.00rem + 0.28vw, 1.25rem);/* 17 → 20  */
+  --fs-name:           clamp(1rem, 0.96rem + 0.19vw, 1.125rem);    /* 16 → 18  */
+  --fs-quote:          clamp(1rem, 0.96rem + 0.19vw, 1.125rem);    /* 16 → 18  */
+  --fs-button:         1rem;                                        /* 16      */
+  --fs-eyebrow:        clamp(0.875rem, 0.83rem + 0.19vw, 1rem);    /* 14 → 16  */
+  --fs-body:           clamp(0.9375rem, 0.92rem + 0.09vw, 1rem);   /* 15 → 16  */
+  --fs-input:          clamp(0.9375rem, 0.92rem + 0.09vw, 1rem);   /* 15 → 16  */
+  --fs-step-word:      clamp(0.875rem, 0.83rem + 0.19vw, 1rem);    /* 14 → 16  */
+  --fs-body-sm:        clamp(0.8125rem, 0.79rem + 0.09vw, 0.875rem);/* 13 → 14 */
+  --fs-caption:        0.75rem;                                     /* 12      */
+  --fs-micro:          0.6875rem;                                   /* 11      */
+
+  /* Legacy aliases for backwards compatibility */
+  --fs-h1:             var(--fs-heading);
+  --fs-h3:             var(--fs-h2);
+  --fs-h4:             var(--fs-form-label);
+  --fs-h5:             var(--fs-name);
+  --fs-display-xl:     var(--fs-hero);
+  --fs-body-lg:        var(--fs-card-lg);
+  --fs-nav:            var(--fs-eyebrow);
+  --fs-form-input:     var(--fs-input);
+
+  /* ================= LINE HEIGHT ================= */
+  --lh-display: 1.05;
+  --lh-heading: 1.2;   /* whole design uses ~1.2 */
+  --lh-body: 1.2;      /* Figma-exact */
+  --lh-input: 1.5;
+  --lh-tight: 1.05;
+  --lh-snug: 1.3;
+
+  /* ================= WEIGHTS ================= */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ================= FONT FAMILIES ================= */
+  --font-display: "Cabinet Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Poppins", sans-serif;
+
+  /* ================= BORDER RADIUS (exact) ================= */
+  --radius-tag: 8px;
+  --radius-button: 10px;
+  --radius-card: 10px;
+  --radius-card-lg: 20px;
+  --radius-panel: 24px;
+  --radius-pill: 35px;
+  --radius-badge: 61px;
+
+  /* ================= SECTION SPACING (measured) ================= */
+  --space-section:    clamp(3.5rem, 2.2rem + 3.5vw, 6.25rem);  /* 56 → 100 */
+  --space-section-sm: clamp(3rem, 2.1rem + 2.4vw, 4.75rem);    /* 48 → 76  */
+  --space-block:      clamp(2.25rem, 1.7rem + 1.5vw, 3.375rem);/* 36 → 54  */
+  --space-block-sm:   clamp(1.75rem, 1.4rem + 0.9vw, 2.75rem); /* 28 → 44  */
+  --space-tight:      clamp(1.25rem, 1.05rem + 0.5vw, 1.75rem);/* 20 → 28  */
+
+  /* ================= LAYOUT / CONTAINER ================= */
+  --container-max: 1440px;   /* content max-width (from hero frame 1439) */
+  --container-pad: clamp(1.5rem, 1.5rem + 2.5vw, 5rem); /* 24px → 80px fluid side padding */
+  --radius-hero: 14px;       /* hero bordered frames (differs from 10px cards) */
+  --hero-border: 1px solid #0C4651;
+  --hero-card-fill: #F8F7F2;
+
+  --site-max-width: 1440px;
+  --site-gutter: var(--container-pad); /* unified — same as container-pad */
+}
+
+/* centered content container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* hero frames */
+.hero-frame {
+  border-radius: var(--radius-hero);
+  border: var(--hero-border);
+}
+.hero-card {
+  border-radius: var(--radius-hero);
+  border: var(--hero-border);
+  background: var(--hero-card-fill);
+  max-width: 75%;
+  margin-inline: auto;
+}
+.hero p {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* ================= BASE ================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  /* scroll-behavior managed by Lenis smooth scroll */
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--white);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: rgba(0, 0, 0, 0.8);
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  text-wrap: balance;
+}
+
+h1 { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-heading); font-weight: var(--fw-bold); }
+h2 { font-family: var(--font-display); font-size: var(--fs-heading); line-height: var(--lh-heading); font-weight: var(--fw-bold); }
+h3 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-heading); font-weight: var(--fw-bold); }
+
+/* ================= UTILITY CLASSES ================= */
+.display-xxl   { font-family: var(--font-display); font-size: var(--fs-display-xxl); line-height: var(--lh-display); font-weight: var(--fw-bold); }
+.display-footer{ font-family: var(--font-display); font-size: var(--fs-display-footer); line-height: var(--lh-display); font-weight: var(--fw-bold); }
+.hero-lg       { font-family: var(--font-display); font-size: var(--fs-hero-lg); line-height: 1.1; font-weight: var(--fw-bold); }
+.hero          { font-family: var(--font-display); font-size: var(--fs-hero); line-height: 1.1; font-weight: var(--fw-bold); }
+.hero-title    { font-family: var(--font-display); font-size: var(--fs-hero); line-height: 1.1; font-weight: var(--fw-bold); }
+.heading       { font-family: var(--font-display); font-size: var(--fs-heading); line-height: var(--lh-heading); font-weight: var(--fw-bold); }
+.h2            { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-heading); font-weight: var(--fw-bold); }
+.h2-light      { font-family: var(--font-display); font-size: var(--fs-h2-light); line-height: var(--lh-heading); font-weight: var(--fw-regular); }
+.stat          { font-family: var(--font-body); font-size: var(--fs-stat); font-weight: var(--fw-bold); }
+.stat-xl       { font-family: var(--font-body); font-size: var(--fs-stat-xl); font-weight: var(--fw-semibold); line-height: 1; }
+.process-num   { font-family: var(--font-body); font-size: var(--fs-process-num); font-weight: var(--fw-bold); line-height: 1; }
+.eyebrow       { font-family: var(--font-body); font-size: var(--fs-eyebrow); font-weight: var(--fw-semibold); }
+.card-lg       { font-family: var(--font-body); font-size: var(--fs-card-lg); line-height: var(--lh-heading); }
+.quote         { font-family: var(--font-body); font-size: var(--fs-quote); line-height: 1.22; }
+.name          { font-family: var(--font-display); font-size: var(--fs-name); font-weight: var(--fw-bold); }
+.form-label    { font-family: var(--font-display); font-size: var(--fs-form-label); font-weight: var(--fw-bold); }
+.faq-q         { font-family: var(--font-display); font-size: var(--fs-faq); font-weight: var(--fw-regular); }
+.accordion-title{font-family: var(--font-body); font-size: var(--fs-accordion); font-weight: var(--fw-medium); }
+.step-label    { font-family: var(--font-body); font-size: var(--fs-step-label); font-weight: var(--fw-semibold); letter-spacing: 0.02em; }
+.step-word     { font-family: var(--font-body); font-size: var(--fs-step-word); letter-spacing: 0.02em; }
+.caption       { font-family: var(--font-body); font-size: var(--fs-caption); font-weight: var(--fw-medium); }
+.micro         { font-family: var(--font-body); font-size: var(--fs-micro); }
+
+/* buttons + inputs */
+.btn         { font-family: var(--font-display); font-size: var(--fs-button); font-weight: var(--fw-bold); border-radius: var(--radius-button); }
+.form-input  { font-family: var(--font-body); font-size: var(--fs-input); font-weight: var(--fw-medium); line-height: var(--lh-input); }
+.nav-link    { font-family: var(--font-body); font-size: var(--fs-eyebrow); font-weight: var(--fw-semibold); }
+
+/* radius helpers */
+.card   { border-radius: var(--radius-card); }
+.panel  { border-radius: var(--radius-panel); }
+.tag    { border-radius: var(--radius-tag); }
+.pill   { border-radius: var(--radius-pill); }
+
+/* section rhythm — every top-level section, no one-off margins */
+section { padding-block: var(--space-section); }
+.section-tight { padding-block: var(--space-section-sm); }
+
+/* Shared homepage alignment and background system */
+main > section {
+  width: 100%;
+}
+
+main > section:not(:first-of-type) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+main > section > [class*="_container_"],
+main [class*="container"] {
+  width: 100% !important;
+  max-width: var(--container-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--container-pad) !important;
+  padding-right: var(--container-pad) !important;
+}
+
+@media (max-width: 767px) {
+  body {
+    line-height: 1.3;
+  }
+
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: anywhere;
+  }
+}
+
+main > footer > [class*="_footerCard_"] {
+  max-width: var(--container-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  /* keep footer-specific horizontal padding intact */
+}
+
+/* Custom Cursor Resets */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* Lenis Smooth Scroll Base Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}

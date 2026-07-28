@@ -1,0 +1,131 @@
+.processSection {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+  background: #f5f3ed !important;
+  display: flex;
+  align-items: center;
+}
+
+.horizontalTrack {
+  display: flex;
+  align-items: center;
+  gap: var(--space-tight);
+  width: max-content;
+  padding: var(--space-section) 0 44px;
+  will-change: transform;
+}
+
+.introBlock {
+  flex: 0 0 clamp(500px, 36vw, 680px);
+  padding-left: clamp(40px, 6vw, 96px);
+  padding-right: 32px;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--teal);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tag {
+  margin: 0 0 20px;
+  color: var(--black);
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-heading);
+}
+
+.tag b { color: var(--teal); }
+
+.introText {
+  max-width: 430px;
+  color: #303234;
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 104px);
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.logoCard {
+  height: 66px;
+  padding: 12px;
+  border-radius: var(--radius-tag);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoCard img { max-width: 90%; max-height: 34px; object-fit: contain; }
+.trackSpacer { flex: 0 0 clamp(30px, 4vw, 80px); }
+
+.stepCard {
+  flex: 0 0 clamp(330px, 25vw, 400px);
+  height: clamp(400px, 55vh, 500px);
+  padding: clamp(28px, 2.5vw, 40px);
+  border-radius: var(--radius-card);
+  background: #fff;
+  color: var(--teal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.stepCard:nth-of-type(2n) { background: var(--teal); color: #fff; }
+.stepHeader { display: flex; align-items: flex-start; justify-content: space-between; }
+.stepNum {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-process-num);
+  line-height: 1;
+}
+.stepIcon { width: 58px; height: 58px; color: currentColor; }
+.stepTitle {
+  margin-bottom: 10px;
+  color: currentColor;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+}
+.stepDesc {
+  max-width: 320px;
+  color: #303234;
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+.stepCard:nth-of-type(2n) .stepDesc { color: rgba(255,255,255,.86); }
+.endSpace { flex: 0 0 28vw; }
+
+@media (max-width: 900px) {
+  .processSection { height: auto; min-height: 0; padding: var(--space-section) 0; overflow: hidden; }
+  .horizontalTrack { width: 100%; padding: 0 20px; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; align-items: stretch; scrollbar-width: none; }
+  .horizontalTrack::-webkit-scrollbar { display: none; }
+  .introBlock { flex: 0 0 min(86vw, 430px); padding: 20px 12px 20px 0; scroll-snap-align: start; }
+  .logoGrid { grid-template-columns: repeat(2, 1fr); }
+  .trackSpacer { display: none; }
+  .stepCard { flex: 0 0 min(82vw, 360px); height: 430px; scroll-snap-align: center; }
+  .endSpace { flex: 0 0 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizontalTrack { transform: none !important; }
+}

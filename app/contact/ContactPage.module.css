@@ -1,0 +1,20 @@
+/* d:/kr-website-antigravity/app/contact/ContactPage.module.css */
+
+.contactPage {
+  background: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contactWrapper {
+  padding-top: 88px;
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .contactWrapper {
+    padding-top: 72px;
+  }
+}
