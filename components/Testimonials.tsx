@@ -55,7 +55,17 @@ export default function Testimonials() {
             </h2>
           </div>
           <div className={styles.headerRight} aria-label="Google rating 5 out of 5">
-            <div className={styles.googleRatings}><b>G</b><span>oogle Ratings</span></div>
+            <div className={styles.googleRatings}>
+              <span className={styles.googleLogo}>
+                <span className={styles.gBlue}>G</span>
+                <span className={styles.gRed}>o</span>
+                <span className={styles.gYellow}>o</span>
+                <span className={styles.gBlue}>g</span>
+                <span className={styles.gGreen}>l</span>
+                <span className={styles.gRed}>e</span>
+              </span>
+              <span className={styles.ratingsLabel}> Ratings</span>
+            </div>
             <div className={styles.googleStarsRow}><span>★★★★★</span><small>5.0 / 5.0</small></div>
           </div>
         </div>
@@ -90,7 +100,15 @@ export default function Testimonials() {
                       <span><b>{review.name}</b><small>{review.role}</small></span>
                     </div>
                     <div className={styles.cardRating}>
-                      <strong><i>G</i>oogle Ratings</strong>
+                      <strong>
+                        <span className={styles.gBlue}>G</span>
+                        <span className={styles.gRed}>o</span>
+                        <span className={styles.gYellow}>o</span>
+                        <span className={styles.gBlue}>g</span>
+                        <span className={styles.gGreen}>l</span>
+                        <span className={styles.gRed}>e</span>
+                        <span className={styles.cardRatingsLabel}> Ratings</span>
+                      </strong>
                       <span>★★★★★ <small>5.0 / 5.0</small></span>
                     </div>
                   </div>

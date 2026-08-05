@@ -53,15 +53,27 @@
 
 .googleRatings {
   display: flex;
-  align-items: center;
-  font-family: var(--font-body);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-ratings);
-  color: #3d3d3d;
+  align-items: baseline;
+  gap: 4px;
 }
 
-.googleRatings b {
-  color: #4285f4;
+.googleLogo {
+  font-family: 'Product Sans', var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-ratings);
+  letter-spacing: -0.5px;
+}
+
+.gBlue { color: #4285F4; }
+.gRed { color: #EA4335; }
+.gYellow { color: #FBBC05; }
+.gGreen { color: #34A853; }
+
+.ratingsLabel {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-ratings);
+  color: #5f6368;
 }
 
 .googleStarsRow {
@@ -186,9 +198,12 @@
 }
 
 .cardRating strong i {
-  color: #4285f4;
-  font-size: 12px;
   font-style: normal;
+}
+
+.cardRatingsLabel {
+  color: #5f6368;
+  font-weight: var(--fw-regular);
 }
 
 .cardRating>span {

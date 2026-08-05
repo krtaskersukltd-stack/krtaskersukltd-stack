@@ -67,13 +67,13 @@ export default function FeaturedIntro() {
             src="/images/featured-image.png"
             alt="Digital specialist working on a laptop"
             width={386}
-            height={500}
+            height={400}
             className={styles.image}
             priority
           />
 
           <motion.div className={styles.projectBadge} whileHover={{ scale: 1.04 }}>
-            <span className={styles.avatars}><i /><i /><i /></span>
+            <span className={styles.avatars}><i /><i /><i /><i/></span>
             <strong>1.5k+</strong>
             <small>Projects</small>
           </motion.div>

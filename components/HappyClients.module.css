@@ -81,8 +81,22 @@
   gap: 12px;
   padding: 10px 12px 10px 0;
   border-top-right-radius: 15px;
+  border-bottom-left-radius: 10px;
   background: var(--white);
   box-sizing: border-box;
+}
+
+.profileRow::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+  width: 15px;
+  height: 15px;
+  background: transparent;
+  border-bottom-left-radius: 15px;
+  box-shadow: -7px 7px 0 7px var(--white);
+  pointer-events: none;
 }
 
 .profileRow::after {

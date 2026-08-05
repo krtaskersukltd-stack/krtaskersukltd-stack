@@ -114,7 +114,7 @@ export default function Digital360Page() {
               <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
               <strong>80%</strong>
               <small>Client Satisfaction</small>
-              <div className={styles.googleRating}>Google Ratings<br /><span>★★★★★</span> <small>5.0 / 5.0</small></div>
+              <div className={styles.googleRating}><span className={styles.googleLogo}><span className={styles.gBlue}>G</span><span className={styles.gRed}>o</span><span className={styles.gYellow}>o</span><span className={styles.gBlue}>g</span><span className={styles.gGreen}>l</span><span className={styles.gRed}>e</span></span> <span className={styles.ratingsLabel}>Ratings</span><br /><span className={styles.starsYellow}>★★★★★</span> <small>5.0 / 5.0</small></div>
             </div>
           </div>
           <div className={styles.bespokeGrid}>
@@ -133,7 +133,7 @@ export default function Digital360Page() {
                 <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
                 <strong>80%</strong>
                 <small>Client Satisfaction</small>
-                <div className={styles.googleRating}>Google Ratings ★★★★★ <small>5.0 / 5.0</small></div>
+                <div className={styles.googleRating}><span className={styles.googleLogo}><span className={styles.gBlue}>G</span><span className={styles.gRed}>o</span><span className={styles.gYellow}>o</span><span className={styles.gBlue}>g</span><span className={styles.gGreen}>l</span><span className={styles.gRed}>e</span></span> <span className={styles.ratingsLabel}>Ratings</span> <span className={styles.starsYellow}>★★★★★</span> <small>5.0 / 5.0</small></div>
               </div>
               <img src="/images/blog-newsletter/circle.png" alt="Marketing channels" className={styles.channelsImage} />
               <div className={styles.statBox}>

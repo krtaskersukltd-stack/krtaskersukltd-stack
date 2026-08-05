@@ -209,7 +209,6 @@ export default function Footer() {
               <p className={styles.infoTitle}>Address</p>
               <div className={styles.infoDesc}>
                 Unit 304 3rd Floor Aidan House, Sunderland Rd,
-                <br />
                 Tynegate Precinct, Gateshead NE8 3HU
               </div>
             </div>

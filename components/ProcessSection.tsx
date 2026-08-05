@@ -26,12 +26,12 @@ const logos = [
 
 function StepIcon({ index }: { index: number }) {
   const paths = [
-    <><path d="M20 11a8 8 0 1 1-2.34-5.66"/><path d="M20 4v7h-7"/></>,
-    <><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z"/><path d="m13.5 7.5 3 3"/></>,
-    <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m7 12 3 3 7-7"/></>,
-    <><path d="M5 20V8"/><path d="m2 11 3-3 3 3"/><path d="M11 20h10"/><path d="M11 15h7"/><path d="M11 10h4"/></>,
-    <><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></>,
-    <><path d="M4 20V10"/><path d="M10 20V6"/><path d="M16 20v-7"/><path d="m3 8 6-5 6 5 6-5"/></>,
+    <><path d="M20 11a8 8 0 1 1-2.34-5.66" /><path d="M20 4v7h-7" /></>,
+    <><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" /><path d="m13.5 7.5 3 3" /></>,
+    <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="m7 12 3 3 7-7" /></>,
+    <><path d="M5 20V8" /><path d="m2 11 3-3 3 3" /><path d="M11 20h10" /><path d="M11 15h7" /><path d="M11 10h4" /></>,
+    <><circle cx="10" cy="10" r="7" /><path d="m15 15 6 6" /></>,
+    <><path d="M4 20V10" /><path d="M10 20V6" /><path d="M16 20v-7" /><path d="m3 8 6-5 6 5 6-5" /></>,
   ]
   return <svg className={styles.stepIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round">{paths[index]}</svg>
 }

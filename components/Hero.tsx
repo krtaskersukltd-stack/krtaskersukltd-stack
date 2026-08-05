@@ -72,7 +72,13 @@ export default function Hero() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
                 className={styles.reviewsRow}>
                 <span className={styles.reviewsText}>Based on 250+ Reviews</span>
-                <span className={styles.stars}>★★★★★</span>
+                <div className={styles.starsRow}>
+                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
+                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
+                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
+                  <span className={`${styles.star} ${styles.starInactive}`}>★</span>
+                  <span className={`${styles.star} ${styles.starInactive}`}>★</span>
+                </div>
               </motion.div>
             </div>
           </div>

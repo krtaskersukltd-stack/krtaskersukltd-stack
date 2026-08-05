@@ -134,7 +134,7 @@
 }
 
 .itemOpen .arrowIcon {
-  transform: rotate(45deg);
+  transform: rotate(180deg);
   color: var(--teal);
   background: var(--lime);
 }

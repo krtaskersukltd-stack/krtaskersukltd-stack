@@ -3,7 +3,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 140px;
-  padding-bottom: var(--space-section);
+  padding-bottom: 0;
   min-height: auto;
 }
 
@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   margin-inline: auto;
-  width: calc(100% - 32px);
+  width: calc(100% - 104px);
   max-width: 1439px;
   height: 497px;
   pointer-events: none;
@@ -92,6 +92,7 @@
   line-height: var(--lh-body);
   max-width: 600px;
   margin: 0 auto;
+  text-transform: capitalize;
 }
 
 .buttons {
@@ -151,9 +152,31 @@
   color: var(--black);
 }
 
-.stars {
-  color: var(--teal);
-  font-size: 14px;
+.starsRow {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.starActive {
+  background: var(--teal);
+  color: #fff;
+}
+
+.starInactive {
+  background: #b0bec5;
+  color: #fff;
 }
 
 .leftHeroVideo {

@@ -31,12 +31,48 @@ const budgetsList = [
   '£10,000+'
 ]
 
-// Concentric circle team portraits
+// Concentric circle team portraits matching reference layout
 const teamAvatars = [
-  { url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&h=100&fit=crop', radius: 154, duration: 17, delay: -2, size: 38 },
-  { url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&fit=crop', radius: 116, duration: 13, delay: -8, size: 27 },
-  { url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&fit=crop', radius: 82, duration: 10, delay: -5, size: 31 },
-  { url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&h=100&fit=crop', radius: 145, duration: 19, delay: -13, size: 25 },
+  {
+    id: 1,
+    url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&fit=crop',
+    radius: 290,
+    angle: -132,
+    size: 50,
+    floatDelay: '0s'
+  },
+  {
+    id: 2,
+    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&h=200&fit=crop',
+    radius: 290,
+    angle: 180,
+    size: 46,
+    floatDelay: '0.6s'
+  },
+  {
+    id: 3,
+    url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&h=200&fit=crop',
+    radius: 290,
+    angle: 132,
+    size: 50,
+    floatDelay: '1.2s'
+  },
+  {
+    id: 4,
+    url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&fit=crop',
+    radius: 150,
+    angle: -152,
+    size: 36,
+    floatDelay: '1.8s'
+  },
+  {
+    id: 5,
+    url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&fit=crop',
+    radius: 150,
+    angle: 152,
+    size: 36,
+    floatDelay: '2.4s'
+  }
 ]
 
 export default function Contact() {
@@ -121,7 +157,6 @@ export default function Contact() {
 
     try {
       if (web3FormsKey && web3FormsKey !== "YOUR_WEB3FORMS_ACCESS_KEY" && web3FormsKey !== "") {
-        // Use Web3Forms submission (super simple, no templates needed on dashboard!)
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
@@ -151,7 +186,6 @@ export default function Contact() {
           setSubmitError(resData.message || "Failed to send email via Web3Forms.")
         }
       } else if (serviceId && serviceId !== "YOUR_EMAILJS_SERVICE_ID" && serviceId !== "") {
-        // Use EmailJS submission
         const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
           headers: {
@@ -209,15 +243,38 @@ export default function Contact() {
 
               {/* Concentric Circles & Team Avatars Graphic */}
               <div className={styles.circlesGraphic}>
-                <div className={styles.concentricCircle} style={{ width: '400px', height: '400px' }} />
-                <div className={styles.concentricCircle} style={{ width: '300px', height: '300px' }} />
-                <div className={styles.concentricCircle} style={{ width: '200px', height: '200px' }} />
-                {teamAvatars.map((av, idx) => (
-                  <div key={idx} className={styles.avatarOrbit}
-                    style={{ '--orbit-radius': `${av.radius}px`, '--orbit-duration': `${av.duration}s`, '--orbit-delay': `${av.delay}s`, '--avatar-size': `${av.size}px` } as React.CSSProperties}>
-                    <div className={styles.avatarNode} style={{ backgroundImage: `url(${av.url})` }} />
-                  </div>
-                ))}
+                <div className={styles.orbitGlow} />
+                <svg className={styles.orbitSvg} viewBox="0 0 520 520" fill="none">
+                  <circle cx="520" cy="260" r="290" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
+                  <circle cx="520" cy="260" r="220" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
+                  <circle cx="520" cy="260" r="150" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
+                  <circle cx="520" cy="260" r="85" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
+                </svg>
+                {teamAvatars.map((av) => {
+                  const rad = (av.angle * Math.PI) / 180
+                  const cx = 580
+                  const cy = 260
+                  const x = cx + av.radius * Math.cos(rad)
+                  const y = cy + av.radius * Math.sin(rad)
+                  return (
+                    <div
+                      key={av.id}
+                      className={styles.avatarNodeItem}
+                      style={{
+                        width: `${av.size}px`,
+                        height: `${av.size}px`,
+                        left: `${x}px`,
+                        top: `${y}px`,
+                        animationDelay: av.floatDelay,
+                      }}
+                    >
+                      <div
+                        className={styles.avatarNodeImg}
+                        style={{ backgroundImage: `url(${av.url})` }}
+                      />
+                    </div>
+                  )
+                })}
               </div>
 
               {/* Social Channels */}

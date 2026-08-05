@@ -6,7 +6,7 @@ import styles from './Logo.module.css'
 
 export default function Logo() {
   return (
-    <Link href="/" className={styles.logoWrapper} aria-label="KR Tasker Digital home">
+    <Link href="/" className={styles.logoWrapper} aria-label="KR Tasker Digital Home">
       <Image
         src="/images/Logo.svg"
         alt="KR Tasker Digital"
