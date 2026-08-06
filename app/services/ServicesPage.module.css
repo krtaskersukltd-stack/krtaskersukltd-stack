@@ -87,11 +87,11 @@
 .projectButton {
   position: absolute;
   z-index: 2;
-  top: 7px;
-  left: -7px;
+  top: 10px;
+  left: -9x;
   min-width: 138px;
   height: 42px;
-  padding: 0 20px;
+  padding: 0 16px;
   border: 0;
   border-radius: 7px;
   background: var(--teal);

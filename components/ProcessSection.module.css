@@ -56,13 +56,13 @@
 
 .logoGrid {
   display: grid;
-  grid-template-columns: repeat(3, 104px);
+  grid-template-columns: repeat(2, 104px);
   gap: 12px;
   margin-top: 36px;
 }
 
 .logoCard {
-  height: 66px;
+  height: 46px;
   padding: 12px;
   border-radius: var(--radius-tag);
   background: #fff;
