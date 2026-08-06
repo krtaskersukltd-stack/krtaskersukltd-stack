@@ -1,10 +1,9 @@
 .layout {
-  display: grid;
-  grid-template-columns: 125px repeat(3, max-content);
-  justify-content: space-between;
-  align-items: start;
-  column-gap: clamp(20px, 3vw, 82px);
-  row-gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: clamp(30px, 4vw, 40px);
+  row-gap: 12px;
 }
 
 .eyebrow {

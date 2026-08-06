@@ -145,19 +145,20 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 520px;
-  height: 520px;
+  width: 620px;
+  height: 900px;
   pointer-events: none;
   z-index: 1;
+  overflow: visible;
 }
 
 .orbitGlow {
   position: absolute;
-  right: -160px;
+  right: -135px;
   top: 50%;
   transform: translateY(-50%);
-  width: 320px;
-  height: 320px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(180, 235, 40, 0.65) 0%, rgba(135, 200, 20, 0.3) 35%, rgba(11, 60, 66, 0) 70%);
   filter: blur(12px);
@@ -172,12 +173,26 @@
   left: 10%;
 }
 
+/* Orbit pivot — sits at the circle center, spins continuously */
+.orbitPivot {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 4;
+}
+
+/* The arm that pushes the avatar outward by its radius */
+.orbitArm {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .avatarNodeItem {
   position: absolute;
-  transform: translate(-50%, -50%);
   z-index: 4;
   border-radius: 50%;
-  animation: subtleFloat 4s ease-in-out infinite;
+  transform: translate(-50%, -50%);
 }
 
 .avatarNodeImg {
@@ -193,15 +208,6 @@
 
 .avatarNodeItem:hover .avatarNodeImg {
   transform: scale(1.15);
-}
-
-@keyframes subtleFloat {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-5px);
-  }
 }
 
 /* 2. Right Form Column Area */

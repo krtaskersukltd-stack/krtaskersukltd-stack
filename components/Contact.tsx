@@ -33,34 +33,61 @@ const budgetsList = [
 
 // Concentric circle team portraits matching reference layout
 const teamAvatars = [
+  // Outer ring (radius 450)
   {
     id: 1,
     url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&fit=crop',
-    radius: 290,
+    radius: 310,
     angle: -132,
     size: 50,
     floatDelay: '0s'
   },
   {
-    id: 2,
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&h=200&fit=crop',
-    radius: 220,
-    angle: 180,
-    size: 46,
-    floatDelay: '0.6s'
-  },
-  {
     id: 3,
     url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&h=200&fit=crop',
-    radius: 290,
+    radius: 310,
     angle: 132,
     size: 50,
     floatDelay: '1.2s'
   },
   {
+    id: 6,
+    url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&fit=crop',
+    radius: 310,
+    angle: 0,
+    size: 48,
+    floatDelay: '0.4s'
+  },
+  // Second ring (radius 350)
+  {
+    id: 2,
+    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&h=200&fit=crop',
+    radius: 241,
+    angle: 180,
+    size: 46,
+    floatDelay: '0.6s'
+  },
+  {
+    id: 7,
+    url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&fit=crop',
+    radius: 241,
+    angle: -60,
+    size: 44,
+    floatDelay: '1.0s'
+  },
+  {
+    id: 8,
+    url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&fit=crop',
+    radius: 241,
+    angle: 60,
+    size: 44,
+    floatDelay: '1.6s'
+  },
+  // Third ring (radius 250)
+  {
     id: 4,
     url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&fit=crop',
-    radius: 150,
+    radius: 172,
     angle: -152,
     size: 36,
     floatDelay: '1.8s'
@@ -68,11 +95,19 @@ const teamAvatars = [
   {
     id: 5,
     url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&fit=crop',
-    radius: 150,
+    radius: 172,
     angle: 152,
     size: 36,
     floatDelay: '2.4s'
-  }
+  },
+  {
+    id: 9,
+    url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&fit=crop',
+    radius: 172,
+    angle: 30,
+    size: 34,
+    floatDelay: '0.8s'
+  },
 ]
 
 export default function Contact() {
@@ -244,35 +279,55 @@ export default function Contact() {
               {/* Concentric Circles & Team Avatars Graphic */}
               <div className={styles.circlesGraphic}>
                 <div className={styles.orbitGlow} />
-                <svg className={styles.orbitSvg} viewBox="0 0 520 520" fill="none">
-                  <circle cx="520" cy="260" r="290" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
-                  <circle cx="520" cy="260" r="220" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
-                  <circle cx="520" cy="260" r="150" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
-                  <circle cx="520" cy="260" r="85" stroke="rgba(248, 247, 242, 0.35)" strokeWidth="1.2" />
-                </svg>
+                {/* CSS orbit rings — same coordinate system as avatar pivots */}
+                {[310, 241, 172, 103].map((r) => (
+                  <div
+                    key={r}
+                    style={{
+                      position: 'absolute',
+                      width: r * 2,
+                      height: r * 2,
+                      left: 630 - r,
+                      top: 270 - r,
+                      borderRadius: '50%',
+                      border: '1.2px solid rgba(248, 247, 242, 0.35)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                ))}
                 {teamAvatars.map((av) => {
-                  const rad = (av.angle * Math.PI) / 180
-                  const cx = 580
-                  const cy = 260
-                  const x = cx + av.radius * Math.cos(rad)
-                  const y = cy + av.radius * Math.sin(rad)
+                  // Same center as CSS orbit rings
+                  const pivotX = 650
+                  const pivotY = 270
+                  // Outer orbits move slower, inner orbits faster
+                  const duration = av.radius >= 300 ? 30 : av.radius >= 230 ? 22 : av.radius >= 160 ? 16 : 12
+
                   return (
-                    <div
+                    <motion.div
                       key={av.id}
-                      className={styles.avatarNodeItem}
-                      style={{
-                        width: `${av.size}px`,
-                        height: `${av.size}px`,
-                        left: `${x}px`,
-                        top: `${y}px`,
-                        animationDelay: av.floatDelay,
-                      }}
+                      className={styles.orbitPivot}
+                      style={{ left: pivotX, top: pivotY }}
+                      animate={{ rotate: 360 }}
+                      transition={{ repeat: Infinity, duration, ease: 'linear' }}
                     >
                       <div
-                        className={styles.avatarNodeImg}
-                        style={{ backgroundImage: `url(${av.url})` }}
-                      />
-                    </div>
+                        className={styles.orbitArm}
+                        style={{ transform: `rotate(${av.angle}deg) translateX(${av.radius}px)` }}
+                      >
+                        {/* Counter-rotate to cancel pivot + arm angle — keeps face upright */}
+                        <motion.div
+                          className={styles.avatarNodeItem}
+                          style={{ width: av.size, height: av.size }}
+                          animate={{ rotate: [-(av.angle), -(360 + av.angle)] }}
+                          transition={{ repeat: Infinity, duration, ease: 'linear' }}
+                        >
+                          <div
+                            className={styles.avatarNodeImg}
+                            style={{ backgroundImage: `url(${av.url})` }}
+                          />
+                        </motion.div>
+                      </div>
+                    </motion.div>
                   )
                 })}
               </div>
