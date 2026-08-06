@@ -633,7 +633,7 @@ export default function Contact() {
                     <h5 className={styles.bottomBlockTitle}>Time</h5>
                     <p className={styles.bottomBlockText}>
                       24/7 Service<br />
-                      Monday - Sunday
+                      Monday to Sunday
                     </p>
                   </div>
                 </div>
