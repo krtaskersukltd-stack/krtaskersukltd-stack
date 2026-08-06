@@ -32,8 +32,8 @@
 .scrolled .container {
   background: var(--cream);
   box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
-  width: calc(100% - 20px);
-  max-width: 800px;
+  width: calc(100% - 100px);
+  max-width: 600px;
   border-radius: 100px; /* Pill shape when detached */
   padding: 0 8px; /* Extra tight left/right padding */
 } 
@@ -160,6 +160,7 @@
   background: var(--teal);
   color: var(--cream);
   padding: 12px 24px;
+  
   border-radius: var(--radius-button);
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
@@ -357,6 +358,10 @@
   .hamburger {
     display: flex;
   }
+  
+  .scrolled .container {
+    width: calc(100% - 60px);
+  }
 }
 
 @media (max-width: 640px) {
@@ -373,6 +378,10 @@
   .drawerServicesButton,
   .drawerServicesLink {
     font-size: 22px;
+  }
+
+  .scrolled .container {
+    width: calc(100% - 32px);
   }
 }
 
