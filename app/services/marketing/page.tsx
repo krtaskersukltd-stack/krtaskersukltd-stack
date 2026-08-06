@@ -10,6 +10,7 @@ import ProcessSection from '@/components/ProcessSection'
 import Testimonials from '@/components/Testimonials'
 import FaqSection from '@/components/FaqSection'
 import styles from '../ServicePage.module.css'
+import ClientSatisfaction from '@/components/80%-client'
 
 const serviceFeatures = [
   {
@@ -106,50 +107,7 @@ export default function MarketingPage() {
       </section>
 
       {/* 2. Bespoke Packages Introduction */}
-      <section className={styles.bespokeSection}>
-        <div className={styles.container}>
-          <div className={styles.overviewRow}>
-            <div 
-              className={styles.overviewImage} 
-              aria-label="Marketing strategy" 
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?q=80&w=1200&auto=format&fit=crop)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <div className={styles.satisfactionCardTop}>
-              <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
-              <strong>80%</strong>
-              <small>Client Satisfaction</small>
-              <div className={styles.googleRating}>Google Ratings<br /><span>★★★★★</span> <small>5.0 / 5.0</small></div>
-            </div>
-          </div>
-          <div className={styles.bespokeGrid}>
-            <div className={styles.bespokeLeft}>
-              <h2 className={styles.sectionHeading}>Scale customer acquisition, <span className={styles.tealText}>capture organic interest</span>, and convert leads into recurring buyers.</h2>
-              <p className={styles.bespokeText}>
-                Marketing is an ever-evolving ecosystem. At KR Tasker Digital, we combine customer insight metrics with data-backed content creation to launch multi-channel campaigns. Our strategies guarantee that your marketing spend drives clear attribution, sales, and long-term brand equity.
-              </p>
-              <button onClick={scrollToContact} className={styles.btnBespoke}>
-                Get In Touch
-              </button>
-            </div>
-            
-            <div className={styles.bespokeRight}>
-              <img src="/images/blog-newsletter/circle.png" alt="Marketing channels" className={styles.channelsImage} />
-              <div className={styles.statBox}>
-                <h3 className={styles.statVal}>5.2x</h3>
-                <p className={styles.statLabel}>Lead Generation Boost</p>
-                <div className={styles.arrowCircle}>
-                  <img src="/images/blog-newsletter/arrow.svg" alt="Growth" />
-                  <span>↗</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClientSatisfaction />
 
       {/* 3. Service Features Accordion */}
       <section className={styles.featuresSection}>

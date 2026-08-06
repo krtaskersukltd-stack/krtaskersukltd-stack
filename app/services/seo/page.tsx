@@ -10,6 +10,7 @@ import ProcessSection from '@/components/ProcessSection'
 import Testimonials from '@/components/Testimonials'
 import FaqSection from '@/components/FaqSection'
 import styles from '../ServicePage.module.css'
+import ClientSatisfaction from '@/components/80%-client'
 
 const serviceFeatures = [
   {
@@ -106,50 +107,7 @@ export default function SeoPage() {
       </section>
 
       {/* 2. Bespoke Packages Introduction */}
-      <section className={styles.bespokeSection}>
-        <div className={styles.container}>
-          <div className={styles.overviewRow}>
-            <div 
-              className={styles.overviewImage} 
-              aria-label="SEO strategy" 
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1200&auto=format&fit=crop)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <div className={styles.satisfactionCardTop}>
-              <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
-              <strong>80%</strong>
-              <small>Client Satisfaction</small>
-              <div className={styles.googleRating}>Google Ratings<br /><span>★★★★★</span> <small>5.0 / 5.0</small></div>
-            </div>
-          </div>
-          <div className={styles.bespokeGrid}>
-            <div className={styles.bespokeLeft}>
-              <h2 className={styles.sectionHeading}>Scale search rankings, <span className={styles.tealText}>capture intent</span>, and convert clicks into recurring customers.</h2>
-              <p className={styles.bespokeText}>
-                SEO is a long-term investment. At KR Tasker Digital, we build sustainable organic pathways that survive core algorithm updates. Our technical, on-page, and digital PR capabilities guarantee that your platform remains crawlable, secure, ultra-fast, and authoritative in the eyes of search engines.
-              </p>
-              <button onClick={scrollToContact} className={styles.btnBespoke}>
-                Get In Touch
-              </button>
-            </div>
-            
-            <div className={styles.bespokeRight}>
-              <img src="/images/blog-newsletter/circle.png" alt="Marketing channels" className={styles.channelsImage} />
-              <div className={styles.statBox}>
-                <h3 className={styles.statVal}>17k+</h3>
-                <p className={styles.statLabel}>Organic Users Within 12 Months</p>
-                <div className={styles.arrowCircle}>
-                  <img src="/images/blog-newsletter/arrow.svg" alt="Growth" />
-                  <span>↗</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClientSatisfaction />
 
       {/* 3. Service Features Accordion */}
       <section className={styles.featuresSection}>

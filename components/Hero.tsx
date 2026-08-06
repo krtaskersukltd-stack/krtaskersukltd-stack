@@ -44,7 +44,7 @@ export default function Hero() {
               </motion.p>
 
               <h1 className={styles.h1}>
-                {splitWords("We Convert Clicks To ")}
+                {splitWords("We Convert Clicks To")}
                 {splitWords("Conversions", true)}
               </h1>
 

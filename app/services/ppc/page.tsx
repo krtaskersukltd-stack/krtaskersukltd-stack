@@ -10,6 +10,7 @@ import ProcessSection from '@/components/ProcessSection'
 import Testimonials from '@/components/Testimonials'
 import FaqSection from '@/components/FaqSection'
 import styles from '../ServicePage.module.css'
+import ClientSatisfaction from '@/components/80%-client'
 
 const serviceFeatures = [
   {
@@ -106,50 +107,7 @@ export default function PpcPage() {
       </section>
 
       {/* 2. Bespoke Packages Introduction */}
-      <section className={styles.bespokeSection}>
-        <div className={styles.container}>
-          <div className={styles.overviewRow}>
-            <div 
-              className={styles.overviewImage} 
-              aria-label="PPC Advertising strategy" 
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <div className={styles.satisfactionCardTop}>
-              <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
-              <strong>80%</strong>
-              <small>Client Satisfaction</small>
-              <div className={styles.googleRating}>Google Ratings<br /><span>★★★★★</span> <small>5.0 / 5.0</small></div>
-            </div>
-          </div>
-          <div className={styles.bespokeGrid}>
-            <div className={styles.bespokeLeft}>
-              <h2 className={styles.sectionHeading}>Direct traffic, <span className={styles.tealText}>optimize bids</span>, and capture high-intent users ready to buy.</h2>
-              <p className={styles.bespokeText}>
-                We do not just send traffic to your homepage. At KR Tasker Digital, we design bespoke landing pages optimized for speed and conversion triggers. We integrate robust tracking (Google Tag Manager, Server-side API tracking, Conversions API) to ensure you have complete transparency on every single penny spent.
-              </p>
-              <button onClick={scrollToContact} className={styles.btnBespoke}>
-                Get In Touch
-              </button>
-            </div>
-            
-            <div className={styles.bespokeRight}>
-              <img src="/images/blog-newsletter/circle.png" alt="Marketing channels" className={styles.channelsImage} />
-              <div className={styles.statBox}>
-                <h3 className={styles.statVal}>4.2x</h3>
-                <p className={styles.statLabel}>Average ROAS Achieved</p>
-                <div className={styles.arrowCircle}>
-                  <img src="/images/blog-newsletter/arrow.svg" alt="Growth" />
-                  <span>↗</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClientSatisfaction />
 
       {/* 3. Service Features Accordion */}
       <section className={styles.featuresSection}>

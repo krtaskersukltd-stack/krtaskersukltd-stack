@@ -10,6 +10,7 @@ import ProcessSection from '@/components/ProcessSection'
 import Testimonials from '@/components/Testimonials'
 import FaqSection from '@/components/FaqSection'
 import styles from '../ServicePage.module.css'
+import ClientSatisfaction from '@/components/80%-client'
 
 const serviceFeatures = [
   {
@@ -106,50 +107,7 @@ export default function GraphicDesignPage() {
       </section>
 
       {/* 2. Bespoke Packages Introduction */}
-      <section className={styles.bespokeSection}>
-        <div className={styles.container}>
-          <div className={styles.overviewRow}>
-            <div 
-              className={styles.overviewImage} 
-              aria-label="Graphic Design strategy" 
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <div className={styles.satisfactionCardTop}>
-              <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
-              <strong>80%</strong>
-              <small>Client Satisfaction</small>
-              <div className={styles.googleRating}>Google Ratings<br /><span>★★★★★</span> <small>5.0 / 5.0</small></div>
-            </div>
-          </div>
-          <div className={styles.bespokeGrid}>
-            <div className={styles.bespokeLeft}>
-              <h2 className={styles.sectionHeading}>Inspire credibility, <span className={styles.tealText}>display distinct aesthetics</span>, and convert views into visual engagement.</h2>
-              <p className={styles.bespokeText}>
-                Design is the silent ambassador of your brand. At KR Tasker Digital, we translate your business goals into beautiful vector graphics, typography structures, and web components. Our designs ensure that your visual presence is memorable, unified, and aligned across print and digital media.
-              </p>
-              <button onClick={scrollToContact} className={styles.btnBespoke}>
-                Get In Touch
-              </button>
-            </div>
-            
-            <div className={styles.bespokeRight}>
-              <img src="/images/blog-newsletter/circle.png" alt="Marketing channels" className={styles.channelsImage} />
-              <div className={styles.statBox}>
-                <h3 className={styles.statVal}>100+</h3>
-                <p className={styles.statLabel}>Custom Brand Assets Created</p>
-                <div className={styles.arrowCircle}>
-                  <img src="/images/blog-newsletter/arrow.svg" alt="Growth" />
-                  <span>↗</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClientSatisfaction />
 
       {/* 3. Service Features Accordion */}
       <section className={styles.featuresSection}>

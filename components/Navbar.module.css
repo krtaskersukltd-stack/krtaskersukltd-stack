@@ -10,9 +10,9 @@
   padding: 15px 0;
 }
 
-/* .scrolled {
-  padding: 32px 94px;
-} */
+ .scrolled {
+  margin: 32px 94px;
+} 
 
 .container {
   max-width: var(--site-max-width);
@@ -30,16 +30,12 @@
 }
  
 .scrolled .container {
-  /* max-width: calc(var(--site-max-width) - var(--site-gutter) * 2);
-  height: 60px; */
   background: var(--cream);
-  max-width: 750px;
   box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
-  /* border: 1.5px solid rgba(12, 70, 81, 0.15);
-  
-  border-radius: 100px;
-  padding: 0 8px;
-   */
+  width: calc(100% - 20px);
+  max-width: 800px;
+  border-radius: 100px; /* Pill shape when detached */
+  padding: 0 8px; /* Extra tight left/right padding */
 } 
 
 .logo {
