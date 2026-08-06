@@ -19,19 +19,17 @@ export default function CategoryTabs({ eyebrow, tabs, activeId, onChange }: Cate
   return (
     <div className={styles.layout}>
       <span className={styles.eyebrow}>{eyebrow}</span>
-      <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <button
-            type="button"
-            key={tab.id}
-            onClick={() => onChange(tab.id)}
-            className={`${styles.tab} ${activeId === tab.id ? styles.active : ''}`}
-          >
-            <span>{tab.label}</span>
-            <small>{tab.count}</small>
-          </button>
-        ))}
-      </div>
+      {tabs.map((tab) => (
+        <button
+          type="button"
+          key={tab.id}
+          onClick={() => onChange(tab.id)}
+          className={`${styles.tab} ${activeId === tab.id ? styles.active : ''}`}
+        >
+          <span>{tab.label}</span>
+          <small>{tab.count}</small>
+        </button>
+      ))}
     </div>
   )
 }
