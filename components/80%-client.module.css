@@ -208,7 +208,7 @@
   bottom: auto;
   right: 0;
   width: 100%;
-  height: calc(100% - 12px);
+  height: calc(100% - 48px);
   border-radius: 7px;
   background: var(--lime);
   color: var(--teal);
@@ -218,7 +218,6 @@
   font-size: 18px;
 }
 .arrowCircle img { width: 58px; height: 58px; }
-.arrowCircle span { display: none; }
 
 @media (max-width: 1440px) {
   .container {

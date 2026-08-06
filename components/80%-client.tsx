@@ -55,7 +55,7 @@ export default function ClientSatisfaction() {
               <p className={styles.statLabel}>Organic Users Within 12 Months</p>
               <div className={styles.arrowCircle}>
                 <img src="/images/blog-newsletter/arrow.svg" alt="Growth" />
-                <span>↗</span>
+               
               </div>
             </div>
           </div>
