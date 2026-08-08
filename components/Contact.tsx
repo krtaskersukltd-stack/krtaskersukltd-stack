@@ -263,12 +263,75 @@ export default function Contact() {
     }
   }
 
+  const renderProgress = () => (
+    <div className={styles.progressRow}>
+      {/* Step 1 indicator */}
+      <div className={styles.progressStep}>
+        <div className={`${styles.progressCircle} ${step >= 1 ? styles.circleActive : ''}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <span className={`${styles.progressLabelNumber} ${step >= 1 ? styles.labelActive : ''}`}>STEP 1</span>
+        <span className={`${styles.progressLabel} ${step >= 1 ? styles.labelActive : ''}`}>User Details</span>
+      </div>
+
+      <div className={`${styles.progressBarLine} ${step >= 2 ? styles.lineActive : ''}`} />
+
+      {/* Step 2 indicator */}
+      <div className={styles.progressStep}>
+        <div className={`${styles.progressCircle} ${step >= 2 ? styles.circleActive : ''}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6z" />
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+          </svg>
+        </div>
+        <span className={`${styles.progressLabelNumber} ${step >= 2 ? styles.labelActive : ''}`}>STEP 2</span>
+        <span className={`${styles.progressLabel} ${step >= 2 ? styles.labelActive : ''}`}>Select Service</span>
+      </div>
+
+      <div className={`${styles.progressBarLine} ${step >= 3 ? styles.lineActive : ''}`} />
+
+      {/* Step 3 indicator */}
+      <div className={styles.progressStep}>
+        <div className={`${styles.progressCircle} ${step >= 3 ? styles.circleActive : ''}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </div>
+        <span className={`${styles.progressLabelNumber} ${step >= 3 ? styles.labelActive : ''}`}>STEP 3</span>
+        <span className={`${styles.progressLabel} ${step >= 3 ? styles.labelActive : ''}`}>Schedule</span>
+      </div>
+
+      <div className={`${styles.progressBarLine} ${step >= 4 ? styles.lineActive : ''}`} />
+
+      {/* Step 4 indicator */}
+      <div className={styles.progressStep}>
+        <div className={`${styles.progressCircle} ${step >= 4 ? styles.circleActive : ''}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        </div>
+        <span className={`${styles.progressLabelNumber} ${step >= 4 ? styles.labelActive : ''}`}>STEP 4</span>
+        <span className={`${styles.progressLabel} ${step >= 4 ? styles.labelActive : ''}`}>Budget</span>
+      </div>
+    </div>
+  )
+
   return (
     <section className={styles.contactSec}>
       <div className={styles.container}>
         <motion.div className={styles.sectionHeader} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h2>Let&apos;s Build a <span>Smarter</span><br /><span>Growth</span> Strategy Together</h2>
-          <p>Have a question or want to discuss your growth goals?<br />Our team is ready to help and usually responds within one business day.</p>
+          <p>
+            Have a question or want to discuss your growth goals?<br />
+            Our team is ready to help and usually responds within one business day.
+          </p>
         </motion.div>
         <div className={styles.card}>
           {/* Left Column - Contact Details & Team Circles */}
@@ -377,63 +440,8 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className={styles.formElement}>
-                {/* Steps Progress Indicator */}
-                <div className={styles.progressRow}>
-                  {/* Step 1 indicator */}
-                  <div className={styles.progressStep}>
-                    <div className={`${styles.progressCircle} ${step >= 1 ? styles.circleActive : ''}`}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                    <span className={`${styles.progressLabelNumber} ${step >= 1 ? styles.labelActive : ''}`}>STEP 1</span>
-                    <span className={`${styles.progressLabel} ${step >= 1 ? styles.labelActive : ''}`}>User Details</span>
-                  </div>
-
-                  <div className={`${styles.progressBarLine} ${step >= 2 ? styles.lineActive : ''}`} />
-
-                  {/* Step 2 indicator */}
-                  <div className={styles.progressStep}>
-                    <div className={`${styles.progressCircle} ${step >= 2 ? styles.circleActive : ''}`}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6z" />
-                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-                      </svg>
-                    </div>
-                    <span className={`${styles.progressLabelNumber} ${step >= 2 ? styles.labelActive : ''}`}>STEP 2</span>
-                    <span className={`${styles.progressLabel} ${step >= 2 ? styles.labelActive : ''}`}>Select Service</span>
-                  </div>
-
-                  <div className={`${styles.progressBarLine} ${step >= 3 ? styles.lineActive : ''}`} />
-
-                  {/* Step 3 indicator */}
-                  <div className={styles.progressStep}>
-                    <div className={`${styles.progressCircle} ${step >= 3 ? styles.circleActive : ''}`}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                      </svg>
-                    </div>
-                    <span className={`${styles.progressLabelNumber} ${step >= 3 ? styles.labelActive : ''}`}>STEP 3</span>
-                    <span className={`${styles.progressLabel} ${step >= 3 ? styles.labelActive : ''}`}>Schedule</span>
-                  </div>
-
-                  <div className={`${styles.progressBarLine} ${step >= 4 ? styles.lineActive : ''}`} />
-
-                  {/* Step 4 indicator */}
-                  <div className={styles.progressStep}>
-                    <div className={`${styles.progressCircle} ${step >= 4 ? styles.circleActive : ''}`}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <line x1="12" y1="1" x2="12" y2="23" />
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                      </svg>
-                    </div>
-                    <span className={`${styles.progressLabelNumber} ${step >= 4 ? styles.labelActive : ''}`}>STEP 4</span>
-                    <span className={`${styles.progressLabel} ${step >= 4 ? styles.labelActive : ''}`}>Budget</span>
-                  </div>
+                <div className={styles.desktopProgress}>
+                  {renderProgress()}
                 </div>
 
                 <div className={styles.formBody}>
@@ -446,9 +454,13 @@ export default function Contact() {
                     >
                       <h2 className={styles.formStepTitle}>Contact Us</h2>
                       <p className={styles.formStepSubtitle}>
-                        Have a question or want to discuss your growth goals?<br />
-                        Our team is ready to help and usually responds within one business day.
+                        Have a question or want to discuss your growth goals?
+                        <span className={styles.hideOnMobile}><br />
+                        Our team is ready to help and usually responds within one business day.</span>
                       </p>
+                      <div className={styles.mobileProgress}>
+                        {renderProgress()}
+                      </div>
 
                       <div className={styles.inputGrid}>
                         <div className={styles.inputCol}>
@@ -526,6 +538,9 @@ export default function Contact() {
                       <p className={styles.formStepSubtitle}>
                         Select one or more services you are interested in.
                       </p>
+                      <div className={styles.mobileProgress}>
+                        {renderProgress()}
+                      </div>
 
                       <div className={styles.pillsSection}>
                         <div className={styles.pillsGrid}>
@@ -567,6 +582,9 @@ export default function Contact() {
                       <p className={styles.formStepSubtitle}>
                         Select your preferred day and time to consult.
                       </p>
+                      <div className={styles.mobileProgress}>
+                        {renderProgress()}
+                      </div>
 
                       <div className={styles.pillsSection}>
                         <h4 className={styles.sectionHeading}>Preferred Day to Contact</h4>
@@ -628,6 +646,9 @@ export default function Contact() {
                       <p className={styles.formStepSubtitle}>
                         Select the monthly budget range for your project.
                       </p>
+                      <div className={styles.mobileProgress}>
+                        {renderProgress()}
+                      </div>
 
                       <div className={styles.pillsSection}>
                         <div className={styles.pillsGrid}>

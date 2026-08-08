@@ -233,8 +233,6 @@ main [class*="container"] {
   max-width: var(--container-max) !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: var(--container-pad) !important;
-  padding-right: var(--container-pad) !important;
 }
 
 @media (max-width: 767px) {

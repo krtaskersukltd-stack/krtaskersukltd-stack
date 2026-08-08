@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { type FormEvent, useRef } from 'react'
+import { type FormEvent, useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './Footer.module.css'
 
@@ -11,10 +11,10 @@ const links = {
     'Websites & Apps',
     'Ai Solutions',
     'PPC',
-    'Social Media Marketing',
+    'SMM',
     'SEO',
     'Branding',
-    'Graphics Designing',
+    'Graphics',
     'Amazon',
   ],
   Company: ['About Us', 'Our Work', 'Our Blogs', 'Contact Us', 'Meet The Team'],
@@ -31,10 +31,10 @@ const linkDestinations: Record<string, string> = {
   'Websites & Apps': '/services/websites-apps',
   'Ai Solutions': '/services/ai-solutions',
   PPC: '/services/ppc',
-  'Social Media Marketing': '/services/social-media',
+  SMM: '/services/social-media',
   SEO: '/services/seo',
   Branding: '/services/branding',
-  'Graphics Designing': '/services/graphics-designing',
+  Graphics: '/services/graphics-designing',
   Amazon: '/services/amazon',
   'Terms & Conditions': '/terms',
   'Privacy Policy': '/privacy',
@@ -51,6 +51,15 @@ export default function Footer() {
   const ref = useRef<HTMLElement | null>(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 720)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const handleNewsletter = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
   }
@@ -58,15 +67,18 @@ export default function Footer() {
   return (
     <footer ref={ref} className={styles.footerWrapper}>
       <div className={styles.footerCard}>
-        {/* Exact outer silhouette taken from the supplied 1440 × 811 footer SVG. */}
+        {/* Single responsive footer shape */}
         <svg
           className={styles.footerShape}
-          viewBox="0 0 1440 811"
+          viewBox={isMobile ? "0 0 390 811" : "0 0 1440 811"}
           preserveAspectRatio="none"
           aria-hidden="true"
         >
           <path
-            d="M1238 14C1243.52 14 1248 18.4772 1248 24V43C1248 48.5228 1252.48 53 1258 53H1430C1435.52 53 1440 57.4772 1440 63V801C1440 806.523 1435.52 811 1430 811H10C4.47715 811 0 806.523 0 801V176C0 170.477 4.47715 166 10 166H66C71.5229 166 76 161.523 76 156V24C76 18.4772 80.4771 14 86 14H1238Z"
+            d={isMobile
+              ? "M 98 0 C 84.7 0, 74 10.7, 74 24 V 100 C 74 113.3, 63.3 124, 50 124 H 0 V 787 C 0 800.3, 10.7 811, 24 811 H 366 C 379.3 811, 390 800.3, 390 787 V 24 C 390 10.7, 379.3 0, 366 0 H 98 Z"
+              : "M1238 14C1243.52 14 1248 18.4772 1248 24V43C1248 48.5228 1252.48 53 1258 53H1430C1435.52 53 1440 57.4772 1440 63V801C1440 806.523 1435.52 811 1430 811H10C4.47715 811 0 806.523 0 801V176C0 170.477 4.47715 166 10 166H66C71.5229 166 76 161.523 76 156V24C76 18.4772 80.4771 14 86 14H1238Z"
+            }
             fill="currentColor"
           />
         </svg>

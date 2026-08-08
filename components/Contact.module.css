@@ -22,14 +22,13 @@
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  min-height: 680px;
   position: relative;
 }
 
 /* 1. Left Sidebar Column */
 .sidebar {
   width: 32%;
-  min-width: 360px;
+  min-width: 0;
   background: transparent;
   padding: 48px;
   border-right: 1px solid rgba(248, 247, 242, 0.15);
@@ -213,16 +212,27 @@
 /* 2. Right Form Column Area */
 .formArea {
   flex: 1;
+  min-width: 0;
   padding: 56px 64px;
   background: transparent;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .formElement {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0;
+}
+
+.mobileProgress {
+  display: none;
+}
+
+.desktopProgress {
+  display: block;
 }
 
 /* Steps Progress indicator */
@@ -306,12 +316,14 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .stepContent {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0;
 }
 
 .formStepTitle {
@@ -378,14 +390,17 @@
 /* Form Inputs Grid */
 .inputGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
+  max-width: 100%;
 }
 
 .inputCol {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .inputColFull {
@@ -412,6 +427,9 @@
   color: #000000;
   line-height: 1.5;
   transition: box-shadow 0.2s ease;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .textInput::placeholder {
@@ -435,6 +453,9 @@
   color: #000000;
   line-height: 1.5;
   transition: box-shadow 0.2s ease;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .textareaInput::placeholder {
@@ -695,73 +716,6 @@
 }
 
 /* 3. Responsive Breakpoints */
-@media (max-width: 1024px) {
-  .card {
-    flex-direction: column;
-    min-height: auto;
-  }
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(248, 247, 242, 0.15);
-    padding: 40px;
-  }
-  .circlesGraphic {
-    display: none; /* Hide circles on mobile */
-  }
-  .formArea {
-    padding: 40px;
-  }
-  .bottomContactRow {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .contactSec {
-    padding: 60px 0;
-  }
-  .formStepTitle {
-    font-size: 28px;
-  }
-  .inputGrid {
-    grid-template-columns: 1fr;
-  }
-  .inputColFull {
-    grid-column: span 1;
-  }
-  .timesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .progressRow {
-    flex-wrap: wrap;
-    gap: 16px 8px;
-    justify-content: center;
-  }
-  .progressBarLine {
-    display: none; /* Hide line links on mobile to prevent layout breakage */
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    padding: 30px 20px;
-  }
-  .formArea {
-    padding: 30px 20px;
-  }
-  .timesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .pillsGrid {
-    flex-direction: column;
-  }
-  .pillBtn {
-    width: 100%;
-    text-align: center;
-  }
-}
 
 /* Compact homepage redesign */
 .sectionHeader { margin-bottom: 35px; text-align: center; }
@@ -840,3 +794,184 @@
   .sidebar { width: 300px; min-width: 300px; padding-left: 38px; padding-right: 38px; }
   .formArea { padding-left: 48px; padding-right: 48px; }
 }
+
+/* ---- Tablet (769px – 1024px) ---- */
+@media (max-width: 1024px) {
+  .contactSec { padding: 60px 0; }
+  .container { padding-inline: 10px; }
+  .sectionHeader { margin-bottom: 24px; }
+  .sectionHeader h2 { font-size: 28px; }
+  .sectionHeader p { font-size: 11px; }
+
+  .card {
+    min-height: auto;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+    gap: 16px;
+  }
+
+  .sidebar {
+    width: 35%;
+    min-width: 0;
+    padding: 24px 16px;
+    border-right: none;
+    border-radius: 0 20px 20px 0;
+    background: var(--teal);
+    overflow: hidden;
+  }
+  .sidebarContent { gap: 30px; }
+  .logoWrapper { width: 100px; height: 44px; }
+  .logoWrapper img { width: 100px; height: 44px; }
+
+  .circlesGraphic {
+    right: auto;
+    left: -142px;
+    width: 600px;
+    height: 600px;
+    transform: translateY(-50%) scaleX(-1) scale(0.45);
+    transform-origin: center center;
+  }
+
+  .socialsTitle { font-size: 16px; }
+  .socialBtn { width: 32px; height: 32px; }
+  .socialBtn svg { width: 13px; height: 13px; }
+  .socialsRow { gap: 8px; }
+
+  .formArea {
+    flex: 1;
+    min-width: 0;
+    padding: 24px 16px;
+    border-radius: 20px 0 0 20px;
+    background: var(--teal);
+    overflow: hidden;
+  }
+
+  .formStepTitle { font-size: 20px; margin-bottom: 4px; }
+  .formStepSubtitle { font-size: 11px; margin-bottom: 16px; line-height: 1.35; }
+  .formStepSubtitle br { display: none; }
+
+  .progressRow { margin-bottom: 20px; }
+  .progressStep { width: auto; min-width: 45px; gap: 2px; }
+  .progressCircle { width: 30px; height: 30px; }
+  .progressCircle svg { width: 13px; height: 13px; }
+  .progressLabelNumber { font-size: 9px; margin-top: 2px; }
+  .progressLabel { font-size: 12px; }
+  .progressBarLine { display: none; }
+
+  .inputGrid { grid-template-columns: 1fr 1fr; gap: 12px 10px; }
+  .inputCol { gap: 3px; }
+  .inputColFull { grid-column: span 2; }
+  .inputLabel { font-size: 14px; }
+  .textInput { height: 36px; padding: 0 10px; font-size: 12px; border-radius: 6px; }
+  .textareaInput { min-height: 64px; padding: 10px; font-size: 12px; border-radius: 6px; }
+
+  .actionsRow { padding-top: 14px; }
+  .btnGradient { min-height: 40px; padding: 10px 18px; font-size: 14px; border-radius: 6px; }
+  .btnFlat { min-height: 40px; padding: 10px 18px; font-size: 14px; border-radius: 6px; }
+
+  .bottomContactRow { grid-template-columns: 1fr; gap: 14px; margin-top: 22px; padding-top: 18px; }
+  .bottomBlockTitle { font-size: 13px; margin-bottom: 4px; }
+  .bottomBlockText { font-size: 11px; }
+
+  .pillBtn { padding: 8px 12px; font-size: 12px; }
+  .dayTimePill { padding: 8px 10px; font-size: 12px; }
+  .timesGrid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .pillsSection { margin-bottom: 18px; }
+  .sectionHeading { font-size: 12px; margin-bottom: 8px; }
+
+  .successIcon { width: 44px; height: 44px; font-size: 22px; margin-bottom: 14px; }
+  .successTitle { font-size: 20px; margin-bottom: 8px; }
+  .successDesc { font-size: 12px; margin-bottom: 18px; max-width: 100%; }
+}
+
+/* ---- Mobile (≤ 480px) ---- */
+@media (max-width: 480px) {
+  .contactSec { padding: 30px 0; }
+  .container { padding-inline: 0; }
+  .sectionHeader { margin-bottom: 12px; }
+  .sectionHeader h2 { font-size: 22px; margin-bottom: 8px; }
+  .sectionHeader p { font-size: 14px; margin-bottom: 0; }
+  .hideOnMobile { display: none; }
+
+  .mobileProgress { display: block; margin-bottom: 16px; padding-inline: 10px; }
+  .desktopProgress { display: none; }
+
+  .card {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    gap: 8px;
+  }
+
+  .sidebar {
+    width: 33%;
+    min-width: 0;
+    padding: 14px 10px;
+    border-radius: 0 14px 14px 0;
+    background: var(--teal);
+    overflow: hidden;
+  }
+  .sidebarContent { gap: 16px; }
+  .logoWrapper { width: 72px; height: 32px; }
+  .logoWrapper img { width: 72px; height: 32px; }
+
+  .circlesGraphic {
+    right: auto;
+    left: -195px;
+    width: 600px;
+    height: 600px;
+    transform: translateY(-50%) scaleX(-1) scale(0.3);
+    transform-origin: center center;
+  }
+
+  .socialsTitle { font-size: 12px; }
+  .socialBtn { width: 26px; height: 26px; }
+  .socialBtn svg { width: 11px; height: 11px; }
+  .socialsRow { gap: 5px; }
+
+  .formArea { 
+    padding: 14px 10px; 
+    border-radius: 14px 0 0 14px;
+    background: var(--teal);
+    overflow: hidden;
+  }
+
+  .formStepTitle { font-size: 16px; margin-bottom: 3px; }
+  .formStepSubtitle { font-size: 10px; margin-bottom: 10px; line-height: 1.3; }
+  .formStepSubtitle br { display: none; }
+
+  .progressRow { margin-bottom: 12px; gap: 0; justify-content: space-between; }
+  .progressStep { min-width: 38px; gap: 1px; }
+  .progressCircle { width: 24px; height: 24px; }
+  .progressCircle svg { width: 11px; height: 11px; }
+  .progressLabelNumber { font-size: 7px; margin-top: 1px; }
+  .progressLabel { font-size: 10px; }
+
+  .inputGrid { grid-template-columns: 1fr 1fr; gap: 8px 6px; }
+  .inputCol { gap: 2px; }
+  .inputLabel { font-size: 12px; }
+  .textInput { height: 30px; padding: 0 6px; font-size: 11px; border-radius: 5px; }
+  .textareaInput { min-height: 48px; padding: 6px; font-size: 11px; border-radius: 5px; }
+
+  .actionsRow { padding-top: 10px; }
+  .btnGradient { min-height: 32px; padding: 7px 12px; font-size: 12px; border-radius: 5px; }
+  .btnFlat { min-height: 32px; padding: 7px 12px; font-size: 12px; border-radius: 5px; }
+
+  .bottomContactRow { gap: 10px; margin-top: 14px; padding-top: 12px; }
+  .bottomBlockTitle { font-size: 11px; margin-bottom: 2px; }
+  .bottomBlockText { font-size: 10px; }
+
+  .pillBtn { padding: 5px 8px; font-size: 10px; }
+  .dayTimePill { padding: 5px 6px; font-size: 10px; }
+  .timesGrid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .pillsSection { margin-bottom: 12px; }
+  .sectionHeading { font-size: 10px; margin-bottom: 6px; }
+
+  .successIcon { width: 38px; height: 38px; font-size: 20px; margin-bottom: 12px; }
+  .successTitle { font-size: 18px; margin-bottom: 6px; }
+  .successDesc { font-size: 11px; margin-bottom: 16px; max-width: 100%; }
+}
+
