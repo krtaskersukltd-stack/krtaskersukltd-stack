@@ -1,63 +1,54 @@
 import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-import fs from 'fs/promises'
-import path from 'path'
-import { BlogPost } from '../../blog/posts'
+import type { BlogPost } from '@/app/blog/posts'
+import { validateBlogInput } from '@/lib/blog-schema'
+import { readBlogs, writeBlogs } from '@/lib/blog-store'
+import { hasJsonContentType, hasValidOrigin, isAdminAuthenticated } from '@/lib/security'
 
-const filePath = path.join(process.cwd(), 'data', 'blogs.json')
-
-function isAdmin() {
-  const cookieStore = cookies()
-  const session = cookieStore.get('admin_session')
-  return session && session.value === 'authenticated'
-}
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
-    return NextResponse.json(blogs)
+    return NextResponse.json(await readBlogs(), {
+      headers: { 'Cache-Control': 'public, max-age=0, s-maxage=30, stale-while-revalidate=60' },
+    })
   } catch (error) {
-    console.error("Read blogs error:", error)
+    console.error('Read blogs error:', error)
     return NextResponse.json({ error: 'Failed to read blogs' }, { status: 500 })
   }
 }
 
 export async function POST(request: Request) {
-  if (!isAdmin()) {
+  if (!await isAdminAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (!hasValidOrigin(request) || !hasJsonContentType(request)) {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 
   try {
-    const newPost = await request.json()
-
-    // Read current blogs
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
-
-    if (blogs.some((b) => b.slug === newPost.slug)) {
-      return NextResponse.json({ error: 'A blog with this slug already exists' }, { status: 400 })
+    const validated = validateBlogInput(await request.json())
+    if (!validated.success) {
+      return NextResponse.json({ error: validated.error }, { status: 400 })
     }
 
-    const maxId = blogs.reduce((max: number, b) => Math.max(max, b.id || 0), 0)
-    newPost.id = maxId + 1
-    
-    // Set current date if not provided
-    if (!newPost.date) {
-      newPost.date = new Date().toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      })
+    const blogs = await readBlogs()
+    if (blogs.some((blog) => blog.slug === validated.data.slug)) {
+      return NextResponse.json({ error: 'A blog with this slug already exists' }, { status: 409 })
     }
 
-    blogs.unshift(newPost)
+    const maxId = blogs.reduce((max, blog) => Math.max(max, blog.id || 0), 0)
+    const post: BlogPost = {
+      ...validated.data,
+      id: maxId + 1,
+      date: validated.data.date || new Date().toLocaleDateString('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC',
+      }),
+    }
 
-    await fs.writeFile(filePath, JSON.stringify(blogs, null, 2), 'utf-8')
-
-    return NextResponse.json({ success: true, post: newPost })
+    await writeBlogs([post, ...blogs])
+    return NextResponse.json({ success: true, post }, { status: 201 })
   } catch (error) {
-    console.error("Save blog error:", error)
+    console.error('Save blog error:', error)
     return NextResponse.json({ error: 'Failed to save blog' }, { status: 500 })
   }
 }

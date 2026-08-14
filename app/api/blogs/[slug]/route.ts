@@ -1,97 +1,80 @@
 import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-import fs from 'fs/promises'
-import path from 'path'
-import { BlogPost } from '../../../blog/posts'
+import type { BlogPost } from '@/app/blog/posts'
+import { validateBlogInput } from '@/lib/blog-schema'
+import { readBlogs, writeBlogs } from '@/lib/blog-store'
+import { hasJsonContentType, hasValidOrigin, isAdminAuthenticated } from '@/lib/security'
 
-const filePath = path.join(process.cwd(), 'data', 'blogs.json')
+type RouteContext = { params: Promise<{ slug: string }> }
 
-function isAdmin() {
-  const cookieStore = cookies()
-  const session = cookieStore.get('admin_session')
-  return session && session.value === 'authenticated'
-}
+export const dynamic = 'force-dynamic'
 
-export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
+export async function GET(_request: Request, context: RouteContext) {
   try {
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
-    const post = blogs.find((b) => b.slug === params.slug)
-
-    if (!post) {
-      return NextResponse.json({ error: 'Blog not found' }, { status: 404 })
-    }
-
-    return NextResponse.json(post)
+    const { slug } = await context.params
+    const post = (await readBlogs()).find((blog) => blog.slug === slug)
+    if (!post) return NextResponse.json({ error: 'Blog not found' }, { status: 404 })
+    return NextResponse.json(post, { headers: { 'Cache-Control': 'public, max-age=0, s-maxage=30' } })
   } catch (error) {
-    console.error("Read single blog error:", error)
+    console.error('Read single blog error:', error)
     return NextResponse.json({ error: 'Failed to read blog' }, { status: 500 })
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
-  if (!isAdmin()) {
+export async function PUT(request: Request, context: RouteContext) {
+  if (!await isAdminAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (!hasValidOrigin(request) || !hasJsonContentType(request)) {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 
   try {
-    const updatedPost: BlogPost = await request.json()
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
-
-    const index = blogs.findIndex((b) => b.slug === params.slug)
-    if (index === -1) {
-      return NextResponse.json({ error: 'Blog not found' }, { status: 404 })
+    const { slug } = await context.params
+    const validated = validateBlogInput(await request.json())
+    if (!validated.success) {
+      return NextResponse.json({ error: validated.error }, { status: 400 })
     }
 
-    if (updatedPost.slug !== params.slug && blogs.some((b) => b.slug === updatedPost.slug)) {
-      return NextResponse.json({ error: 'A blog with this new slug already exists' }, { status: 400 })
+    const blogs = await readBlogs()
+    const index = blogs.findIndex((blog) => blog.slug === slug)
+    if (index === -1) return NextResponse.json({ error: 'Blog not found' }, { status: 404 })
+    if (validated.data.slug !== slug && blogs.some((blog) => blog.slug === validated.data.slug)) {
+      return NextResponse.json({ error: 'A blog with this new slug already exists' }, { status: 409 })
     }
 
-    updatedPost.id = blogs[index].id
-    updatedPost.date = updatedPost.date || blogs[index].date
-
-    blogs[index] = updatedPost
-
-    await fs.writeFile(filePath, JSON.stringify(blogs, null, 2), 'utf-8')
-
-    return NextResponse.json({ success: true, post: updatedPost })
+    const post: BlogPost = {
+      ...validated.data,
+      id: blogs[index].id,
+      date: validated.data.date || blogs[index].date,
+    }
+    blogs[index] = post
+    await writeBlogs(blogs)
+    return NextResponse.json({ success: true, post })
   } catch (error) {
-    console.error("Update blog error:", error)
+    console.error('Update blog error:', error)
     return NextResponse.json({ error: 'Failed to update blog' }, { status: 500 })
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
-  if (!isAdmin()) {
+export async function DELETE(request: Request, context: RouteContext) {
+  if (!await isAdminAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  if (!hasValidOrigin(request)) {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 
   try {
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
-
-    const index = blogs.findIndex((b) => b.slug === params.slug)
-    if (index === -1) {
+    const { slug } = await context.params
+    const blogs = await readBlogs()
+    const nextBlogs = blogs.filter((blog) => blog.slug !== slug)
+    if (nextBlogs.length === blogs.length) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 })
     }
-
-    blogs.splice(index, 1)
-
-    await fs.writeFile(filePath, JSON.stringify(blogs, null, 2), 'utf-8')
-
+    await writeBlogs(nextBlogs)
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Delete blog error:", error)
+    console.error('Delete blog error:', error)
     return NextResponse.json({ error: 'Failed to delete blog' }, { status: 500 })
   }
 }
