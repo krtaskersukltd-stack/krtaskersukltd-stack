@@ -257,7 +257,7 @@
 .bigText {
   width: 100%;
   margin: 0;
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: 'Cabinet Grotesk', sans-serif !important;
   font-size: clamp(102px, 8.33vw, 120px);
   font-weight: 700;
   line-height: 0.92;
