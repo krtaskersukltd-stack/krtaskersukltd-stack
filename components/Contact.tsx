@@ -185,79 +185,28 @@ export default function Contact() {
     setIsSubmitting(true)
     setSubmitError(null)
 
-    const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-
     try {
-      if (web3FormsKey && web3FormsKey !== "YOUR_WEB3FORMS_ACCESS_KEY" && web3FormsKey !== "") {
-        const response = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            access_key: web3FormsKey,
-            subject: `New Lead from KR Tasker Website - ${formData.name}`,
-            from_name: "KR Tasker Contact Form",
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            city: formData.city || "Not Provided",
-            message: formData.message,
-            services: selectedServices.join(", "),
-            preferred_days: selectedDays.join(", "),
-            preferred_times: selectedTimes.join(", "),
-            budget: selectedBudget
-          })
-        })
-
-        if (response.ok) {
-          setIsSubmitted(true)
-        } else {
-          const resData = await response.json()
-          setSubmitError(resData.message || "Failed to send email via Web3Forms.")
-        }
-      } else if (serviceId && serviceId !== "YOUR_EMAILJS_SERVICE_ID" && serviceId !== "") {
-        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            service_id: serviceId,
-            template_id: templateId,
-            user_id: publicKey,
-            template_params: {
-              subject: `New Lead from KR Tasker Website - ${formData.name}`,
-              from_name: "KR Tasker Contact Form",
-              name: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-              city: formData.city || "Not Provided",
-              message: formData.message,
-              services: selectedServices.join(", "),
-              preferred_days: selectedDays.join(", "),
-              preferred_times: selectedTimes.join(", "),
-              budget: selectedBudget
-            }
-          })
-        })
-
-        if (response.ok) {
-          setIsSubmitted(true)
-        } else {
-          const text = await response.text()
-          setSubmitError(text || "Failed to send email. Please check your EmailJS settings.")
-        }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          services: selectedServices,
+          preferredDays: selectedDays,
+          preferredTimes: selectedTimes,
+          budget: selectedBudget,
+          website: '',
+        }),
+      })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        setSubmitError(result.error || 'Unable to send your request right now.')
       } else {
-        setSubmitError("No active email service key is configured. Please configure NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY or EmailJS keys in .env.local.")
+        setIsSubmitted(true)
       }
     } catch (error) {
       console.error("Submission error:", error)
-      setSubmitError("Failed to connect to the server. Please check your internet connection and try again.")
+      setSubmitError("Failed to connect to the server. Please try again.")
     } finally {
       setIsSubmitting(false)
     }

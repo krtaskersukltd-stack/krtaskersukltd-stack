@@ -1,8 +1,6 @@
 import BlogDetailClient from './BlogDetailClient'
 import { notFound } from 'next/navigation'
-import fs from 'fs/promises'
-import path from 'path'
-import { BlogPost } from '../posts'
+import { readBlogs } from '@/lib/blog-store'
 
 interface PageParams {
   slug: string
@@ -10,9 +8,7 @@ interface PageParams {
 
 async function getPost(slug: string) {
   try {
-    const filePath = path.join(process.cwd(), 'data', 'blogs.json')
-    const data = await fs.readFile(filePath, 'utf-8')
-    const blogs: BlogPost[] = JSON.parse(data)
+    const blogs = await readBlogs()
     return blogs.find((b) => b.slug === slug) || null
   } catch (error) {
     console.error("Error reading blog detail:", error)
@@ -20,8 +16,11 @@ async function getPost(slug: string) {
   }
 }
 
-export default async function BlogDetailPage({ params }: { params: PageParams }) {
-  const post = await getPost(params.slug)
+export const dynamic = 'force-dynamic'
+
+export default async function BlogDetailPage({ params }: { params: Promise<PageParams> }) {
+  const { slug } = await params
+  const post = await getPost(slug)
   
   if (!post) {
     notFound()

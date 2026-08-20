@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './Admin.module.css'
 
 interface BlogBlock {
@@ -52,6 +52,21 @@ export default function AdminPage() {
   const [formError, setFormError] = useState('')
   const [savingForm, setSavingForm] = useState(false)
 
+  const fetchBlogs = useCallback(async () => {
+    setLoadingBlogs(true)
+    try {
+      const res = await fetch('/api/blogs')
+      if (res.ok) {
+        const data = await res.json()
+        setBlogs(data)
+      }
+    } catch (err) {
+      console.error('Error fetching blogs', err)
+    } finally {
+      setLoadingBlogs(false)
+    }
+  }, [])
+
   // 1. Auth check on mount
   useEffect(() => {
     async function checkAuth() {
@@ -68,23 +83,7 @@ export default function AdminPage() {
       }
     }
     checkAuth()
-  }, [])
-
-  // 2. Fetch blogs from backend API
-  const fetchBlogs = async () => {
-    setLoadingBlogs(true)
-    try {
-      const res = await fetch('/api/blogs')
-      if (res.ok) {
-        const data = await res.json()
-        setBlogs(data)
-      }
-    } catch (err) {
-      console.error('Error fetching blogs', err)
-    } finally {
-      setLoadingBlogs(false)
-    }
-  }
+  }, [fetchBlogs])
 
   // 3. Handle Login submission
   const handleLogin = async (e: React.FormEvent) => {
@@ -315,6 +314,9 @@ export default function AdminPage() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   className={styles.textInput}
+                  minLength={12}
+                  maxLength={128}
+                  autoComplete="current-password"
                   required
                 />
               </div>
