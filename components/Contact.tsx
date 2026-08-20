@@ -639,29 +639,7 @@ export default function Contact() {
                 </div>
 
                 {/* Bottom details block inside formArea */}
-                <div className={styles.bottomContactRow}>
-                  <div className={styles.bottomBlock}>
-                    <h5 className={styles.bottomBlockTitle}>Address</h5>
-                    <p className={styles.bottomBlockText}>
-                      Unit 304 3rd Floor Aidan House, Sunderland Rd,<br />
-                      Tynegate Precinct, Gateshead NE8 3HU
-                    </p>
-                  </div>
-                  <div className={styles.bottomBlock}>
-                    <h5 className={styles.bottomBlockTitle}>Contact</h5>
-                    <p className={styles.bottomBlockText}>
-                      Phone : <a href="tel:+441913483900" className={styles.bottomLink}>+44 191 348 3900</a><br />
-                      Email : <a href="mailto:info@krtaskerdigital.com" className={styles.bottomLink}>info@krtaskerdigital.com</a>
-                    </p>
-                  </div>
-                  <div className={styles.bottomBlock}>
-                    <h5 className={styles.bottomBlockTitle}>Time</h5>
-                    <p className={styles.bottomBlockText}>
-                      24/7 Service<br />
-                      Monday to Sunday
-                    </p>
-                  </div>
-                </div>
+                
               </form>
             )}
           </div>

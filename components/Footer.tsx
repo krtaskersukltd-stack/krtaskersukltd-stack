@@ -34,8 +34,8 @@ const linkDestinations: Record<string, string> = {
   SMM: '/services/social-media',
   SEO: '/services/seo',
   Branding: '/services/branding',
-  Graphics: '/services/graphics-designing',
-  Amazon: '/services/amazon',
+  Graphics: '/services/graphic-design',
+  Amazon: '/services/amazon-ebay',
   'Terms & Conditions': '/terms',
   'Privacy Policy': '/privacy',
   'Cookies Policy': '/cookies',
@@ -113,15 +113,15 @@ export default function Footer() {
           {socialLinks.map(({ name, href, icon }) => (
             <a key={name} href={href} className={styles.socialIcon} aria-label={name}>
               {icon === 'facebook' && (
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M13.7 21v-8h2.8l.42-3.12H13.7v-2c0-.9.25-1.52 1.6-1.52H17V3.58a22.6 22.6 0 0 0-2.48-.13c-2.45 0-4.12 1.5-4.12 4.25v2.18H7.63V13h2.77v8h3.3Z" />
-                </svg>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 14.0856C28 6.30631 21.732 0 14 0C6.26801 0 0 6.30631 0 14.0856C0 21.116 5.11957 26.9433 11.8125 28V18.1572H8.25781V14.0856H11.8125V10.9823C11.8125 7.45214 13.9027 5.50217 17.1005 5.50217C18.6318 5.50217 20.2344 5.77728 20.2344 5.77728V9.24365H18.4691C16.73 9.24365 16.1875 10.3295 16.1875 11.4445V14.0856H20.0703L19.4496 18.1572H16.1875V28C22.8804 26.9433 28 21.116 28 14.0856Z" fill="#0C4651"/>
+</svg>
               )}
 
               {icon === 'linkedin' && (
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M5.3 3.9a2 2 0 1 1 0 4.01 2 2 0 0 1 0-4ZM3.58 9.5h3.45V20H3.58V9.5Zm5.6 0h3.3v1.44h.05c.46-.87 1.58-1.78 3.25-1.78 3.48 0 4.12 2.29 4.12 5.27V20h-3.44v-4.94c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V20H9.18V9.5Z" />
-                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.2234 0H1.77187C0.792187 0 0 0.773438 0 1.72969V22.2656C0 23.2219 0.792187 24 1.77187 24H22.2234C23.2031 24 24 23.2219 24 22.2703V1.72969C24 0.773438 23.2031 0 22.2234 0ZM7.12031 20.4516H3.55781V8.99531H7.12031V20.4516ZM5.33906 7.43438C4.19531 7.43438 3.27188 6.51094 3.27188 5.37187C3.27188 4.23281 4.19531 3.30937 5.33906 3.30937C6.47813 3.30937 7.40156 4.23281 7.40156 5.37187C7.40156 6.50625 6.47813 7.43438 5.33906 7.43438ZM20.4516 20.4516H16.8937V14.8828C16.8937 13.5562 16.8703 11.8453 15.0422 11.8453C13.1906 11.8453 12.9094 13.2937 12.9094 14.7891V20.4516H9.35625V8.99531H12.7687V10.5609H12.8156C13.2891 9.66094 14.4516 8.70938 16.1813 8.70938C19.7859 8.70938 20.4516 11.0813 20.4516 14.1656V20.4516Z" fill="#0C4651"/>
+</svg>
               )}
 
               {icon === 'instagram' && (
