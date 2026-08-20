@@ -35,7 +35,7 @@
   width: calc(100% - 100px);
   max-width: 600px;
   border-radius: 100px; /* Pill shape when detached */
-  padding: 0 8px; /* Extra tight left/right padding */
+  padding: 0 22px; /* Extra tight left/right padding */
 } 
 
 .logo {
@@ -350,6 +350,10 @@
 }
 
 @media (max-width: 1024px) {
+  .scrolled {
+    margin: 24px 0;
+  }
+
   .links,
   .cta {
     display: none;
@@ -360,11 +364,15 @@
   }
   
   .scrolled .container {
-    width: calc(100% - 60px);
+    width: calc(100% - 40px);
   }
 }
 
 @media (max-width: 640px) {
+  .scrolled {
+    margin: 16px 0;
+  }
+
   .container:not(.scrolled *) {
     height: 72px;
   }
