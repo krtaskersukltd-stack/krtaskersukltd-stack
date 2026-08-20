@@ -11,7 +11,8 @@
 }
 
  .scrolled {
-  margin: 16px 94px;
+  margin: 4px 94px;
+  padding: 8px 0;
 } 
 
 .container {
@@ -351,7 +352,8 @@
 
 @media (max-width: 1024px) {
   .scrolled {
-    margin: 12px 0;
+    margin: 4px 0;
+    padding: 8px 0;
   }
 
   .links,
@@ -370,7 +372,8 @@
 
 @media (max-width: 640px) {
   .scrolled {
-    margin: 8px 0;
+    margin: 2px 0;
+    padding: 6px 0;
   }
 
   .container:not(.scrolled *) {
