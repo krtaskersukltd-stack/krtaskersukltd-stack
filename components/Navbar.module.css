@@ -34,7 +34,7 @@
   background: var(--cream);
   box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
   width: calc(100% - 100px);
-  max-width: 600px;
+  min-width: 1320px;
   border-radius: 100px; /* Pill shape when detached */
   padding: 0 22px; /* Extra tight left/right padding */
 } 

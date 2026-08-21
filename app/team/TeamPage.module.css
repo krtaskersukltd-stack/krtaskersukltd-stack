@@ -1,0 +1,263 @@
+.page {
+  padding-top: 120px;
+}
+
+/* Header Section */
+.headerSection {
+  text-align: center;
+  margin-bottom: var(--space-block);
+  padding: 0 var(--container-pad);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  color: var(--black);
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+
+.tealText {
+  color: var(--teal);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--gray);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Team Grid / Carousel */
+.teamSection {
+  padding: 0 var(--container-pad);
+  padding-bottom: var(--space-section);
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.teamCard {
+  position: relative;
+  aspect-ratio: 1 / 1.15;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background-color: #E2E8F0; /* placeholder bg */
+}
+
+.teamImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Floating Info Box inside Card */
+.infoBox {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(248, 247, 242, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 16px;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.memberName {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--teal);
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.memberRole {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: #333333;
+}
+
+/* Hiring Section */
+.hiringSection {
+  padding: var(--space-section) var(--container-pad);
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hiringLeft {
+  max-width: 500px;
+}
+
+.hiringTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-heading);
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.hiringDesc {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--black);
+  margin-bottom: 40px;
+}
+
+.hiringButtons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btnTeal {
+  background-color: var(--teal);
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: var(--radius-tag);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  transition: opacity 0.2s;
+}
+
+.btnTeal:hover {
+  opacity: 0.9;
+}
+
+.btnLime {
+  background-color: var(--lime);
+  color: var(--teal);
+  padding: 14px 28px;
+  border-radius: var(--radius-tag);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  transition: opacity 0.2s;
+}
+
+.btnLime:hover {
+  opacity: 0.9;
+}
+
+/* Asymmetrical Collage */
+.hiringCollage {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 20px);
+  gap: 16px;
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+.collageBox {
+  background-color: #D9D9D9;
+  border-radius: var(--radius-tag);
+}
+
+/* Custom positioning based on the figma design */
+.box1 {
+  grid-column: 2 / 5;
+  grid-row: 1 / 7;
+}
+
+.box2 {
+  grid-column: 5 / 7;
+  grid-row: 3 / 7;
+}
+
+.box3 {
+  grid-column: 1 / 3;
+  grid-row: 7 / 11;
+}
+
+.box4 {
+  grid-column: 3 / 5;
+  grid-row: 7 / 12;
+}
+
+.box5 {
+  grid-column: 5 / 7;
+  grid-row: 7 / 11;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  /* Tablet Carousel */
+  .teamSection {
+    padding-right: 0;
+  }
+  
+  .teamGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-right: var(--container-pad); /* Allow scrolling past the edge */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+  }
+  
+  .teamGrid::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Webkit */
+  }
+
+  .teamCard {
+    /* 1.5 cards visible -> roughly 66% width */
+    flex: 0 0 65%;
+    scroll-snap-align: start;
+  }
+
+  .hiringSection {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hiringCollage {
+    max-width: 500px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .teamCard {
+    /* Slightly wider on very small screens to keep aspect ratio decent, 
+       but still show part of the next card */
+    flex: 0 0 75%; 
+  }
+  
+  .hiringCollage {
+    height: 300px;
+  }
+  
+  .hiringButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btnTeal, .btnLime {
+    text-align: center;
+    width: 100%;
+  }
+}

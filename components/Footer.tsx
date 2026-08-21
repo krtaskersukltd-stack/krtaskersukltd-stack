@@ -26,7 +26,7 @@ const linkDestinations: Record<string, string> = {
   'Our Work': '/work',
   'Our Blogs': '/blog',
   'Contact Us': '/contact',
-  'Meet The Team': '/about#team',
+  'Meet The Team': '/team',
   'Digital Marketing': '/services/digital-marketing',
   'Websites & Apps': '/services/websites-apps',
   'Ai Solutions': '/services/ai-solutions',
