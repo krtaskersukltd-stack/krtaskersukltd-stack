@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/contact-schema'
 import { checkRateLimit, getClientId, hasJsonContentType, hasValidOrigin } from '@/lib/security'
+import { Resend } from 'resend'
 
 export async function POST(request: Request) {
   const rate = checkRateLimit(`contact:${getClientId(request)}`, 5, 60 * 60 * 1000)
@@ -21,41 +22,49 @@ export async function POST(request: Request) {
     }
     if (parsed.data.website) return NextResponse.json({ success: true })
 
-    const accessKey = process.env.WEB3FORMS_ACCESS_KEY
-    if (!accessKey) {
-      console.error('WEB3FORMS_ACCESS_KEY is not configured')
+    const resendApiKey = process.env.RESEND_API_KEY
+    const emailTo = process.env.CONTACT_EMAIL_TO
+    const emailFrom = process.env.CONTACT_EMAIL_FROM
+
+    if (!resendApiKey || !emailTo || !emailFrom) {
+      console.error('Resend configuration (RESEND_API_KEY, CONTACT_EMAIL_TO, CONTACT_EMAIL_FROM) is missing')
       return NextResponse.json({ error: 'Contact service is temporarily unavailable.' }, { status: 503 })
     }
 
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: `New Lead from KR Tasker Website - ${parsed.data.name}`,
-        from_name: 'KR Tasker Contact Form',
-        name: parsed.data.name,
-        email: parsed.data.email,
-        phone: parsed.data.phone,
-        city: parsed.data.city || 'Not Provided',
-        message: parsed.data.message,
-        services: parsed.data.services.join(', '),
-        preferred_days: parsed.data.preferredDays.join(', '),
-        preferred_times: parsed.data.preferredTimes.join(', '),
-        budget: parsed.data.budget,
-      }),
-      cache: 'no-store',
-      signal: AbortSignal.timeout(10_000),
+    const resend = new Resend(resendApiKey)
+    const { data } = parsed
+
+    const htmlContent = `
+      <h2>New Lead from KR Tasker Website</h2>
+      <p><strong>Name:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Phone:</strong> ${data.phone}</p>
+      <p><strong>City:</strong> ${data.city || 'Not Provided'}</p>
+      <p><strong>Budget:</strong> ${data.budget}</p>
+      <p><strong>Services:</strong> ${data.services.join(', ')}</p>
+      <p><strong>Preferred Days:</strong> ${data.preferredDays.join(', ')}</p>
+      <p><strong>Preferred Times:</strong> ${data.preferredTimes.join(', ')}</p>
+      <h3>Message:</h3>
+      <p>${data.message.replace(/\n/g, '<br>')}</p>
+    `
+
+    const response = await resend.emails.send({
+      from: emailFrom,
+      to: emailTo,
+      subject: `New Lead from KR Tasker Website - ${data.name}`,
+      html: htmlContent,
+      replyTo: data.email,
     })
 
-    const result = await response.json().catch(() => ({})) as { success?: boolean; message?: string }
-    if (!response.ok || result.success === false) {
-      console.error('Contact provider rejected request:', response.status, result.message)
+    if (response.error) {
+      console.error('Resend API rejected request:', response.error)
       return NextResponse.json({ error: 'Unable to send your request right now.' }, { status: 502 })
     }
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Contact submission error:', error)
     return NextResponse.json({ error: 'Unable to send your request right now.' }, { status: 500 })
   }
 }
+
