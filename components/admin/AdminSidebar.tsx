@@ -29,16 +29,17 @@ export default function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
       {/* Brand Header */}
-      <div className="p-6 border-b border-[#125764] flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[#E6FF2A] flex items-center justify-center text-[#0C4651] font-black text-xl shadow-sm">
-            KR
-          </div>
-          <div>
-            <h1 className="font-bold text-white tracking-tight leading-none text-base">KR Tasker</h1>
-            <span className="text-[10px] text-[#84b4bd] font-medium tracking-wider uppercase block mt-1">Digital CMS</span>
-          </div>
-        </div>
+      <div className="p-5 border-b border-[#125764] flex items-center justify-between">
+        <Link href="/admin" className="flex items-center gap-3">
+          <img
+            src="/images/Logo.svg"
+            alt="KR Tasker Digital"
+            className="h-10 w-auto object-contain"
+          />
+          <span className="text-[10px] bg-[#125764] text-[#E6FF2A] px-2 py-0.5 rounded font-mono uppercase tracking-wider font-semibold">
+            CMS
+          </span>
+        </Link>
       </div>
 
       {/* Navigation List */}
