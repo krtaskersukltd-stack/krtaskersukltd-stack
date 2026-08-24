@@ -1,0 +1,26 @@
+[
+  {
+    "id": "team-1",
+    "name": "Andy Golpys",
+    "role": "Co-Founder & Technical Director",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
+    "photoAlt": "Andy Golpys",
+    "shortBio": "Leading architectural vision and client strategy across web technologies.",
+    "linkedinUrl": "https://linkedin.com",
+    "sortOrder": 1,
+    "status": "published",
+    "updatedAt": "2026-08-24T08:49:30.769Z"
+  },
+  {
+    "id": "team-2",
+    "name": "Kerry Hounslea",
+    "role": "Content & Strategy Lead",
+    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop",
+    "photoAlt": "Kerry Hounslea",
+    "shortBio": "Specializing in SEO strategy, brand narrative, and enterprise editorial content.",
+    "linkedinUrl": "https://linkedin.com",
+    "sortOrder": 2,
+    "status": "published",
+    "updatedAt": "2026-08-24T08:49:30.769Z"
+  }
+]

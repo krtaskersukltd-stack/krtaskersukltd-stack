@@ -35,8 +35,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# temp and archives
+# temp, scratch, and db files
 *.zip
 *.log
 /tmp/
-
+/scratch/
+/scratch_stitch/
+*.db*
+data/*.db*

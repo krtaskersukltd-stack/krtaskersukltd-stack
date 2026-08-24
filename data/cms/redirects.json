@@ -1,0 +1,10 @@
+[
+  {
+    "id": "red-1",
+    "sourcePath": "/old-contact-us",
+    "destination": "/contact",
+    "statusCode": 301,
+    "isActive": true,
+    "updatedAt": "2026-08-24T08:49:30.801Z"
+  }
+]

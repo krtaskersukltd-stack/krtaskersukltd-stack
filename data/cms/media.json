@@ -1,0 +1,22 @@
+[
+  {
+    "id": "med-1",
+    "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    "filename": "analytics-dashboard.jpg",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 245000,
+    "altText": "Abstract visualization of enterprise dashboard interface",
+    "title": "Enterprise Analytics Dashboard",
+    "uploadedAt": "2026-08-24T08:49:30.790Z"
+  },
+  {
+    "id": "med-2",
+    "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop",
+    "filename": "laptop-code-setup.jpg",
+    "mimeType": "image/jpeg",
+    "sizeBytes": 180000,
+    "altText": "Modern web development workstation",
+    "title": "Development Workstation",
+    "uploadedAt": "2026-08-24T08:49:30.790Z"
+  }
+]

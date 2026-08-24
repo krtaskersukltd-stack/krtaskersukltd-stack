@@ -1,43 +1,10 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/314EEV4F5Q3PZQ4W7MGGH3G4QIFH5KMM/XN3IXY26TFYOEKJXYPNT2V77XQFTK7MB/S4F5EIMDURRIR6F333R3W677YJ7H7E6P.woff2') format('woff2'),
-       url('https://cdn.fontshare.com/wf/314EEV4F5Q3PZQ4W7MGGH3G4QIFH5KMM/XN3IXY26TFYOEKJXYPNT2V77XQFTK7MB/S4F5EIMDURRIR6F333R3W677YJ7H7E6P.woff') format('woff'),
-       url('https://cdn.fontshare.com/wf/314EEV4F5Q3PZQ4W7MGGH3G4QIFH5KMM/XN3IXY26TFYOEKJXYPNT2V77XQFTK7MB/S4F5EIMDURRIR6F333R3W677YJ7H7E6P.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/55677T6O343YYO4O7WUTZ5O34E7L33EE/L6PZ4K43G5F4ZLZJ3RZZUOMJXYNTWOU7/6N22W4P3K7P7C6Z3XN43YYO42J6YYN2U.woff2') format('woff2'),
-       url('https://cdn.fontshare.com/wf/55677T6O343YYO4O7WUTZ5O34E7L33EE/L6PZ4K43G5F4ZLZJ3RZZUOMJXYNTWOU7/6N22W4P3K7P7C6Z3XN43YYO42J6YYN2U.woff') format('woff'),
-       url('https://cdn.fontshare.com/wf/55677T6O343YYO4O7WUTZ5O34E7L33EE/L6PZ4K43G5F4ZLZJ3RZZUOMJXYNTWOU7/6N22W4P3K7P7C6Z3XN43YYO42J6YYN2U.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/766J4T7G5Z6ZZ4G6Z6G4GZ42W5QO33PZ/A56O453Y45C5QZJ223W3Q6E6XYXW3PZ4/QO75U442N6Q2XYM2L33YY5I45Z6J7PZ2.woff2') format('woff2'),
-       url('https://cdn.fontshare.com/wf/766J4T7G5Z6ZZ4G6Z6G4GZ42W5QO33PZ/A56O453Y45C5QZJ223W3Q6E6XYXW3PZ4/QO75U442N6Q2XYM2L33YY5I45Z6J7PZ2.woff') format('woff'),
-       url('https://cdn.fontshare.com/wf/766J4T7G5Z6ZZ4G6Z6G4GZ42W5QO33PZ/A56O453Y45C5QZJ223W3Q6E6XYXW3PZ4/QO75U442N6Q2XYM2L33YY5I45Z6J7PZ2.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/B4VFVY3V3Z5QOQ75F4K4GZ62QO6O456P/L45F45Q53C5QZ3PZ42W5QO6E6XYXW3PZ/2U7Z3W3R3Q5YYO44O3C5O3Y45K4QZ3PZ.woff2') format('woff2'),
-       url('https://cdn.fontshare.com/wf/B4VFVY3V3Z5QOQ75F4K4GZ62QO6O456P/L45F45Q53C5QZ3PZ42W5QO6E6XYXW3PZ/2U7Z3W3R3Q5YYO44O3C5O3Y45K4QZ3PZ.woff') format('woff'),
-       url('https://cdn.fontshare.com/wf/B4VFVY3V3Z5QOQ75F4K4GZ62QO6O456P/L45F45Q53C5QZ3PZ42W5QO6E6XYXW3PZ/2U7Z3W3R3Q5YYO44O3C5O3Y45K4QZ3PZ.ttf') format('truetype');
-  font-weight: 800;
-  font-display: swap;
-  font-style: normal;
-}
 
 :root {
   /* ================= BRAND COLOR TOKENS ================= */
@@ -104,7 +71,8 @@
 
   /* ================= FONT FAMILIES ================= */
   --font-display: "Cabinet Grotesk", sans-serif;
-  /* --font-body and --font-accent are injected dynamically by Next.js layout */
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Poppins", sans-serif;
 
   /* ================= BORDER RADIUS (exact) ================= */
   --radius-tag: 8px;

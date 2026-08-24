@@ -1,0 +1,121 @@
+[
+  {
+    "id": "page-home",
+    "routeKey": "home",
+    "internalName": "Homepage",
+    "publicTitle": "KR Tasker Digital | Premium Web Agency & Digital CMS",
+    "slug": "",
+    "publicUrl": "https://www.krtaskerdigital.com/",
+    "isSystemRoute": true,
+    "status": "published",
+    "seo": {
+      "metaTitle": "KR Tasker Digital | Premier Web Design & Digital Engineering Agency",
+      "metaDescription": "Bespoke web applications, high-converting CMS platforms, and brand strategy by KR Tasker Digital.",
+      "h1": "Digital Engineering & Modern Web Architecture",
+      "focusKeyword": "web design agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "contentKeys": [
+      {
+        "key": "home.hero.heading",
+        "label": "Hero Heading",
+        "value": "We build digital products that scale brands",
+        "group": "Hero"
+      },
+      {
+        "key": "home.hero.description",
+        "label": "Hero Subtext",
+        "value": "Bespoke web design, CMS engineering, and organic search growth.",
+        "group": "Hero"
+      },
+      {
+        "key": "home.about.heading",
+        "label": "About Heading",
+        "value": "Crafting digital experiences with precision & code integrity",
+        "group": "About"
+      }
+    ],
+    "updatedAt": "2026-08-24T08:49:30.722Z"
+  },
+  {
+    "id": "page-services",
+    "routeKey": "services",
+    "internalName": "Services Overview",
+    "publicTitle": "Our Services | KR Tasker Digital",
+    "slug": "services",
+    "publicUrl": "https://www.krtaskerdigital.com/services",
+    "isSystemRoute": true,
+    "status": "published",
+    "seo": {
+      "metaTitle": "Services & Capabilities | KR Tasker Digital",
+      "metaDescription": "Explore our full spectrum of services from Next.js web apps to SEO architecture and brand design.",
+      "h1": "Our Core Capabilities",
+      "focusKeyword": "digital services",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "contentKeys": [],
+    "updatedAt": "2026-08-24T08:49:30.723Z"
+  },
+  {
+    "id": "page-work",
+    "routeKey": "work",
+    "internalName": "Work / Case Studies",
+    "publicTitle": "Our Work | KR Tasker Digital",
+    "slug": "work",
+    "publicUrl": "https://www.krtaskerdigital.com/work",
+    "isSystemRoute": true,
+    "status": "published",
+    "seo": {
+      "metaTitle": "Selected Case Studies & Work | KR Tasker Digital",
+      "metaDescription": "Browse our portfolio of high-impact web design and software engineering projects.",
+      "h1": "Featured Client Projects",
+      "focusKeyword": "web development case studies",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "contentKeys": [],
+    "updatedAt": "2026-08-24T08:49:30.723Z"
+  },
+  {
+    "id": "page-blog",
+    "routeKey": "blog",
+    "internalName": "Blog & Articles",
+    "publicTitle": "Latest Insights & Articles | KR Tasker Digital",
+    "slug": "blog",
+    "publicUrl": "https://www.krtaskerdigital.com/blog",
+    "isSystemRoute": true,
+    "status": "published",
+    "seo": {
+      "metaTitle": "Digital Agency Blog & Insights | KR Tasker Digital",
+      "metaDescription": "Read our latest posts on web engineering, headless CMS, and SEO strategies.",
+      "h1": "Insights & Thought Leadership",
+      "focusKeyword": "web development blog",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "contentKeys": [],
+    "updatedAt": "2026-08-24T08:49:30.723Z"
+  },
+  {
+    "id": "page-contact",
+    "routeKey": "contact",
+    "internalName": "Contact Us",
+    "publicTitle": "Contact Us | KR Tasker Digital",
+    "slug": "contact",
+    "publicUrl": "https://www.krtaskerdigital.com/contact",
+    "isSystemRoute": true,
+    "status": "published",
+    "seo": {
+      "metaTitle": "Contact Our Team | KR Tasker Digital",
+      "metaDescription": "Get in touch to discuss your next web design, CMS, or brand engineering project.",
+      "h1": "Let’s Start a Project Together",
+      "focusKeyword": "contact web agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "contentKeys": [],
+    "updatedAt": "2026-08-24T08:49:30.723Z"
+  }
+]

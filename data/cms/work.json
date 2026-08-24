@@ -1,0 +1,38 @@
+[
+  {
+    "id": "cs-1",
+    "client": "Global Logistics Corp",
+    "title": "Enterprise Fleet Portal & Digital Infrastructure",
+    "slug": "enterprise-fleet-portal",
+    "year": "2026",
+    "category": "Web Engineering",
+    "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Dashboard analytics visualization",
+    "shortDescription": "Modernizing legacy administrative systems into a real-time responsive Next.js CMS platform.",
+    "status": "published",
+    "sortOrder": 1,
+    "overview": "Rebuilt core customer interaction portal with server-side dynamic rendering.",
+    "challenge": "Legacy system was slow, insecure, and un-editable by non-technical marketing teams.",
+    "solution": "Built custom admin dashboard with role-based access control and live status syncing.",
+    "results": "Reduced page loading latency by 85% and increased administrative editing throughput by 3x.",
+    "metrics": [
+      {
+        "value": "+240%",
+        "label": "User Engagement"
+      },
+      {
+        "value": "0.4s",
+        "label": "Page Load Time"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Enterprise Fleet Portal Case Study | KR Tasker Digital",
+      "metaDescription": "Case study on enterprise fleet management portal redesign using Next.js and custom CMS.",
+      "h1": "Enterprise Fleet Portal Case Study",
+      "focusKeyword": "fleet portal case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-24T08:49:30.746Z"
+  }
+]

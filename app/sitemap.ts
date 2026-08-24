@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next'
-import { allPosts } from './blog/posts'
+import { getCmsPages, getCmsServices, getCmsWork, getCmsBlogs } from '@/lib/cms-store'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.krtaskerdigital.com'
 
-  const staticRoutes = [
+  const staticBaseRoutes = [
     '',
     '/about',
     '/blog',
@@ -13,35 +13,69 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services',
     '/terms',
     '/work',
-    '/services/ai-automation',
-    '/services/ai-solutions',
-    '/services/amazon-ebay',
-    '/services/branding',
-    '/services/business-consultancy',
-    '/services/digital-360',
-    '/services/digital-marketing',
-    '/services/email-marketing',
-    '/services/graphic-design',
-    '/services/marketing',
-    '/services/ppc',
-    '/services/seo',
-    '/services/shopify-development',
-    '/services/social-media',
-    '/services/web-development',
-    '/services/websites-apps'
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }))
+  ]
 
-  const blogRoutes = allPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
+  let pagesFromCms: any[] = []
+  let servicesFromCms: any[] = []
+  let workFromCms: any[] = []
+  let blogsFromCms: any[] = []
 
-  return [...staticRoutes, ...blogRoutes]
+  try {
+    const [pages, services, work, blogs] = await Promise.all([
+      getCmsPages(),
+      getCmsServices(),
+      getCmsWork(),
+      getCmsBlogs(),
+    ])
+    pagesFromCms = pages
+    servicesFromCms = services
+    workFromCms = work
+    blogsFromCms = blogs
+  } catch (err) {
+    console.error('Sitemap CMS load error', err)
+  }
+
+  // 1. Pages entries
+  const pagesEntries = staticBaseRoutes.map((route) => {
+    const match = pagesFromCms.find((p) => p.slug === route.replace('/', '') || (route === '' && p.routeKey === 'home'))
+    if (match && match.seo?.indexStatus === 'noindex') return null
+    return {
+      url: `${baseUrl}${route}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: route === '' ? 1.0 : 0.8,
+    }
+  }).filter(Boolean) as MetadataRoute.Sitemap
+
+  // 2. Services entries
+  const servicesEntries = servicesFromCms
+    .filter((s) => s.status === 'published' && s.seo?.indexStatus !== 'noindex')
+    .map((s) => ({
+      url: `${baseUrl}/services/${s.slug}`,
+      lastModified: new Date(s.updatedAt || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
+
+  // 3. Work entries
+  const workEntries = workFromCms
+    .filter((w) => w.status === 'published' && w.seo?.indexStatus !== 'noindex')
+    .map((w) => ({
+      url: `${baseUrl}/work/${w.slug}`,
+      lastModified: new Date(w.updatedAt || Date.now()),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+
+  // 4. Blog entries
+  const blogEntries = blogsFromCms
+    .filter((b) => b.status === 'published' && b.seo?.indexStatus !== 'noindex')
+    .map((b) => ({
+      url: `${baseUrl}/blog/${b.slug}`,
+      lastModified: new Date(b.updatedAt || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }))
+
+  return [...pagesEntries, ...servicesEntries, ...workEntries, ...blogEntries]
 }

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "enq-1",
+    "name": "Sarah Jenkins",
+    "email": "sarah.j@enterprise.co.uk",
+    "phone": "+44 7700 900077",
+    "service": "Web Engineering & CMS Solutions",
+    "budget": "£10k - £25k",
+    "message": "Looking to migrate our company website to a modern Next.js headless CMS architecture.",
+    "status": "new",
+    "createdAt": "2026-08-24T08:49:30.779Z"
+  }
+]
