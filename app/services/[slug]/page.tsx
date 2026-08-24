@@ -1,61 +1,87 @@
-import { notFound } from 'next/navigation'
-import type { Metadata } from 'next'
-import { getCmsServices } from '@/lib/cms-store'
+'use client'
+
+import { useState, useRef, useEffect, use } from 'react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import StructuredData from '@/components/StructuredData'
 import Contact from '@/components/Contact'
-import Link from 'next/link'
+import Footer from '@/components/Footer'
+import HappyClients from '@/components/HappyClients'
+import ProcessSection from '@/components/ProcessSection'
+import Testimonials from '@/components/Testimonials'
+import FaqSection from '@/components/FaqSection'
+import ClientSatisfaction from '@/components/80%-client'
+import StructuredData from '@/components/StructuredData'
+import styles from '../ServicePage.module.css'
+import type { ServiceRecord } from '@/lib/cms-types'
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const resolvedParams = await params
+export default function DynamicServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params)
   const slug = resolvedParams.slug
-  const services = await getCmsServices()
-  const srv = services.find((s) => s.slug === slug || s.slug === `/services/${slug}`)
+  const [srv, setSrv] = useState<ServiceRecord | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [openFeatureIdx, setOpenFeatureIdx] = useState<number | null>(0)
 
-  if (!srv) return {}
+  const heroRef = useRef(null)
+  const isHeroInView = useInView(heroRef, { once: true, margin: '-50px' })
 
-  const title = srv.seo?.metaTitle || `${srv.name} | KR Tasker Digital`
-  const description = srv.seo?.metaDescription || srv.heroDescription
+  useEffect(() => {
+    fetch('/api/cms/services')
+      .then((res) => res.json())
+      .then((data: ServiceRecord[]) => {
+        if (Array.isArray(data)) {
+          const match = data.find((s) => s.slug === slug || s.slug === `/services/${slug}` || s.id === slug)
+          if (match) setSrv(match)
+        }
+      })
+      .catch((err) => console.error('Error loading dynamic service page:', err))
+      .finally(() => setLoading(false))
+  }, [slug])
 
-  return {
-    title,
-    description,
-    robots: {
-      index: srv.seo?.indexStatus === 'index',
-      follow: srv.seo?.followStatus === 'follow',
-    },
-    alternates: {
-      canonical: srv.seo?.canonicalUrl || `https://www.krtaskerdigital.com/services/${srv.slug}`,
-    },
-    openGraph: {
-      title: srv.seo?.ogTitle || title,
-      description: srv.seo?.ogDescription || description,
-      images: srv.seo?.ogImage ? [{ url: srv.seo.ogImage }] : [],
-    },
+  const scrollToContact = () => {
+    const contactSec = document.getElementById('contact-form')
+    if (contactSec) {
+      contactSec.scrollIntoView({ behavior: 'smooth' })
+    }
   }
-}
 
-export default async function DynamicServicePage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params
-  const slug = resolvedParams.slug
-  const services = await getCmsServices()
-  const srv = services.find((s) => s.slug === slug || s.slug === `/services/${slug}`)
+  if (loading) {
+    return (
+      <main className={styles.page}>
+        <Navbar />
+        <div className="py-36 text-center text-gray-500 text-sm font-semibold">Loading Service Details...</div>
+        <Footer />
+      </main>
+    )
+  }
 
   if (!srv || srv.status !== 'published') {
-    notFound()
+    return (
+      <main className={styles.page}>
+        <Navbar />
+        <div className="py-36 text-center text-gray-500 space-y-4">
+          <h1 className="text-3xl font-extrabold text-[#0C4651]">Service Not Found</h1>
+          <p className="text-sm">The requested service page does not exist or is currently a draft.</p>
+        </div>
+        <Footer />
+      </main>
+    )
   }
 
-  const h1Text = srv.seo?.h1 || srv.heroHeading || srv.name
+  const featuresList = srv.features && srv.features.length > 0
+    ? srv.features
+    : [
+        { id: '1', title: `${srv.name} Solutions`, description: `Professional, end-to-end strategy and execution for ${srv.name} to maximize conversions, build brand authority, and accelerate customer growth.`, sortOrder: 1 },
+        { id: '2', title: 'Performance & Growth Optimization', description: 'Continuous data analytics, keyword ranking management, and audience acquisition tuning.', sortOrder: 2 },
+      ]
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#faf9f4]">
+    <main className={styles.page}>
       <StructuredData
         type="Service"
         data={{
           name: srv.name,
           serviceType: srv.eyebrow || 'Digital Engineering',
-          description: srv.heroDescription,
+          description: srv.heroDescription || srv.name,
           provider: {
             '@type': 'Organization',
             name: 'KR Tasker Digital',
@@ -64,68 +90,123 @@ export default async function DynamicServicePage({ params }: { params: Promise<{
       />
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="bg-[#0C4651] text-white pt-36 pb-20 px-6 sm:px-12 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto space-y-6 relative z-10">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E6FF2A] bg-[#125764] px-3 py-1 rounded-full inline-block">
-            {srv.eyebrow || 'SERVICES'}
-          </span>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
-            {h1Text}
-          </h1>
-          <p className="text-base sm:text-xl text-[#d2e7eb] max-w-3xl font-normal leading-relaxed">
-            {srv.heroDescription}
-          </p>
-          <div className="pt-2">
-            <Link
-              href="/contact"
-              className="inline-block bg-[#E6FF2A] text-[#191e00] font-bold px-8 py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-all text-sm"
+      {/* 1. Hero Section matching original Service layout */}
+      <section ref={heroRef} className={styles.heroSection}>
+        <div className={styles.container}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className={styles.heroGrid}
+          >
+            <div className={styles.leftHero}>
+              <span className={styles.sectionTag}>{srv.eyebrow || srv.name}</span>
+              <h1 className={styles.heroTitle}>
+                {srv.heroHeading || srv.name}
+              </h1>
+              <p className={styles.heroDesc}>
+                {srv.heroDescription}
+              </p>
+              <div className={styles.actions}>
+                <button onClick={scrollToContact} className={styles.btnPrimary}>
+                  {srv.heroCtaText || 'Start a Project'}
+                </button>
+                <a href="/work" className={styles.btnSecondary}>
+                  View Case Studies
+                </a>
+              </div>
+            </div>
+
+            {/* Visual Stats Card on the Right */}
+            <div className={styles.rightHero}>
+              <div className={styles.radialCard}>
+                <div className={styles.radialGraphic}>
+                  <svg width="120" height="120" viewBox="0 0 36 36" className={styles.circularChart}>
+                    <path className={styles.circleBg} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path className={styles.circle} strokeDasharray="99, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  </svg>
+                  <div className={styles.radialVal}>
+                    {srv.metrics && srv.metrics[0] ? srv.metrics[0].value : '99%'}
+                  </div>
+                </div>
+                <div className={styles.radialMeta}>
+                  <p className={styles.radialTitle}>
+                    {srv.metrics && srv.metrics[0] ? srv.metrics[0].label : 'Client Satisfaction'}
+                  </p>
+                  <div className={styles.radialRating}>
+                    <span className={styles.stars}>★★★★★</span>
+                    <span className={styles.score}>5.0 / 5.0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. Client Satisfaction Banner */}
+      <ClientSatisfaction />
+
+      {/* 3. Service Features Accordion */}
+      <section className={styles.featuresSection}>
+        <div className={styles.container}>
+          <div className={styles.featuresGrid}>
+            <div
+              className={styles.featuresLeft}
+              style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             >
-              {srv.heroCtaText || 'Get Started Today'}
-            </Link>
+              <span className={styles.featuresTag}>Service Features</span>
+            </div>
+            <div className={styles.featuresRight}>
+              <div className={styles.accordion}>
+                {featuresList.map((feat: any, i: number) => {
+                  const isOpen = openFeatureIdx === i
+                  return (
+                    <div key={i} className={`${styles.accordionItem} ${isOpen ? styles.itemOpen : ''}`}>
+                      <button onClick={() => setOpenFeatureIdx(isOpen ? null : i)} className={styles.accordionHeader}>
+                        <span className={styles.accordionTitle}>{feat.title}</span>
+                        <span className={`${styles.accordionSign} ${isOpen ? styles.signOpen : ''}`}>
+                          {isOpen ? '−' : '+'}
+                        </span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className={styles.accordionContentContainer}
+                          >
+                            <div className={styles.accordionContent}>
+                              {feat.description || feat.content}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      {srv.features && srv.features.length > 0 && (
-        <section className="py-20 px-6 sm:px-12 max-w-6xl mx-auto w-full space-y-12">
-          <div className="text-center space-y-3">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900">Key Capabilities & Features</h2>
-            <p className="text-sm text-gray-500 max-w-2xl mx-auto">
-              Engineered to deliver high performance, conversion velocity, and operational scale.
-            </p>
-          </div>
+      {/* 4. Reusable sections matching website layout */}
+      <HappyClients />
+      <ProcessSection />
+      <Testimonials />
+      <FaqSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {srv.features.map((feat) => (
-              <div key={feat.id} className="bg-white p-8 rounded-2xl border border-[#E5E4E0] shadow-sm space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-[#0C4651]/10 text-[#0C4651] flex items-center justify-center font-bold text-base">
-                  ✓
-                </div>
-                <h3 className="font-bold text-xl text-gray-900">{feat.title}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{feat.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <div id="contact-form">
+        <Contact />
+      </div>
 
-      {/* Metrics Banner */}
-      {srv.metrics && srv.metrics.length > 0 && (
-        <section className="bg-[#09353e] text-white py-16 px-6 sm:px-12">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            {srv.metrics.map((met, idx) => (
-              <div key={idx} className="space-y-2">
-                <div className="text-4xl sm:text-5xl font-black text-[#E6FF2A]">{met.value}</div>
-                <div className="text-xs uppercase tracking-wider text-[#84b4bd] font-medium">{met.label}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <Contact />
       <Footer />
     </main>
   )
