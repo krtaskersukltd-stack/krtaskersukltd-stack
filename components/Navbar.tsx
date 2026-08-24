@@ -105,25 +105,25 @@ export default function Navbar() {
           {mainNav.map((item, idx) => {
             const active = pathname === item.href
             return (
-              <Link key={item.label} href={item.href} passHref legacyBehavior>
-                <motion.a 
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  className={`${styles.link} ${active ? styles.activeLink : ''}`}
-                >
-                  {item.label}
-                  {/* Sliding Underline Indicator */}
-                  {hoveredIdx === idx && (
-                    <motion.div
-                      layoutId="navHoverUnderline"
-                      className={styles.hoverUnderline}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {/* Active Link fallback line */}
-                  {active && hoveredIdx !== idx && (
-                    <div className={styles.activeUnderline} />
-                  )}
-                </motion.a>
+              <Link
+                key={item.label}
+                href={item.href}
+                onMouseEnter={() => setHoveredIdx(idx)}
+                className={`${styles.link} ${active ? styles.activeLink : ''}`}
+              >
+                {item.label}
+                {/* Sliding Underline Indicator */}
+                {hoveredIdx === idx && (
+                  <motion.div
+                    layoutId="navHoverUnderline"
+                    className={styles.hoverUnderline}
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {/* Active Link fallback line */}
+                {active && hoveredIdx !== idx && (
+                  <div className={styles.activeUnderline} />
+                )}
               </Link>
             )
           })}

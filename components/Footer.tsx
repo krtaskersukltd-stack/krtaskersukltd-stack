@@ -60,8 +60,38 @@ export default function Footer() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const handleNewsletter = (event: FormEvent<HTMLFormElement>) => {
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false)
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false)
+
+  const handleNewsletter = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (!newsletterEmail) return
+    setNewsletterSubmitting(true)
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: newsletterEmail,
+          phone: '+440000000000',
+          city: 'Website Subscriber',
+          message: 'User subscribed to KR Tasker Digital Newsletter.',
+          services: ['Newsletter Insights'],
+          preferredDays: ['Mon'],
+          preferredTimes: ['9:00'],
+          budget: 'N/A',
+          website: '',
+        }),
+      })
+      setNewsletterSuccess(true)
+      setNewsletterEmail('')
+    } catch (err) {
+      console.error('Newsletter submission error', err)
+    } finally {
+      setNewsletterSubmitting(false)
+    }
   }
 
   return (
@@ -179,28 +209,37 @@ export default function Footer() {
                 Stay up to date with the latest digital marketing insights, tips, and news.
               </p>
 
-              <form className={styles.form} onSubmit={handleNewsletter}>
-                <label htmlFor="footer-email" className={styles.srOnly}>
-                  Email address
-                </label>
-                <input
-                  id="footer-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="Enter Your Email"
-                  className={styles.input}
-                  required
-                />
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.035, boxShadow: '0 0 20px rgba(230,255,42,.32)' }}
-                  whileTap={{ scale: 0.98 }}
-                  className={styles.btnSubscribe}
-                >
-                  Subscribe Now
-                </motion.button>
-              </form>
+              {newsletterSuccess ? (
+                <div style={{ color: '#E6FF2A', fontWeight: 'bold', fontSize: '14px', paddingTop: '8px' }}>
+                  ✓ Thank you for subscribing!
+                </div>
+              ) : (
+                <form className={styles.form} onSubmit={handleNewsletter}>
+                  <label htmlFor="footer-email" className={styles.srOnly}>
+                    Email address
+                  </label>
+                  <input
+                    id="footer-email"
+                    name="email"
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    autoComplete="email"
+                    placeholder="Enter Your Email"
+                    className={styles.input}
+                    required
+                  />
+                  <motion.button
+                    type="submit"
+                    disabled={newsletterSubmitting}
+                    whileHover={{ scale: 1.035, boxShadow: '0 0 20px rgba(230,255,42,.32)' }}
+                    whileTap={{ scale: 0.98 }}
+                    className={styles.btnSubscribe}
+                  >
+                    {newsletterSubmitting ? 'Subscribing...' : 'Subscribe Now'}
+                  </motion.button>
+                </form>
+              )}
             </div>
           </div>
 
