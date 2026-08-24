@@ -5,50 +5,131 @@ import AdminLayout from '@/components/admin/AdminLayout'
 import SEOHealthPanel from '@/components/admin/SEOHealthPanel'
 import SERPPreview from '@/components/admin/SERPPreview'
 import StickySaveBar from '@/components/admin/StickySaveBar'
-import MediaPickerModal from '@/components/admin/MediaPickerModal'
 import Link from 'next/link'
-import type { PageRecord, ContentKeyItem } from '@/lib/cms-types'
+import { useRouter, useSearchParams } from 'next/navigation'
+import type { PageRecord, PageSection, PageSectionType, PageTemplate } from '@/lib/cms-types'
 
 export default function AdminPageEditorPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params)
   const pageId = resolvedParams.id
+  const isNew = pageId === 'new'
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const duplicateFrom = searchParams.get('duplicateFrom')
 
-  const [page, setPage] = useState<PageRecord | null>(null)
+  const [page, setPage] = useState<PageRecord>({
+    id: `page-${Date.now()}`,
+    routeKey: `page-${Date.now()}`,
+    internalName: '',
+    publicTitle: '',
+    slug: '',
+    publicUrl: '',
+    isSystemRoute: false,
+    templateKey: 'standard',
+    parentSlug: '',
+    status: 'published',
+    seo: {
+      metaTitle: '',
+      metaDescription: '',
+      h1: '',
+      focusKeyword: '',
+      indexStatus: 'index',
+      followStatus: 'follow',
+    },
+    contentKeys: [],
+    sections: [],
+    updatedAt: new Date().toISOString(),
+  })
   const [allPages, setAllPages] = useState<PageRecord[]>([])
-  const [loading, setLoading] = useState(true)
+  const [originalSlug, setOriginalSlug] = useState('')
+  const [loading, setLoading] = useState(!isNew || Boolean(duplicateFrom))
   const [saving, setSaving] = useState(false)
   const [isDirty, setIsDirty] = useState(false)
   const [feedback, setFeedback] = useState('')
-  const [activeTab, setActiveTab] = useState<'content' | 'seo' | 'og'>('content')
-  const [isMediaModalOpen, setIsMediaModalOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState<'general' | 'sections' | 'seo'>('general')
 
   useEffect(() => {
-    fetchPageData()
-  }, [pageId])
+    fetchPages()
+  }, [pageId, duplicateFrom])
 
-  const fetchPageData = async () => {
-    setLoading(true)
+  const fetchPages = async () => {
     try {
       const res = await fetch('/api/cms/pages')
       if (res.ok) {
         const data: PageRecord[] = await res.json()
         setAllPages(data)
-        const target = data.find((p) => p.id === pageId)
-        if (target) setPage(target)
+        if (!isNew) {
+          const target = data.find((p) => p.id === pageId)
+          if (target) {
+            setPage(target)
+            setOriginalSlug(target.slug)
+          }
+        } else if (duplicateFrom) {
+          const source = data.find((p) => p.id === duplicateFrom)
+          if (source) {
+            setPage({
+              ...source,
+              id: `page-${Date.now()}`,
+              routeKey: `${source.slug}-copy-${Date.now()}`,
+              internalName: `${source.internalName} (Copy)`,
+              slug: `${source.slug}-copy`,
+              isSystemRoute: false,
+              status: 'draft',
+              updatedAt: new Date().toISOString(),
+            })
+            setIsDirty(true)
+          }
+        }
       }
     } catch (err) {
-      console.error('Error fetching page', err)
+      console.error('Error fetching pages', err)
     } finally {
       setLoading(false)
     }
   }
 
   const handleSave = async () => {
-    if (!page) return
     setSaving(true)
     setFeedback('')
     try {
-      const updatedList = allPages.map((p) => (p.id === page.id ? { ...page, updatedAt: new Date().toISOString() } : p))
+      // Auto-301 redirect generation if slug changed on a published page
+      if (!isNew && originalSlug && page.slug !== originalSlug && page.status === 'published') {
+        try {
+          const resRed = await fetch('/api/cms/redirects')
+          if (resRed.ok) {
+            const redirects = await resRed.json()
+            const newRed = {
+              id: `red-${Date.now()}`,
+              sourcePath: originalSlug.startsWith('/') ? originalSlug : `/${originalSlug}`,
+              destination: page.slug.startsWith('/') ? page.slug : `/${page.slug}`,
+              statusCode: 301 as const,
+              isActive: true,
+              updatedAt: new Date().toISOString(),
+            }
+            await fetch('/api/cms/redirects', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify([newRed, ...redirects]),
+            })
+          }
+        } catch (err) {
+          console.warn('Auto redirect creation note:', err)
+        }
+      }
+
+      const updatedPage = {
+        ...page,
+        publicUrl: `https://www.krtaskerdigital.com/${page.slug}`,
+        updatedAt: new Date().toISOString(),
+      }
+
+      let updatedList: PageRecord[]
+      if (isNew) {
+        updatedList = [updatedPage, ...allPages]
+      } else {
+        updatedList = allPages.map((p) => (p.id === page.id ? updatedPage : p))
+      }
+
       const res = await fetch('/api/cms/pages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -56,12 +137,11 @@ export default function AdminPageEditorPage({ params }: { params: Promise<{ id: 
       })
 
       if (res.ok) {
-        setAllPages(updatedList)
         setIsDirty(false)
-        setFeedback('Page content and SEO settings saved successfully!')
-        setTimeout(() => setFeedback(''), 4000)
+        setFeedback('Page saved successfully!')
+        if (isNew) router.push(`/admin/pages/${updatedPage.id}`)
       } else {
-        setFeedback('Failed to save changes. Please try again.')
+        setFeedback('Failed to save page.')
       }
     } catch {
       setFeedback('Network error while saving.')
@@ -70,54 +150,41 @@ export default function AdminPageEditorPage({ params }: { params: Promise<{ id: 
     }
   }
 
-  const updateSeoField = (field: string, value: any) => {
-    if (!page) return
-    setPage({
-      ...page,
-      seo: { ...page.seo, [field]: value },
-    })
+  const addSection = (type: PageSectionType) => {
+    const newSec: PageSection = {
+      id: `sec-${Date.now()}`,
+      type,
+      sortOrder: (page.sections?.length || 0) + 1,
+      isEnabled: true,
+      data: {
+        title: type === 'hero' ? 'Section Heading' : 'Content Title',
+        content: 'Add your section content details here...',
+      },
+    }
+    setPage({ ...page, sections: [...(page.sections || []), newSec] })
     setIsDirty(true)
   }
 
-  const updateContentKey = (index: number, val: string) => {
-    if (!page) return
-    const updatedKeys = [...(page.contentKeys || [])]
-    if (updatedKeys[index]) {
-      updatedKeys[index].value = val
-      setPage({ ...page, contentKeys: updatedKeys })
-      setIsDirty(true)
-    }
+  const removeSection = (id: string) => {
+    setPage({ ...page, sections: (page.sections || []).filter((s) => s.id !== id) })
+    setIsDirty(true)
   }
 
-  const addContentKey = () => {
-    if (!page) return
-    const newKey: ContentKeyItem = {
-      key: `${page.routeKey}.custom.${Date.now()}`,
-      label: 'New Content Field',
-      value: '',
-      group: 'General',
-    }
-    setPage({ ...page, contentKeys: [...(page.contentKeys || []), newKey] })
+  const moveSection = (index: number, direction: 'up' | 'down') => {
+    const target = direction === 'up' ? index - 1 : index + 1
+    const list = [...(page.sections || [])]
+    if (target < 0 || target >= list.length) return
+    const temp = list[index]
+    list[index] = list[target]
+    list[target] = temp
+    setPage({ ...page, sections: list })
     setIsDirty(true)
   }
 
   if (loading) {
     return (
       <AdminLayout>
-        <div className="py-12 text-center text-xs text-gray-500">Loading page record...</div>
-      </AdminLayout>
-    )
-  }
-
-  if (!page) {
-    return (
-      <AdminLayout>
-        <div className="text-center py-12 space-y-4">
-          <h2 className="text-xl font-bold text-gray-900">Page Not Found</h2>
-          <Link href="/admin/pages" className="btn-secondary text-xs">
-            Back to Pages List
-          </Link>
-        </div>
+        <div className="py-12 text-center text-xs text-gray-500">Loading page data...</div>
       </AdminLayout>
     )
   }
@@ -125,193 +192,381 @@ export default function AdminPageEditorPage({ params }: { params: Promise<{ id: 
   return (
     <AdminLayout>
       <div className="space-y-6">
-        {/* Top Header Bar */}
+        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <Link href="/admin/pages" className="text-xs font-semibold text-[#0C4651] hover:underline">
-                ← Back to Pages
-              </Link>
-              <span className="text-gray-300">|</span>
-              <span className="text-xs text-gray-500 font-mono">ID: {page.id}</span>
+            <Link href="/admin/pages" className="text-xs font-semibold text-[#0C4651] hover:underline">
+              ← Back to Pages
+            </Link>
+            <div className="flex items-center gap-3 mt-1">
+              <h1 className="text-2xl font-bold text-gray-900">
+                {isNew ? 'Add New Page' : `Edit Page: ${page.internalName}`}
+              </h1>
+              {page.isSystemRoute && (
+                <span className="px-2.5 py-1 rounded bg-[#0C4651]/10 text-[#0C4651] font-bold text-[10px] uppercase tracking-wider">
+                  SYSTEM PAGE (Protected)
+                </span>
+              )}
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mt-1">{page.internalName}</h1>
           </div>
 
           <div className="flex items-center gap-3">
-            <a
-              href={`https://www.krtaskerdigital.com/${page.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary text-xs px-3.5 py-2"
-            >
-              Preview Public Page ↗
-            </a>
             <button onClick={handleSave} disabled={saving} className="btn-lime text-xs px-5 py-2">
-              {saving ? 'Saving...' : 'Save Changes'}
+              {saving ? 'Saving...' : 'Save Page'}
             </button>
           </div>
         </div>
 
         {feedback && (
-          <div className={`p-3 rounded-lg text-xs font-medium ${
-            feedback.includes('successfully') ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-800 border border-red-200'
-          }`}>
+          <div
+            className={`p-3 rounded-lg text-xs font-medium ${
+              feedback.includes('successfully') ? 'bg-emerald-50 text-emerald-800' : 'bg-red-50 text-red-800'
+            }`}
+          >
             {feedback}
           </div>
         )}
 
-        {/* System Controlled Route Warning */}
-        {page.isSystemRoute && (
-          <div className="p-4 bg-[#0C4651]/5 border border-[#0C4651]/20 rounded-xl text-xs text-[#0C4651] flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#0C4651]" />
-              <div>
-                <span className="font-bold block">System-Controlled Route ({page.routeKey})</span>
-                <span className="text-gray-600">The public slug URL is locked by the codebase router to maintain application navigation.</span>
-              </div>
-            </div>
-            <span className="px-3 py-1 bg-[#0C4651] text-[#E6FF2A] font-bold text-[10px] uppercase tracking-wider rounded-md">
-              Slug Locked
-            </span>
-          </div>
-        )}
-
-        {/* Tab Selection Bar */}
-        <div className="flex items-center gap-2 border-b border-[#E5E4E0] pb-2">
+        {/* Tab Controls */}
+        <div className="flex items-center border-b border-[#E5E4E0] gap-4">
           <button
-            onClick={() => setActiveTab('content')}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'content' ? 'bg-[#0C4651] text-[#E6FF2A]' : 'text-gray-600 hover:bg-gray-100'
+            onClick={() => setActiveTab('general')}
+            className={`pb-3 text-xs font-bold transition-all border-b-2 ${
+              activeTab === 'general'
+                ? 'border-[#0C4651] text-[#0C4651]'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
-            Structured Content Keys ({page.contentKeys?.length || 0})
+            General & Template
+          </button>
+          <button
+            onClick={() => setActiveTab('sections')}
+            className={`pb-3 text-xs font-bold transition-all border-b-2 ${
+              activeTab === 'sections'
+                ? 'border-[#0C4651] text-[#0C4651]'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
+            }`}
+          >
+            Section Builder ({(page.sections || []).length})
           </button>
           <button
             onClick={() => setActiveTab('seo')}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'seo' ? 'bg-[#0C4651] text-[#E6FF2A]' : 'text-gray-600 hover:bg-gray-100'
+            className={`pb-3 text-xs font-bold transition-all border-b-2 ${
+              activeTab === 'seo'
+                ? 'border-[#0C4651] text-[#0C4651]'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
-            SEO & Search Meta
-          </button>
-          <button
-            onClick={() => setActiveTab('og')}
-            className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'og' ? 'bg-[#0C4651] text-[#E6FF2A]' : 'text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            Open Graph & Social Sharing
+            SEO & Social Meta
           </button>
         </div>
 
-        {/* Editor Main Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            {/* TAB 1: CONTENT KEYS */}
-            {activeTab === 'content' && (
-              <div className="admin-card space-y-6 border-[#E5E4E0]">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+        {/* Tab 1: General & Template */}
+        {activeTab === 'general' && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="admin-card space-y-4 border-[#E5E4E0]">
+                <h3 className="font-bold text-gray-900 text-base pb-3 border-b border-gray-100">Page Identity</h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <h3 className="font-bold text-gray-900 text-base">Editable Page Content Keys</h3>
-                    <p className="text-xs text-gray-500">Edit content strings without breaking the frontend UI structure.</p>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Page Name (Internal)</label>
+                    <input
+                      type="text"
+                      value={page.internalName}
+                      onChange={(e) => {
+                        setPage({ ...page, internalName: e.target.value })
+                        setIsDirty(true)
+                      }}
+                      placeholder="e.g. Shopify SEO Agency"
+                      className="admin-input"
+                    />
                   </div>
-                  <button onClick={addContentKey} className="btn-secondary text-xs">
-                    + Add Field
+
+                  <div>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Public Page Title</label>
+                    <input
+                      type="text"
+                      value={page.publicTitle}
+                      onChange={(e) => {
+                        setPage({ ...page, publicTitle: e.target.value })
+                        setIsDirty(true)
+                      }}
+                      placeholder="e.g. Shopify SEO Agency London | KR Tasker Digital"
+                      className="admin-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">URL Slug</label>
+                    <input
+                      type="text"
+                      disabled={page.isSystemRoute}
+                      value={page.slug}
+                      onChange={(e) => {
+                        setPage({ ...page, slug: e.target.value })
+                        setIsDirty(true)
+                      }}
+                      placeholder="e.g. shopify-seo-agency"
+                      className="admin-input font-mono disabled:opacity-50"
+                    />
+                    <p className="text-[10px] text-gray-400 mt-1">
+                      Live URL: https://www.krtaskerdigital.com/{page.slug}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Page Template</label>
+                    <select
+                      value={page.templateKey || 'standard'}
+                      onChange={(e) => {
+                        setPage({ ...page, templateKey: e.target.value as PageTemplate })
+                        setIsDirty(true)
+                      }}
+                      className="admin-input"
+                    >
+                      <option value="standard">Standard Page</option>
+                      <option value="seo_landing">SEO Landing Page</option>
+                      <option value="service">Service Page</option>
+                      <option value="legal">Legal / Text Page</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Parent Page Slug (Optional)</label>
+                    <input
+                      type="text"
+                      value={page.parentSlug || ''}
+                      onChange={(e) => {
+                        setPage({ ...page, parentSlug: e.target.value })
+                        setIsDirty(true)
+                      }}
+                      placeholder="e.g. seo-services"
+                      className="admin-input font-mono"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Publish Status</label>
+                    <select
+                      value={page.status}
+                      onChange={(e) => {
+                        setPage({ ...page, status: e.target.value as any })
+                        setIsDirty(true)
+                      }}
+                      className="admin-input"
+                    >
+                      <option value="published">Published</option>
+                      <option value="draft">Draft</option>
+                      <option value="archived">Archived</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <SEOHealthPanel seo={page.seo} />
+              <SERPPreview
+                title={page.seo?.metaTitle || page.publicTitle || page.internalName}
+                url={`https://www.krtaskerdigital.com/${page.slug}`}
+                description={page.seo?.metaDescription}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Controlled Section Builder */}
+        {activeTab === 'sections' && (
+          <div className="space-y-6">
+            <div className="admin-card border-[#E5E4E0] space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-gray-100">
+                <div>
+                  <h3 className="font-bold text-gray-900 text-base">Controlled Page Sections</h3>
+                  <p className="text-xs text-gray-500">
+                    Add approved UI section components matching the KR Tasker public design system.
+                  </p>
+                </div>
+
+                {/* Section Add Selector */}
+                <div className="flex items-center gap-2">
+                  <select
+                    id="add-section-select"
+                    className="admin-input text-xs w-48"
+                    defaultValue="hero"
+                  >
+                    <option value="hero">Hero Section</option>
+                    <option value="rich_text">Rich Text Section</option>
+                    <option value="features">Feature Cards</option>
+                    <option value="faq">FAQ Accordion</option>
+                    <option value="cta">Call-to-Action Banner</option>
+                  </select>
+                  <button
+                    onClick={() => {
+                      const sel = (document.getElementById('add-section-select') as HTMLSelectElement).value
+                      addSection(sel as PageSectionType)
+                    }}
+                    className="btn-lime text-xs px-4 py-2"
+                  >
+                    + Add Section
                   </button>
                 </div>
+              </div>
 
-                {(!page.contentKeys || page.contentKeys.length === 0) ? (
-                  <p className="text-xs text-gray-400 py-6 text-center">No custom content keys defined for this route.</p>
-                ) : (
-                  <div className="space-y-4">
-                    {page.contentKeys.map((item, idx) => (
-                      <div key={idx} className="p-4 bg-[#faf9f4] border border-[#efeee9] rounded-xl space-y-2">
-                        <div className="flex items-center justify-between">
-                          <label className="text-xs font-bold text-gray-800">{item.label}</label>
-                          <span className="text-[10px] font-mono text-gray-400 bg-white px-2 py-0.5 rounded border border-gray-200">
-                            {item.key}
+              {(page.sections || []).length === 0 ? (
+                <div className="py-12 text-center text-xs text-gray-400">
+                  No section blocks added yet. Click "+ Add Section" to build this page.
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {(page.sections || []).map((sec, idx) => (
+                    <div key={sec.id} className="p-4 bg-[#faf9f4] border border-[#E5E4E0] rounded-xl space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => moveSection(idx, 'up')}
+                            disabled={idx === 0}
+                            className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 disabled:opacity-30"
+                          >
+                            ▲
+                          </button>
+                          <button
+                            onClick={() => moveSection(idx, 'down')}
+                            disabled={idx === (page.sections?.length || 0) - 1}
+                            className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 disabled:opacity-30"
+                          >
+                            ▼
+                          </button>
+                          <span className="text-xs font-bold text-[#0C4651] uppercase tracking-wider">
+                            Section #{idx + 1}: {sec.type}
                           </span>
                         </div>
-                        {item.value.length > 80 ? (
-                          <textarea
-                            rows={3}
-                            value={item.value}
-                            onChange={(e) => updateContentKey(idx, e.target.value)}
-                            className="admin-input"
-                          />
-                        ) : (
+
+                        <div className="flex items-center gap-3">
+                          <label className="flex items-center gap-1.5 text-xs text-gray-700 font-semibold cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={sec.isEnabled}
+                              onChange={(e) => {
+                                const list = [...(page.sections || [])]
+                                list[idx].isEnabled = e.target.checked
+                                setPage({ ...page, sections: list })
+                                setIsDirty(true)
+                              }}
+                              className="rounded accent-[#0C4651]"
+                            />
+                            Enabled
+                          </label>
+                          <button
+                            onClick={() => removeSection(sec.id)}
+                            className="text-xs font-semibold text-red-600 hover:underline"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 pt-2">
+                        <div>
+                          <label className="text-[11px] font-bold text-gray-700 block mb-1">Section Title</label>
                           <input
                             type="text"
-                            value={item.value}
-                            onChange={(e) => updateContentKey(idx, e.target.value)}
+                            value={sec.data?.title || ''}
+                            onChange={(e) => {
+                              const list = [...(page.sections || [])]
+                              list[idx].data = { ...list[idx].data, title: e.target.value }
+                              setPage({ ...page, sections: list })
+                              setIsDirty(true)
+                            }}
                             className="admin-input"
                           />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                        </div>
 
-            {/* TAB 2: SEO META */}
-            {activeTab === 'seo' && (
-              <div className="admin-card space-y-6 border-[#E5E4E0]">
+                        <div>
+                          <label className="text-[11px] font-bold text-gray-700 block mb-1">Section Content / Subtext</label>
+                          <textarea
+                            rows={3}
+                            value={sec.data?.content || ''}
+                            onChange={(e) => {
+                              const list = [...(page.sections || [])]
+                              list[idx].data = { ...list[idx].data, content: e.target.value }
+                              setPage({ ...page, sections: list })
+                              setIsDirty(true)
+                            }}
+                            className="admin-input"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: SEO Controls */}
+        {activeTab === 'seo' && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="admin-card space-y-4 border-[#E5E4E0]">
                 <h3 className="font-bold text-gray-900 text-base pb-3 border-b border-gray-100">
-                  Search Engine Optimization Settings
+                  Search Engine Optimization (SEO)
                 </h3>
 
-                {/* Public Title */}
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label className="text-xs font-bold text-gray-800">Public Meta Title</label>
-                    <span className="text-[10px] text-gray-500 font-semibold">{page.seo?.metaTitle?.length || 0} / 60 Chars</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={page.seo?.metaTitle || ''}
-                    onChange={(e) => updateSeoField('metaTitle', e.target.value)}
-                    placeholder="E.g. Premier Web Design & Digital Engineering | KR Tasker Digital"
-                    className="admin-input"
-                  />
-                </div>
-
-                {/* Meta Description */}
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label className="text-xs font-bold text-gray-800">Meta Description</label>
-                    <span className="text-[10px] text-gray-500 font-semibold">{page.seo?.metaDescription?.length || 0} / 160 Chars</span>
-                  </div>
-                  <textarea
-                    rows={3}
-                    value={page.seo?.metaDescription || ''}
-                    onChange={(e) => updateSeoField('metaDescription', e.target.value)}
-                    placeholder="Brief description summarizing the page content for search engines..."
-                    className="admin-input"
-                  />
-                </div>
-
-                {/* H1 Heading */}
                 <div>
                   <label className="text-xs font-bold text-gray-800 block mb-1">H1 Heading</label>
                   <input
                     type="text"
                     value={page.seo?.h1 || ''}
-                    onChange={(e) => updateSeoField('h1', e.target.value)}
+                    onChange={(e) => {
+                      setPage({ ...page, seo: { ...page.seo, h1: e.target.value } })
+                      setIsDirty(true)
+                    }}
                     className="admin-input"
                   />
                 </div>
 
-                {/* Focus Keyword & Canonical */}
+                <div>
+                  <label className="text-xs font-bold text-gray-800 block mb-1">Meta Title</label>
+                  <input
+                    type="text"
+                    value={page.seo?.metaTitle || ''}
+                    onChange={(e) => {
+                      setPage({ ...page, seo: { ...page.seo, metaTitle: e.target.value } })
+                      setIsDirty(true)
+                    }}
+                    className="admin-input"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-gray-800 block mb-1">Meta Description</label>
+                  <textarea
+                    rows={3}
+                    value={page.seo?.metaDescription || ''}
+                    onChange={(e) => {
+                      setPage({ ...page, seo: { ...page.seo, metaDescription: e.target.value } })
+                      setIsDirty(true)
+                    }}
+                    className="admin-input"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold text-gray-800 block mb-1">Focus Keyword (Internal Audit)</label>
+                    <label className="text-xs font-bold text-gray-800 block mb-1">Focus Keyword</label>
                     <input
                       type="text"
                       value={page.seo?.focusKeyword || ''}
-                      onChange={(e) => updateSeoField('focusKeyword', e.target.value)}
-                      placeholder="e.g. web design agency"
+                      onChange={(e) => {
+                        setPage({ ...page, seo: { ...page.seo, focusKeyword: e.target.value } })
+                        setIsDirty(true)
+                      }}
                       className="admin-input"
                     />
                   </div>
@@ -321,107 +576,30 @@ export default function AdminPageEditorPage({ params }: { params: Promise<{ id: 
                     <input
                       type="text"
                       value={page.seo?.canonicalUrl || ''}
-                      onChange={(e) => updateSeoField('canonicalUrl', e.target.value)}
-                      placeholder="https://www.krtaskerdigital.com/..."
-                      className="admin-input"
+                      onChange={(e) => {
+                        setPage({ ...page, seo: { ...page.seo, canonicalUrl: e.target.value } })
+                        setIsDirty(true)
+                      }}
+                      className="admin-input font-mono"
                     />
                   </div>
                 </div>
-
-                {/* Index & Follow Directives */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-[#faf9f4] border border-[#efeee9] rounded-xl">
-                  <div>
-                    <label className="text-xs font-bold text-gray-800 block mb-1">Robots Index Status</label>
-                    <select
-                      value={page.seo?.indexStatus || 'index'}
-                      onChange={(e) => updateSeoField('indexStatus', e.target.value)}
-                      className="admin-input"
-                    >
-                      <option value="index">Index (Allow Search Indexing)</option>
-                      <option value="noindex">Noindex (Hide from Google)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-bold text-gray-800 block mb-1">Robots Follow Links</label>
-                    <select
-                      value={page.seo?.followStatus || 'follow'}
-                      onChange={(e) => updateSeoField('followStatus', e.target.value)}
-                      className="admin-input"
-                    >
-                      <option value="follow">Follow Links</option>
-                      <option value="nofollow">Nofollow Links</option>
-                    </select>
-                  </div>
-                </div>
               </div>
-            )}
+            </div>
 
-            {/* TAB 3: OPEN GRAPH */}
-            {activeTab === 'og' && (
-              <div className="admin-card space-y-6 border-[#E5E4E0]">
-                <h3 className="font-bold text-gray-900 text-base pb-3 border-b border-gray-100">
-                  Open Graph & Social Sharing
-                </h3>
-
-                <div>
-                  <label className="text-xs font-bold text-gray-800 block mb-1">OG Title</label>
-                  <input
-                    type="text"
-                    value={page.seo?.ogTitle || page.seo?.metaTitle || ''}
-                    onChange={(e) => updateSeoField('ogTitle', e.target.value)}
-                    className="admin-input"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-gray-800 block mb-1">OG Description</label>
-                  <textarea
-                    rows={3}
-                    value={page.seo?.ogDescription || page.seo?.metaDescription || ''}
-                    onChange={(e) => updateSeoField('ogDescription', e.target.value)}
-                    className="admin-input"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold text-gray-800 block mb-1">OG Image URL</label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={page.seo?.ogImage || ''}
-                      onChange={(e) => updateSeoField('ogImage', e.target.value)}
-                      placeholder="https://..."
-                      className="admin-input"
-                    />
-                    <button onClick={() => setIsMediaModalOpen(true)} className="btn-secondary text-xs">
-                      Media Library
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+            <div className="space-y-6">
+              <SEOHealthPanel seo={page.seo} />
+              <SERPPreview
+                title={page.seo?.metaTitle || page.publicTitle || page.internalName}
+                url={`https://www.krtaskerdigital.com/${page.slug}`}
+                description={page.seo?.metaDescription}
+              />
+            </div>
           </div>
-
-          {/* Sidebar Diagnostics Column */}
-          <div className="space-y-6">
-            <SEOHealthPanel seo={page.seo} />
-            <SERPPreview
-              title={page.seo?.metaTitle}
-              url={`https://www.krtaskerdigital.com/${page.slug}`}
-              description={page.seo?.metaDescription}
-            />
-          </div>
-        </div>
+        )}
       </div>
 
-      <MediaPickerModal
-        isOpen={isMediaModalOpen}
-        onClose={() => setIsMediaModalOpen(false)}
-        onSelect={(url) => updateSeoField('ogImage', url)}
-      />
-
-      <StickySaveBar isSaving={saving} isDirty={isDirty} onSave={handleSave} onCancel={fetchPageData} />
+      <StickySaveBar isSaving={saving} isDirty={isDirty} onSave={handleSave} onCancel={fetchPages} />
     </AdminLayout>
   )
 }

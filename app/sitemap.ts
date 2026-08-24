@@ -35,19 +35,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap CMS load error', err)
   }
 
-  // 1. Pages entries
-  const pagesEntries = staticBaseRoutes.map((route) => {
-    const match = pagesFromCms.find((p) => p.slug === route.replace('/', '') || (route === '' && p.routeKey === 'home'))
-    if (match && match.seo?.indexStatus === 'noindex') return null
-    return {
-      url: `${baseUrl}${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: route === '' ? 1.0 : 0.8,
-    }
-  }).filter(Boolean) as MetadataRoute.Sitemap
+  // 1. System Pages entries
+  const pagesEntries = staticBaseRoutes
+    .map((route) => {
+      const match = pagesFromCms.find((p) => p.slug === route.replace('/', '') || (route === '' && p.routeKey === 'home'))
+      if (match && match.seo?.indexStatus === 'noindex') return null
+      return {
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: route === '' ? 1.0 : 0.8,
+      }
+    })
+    .filter(Boolean) as MetadataRoute.Sitemap
 
-  // 2. Services entries
+  // 2. Custom CMS Pages entries
+  const customCmsPagesEntries = pagesFromCms
+    .filter((p) => !p.isSystemRoute && p.status === 'published' && p.seo?.indexStatus !== 'noindex')
+    .map((p) => ({
+      url: `${baseUrl}/${p.slug}`,
+      lastModified: new Date(p.updatedAt || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
+
+  // 3. Services entries
   const servicesEntries = servicesFromCms
     .filter((s) => s.status === 'published' && s.seo?.indexStatus !== 'noindex')
     .map((s) => ({
@@ -57,7 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }))
 
-  // 3. Work entries
+  // 4. Work entries
   const workEntries = workFromCms
     .filter((w) => w.status === 'published' && w.seo?.indexStatus !== 'noindex')
     .map((w) => ({
@@ -67,7 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }))
 
-  // 4. Blog entries
+  // 5. Blog entries
   const blogEntries = blogsFromCms
     .filter((b) => b.status === 'published' && b.seo?.indexStatus !== 'noindex')
     .map((b) => ({
@@ -77,5 +89,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }))
 
-  return [...pagesEntries, ...servicesEntries, ...workEntries, ...blogEntries]
+  return [...pagesEntries, ...customCmsPagesEntries, ...servicesEntries, ...workEntries, ...blogEntries]
 }

@@ -1,4 +1,16 @@
-export type PageStatus = 'draft' | 'published'
+export type PageStatus = 'draft' | 'published' | 'archived'
+export type PageTemplate = 'standard' | 'seo_landing' | 'service' | 'legal'
+export type PageSectionType =
+  | 'hero'
+  | 'rich_text'
+  | 'image_text'
+  | 'features'
+  | 'stats'
+  | 'process'
+  | 'case_studies'
+  | 'testimonials'
+  | 'faq'
+  | 'cta'
 
 export interface PageSEO {
   metaTitle: string
@@ -20,17 +32,28 @@ export interface ContentKeyItem {
   group: string
 }
 
+export interface PageSection {
+  id: string
+  type: PageSectionType
+  sortOrder: number
+  isEnabled: boolean
+  data: Record<string, any>
+}
+
 export interface PageRecord {
   id: string
-  routeKey: string // e.g. 'home', 'about', 'services', 'work', 'blog', 'contact'
+  routeKey: string // e.g. 'home', 'about', 'services', 'work', 'blog', 'contact', or custom slug
   internalName: string
   publicTitle: string
   slug: string
   publicUrl: string
   isSystemRoute: boolean
+  templateKey?: PageTemplate
+  parentSlug?: string
   status: PageStatus
   seo: PageSEO
   contentKeys: ContentKeyItem[]
+  sections?: PageSection[]
   updatedAt: string
 }
 

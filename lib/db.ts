@@ -33,9 +33,12 @@ function initTables(db: DatabaseSync) {
       slug TEXT NOT NULL,
       publicUrl TEXT NOT NULL,
       isSystemRoute INTEGER NOT NULL DEFAULT 1,
+      templateKey TEXT DEFAULT 'standard',
+      parentSlug TEXT DEFAULT '',
       status TEXT NOT NULL DEFAULT 'published',
       seo TEXT NOT NULL,
       contentKeys TEXT NOT NULL,
+      sections TEXT DEFAULT '[]',
       updatedAt TEXT NOT NULL
     );
 
@@ -164,6 +167,17 @@ function initTables(db: DatabaseSync) {
       isVisible INTEGER NOT NULL DEFAULT 1
     );
   `)
+
+  // Safe table migrations for existing columns
+  try {
+    db.exec(`ALTER TABLE pages ADD COLUMN templateKey TEXT DEFAULT 'standard';`)
+  } catch {}
+  try {
+    db.exec(`ALTER TABLE pages ADD COLUMN parentSlug TEXT DEFAULT '';`)
+  } catch {}
+  try {
+    db.exec(`ALTER TABLE pages ADD COLUMN sections TEXT DEFAULT '[]';`)
+  } catch {}
 }
 
 export const db = getDatabase()

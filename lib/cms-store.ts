@@ -58,9 +58,12 @@ export async function getCmsPages(): Promise<PageRecord[]> {
       slug: row.slug,
       publicUrl: row.publicUrl,
       isSystemRoute: Boolean(row.isSystemRoute),
+      templateKey: row.templateKey || 'standard',
+      parentSlug: row.parentSlug || '',
       status: row.status,
-      seo: JSON.parse(row.seo),
-      contentKeys: JSON.parse(row.contentKeys),
+      seo: JSON.parse(row.seo || '{}'),
+      contentKeys: JSON.parse(row.contentKeys || '[]'),
+      sections: JSON.parse(row.sections || '[]'),
       updatedAt: row.updatedAt,
     }))
   } catch (err) {
@@ -72,8 +75,8 @@ export async function getCmsPages(): Promise<PageRecord[]> {
 export async function saveCmsPages(pages: PageRecord[]): Promise<void> {
   const deleteStmt = db.prepare('DELETE FROM pages')
   const insertStmt = db.prepare(`
-    INSERT INTO pages (id, routeKey, internalName, publicTitle, slug, publicUrl, isSystemRoute, status, seo, contentKeys, updatedAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO pages (id, routeKey, internalName, publicTitle, slug, publicUrl, isSystemRoute, templateKey, parentSlug, status, seo, contentKeys, sections, updatedAt)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `)
 
   db.exec('BEGIN TRANSACTION')
@@ -88,9 +91,12 @@ export async function saveCmsPages(pages: PageRecord[]): Promise<void> {
         p.slug,
         p.publicUrl,
         p.isSystemRoute ? 1 : 0,
+        p.templateKey || 'standard',
+        p.parentSlug || '',
         p.status,
-        JSON.stringify(p.seo),
+        JSON.stringify(p.seo || {}),
         JSON.stringify(p.contentKeys || []),
+        JSON.stringify(p.sections || []),
         p.updatedAt || new Date().toISOString()
       )
     }
