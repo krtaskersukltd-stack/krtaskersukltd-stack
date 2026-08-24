@@ -30,7 +30,7 @@ export default function Navbar() {
     }
   }, [menuOpen])
 
-  const services = [
+  const defaultServices = [
     { label: 'Digital 360', href: '/services/digital-360' },
     { label: 'Business Consultancy', href: '/services/business-consultancy' },
     { label: 'Web Development', href: '/services/web-development' },
@@ -43,6 +43,27 @@ export default function Navbar() {
     { label: 'Email Marketing', href: '/services/email-marketing' },
     { label: 'AI Automation', href: '/services/ai-automation' },
   ]
+
+  const [servicesList, setServicesList] = useState(defaultServices)
+
+  useEffect(() => {
+    fetch('/api/cms/services')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const published = data
+            .filter((item: any) => item.status === 'published')
+            .map((item: any) => ({
+              label: item.name,
+              href: item.slug.startsWith('/') ? item.slug : `/services/${item.slug}`,
+            }))
+          if (published.length > 0) {
+            setServicesList(published)
+          }
+        }
+      })
+      .catch((err) => console.warn('Failed to load dynamic navbar services:', err))
+  }, [])
 
   return (
     <motion.nav
@@ -99,7 +120,7 @@ export default function Navbar() {
                   transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                   className={styles.dropdown}
                 >
-                  {services.map(s => (
+                  {servicesList.map(s => (
                     <Link key={s.label} href={s.href} onClick={() => setServicesOpen(false)} className={styles.dropdownItem}>
                       {s.label}
                     </Link>
@@ -172,7 +193,7 @@ export default function Navbar() {
                       style={{ overflow: 'hidden' }}
                       className={styles.drawerDropdown}
                     >
-                      {services.map(s => (
+                      {servicesList.map(s => (
                         <Link key={s.label} href={s.href} onClick={() => { setMenuOpen(false); setServicesOpen(false); }} className={styles.drawerDropdownItem}>
                           {s.label}
                         </Link>
