@@ -10,6 +10,7 @@ import type {
   RedirectRecord,
   GlobalSectionsRecord,
   SEOSettingsRecord,
+  NavItemRecord,
 } from './cms-types'
 
 // Default Seed Constants
@@ -35,6 +36,14 @@ const DEFAULT_SEO: SEOSettingsRecord = {
   robotsTxtContent: `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: https://www.krtaskerdigital.com/sitemap.xml`,
   sitemapEnabled: true,
 }
+
+const DEFAULT_NAV: NavItemRecord[] = [
+  { id: 'nav-1', label: 'Home', href: '/', sortOrder: 1, isVisible: true },
+  { id: 'nav-2', label: 'Work', href: '/work', sortOrder: 2, isVisible: true },
+  { id: 'nav-3', label: 'About', href: '/about', sortOrder: 3, isVisible: true },
+  { id: 'nav-4', label: 'Blog', href: '/blog', sortOrder: 4, isVisible: true },
+  { id: 'nav-5', label: 'Contact', href: '/contact', sortOrder: 5, isVisible: true },
+]
 
 // 1. PAGES
 export async function getCmsPages(): Promise<PageRecord[]> {
@@ -530,4 +539,54 @@ export async function getCmsSeo(): Promise<SEOSettingsRecord> {
 export async function saveCmsSeo(seoData: SEOSettingsRecord): Promise<void> {
   const stmt = db.prepare('INSERT OR REPLACE INTO seo_settings (id, data) VALUES ("main", ?)')
   stmt.run(JSON.stringify(seoData))
+}
+
+// 11. NAVIGATION MENU
+export async function getCmsNavigation(): Promise<NavItemRecord[]> {
+  try {
+    const stmt = db.prepare('SELECT * FROM navigation ORDER BY sortOrder ASC')
+    const rows = stmt.all() as any[]
+    if (rows.length > 0) {
+      return rows.map((row) => ({
+        id: row.id,
+        label: row.label,
+        href: row.href,
+        isExternal: Boolean(row.isExternal),
+        isOpenInNewTab: Boolean(row.isOpenInNewTab),
+        sortOrder: row.sortOrder,
+        isVisible: Boolean(row.isVisible),
+      }))
+    }
+  } catch (err) {
+    console.error('getCmsNavigation DB error', err)
+  }
+  return DEFAULT_NAV
+}
+
+export async function saveCmsNavigation(items: NavItemRecord[]): Promise<void> {
+  const deleteStmt = db.prepare('DELETE FROM navigation')
+  const insertStmt = db.prepare(`
+    INSERT INTO navigation (id, label, href, isExternal, isOpenInNewTab, sortOrder, isVisible)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `)
+
+  db.exec('BEGIN TRANSACTION')
+  try {
+    deleteStmt.run()
+    for (const nav of items) {
+      insertStmt.run(
+        nav.id,
+        nav.label,
+        nav.href,
+        nav.isExternal ? 1 : 0,
+        nav.isOpenInNewTab ? 1 : 0,
+        nav.sortOrder || 1,
+        nav.isVisible ? 1 : 0
+      )
+    }
+    db.exec('COMMIT')
+  } catch (err) {
+    db.exec('ROLLBACK')
+    throw err
+  }
 }

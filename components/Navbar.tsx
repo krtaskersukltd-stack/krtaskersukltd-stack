@@ -65,6 +65,30 @@ export default function Navbar() {
       .catch((err) => console.warn('Failed to load dynamic navbar services:', err))
   }, [])
 
+  const defaultMainNav = [
+    { label: 'Home', href: '/' },
+    { label: 'Work', href: '/work' },
+    { label: 'About', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
+  ]
+
+  const [mainNav, setMainNav] = useState(defaultMainNav)
+
+  useEffect(() => {
+    fetch('/api/cms/navigation')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const visible = data.filter((item: any) => item.isVisible)
+          if (visible.length > 0) {
+            setMainNav(visible)
+          }
+        }
+      })
+      .catch((err) => console.warn('Failed to load dynamic main navigation:', err))
+  }, [])
+
   return (
     <motion.nav
       initial={{ y: -88, opacity: 0 }}
@@ -78,7 +102,7 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className={styles.links} onMouseLeave={() => setHoveredIdx(null)}>
-          {[{label:'Home',href:'/'},{label:'Work',href:'/work'},{label:'About',href:'/about'},{label:'Blog',href:'/blog'},{label:'Contact',href:'/contact'}].map((item, idx) => {
+          {mainNav.map((item, idx) => {
             const active = pathname === item.href
             return (
               <Link key={item.label} href={item.href} passHref legacyBehavior>
@@ -167,7 +191,7 @@ export default function Navbar() {
               </button>
             </div>
             <div className={styles.drawerLinks}>
-              {[{label:'Home',href:'/'},{label:'Work',href:'/work'},{label:'About',href:'/about'},{label:'Blog',href:'/blog'},{label:'Contact',href:'/contact'}].map((item) => {
+              {mainNav.map((item) => {
                 const active = pathname === item.href
                 return (
                   <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)}

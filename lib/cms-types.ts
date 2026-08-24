@@ -179,3 +179,13 @@ export interface SEOSettingsRecord {
   robotsTxtContent: string
   sitemapEnabled: boolean
 }
+
+export interface NavItemRecord {
+  id: string
+  label: string
+  href: string
+  isExternal?: boolean
+  isOpenInNewTab?: boolean
+  sortOrder: number
+  isVisible: boolean
+}

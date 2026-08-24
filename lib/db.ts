@@ -153,6 +153,16 @@ function initTables(db: DatabaseSync) {
       id TEXT PRIMARY KEY DEFAULT 'main',
       data TEXT NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS navigation (
+      id TEXT PRIMARY KEY,
+      label TEXT NOT NULL,
+      href TEXT NOT NULL,
+      isExternal INTEGER NOT NULL DEFAULT 0,
+      isOpenInNewTab INTEGER NOT NULL DEFAULT 0,
+      sortOrder INTEGER NOT NULL DEFAULT 1,
+      isVisible INTEGER NOT NULL DEFAULT 1
+    );
   `)
 }
 
