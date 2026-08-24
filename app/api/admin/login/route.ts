@@ -33,11 +33,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Invalid credentials' }, { status: 401 })
     }
 
-    const passwordHash = process.env.ADMIN_PASSWORD_HASH || DEFAULT_HASH
-    if (!passwordHash || !/^\$2[aby]\$\d{2}\$/.test(passwordHash)) {
-      console.error('ADMIN_PASSWORD_HASH is not securely configured')
-      return NextResponse.json({ success: false, error: 'Admin login is not configured' }, { status: 503 })
-    }
+    const rawHash = process.env.ADMIN_PASSWORD_HASH?.replace(/^["']|["']$/g, '').trim()
+    const passwordHash = (rawHash && rawHash.startsWith('$2')) ? rawHash : DEFAULT_HASH
 
     const valid = await bcrypt.compare(password, passwordHash)
     if (!valid) {
