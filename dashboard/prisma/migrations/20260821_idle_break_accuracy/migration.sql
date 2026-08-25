@@ -1,0 +1,8 @@
+ALTER TABLE "User" ADD COLUMN "idleLimitMinutes" INTEGER NOT NULL DEFAULT 10;
+
+ALTER TABLE "ActivityLog" ADD COLUMN "durationSeconds" INTEGER NOT NULL DEFAULT 60;
+ALTER TABLE "ActivityLog" ADD COLUMN "idleSeconds" INTEGER NOT NULL DEFAULT 0;
+UPDATE "ActivityLog" SET "idleSeconds" = 60 WHERE "status" = 'IDLE';
+
+ALTER TABLE "WorkReport" ADD COLUMN "endedAt" TIMESTAMP(3);
+ALTER TABLE "WorkReport" ADD COLUMN "durationSeconds" INTEGER;

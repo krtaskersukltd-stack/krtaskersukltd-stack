@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kr-tasker-dashboard",
+  "account_id": "3a9efa18d017f23be25e9fd350122891",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-24",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "alias": {
+    "sharp": "./src/lib/empty.js",
+    "@prisma/client-dcc063df019991b5": "./src/lib/empty.js"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "kr-tasker-dashboard"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kr-tasker-db",
+      "database_id": "fb7d7d52-6113-4381-b3b6-5e891bb1a6e7"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "SCREENSHOTS",
+      "bucket_name": "kr-tasker-storage"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

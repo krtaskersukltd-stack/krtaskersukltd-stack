@@ -1,0 +1,40 @@
+# Vercel is only a temporary compatibility bridge during the Cloudflare cutover.
+# Keep one consolidated compatibility function for employee tracking, login,
+# version discovery, and one-time session migration on the Hobby plan.
+.env*
+.cloudflare-token
+.vercel-token
+.migration/**
+.next/**
+.open-next/**
+.wrangler/**
+node_modules/**
+src/app/api/auth/forgot-password/route.ts
+src/app/api/auth/login/route.ts
+src/app/api/auth/logout/route.ts
+src/app/api/auth/me/route.ts
+src/app/api/auth/migrate/route.ts
+src/app/api/auth/migration-ticket/route.ts
+src/app/api/auth/register/route.ts
+src/app/api/auth/reset-password/route.ts
+src/app/api/download/**
+src/app/api/admin/**
+src/app/api/version/route.ts
+src/app/api/track/activity/route.ts
+src/app/api/track/report/route.ts
+src/app/api/track/screenshot/route.ts
+src/app/dashboard/**
+src/app/employee/**
+src/app/forgot-password/**
+src/app/login/**
+src/app/register/**
+src/app/page.tsx
+
+# Only the current updater payload is needed during the transition.
+public/downloads/KRTaskerTracker-Setup-1.2.2.exe
+public/downloads/KRTaskerTracker-Setup-1.2.2.exe.blockmap
+public/downloads/KRTaskerTracker-Setup-1.2.3.exe
+public/downloads/KRTaskerTracker-Setup-1.2.3.exe.blockmap
+public/downloads/KRTaskerTracker-Setup-1.2.4.exe
+public/downloads/KRTaskerTracker-Setup-1.2.4.exe.blockmap
+public/downloads/KRTaskerTracker.exe

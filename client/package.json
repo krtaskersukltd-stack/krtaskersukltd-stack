@@ -1,0 +1,49 @@
+{
+  "name": "krtasker-tracker",
+  "version": "1.2.3",
+  "description": "Desktop Time Tracker and Employee Activity Monitor",
+  "author": "KR Taskers UK Ltd",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.krtasker.tracker",
+    "productName": "KRTaskerTracker",
+    "npmRebuild": false,
+    "win": {
+      "target": "nsis",
+      "icon": "icon.png",
+      "artifactName": "KRTaskerTracker-Setup-${version}.${ext}"
+    },
+    "extraResources": [
+      {
+        "from": "input_tracker.exe",
+        "to": "input_tracker.exe"
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/uiohook-napi/**/*"
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://kr-tasker-dashboard.krtaskersukltd.workers.dev/api/download/"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "uiohook-napi": "^1.5.5"
+  }
+}

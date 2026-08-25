@@ -1,0 +1,1 @@
+ALTER TABLE "ActivityLog" ADD COLUMN "continuousIdleSeconds" INTEGER NOT NULL DEFAULT 0;

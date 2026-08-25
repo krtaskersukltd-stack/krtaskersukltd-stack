@@ -1,0 +1,209 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/d1"
+  runtime  = "cloudflare"
+}
+
+model User {
+  id                         String              @id @default(uuid())
+  email                      String              @unique
+  name                       String
+  password                   String
+  role                       String
+  companyId                  String?
+  screenshotInterval         Int                 @default(10)
+  idleLimitMinutes           Int                 @default(10)
+  timezone                   String              @default("Asia/Karachi")
+  workDays                   String              @default("1,2,3,4,5,6")
+  shiftStartMinutes          Int                 @default(540)
+  shiftEndMinutes            Int                 @default(1080)
+  targetMinutes              Int                 @default(540)
+  maxShiftMinutes            Int                 @default(720)
+  maxBreakMinutes            Int                 @default(60)
+  screenshotRetentionDays    Int                 @default(30)
+  manualTimeRequiresApproval Boolean             @default(true)
+  resetCode                  String?
+  resetExpires               DateTime?
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+  activities                 ActivityLog[]
+  screenshots                Screenshot[]
+  workReports                WorkReport[]
+  trackingSessions           TrackingSession[]
+  manualTimeRequests         ManualTimeRequest[]
+  assignedTasks              Task[]              @relation("AssignedTasks")
+  alerts                     Alert[]
+}
+
+model WorkReport {
+  id              String    @id @default(uuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type            String
+  note            String
+  emailSent       Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  endedAt         DateTime?
+  durationSeconds Int?
+  clientEventId   String?   @unique
+  taskId          String?
+
+  @@index([userId, createdAt])
+}
+
+model ActivityLog {
+  id                    String   @id @default(uuid())
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timestamp             DateTime @default(now())
+  status                String
+  currentTask           String   @default("Working")
+  appProcess            String?
+  appTitle              String?
+  keystrokes            Int      @default(0)
+  mouseClicks           Int      @default(0)
+  durationSeconds       Int      @default(60)
+  idleSeconds           Int      @default(0)
+  continuousIdleSeconds Int      @default(0)
+  clientEventId         String?  @unique
+  taskId                String?
+  productivityCategory  String   @default("NEUTRAL")
+}
+
+model Screenshot {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timestamp     DateTime @default(now())
+  filePath      String
+  activityRate  Int
+  currentTask   String   @default("Working")
+  keystrokes    Int      @default(0)
+  mouseClicks   Int      @default(0)
+  clientEventId String?  @unique
+}
+
+model TrackingSession {
+  id              String    @id @default(uuid())
+  clientSessionId String?   @unique
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyId       String
+  dateKey         String
+  startedAt       DateTime  @default(now())
+  endedAt         DateTime?
+  lastHeartbeatAt DateTime  @default(now())
+  status          String    @default("TRACKING")
+  breakStartedAt  DateTime?
+  activeSeconds   Int       @default(0)
+  idleSeconds     Int       @default(0)
+  breakSeconds    Int       @default(0)
+  reviewRequired  Boolean   @default(false)
+  reviewReason    String?
+  currentTask     String    @default("Working")
+  taskId          String?
+
+  @@index([userId, dateKey])
+  @@index([companyId, lastHeartbeatAt])
+}
+
+model Project {
+  id                 String              @id @default(uuid())
+  companyId          String
+  name               String
+  code               String?
+  status             String              @default("ACTIVE")
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  tasks              Task[]
+  manualTimeRequests ManualTimeRequest[]
+
+  @@index([companyId, status])
+}
+
+model Task {
+  id                 String              @id @default(uuid())
+  companyId          String
+  projectId          String?
+  project            Project?            @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  assignedUserId     String?
+  assignedUser       User?               @relation("AssignedTasks", fields: [assignedUserId], references: [id], onDelete: SetNull)
+  title              String
+  description        String?
+  status             String              @default("OPEN")
+  priority           String              @default("NORMAL")
+  dueDate            DateTime?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  manualTimeRequests ManualTimeRequest[]
+
+  @@index([companyId, status])
+  @@index([assignedUserId, status])
+}
+
+model ProductivityRule {
+  id        String   @id @default(uuid())
+  companyId String
+  pattern   String
+  matchType String   @default("PROCESS")
+  category  String   @default("NEUTRAL")
+  createdAt DateTime @default(now())
+
+  @@unique([companyId, pattern, matchType])
+  @@index([companyId, category])
+}
+
+model ManualTimeRequest {
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyId  String
+  startAt    DateTime
+  endAt      DateTime
+  note       String
+  projectId  String?
+  project    Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  taskId     String?
+  task       Task?     @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  status     String    @default("PENDING")
+  reviewedBy String?
+  reviewedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([companyId, status, createdAt])
+  @@index([userId, createdAt])
+}
+
+model Alert {
+  id        String    @id @default(uuid())
+  companyId String
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  severity  String    @default("WARNING")
+  message   String
+  metadata  String?
+  createdAt DateTime  @default(now())
+  readAt    DateTime?
+
+  @@index([companyId, readAt, createdAt])
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  companyId   String
+  actorUserId String?
+  action      String
+  entityType  String
+  entityId    String?
+  details     String?
+  createdAt   DateTime @default(now())
+
+  @@index([companyId, createdAt])
+}

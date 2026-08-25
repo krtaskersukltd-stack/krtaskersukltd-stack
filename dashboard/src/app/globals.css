@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #005766;
+  --color-primary-container: #087184;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #b8efff;
+
+  --color-secondary: #5644d0;
+  --color-secondary-container: #6f5fea;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #fffbff;
+
+  --color-tertiary: #125765;
+  --color-tertiary-container: #326f7e;
+
+  --color-surface: #f0fbff;
+  --color-surface-bright: #f0fbff;
+  --color-surface-dim: #c4dfe6;
+  --color-surface-variant: #cde7ef;
+  --color-surface-container: #d8f2fa;
+  --color-surface-container-low: #e0f8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #d2edf4;
+  --color-surface-container-highest: #cde7ef;
+
+  --color-on-surface: #041f24;
+  --color-on-surface-variant: #3f484b;
+
+  --color-outline: #6f797c;
+  --color-outline-variant: #bec8cc;
+
+  --color-background: #f0fbff;
+  --color-on-background: #041f24;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  --spacing-margin_mobile: 16px;
+  --spacing-gutter: 16px;
+  --spacing-unit: 4px;
+  --spacing-sidebar_width: 248px;
+  --spacing-margin_desktop: 32px;
+  --spacing-topbar_height: 64px;
+}
+
+/* ----------------------------------------------------
+   ORIGINAL BRANDING COLOR PALETTE & TOKENS
+   ---------------------------------------------------- */
+
+:root {
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Original Brand Palette */
+  --color-darkteal: #0c4651;
+  --color-darkteal-light: #145b68;
+  --color-lime: #e6ff2a;
+  --color-offwhite: #f8f7f2;
+  --color-neutralgrey: #898a8e;
+
+  /* Theme mappings */
+  --color-primary: #005766;
+  --color-primary-container: #087184;
+  --color-accent: #e6ff2a;
+  --color-background: #f0fbff;
+  --color-surface: #ffffff;
+  --color-surface-container: #d8f2fa;
+  --color-outline: #cbd5e1;
+  --color-on-surface: #041f24;
+  --color-on-surface-variant: #3f484b;
+
+  /* Status Colors */
+  --color-success-bg: #ddf7ee;
+  --color-success-text: #0d7d59;
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #b45309;
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #b91c1c;
+
+  /* Layout dimensions */
+  --sidebar-width: 248px;
+  --topbar-height: 64px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'tnum' on;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display) !important;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base Utility Classes */
+.kr-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(12, 70, 81, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.kr-card:hover {
+  box-shadow: 0 4px 12px rgba(12, 70, 81, 0.08);
+}
+
+.kr-btn-primary {
+  background-color: #0c4651;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background-color 0.2s ease;
+}
+
+.kr-btn-primary:hover {
+  background-color: #08323a;
+}
+
+.kr-btn-secondary {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0c4651;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+}
+
+.kr-btn-secondary:hover {
+  background-color: #f0f4f5;
+  border-color: #0c4651;
+}
+
+.kr-btn-accent {
+  background-color: #e6ff2a;
+  color: #0c4651;
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(230, 255, 42, 0.4);
+}
+
+.kr-btn-accent:hover {
+  background-color: #d4ed1b;
+  transform: translateY(-1px);
+}
+
+.kr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kr-badge-working {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.kr-badge-idle {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.kr-badge-break {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+.kr-badge-offline {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.tnum {
+  font-feature-settings: 'tnum' on;
+}
