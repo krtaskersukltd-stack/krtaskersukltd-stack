@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect, use } from 'react'
-import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Navbar from '@/components/Navbar'
 import Contact from '@/components/Contact'
@@ -112,9 +111,9 @@ export default function DynamicServicePage({ params }: { params: Promise<{ slug:
                 <button onClick={scrollToContact} className={styles.btnPrimary}>
                   {srv.heroCtaText || 'Start a Project'}
                 </button>
-                <Link href="/work" className={styles.btnSecondary}>
+                <a href="/work" className={styles.btnSecondary}>
                   View Case Studies
-                </Link>
+                </a>
               </div>
             </div>
 
