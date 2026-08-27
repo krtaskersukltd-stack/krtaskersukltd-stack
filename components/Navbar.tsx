@@ -156,11 +156,8 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <Link href="/contact" passHref legacyBehavior>
-          <motion.a whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(12,70,81,0.4)' }} whileTap={{ scale: 0.97 }}
-            className={styles.cta}>
-            Start a project
-          </motion.a>
+        <Link href="/contact" className={styles.cta}>
+          Start a project
         </Link>
 
         {/* Mobile Hamburger toggle */}

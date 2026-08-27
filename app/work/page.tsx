@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Navbar from '@/components/Navbar'
 import Contact from '@/components/Contact'
@@ -214,9 +215,9 @@ export default function WorkPage() {
                 <button onClick={scrollToContact} className={styles.primaryBtn}>
                   Start a Project
                 </button>
-                <a href="/about" className={styles.secondaryBtn}>
+                <Link href="/about" className={styles.secondaryBtn}>
                   Learn More About Our Team
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

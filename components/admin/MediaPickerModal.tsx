@@ -15,12 +15,6 @@ export default function MediaPickerModal({ isOpen, onClose, onSelect }: Props) {
   const [customUrl, setCustomUrl] = useState('')
   const [customAlt, setCustomAlt] = useState('')
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchMedia()
-    }
-  }, [isOpen])
-
   const fetchMedia = async () => {
     setLoading(true)
     try {
@@ -35,6 +29,12 @@ export default function MediaPickerModal({ isOpen, onClose, onSelect }: Props) {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchMedia()
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 

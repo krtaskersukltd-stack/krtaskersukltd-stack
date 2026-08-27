@@ -7,6 +7,7 @@ import SERPPreview from '@/components/admin/SERPPreview'
 import StickySaveBar from '@/components/admin/StickySaveBar'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
+import SectionBlockEditor from '@/components/admin/SectionBlockEditor'
 import type { PageRecord, PageSection, PageSectionType, PageTemplate } from '@/lib/cms-types'
 
 export default function AdminPageEditorPage({ params }: { params: Promise<{ id: string }> }) {
@@ -382,131 +383,29 @@ export default function AdminPageEditorPage({ params }: { params: Promise<{ id: 
 
         {/* Tab 2: Controlled Section Builder */}
         {activeTab === 'sections' && (
-          <div className="space-y-6">
-            <div className="admin-card border-[#E5E4E0] space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-gray-100">
-                <div>
-                  <h3 className="font-bold text-gray-900 text-base">Controlled Page Sections</h3>
-                  <p className="text-xs text-gray-500">
-                    Add approved UI section components matching the KR Tasker public design system.
-                  </p>
-                </div>
-
-                {/* Section Add Selector */}
-                <div className="flex items-center gap-2">
-                  <select
-                    id="add-section-select"
-                    className="admin-input text-xs w-48"
-                    defaultValue="hero"
-                  >
-                    <option value="hero">Hero Section</option>
-                    <option value="rich_text">Rich Text Section</option>
-                    <option value="features">Feature Cards</option>
-                    <option value="faq">FAQ Accordion</option>
-                    <option value="cta">Call-to-Action Banner</option>
-                  </select>
-                  <button
-                    onClick={() => {
-                      const sel = (document.getElementById('add-section-select') as HTMLSelectElement).value
-                      addSection(sel as PageSectionType)
-                    }}
-                    className="btn-lime text-xs px-4 py-2"
-                  >
-                    + Add Section
-                  </button>
-                </div>
-              </div>
-
-              {(page.sections || []).length === 0 ? (
-                <div className="py-12 text-center text-xs text-gray-400">
-                  No section blocks added yet. Click "+ Add Section" to build this page.
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {(page.sections || []).map((sec, idx) => (
-                    <div key={sec.id} className="p-4 bg-[#faf9f4] border border-[#E5E4E0] rounded-xl space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => moveSection(idx, 'up')}
-                            disabled={idx === 0}
-                            className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 disabled:opacity-30"
-                          >
-                            ▲
-                          </button>
-                          <button
-                            onClick={() => moveSection(idx, 'down')}
-                            disabled={idx === (page.sections?.length || 0) - 1}
-                            className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 disabled:opacity-30"
-                          >
-                            ▼
-                          </button>
-                          <span className="text-xs font-bold text-[#0C4651] uppercase tracking-wider">
-                            Section #{idx + 1}: {sec.type}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <label className="flex items-center gap-1.5 text-xs text-gray-700 font-semibold cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={sec.isEnabled}
-                              onChange={(e) => {
-                                const list = [...(page.sections || [])]
-                                list[idx].isEnabled = e.target.checked
-                                setPage({ ...page, sections: list })
-                                setIsDirty(true)
-                              }}
-                              className="rounded accent-[#0C4651]"
-                            />
-                            Enabled
-                          </label>
-                          <button
-                            onClick={() => removeSection(sec.id)}
-                            className="text-xs font-semibold text-red-600 hover:underline"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3 pt-2">
-                        <div>
-                          <label className="text-[11px] font-bold text-gray-700 block mb-1">Section Title</label>
-                          <input
-                            type="text"
-                            value={sec.data?.title || ''}
-                            onChange={(e) => {
-                              const list = [...(page.sections || [])]
-                              list[idx].data = { ...list[idx].data, title: e.target.value }
-                              setPage({ ...page, sections: list })
-                              setIsDirty(true)
-                            }}
-                            className="admin-input"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="text-[11px] font-bold text-gray-700 block mb-1">Section Content / Subtext</label>
-                          <textarea
-                            rows={3}
-                            value={sec.data?.content || ''}
-                            onChange={(e) => {
-                              const list = [...(page.sections || [])]
-                              list[idx].data = { ...list[idx].data, content: e.target.value }
-                              setPage({ ...page, sections: list })
-                              setIsDirty(true)
-                            }}
-                            className="admin-input"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+          <SectionBlockEditor
+            sections={page.sections || []}
+            onAddSection={(type) => addSection(type)}
+            onRemoveSection={(idx) => {
+              const list = [...(page.sections || [])]
+              list.splice(idx, 1)
+              setPage({ ...page, sections: list })
+              setIsDirty(true)
+            }}
+            onMoveSection={(idx, dir) => moveSection(idx, dir)}
+            onToggleSectionEnabled={(idx) => {
+              const list = [...(page.sections || [])]
+              list[idx].isEnabled = !list[idx].isEnabled
+              setPage({ ...page, sections: list })
+              setIsDirty(true)
+            }}
+            onUpdateSectionData={(idx, key, value) => {
+              const list = [...(page.sections || [])]
+              list[idx].data = { ...list[idx].data, [key]: value }
+              setPage({ ...page, sections: list })
+              setIsDirty(true)
+            }}
+          />
         )}
 
         {/* Tab 3: SEO Controls */}

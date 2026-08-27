@@ -27,17 +27,11 @@ export default function About() {
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }}
               className={styles.buttons}>
-              <Link href="/about" passHref legacyBehavior>
-                <motion.a whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(12,70,81,0.3)' }} whileTap={{ scale: 0.97 }}
-                  className={styles.btnPrimary}>
-                  About Kr Tasker
-                </motion.a>
+              <Link href="/about" className={styles.btnPrimary}>
+                About Kr Tasker
               </Link>
-              <Link href="/team" passHref legacyBehavior>
-                <motion.a whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(230,255,42,0.4)' }} whileTap={{ scale: 0.97 }}
-                  className={styles.btnSecondary}>
-                  Meet Our Team
-                </motion.a>
+              <Link href="/team" className={styles.btnSecondary}>
+                Meet Our Team
               </Link>
             </motion.div>
           </div>

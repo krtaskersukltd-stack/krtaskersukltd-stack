@@ -1,175 +1,28 @@
-'use client'
+import ServiceTemplate from '@/components/ServiceTemplate'
 
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
-import Navbar from '@/components/Navbar'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
-import HappyClients from '@/components/HappyClients'
-import ProcessSection from '@/components/ProcessSection'
-import Testimonials from '@/components/Testimonials'
-import FaqSection from '@/components/FaqSection'
-import styles from '../ServicePage.module.css'
-import ClientSatisfaction from '@/components/80%-client'
-
-const serviceFeatures = [
+const features = [
   {
-    "title": "Logo & Brand Mark Design",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Logo & Brand Mark Design to maximize conversions, build brand authority, and accelerate customer growth."
+    title: 'Brand Strategy & Identity',
+    content: 'Define brand mission, vision, voice, and core messaging framework for market differentiation.',
   },
   {
-    "title": "Corporate Visual Identity Systems",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Corporate Visual Identity Systems to maximize conversions, build brand authority, and accelerate customer growth."
+    title: 'Visual Identity & Logo Design',
+    content: 'Bespoke logo suites, typography rules, color systems, and comprehensive brand style guides.',
   },
   {
-    "title": "Palette & Typography System Design",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Palette & Typography System Design to maximize conversions, build brand authority, and accelerate customer growth."
+    title: 'Rebranding & Brand Transformation',
+    content: 'Modernize legacy brands to align with digital audiences and current market positioning.',
   },
-  {
-    "title": "Brand Guidelines & Style books",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Brand Guidelines & Style books to maximize conversions, build brand authority, and accelerate customer growth."
-  },
-  {
-    "title": "Product Packaging Design",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Product Packaging Design to maximize conversions, build brand authority, and accelerate customer growth."
-  },
-  {
-    "title": "Brand Copywriting & Verbal Guidelines",
-    "content": "Professional, end-to-end strategy, execution, and optimization for Brand Copywriting & Verbal Guidelines to maximize conversions, build brand authority, and accelerate customer growth."
-  }
 ]
 
 export default function BrandingPage() {
-  const [openFeatureIdx, setOpenFeatureIdx] = useState<number | null>(0)
-
-  const heroRef = useRef(null)
-  const isHeroInView = useInView(heroRef, { once: true, margin: '-50px' })
-
-  const scrollToContact = () => {
-    const contactSec = document.getElementById('contact-form')
-    if (contactSec) {
-      contactSec.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
-    <main className={styles.page}>
-      <Navbar />
-
-      {/* 1. Hero Section */}
-      <section ref={heroRef} className={styles.heroSection}>
-        <div className={styles.container}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className={styles.heroGrid}
-          >
-            <div className={styles.leftHero}>
-              <span className={styles.sectionTag}>Branding</span>
-              <h1 className={styles.heroTitle}>
-                Identity & <span className={styles.gradientText}>Branding Systems</span> That Define.
-              </h1>
-              <p className={styles.heroDesc}>
-                We help companies articulate their purpose, stand out visually, and build deep emotional trust with users.
-              </p>
-              <div className={styles.actions}>
-                <button onClick={scrollToContact} className={styles.btnPrimary}>
-                  Start a Project
-                </button>
-                <a href="/work" className={styles.btnSecondary}>
-                  View Case Studies
-                </a>
-              </div>
-            </div>
-
-            {/* Visual Stats Cards on the Right */}
-            <div className={styles.rightHero}>
-              <div className={styles.radialCard}>
-                <div className={styles.radialGraphic}>
-                  <svg width="120" height="120" viewBox="0 0 36 36" className={styles.circularChart}>
-                    <path className={styles.circleBg} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <path className={styles.circle} strokeDasharray="80, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  </svg>
-                  <div className={styles.radialVal}>80%</div>
-                </div>
-                <div className={styles.radialMeta}>
-                  <p className={styles.radialTitle}>Client Satisfaction</p>
-                  <div className={styles.radialRating}>
-                    <span className={styles.stars}>★★★★★</span>
-                    <span className={styles.score}>5.0 / 5.0</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. Bespoke Packages Introduction */}
-      <ClientSatisfaction />
-
-      {/* 3. Service Features Accordion */}
-      <section className={styles.featuresSection}>
-        <div className={styles.container}>
-          <div className={styles.featuresGrid}>
-            <div 
-              className={styles.featuresLeft}
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=600&auto=format&fit=crop)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
-              <span className={styles.featuresTag}>Service Features</span>
-            </div>
-            <div className={styles.featuresRight}>
-              <div className={styles.accordion}>
-                {serviceFeatures.map((feat, i) => {
-                  const isOpen = openFeatureIdx === i
-                  return (
-                    <div key={i} className={`${styles.accordionItem} ${isOpen ? styles.itemOpen : ''}`}>
-                      <button onClick={() => setOpenFeatureIdx(isOpen ? null : i)} className={styles.accordionHeader}>
-                        <span className={styles.accordionTitle}>{feat.title}</span>
-                        <span className={`${styles.accordionSign} ${isOpen ? styles.signOpen : ''}`}>
-                          {isOpen ? '−' : '+'}
-                        </span>
-                      </button>
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className={styles.accordionContentContainer}
-                          >
-                            <div className={styles.accordionContent}>
-                              {feat.content}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reusable sections */}
-      <HappyClients />
-      <ProcessSection />
-      <Testimonials />
-      <FaqSection />
-
-      <div id="contact-form">
-        <Contact />
-      </div>
-
-      <Footer />
-    </main>
+    <ServiceTemplate
+      title="Brand Strategy & Design"
+      eyebrow="BRANDING & DESIGN"
+      heroHeading="Build a Memorable Brand Identity That Stands Out"
+      heroDescription="Transform your business with strategic brand positioning, visual identity systems, and brand guidelines."
+      features={features}
+    />
   )
 }

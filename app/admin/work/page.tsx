@@ -9,10 +9,6 @@ export default function AdminWorkListPage() {
   const [work, setWork] = useState<CaseStudyRecord[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchWork()
-  }, [])
-
   const fetchWork = async () => {
     setLoading(true)
     try {
@@ -24,6 +20,10 @@ export default function AdminWorkListPage() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    fetchWork()
+  }, [])
 
   return (
     <AdminLayout>
