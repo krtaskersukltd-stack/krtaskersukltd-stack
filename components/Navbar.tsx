@@ -1,26 +1,261 @@
 'use client'
-import { useEffect, useState } from 'react'
+
+import { useEffect, useState, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 import styles from './Navbar.module.css'
+import type { ServiceRecord } from '@/lib/cms-types'
+
+interface ServiceCategory {
+  title: string
+  items: { label: string; href: string; badge?: string }[]
+}
+
+const DEFAULT_CORE_SERVICES: ServiceCategory[] = [
+  {
+    title: 'Digital Marketing',
+    items: [
+      { label: 'Digital 360', href: '/services/digital-360' },
+      { label: 'SEO & Organic Growth', href: '/services/seo' },
+      { label: 'PPC & Paid Search', href: '/services/ppc' },
+      { label: 'Social Media Marketing', href: '/services/social-media' },
+      { label: 'Email Marketing', href: '/services/email-marketing' },
+      { label: 'Marketing Strategy', href: '/services/marketing' },
+    ],
+  },
+  {
+    title: 'Websites & Apps',
+    items: [
+      { label: 'Web Development', href: '/services/web-development' },
+      { label: 'Shopify Development', href: '/services/shopify-development' },
+      { label: 'Websites & Apps', href: '/services/websites-apps' },
+      { label: 'Branding & Identity', href: '/services/branding' },
+      { label: 'Graphic Design', href: '/services/graphic-design' },
+      { label: 'Amazon & eBay', href: '/services/amazon-ebay' },
+    ],
+  },
+  {
+    title: 'AI & Automation',
+    items: [
+      { label: 'AI Solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
+      { label: 'AI Automation', href: '/services/ai-automation' },
+      { label: 'Business Consultancy', href: '/services/business-consultancy' },
+    ],
+  },
+]
+
+const BUSINESS_OBJECTIVES = [
+  { label: 'Increase Brand Awareness', href: '/services/branding' },
+  { label: 'Improve Search Engine Rankings', href: '/services/seo' },
+  { label: 'Scale Paid Conversions & Leads', href: '/services/ppc' },
+  { label: 'Full-Funnel Digital 360', href: '/services/digital-360' },
+  { label: 'Automate Business Workflows', href: '/services/ai-automation' },
+  { label: 'Scale E-Commerce Revenue', href: '/services/shopify-development' },
+]
+
+const INDUSTRIES = [
+  { label: 'E-Commerce & Retail', href: '/services/shopify-development' },
+  { label: 'Technology & SaaS', href: '/services/web-development' },
+  { label: 'B2B & Professional Services', href: '/services/business-consultancy' },
+  { label: 'Enterprise AI & Automation', href: '/services/ai-solutions' },
+]
+
+type DropdownKey = 'services' | 'objectives' | 'industries' | null
 
 export default function Navbar() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
+  const [isDarkSection, setIsDarkSection] = useState(false)
+  const [pillStyle, setPillStyle] = useState<{
+    backgroundColor?: string
+    borderColor?: string
+  }>({})
+  const [coreServices, setCoreServices] = useState<ServiceCategory[]>(DEFAULT_CORE_SERVICES)
+  const [activeDropdown, setActiveDropdown] = useState<DropdownKey>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileAccordion, setMobileAccordion] = useState<string | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+  // Dynamically load services from CMS / Admin Panel
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 10)
-    window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn)
+    fetch('/api/cms/services')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((services: ServiceRecord[]) => {
+        if (Array.isArray(services) && services.length > 0) {
+          const published = services.filter((s) => s.status === 'published')
+          if (published.length === 0) return
+
+          const catMap: Record<string, { label: string; href: string; badge?: string }[]> = {
+            'Digital Marketing': [],
+            'Websites & Apps': [],
+            'AI & Automation': [],
+          }
+
+          published.forEach((s) => {
+            const rawCat = s.eyebrow?.trim() || ''
+            let category = 'Websites & Apps'
+
+            if (
+              /marketing|seo|ppc|social|email|growth/i.test(rawCat) ||
+              /marketing|seo|ppc|social|email|growth/i.test(s.name) ||
+              /marketing|seo|ppc|social|email|growth/i.test(s.slug)
+            ) {
+              category = 'Digital Marketing'
+            } else if (
+              /ai|auto|intel|agent|consult/i.test(rawCat) ||
+              /ai|auto|intel|agent|consult/i.test(s.name) ||
+              /ai|auto|intel|agent|consult/i.test(s.slug)
+            ) {
+              category = 'AI & Automation'
+            } else if (rawCat) {
+              category = rawCat
+            }
+
+            if (!catMap[category]) catMap[category] = []
+
+            const href = s.slug.startsWith('/') ? s.slug : `/services/${s.slug}`
+            const badge =
+              /ai-solutions/i.test(s.slug) || /popular/i.test(s.eyebrow || '') ? 'POPULAR' : undefined
+
+            catMap[category].push({
+              label: s.name,
+              href,
+              badge,
+            })
+          })
+
+          const dynamicCategories: ServiceCategory[] = Object.keys(catMap)
+            .filter((cat) => catMap[cat].length > 0)
+            .map((cat) => ({
+              title: cat,
+              items: catMap[cat],
+            }))
+
+          if (dynamicCategories.length > 0) {
+            setCoreServices(dynamicCategories)
+          }
+        }
+      })
+      .catch((err) => console.error('Error loading navigation services:', err))
   }, [])
 
   useEffect(() => {
-    if (menuOpen) {
+    const handleScrollAndTheme = () => {
+      setScrolled(window.scrollY > 20)
+
+      if (typeof window === 'undefined') return
+
+      const navMid = navRef.current ? navRef.current.getBoundingClientRect().top + 35 : 35
+      const checkX = window.innerWidth / 2
+
+      let isDark = false
+      let detectedBg = ''
+      let rVal = 248
+      let gVal = 247
+      let bVal = 242
+
+      // 1. Query elements at checkpoint under the navbar
+      if (document.elementsFromPoint) {
+        const elements = document.elementsFromPoint(checkX, navMid)
+        for (const el of elements) {
+          if (
+            el.closest('header') ||
+            el.tagName.toLowerCase() === 'header' ||
+            el.classList.contains(styles.header) ||
+            el.classList.contains(styles.pillNav)
+          ) {
+            continue
+          }
+
+          let curr: HTMLElement | null = el as HTMLElement
+          while (curr && curr !== document.body && curr !== document.documentElement) {
+            if (
+              curr.getAttribute('data-theme') === 'dark' ||
+              curr.classList.contains('darkSection') ||
+              curr.classList.contains('dark') ||
+              curr.tagName.toLowerCase() === 'footer'
+            ) {
+              isDark = true
+              rVal = 12
+              gVal = 70
+              bVal = 81
+              break
+            }
+
+            const bg = window.getComputedStyle(curr).backgroundColor
+            if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
+              const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/)
+              if (match) {
+                const r = parseInt(match[1], 10)
+                const g = parseInt(match[2], 10)
+                const b = parseInt(match[3], 10)
+                const a = match[4] !== undefined ? parseFloat(match[4]) : 1
+                if (a > 0.35) {
+                  rVal = r
+                  gVal = g
+                  bVal = b
+                  const luminance = 0.299 * r + 0.587 * g + 0.114 * b
+                  if (luminance < 140) {
+                    isDark = true
+                  }
+                  detectedBg = bg
+                  break
+                }
+              }
+            }
+            curr = curr.parentElement
+          }
+          if (detectedBg || isDark) break
+        }
+      }
+
+      // 2. Fallback check intersecting dark elements by bounding box
+      if (!isDark && !detectedBg) {
+        const darkCandidates = document.querySelectorAll(
+          '[data-theme="dark"], .darkSection, footer, section[class*="dark"], section[class*="footer"], div[class*="contactCard"], section[class*="contact"]'
+        )
+        for (let i = 0; i < darkCandidates.length; i++) {
+          const rect = darkCandidates[i].getBoundingClientRect()
+          if (rect.top <= navMid && rect.bottom >= navMid) {
+            isDark = true
+            rVal = 12
+            gVal = 70
+            bVal = 81
+            break
+          }
+        }
+      }
+
+      setIsDarkSection(isDark)
+
+      // Dynamically compute the pill's translucent frosted background from the section color
+      if (isDark) {
+        setPillStyle({
+          backgroundColor: `rgba(${rVal}, ${gVal}, ${bVal}, 0.45)`,
+          borderColor: 'rgba(255, 255, 255, 0.28)',
+        })
+      } else {
+        setPillStyle({
+          backgroundColor: `rgba(${rVal}, ${gVal}, ${bVal}, 0.65)`,
+          borderColor: 'rgba(12, 70, 81, 0.14)',
+        })
+      }
+    }
+
+    handleScrollAndTheme()
+    window.addEventListener('scroll', handleScrollAndTheme, { passive: true })
+    window.addEventListener('resize', handleScrollAndTheme, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScrollAndTheme)
+      window.removeEventListener('resize', handleScrollAndTheme)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -28,209 +263,521 @@ export default function Navbar() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [menuOpen])
+  }, [mobileMenuOpen])
 
-  const defaultServices = [
-    { label: 'Digital 360', href: '/services/digital-360' },
-    { label: 'Business Consultancy', href: '/services/business-consultancy' },
-    { label: 'Web Development', href: '/services/web-development' },
-    { label: 'Shopify Development', href: '/services/shopify-development' },
-    { label: 'Seo', href: '/services/seo' },
-    { label: 'Graphic Design', href: '/services/graphic-design' },
-    { label: 'Marketing', href: '/services/marketing' },
-    { label: 'Social Media', href: '/services/social-media' },
-    { label: 'Amazon & eBay', href: '/services/amazon-ebay' },
-    { label: 'Email Marketing', href: '/services/email-marketing' },
-    { label: 'AI Automation', href: '/services/ai-automation' },
-  ]
-
-  const [servicesList, setServicesList] = useState(defaultServices)
+  // Close dropdown on route change
+  useEffect(() => {
+    setActiveDropdown(null)
+    setMobileMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
-    fetch('/api/cms/services')
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          const published = data
-            .filter((item: any) => item.status === 'published')
-            .map((item: any) => ({
-              label: item.name,
-              href: item.slug.startsWith('/') ? item.slug : `/services/${item.slug}`,
-            }))
-          if (published.length > 0) {
-            setServicesList(published)
-          }
-        }
-      })
-      .catch((err) => console.warn('Failed to load dynamic navbar services:', err))
+    function handleClickOutside(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setActiveDropdown(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  const defaultMainNav = [
-    { label: 'Home', href: '/' },
-    { label: 'Work', href: '/work' },
-    { label: 'About', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact' },
-  ]
+  const handleMouseEnter = (key: DropdownKey) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    setActiveDropdown(key)
+  }
 
-  const [mainNav, setMainNav] = useState(defaultMainNav)
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
+    }, 150)
+  }
 
-  useEffect(() => {
-    fetch('/api/cms/navigation')
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          const visible = data.filter((item: any) => item.isVisible)
-          if (visible.length > 0) {
-            setMainNav(visible)
-          }
-        }
-      })
-      .catch((err) => console.warn('Failed to load dynamic main navigation:', err))
-  }, [])
+  const toggleDropdown = (key: DropdownKey) => {
+    setActiveDropdown(prev => (prev === key ? null : key))
+  }
+
+  const toggleAccordion = (key: string) => {
+    setMobileAccordion(prev => (prev === key ? null : key))
+  }
 
   return (
-    <motion.nav
-      initial={{ y: -88, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
+    <header
+      ref={navRef}
+      className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${
+        isDarkSection ? styles.darkTheme : ''
+      }`}
+      onMouseLeave={handleMouseLeave}
     >
       <div className={styles.container}>
-        
-        <Logo />
-
-        {/* Desktop links */}
-        <div className={styles.links} onMouseLeave={() => setHoveredIdx(null)}>
-          {mainNav.map((item, idx) => {
-            const active = pathname === item.href
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                onMouseEnter={() => setHoveredIdx(idx)}
-                className={`${styles.link} ${active ? styles.activeLink : ''}`}
-              >
-                {item.label}
-                {/* Sliding Underline Indicator */}
-                {hoveredIdx === idx && (
-                  <motion.div
-                    layoutId="navHoverUnderline"
-                    className={styles.hoverUnderline}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-                {/* Active Link fallback line */}
-                {active && hoveredIdx !== idx && (
-                  <div className={styles.activeUnderline} />
-                )}
-              </Link>
-            )
-          })}
-          <div className={styles.desktopServicesMenu} style={{ position: 'relative' }}>
-            <div className={styles.servicesNavGroup}>
-              <Link href="/services" className={`${styles.servicesButton} ${pathname === '/services' ? styles.activeLink : ''}`}>Services</Link>
-              <motion.button whileHover={{ scale: 1.08 }} onClick={() => setServicesOpen(!servicesOpen)}
-                className={styles.servicesArrowButton} aria-label="Open services menu" aria-expanded={servicesOpen}>
-                <span className={`${styles.arrow} ${servicesOpen ? styles.arrowOpen : ''}`}>▾</span>
-              </motion.button>
-            </div>
-            <AnimatePresence>
-              {servicesOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -12, scale: 0.95 }} 
-                  animate={{ opacity: 1, y: 0, scale: 1 }} 
-                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                  className={styles.dropdown}
-                >
-                  {servicesList.map(s => (
-                    <Link key={s.label} href={s.href} onClick={() => setServicesOpen(false)} className={styles.dropdownItem}>
-                      {s.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+        {/* Left: Brand Logo */}
+        <div className={styles.logoWrapper}>
+          <Logo />
         </div>
 
-        {/* Desktop CTA */}
-        <Link href="/contact" className={styles.cta}>
-          Start a project
-        </Link>
-
-        {/* Mobile Hamburger toggle */}
-        <button 
-          className={styles.hamburger} 
-          onClick={() => setMenuOpen(!menuOpen)} 
-          aria-label="Toggle menu"
+        {/* Center: Frosted Glass Pill Navigation Bar (adapts dynamically to section color with blur) */}
+        <nav
+          className={styles.pillNav}
+          style={pillStyle}
+          aria-label="Main Navigation"
         >
-          <span className={`${styles.hamburgerLine} ${menuOpen ? styles.lineOpen1 : ''}`} />
-          <span className={`${styles.hamburgerLine} ${menuOpen ? styles.lineOpen2 : ''}`} />
-          <span className={`${styles.hamburgerLine} ${menuOpen ? styles.lineOpen3 : ''}`} />
-        </button>
+          <ul className={styles.navList}>
+            {/* Core Services Dropdown (Dynamic from CMS) */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('services')}
+            >
+              <button
+                type="button"
+                onClick={() => toggleDropdown('services')}
+                className={`${styles.navButton} ${
+                  activeDropdown === 'services' || pathname.startsWith('/services')
+                    ? styles.activeNav
+                    : ''
+                }`}
+                aria-expanded={activeDropdown === 'services'}
+                aria-haspopup="true"
+              >
+                <span>Core Services</span>
+                <svg
+                  className={`${styles.chevron} ${activeDropdown === 'services' ? styles.chevronOpen : ''}`}
+                  width="11"
+                  height="7"
+                  viewBox="0 0 11 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1.25L5.5 5.75L10 1.25"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === 'services' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className={`${styles.megaMenu} ${styles.servicesMegaMenu}`}
+                    onMouseEnter={() => handleMouseEnter('services')}
+                  >
+                    <div className={styles.megaGrid}>
+                      {coreServices.map((cat) => (
+                        <div key={cat.title} className={styles.megaColumn}>
+                          <div className={styles.categoryTitle}>{cat.title}</div>
+                          <ul className={styles.categoryList}>
+                            {cat.items.map((item) => (
+                              <li key={item.label}>
+                                <Link
+                                  href={item.href}
+                                  className={styles.megaLink}
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <div className={styles.megaLinkLabelRow}>
+                                    <span className={styles.megaLinkLabel}>{item.label}</span>
+                                    {item.badge && <span className={styles.megaBadge}>{item.badge}</span>}
+                                  </div>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className={styles.megaFooter}>
+                      <span className={styles.megaFooterText}>
+                        Transforming businesses with bespoke strategy, engineering & marketing.
+                      </span>
+                      <Link
+                        href="/services"
+                        className={styles.megaFooterLink}
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        Explore All Services →
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* Business Objectives Dropdown */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('objectives')}
+            >
+              <button
+                type="button"
+                onClick={() => toggleDropdown('objectives')}
+                className={`${styles.navButton} ${
+                  activeDropdown === 'objectives' ? styles.activeNav : ''
+                }`}
+                aria-expanded={activeDropdown === 'objectives'}
+                aria-haspopup="true"
+              >
+                <span>Business Objectives</span>
+                <svg
+                  className={`${styles.chevron} ${activeDropdown === 'objectives' ? styles.chevronOpen : ''}`}
+                  width="11"
+                  height="7"
+                  viewBox="0 0 11 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1.25L5.5 5.75L10 1.25"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === 'objectives' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className={`${styles.dropdownMenu} ${styles.objectivesDropdown}`}
+                    onMouseEnter={() => handleMouseEnter('objectives')}
+                  >
+                    <div className={styles.dropdownHeader}>GROWTH GOALS</div>
+                    <ul className={styles.dropdownList}>
+                      {BUSINESS_OBJECTIVES.map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            className={styles.dropdownLink}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className={styles.dropdownItemTitle}>{item.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* Industries Dropdown */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('industries')}
+            >
+              <button
+                type="button"
+                onClick={() => toggleDropdown('industries')}
+                className={`${styles.navButton} ${
+                  activeDropdown === 'industries' ? styles.activeNav : ''
+                }`}
+                aria-expanded={activeDropdown === 'industries'}
+                aria-haspopup="true"
+              >
+                <span>Industries</span>
+                <svg
+                  className={`${styles.chevron} ${activeDropdown === 'industries' ? styles.chevronOpen : ''}`}
+                  width="11"
+                  height="7"
+                  viewBox="0 0 11 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1.25L5.5 5.75L10 1.25"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === 'industries' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className={`${styles.dropdownMenu} ${styles.industriesDropdown}`}
+                    onMouseEnter={() => handleMouseEnter('industries')}
+                  >
+                    <div className={styles.dropdownHeader}>SECTOR EXPERTISE</div>
+                    <ul className={styles.dropdownList}>
+                      {INDUSTRIES.map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            className={styles.dropdownLink}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className={styles.dropdownItemTitle}>{item.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* Direct Link: Case Studies */}
+            <li className={styles.navItem}>
+              <Link
+                href="/work"
+                className={`${styles.navLink} ${pathname === '/work' ? styles.activeNav : ''}`}
+              >
+                Case Studies
+              </Link>
+            </li>
+
+            {/* Direct Link: About Us */}
+            <li className={styles.navItem}>
+              <Link
+                href="/about"
+                className={`${styles.navLink} ${pathname === '/about' ? styles.activeNav : ''}`}
+              >
+                About Us
+              </Link>
+            </li>
+
+            {/* Direct Link: Blog */}
+            <li className={styles.navItem}>
+              <Link
+                href="/blog"
+                className={`${styles.navLink} ${pathname.startsWith('/blog') ? styles.activeNav : ''}`}
+              >
+                Blog
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Right: Contact Us CTA Button */}
+        <div className={styles.actionWrapper}>
+          <Link href="/contact" className={styles.contactBtn}>
+            Contact Us
+          </Link>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            type="button"
+            className={styles.hamburger}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.barOpenTop : ''}`} />
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.barOpenMid : ''}`} />
+            <span className={`${styles.hamburgerBar} ${mobileMenuOpen ? styles.barOpenBot : ''}`} />
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Drawer menu */}
+      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className={styles.drawer}
-          >
-            <div className={styles.drawerCloseRow}>
-              <button onClick={() => setMenuOpen(false)} className={styles.drawerCloseButton}>
-                ✕
-              </button>
-            </div>
-            <div className={styles.drawerLinks}>
-              {mainNav.map((item) => {
-                const active = pathname === item.href
-                return (
-                  <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)}
-                    className={`${styles.drawerLink} ${active ? styles.drawerActiveLink : ''}`}>
-                    {item.label}
-                  </Link>
-                )
-              })}
-              
-              <div className={styles.drawerServicesContainer}>
-                <div className={styles.drawerServicesHeader}>
-                  <Link href="/services" onClick={() => setMenuOpen(false)} className={styles.drawerServicesLink}>Services</Link>
-                  <button onClick={() => setServicesOpen(!servicesOpen)} className={styles.drawerServicesToggle} aria-label="Open services menu">
-                    <span className={`${styles.arrow} ${servicesOpen ? styles.arrowOpen : ''}`}>▾</span>
-                  </button>
-                </div>
-                <AnimatePresence>
-                  {servicesOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      style={{ overflow: 'hidden' }}
-                      className={styles.drawerDropdown}
-                    >
-                      {servicesList.map(s => (
-                        <Link key={s.label} href={s.href} onClick={() => { setMenuOpen(false); setServicesOpen(false); }} className={styles.drawerDropdownItem}>
-                          {s.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={styles.mobileBackdrop}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            <motion.aside
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+              className={styles.mobileDrawer}
+            >
+              <div className={styles.drawerHeader}>
+                <Logo />
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.drawerCloseBtn}
+                  aria-label="Close menu"
+                >
+                  ✕
+                </button>
               </div>
 
-              <Link href="/contact" onClick={() => setMenuOpen(false)} className={styles.drawerCta}>
-                Start a project
-              </Link>
-            </div>
-          </motion.div>
+              <div className={styles.drawerBody}>
+                {/* Core Services Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('services')}
+                    className={styles.accordionHeader}
+                  >
+                    <span>Core Services</span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'services' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'services' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.accordionContent}
+                      >
+                        {coreServices.map((cat) => (
+                          <div key={cat.title} className={styles.mobileCatGroup}>
+                            <div className={styles.mobileCatTitle}>{cat.title}</div>
+                            {cat.items.map((item) => (
+                              <Link
+                                key={item.label}
+                                href={item.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={styles.mobileSubLink}
+                              >
+                                {item.label}
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Business Objectives Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('objectives')}
+                    className={styles.accordionHeader}
+                  >
+                    <span>Business Objectives</span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'objectives' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'objectives' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.accordionContent}
+                      >
+                        {BUSINESS_OBJECTIVES.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Industries Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('industries')}
+                    className={styles.accordionHeader}
+                  >
+                    <span>Industries</span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'industries' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'industries' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.accordionContent}
+                      >
+                        {INDUSTRIES.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Direct Links */}
+                <Link
+                  href="/work"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.drawerDirectLink}
+                >
+                  Case Studies
+                </Link>
+
+                <Link
+                  href="/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.drawerDirectLink}
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  href="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.drawerDirectLink}
+                >
+                  Blog
+                </Link>
+              </div>
+
+              <div className={styles.drawerFooter}>
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.drawerCtaBtn}
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </header>
   )
 }

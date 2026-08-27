@@ -1,98 +1,260 @@
 [
   {
-    "id": "srv-web-dev",
-    "name": "Web Engineering & CMS Solutions",
-    "slug": "web-development",
+    "id": "srv-digital-360",
+    "name": "Digital 360",
+    "slug": "digital-360",
     "status": "published",
     "sortOrder": 1,
-    "eyebrow": "ENGINEERING",
-    "heroHeading": "Custom Next.js & Headless Architecture",
-    "heroDescription": "Ultra-fast, SEO-optimized web applications built on Next.js and custom headless CMS engines.",
-    "heroCtaText": "Discuss Web Project",
-    "introHeading": "Why Headless Architecture Matters",
-    "introContent": "We break away from slow monolithic website templates. Our codebases deliver sub-second page loads, pixel-perfect design rendering, and effortless admin management.",
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "Integrated Omni-Channel Digital Growth Strategy",
+    "heroDescription": "Full-spectrum digital marketing uniting SEO, paid media, creative content, and conversion optimization.",
+    "heroCtaText": "Start 360 Strategy",
     "features": [
-      {
-        "id": "f1",
-        "title": "Next.js App Router",
-        "description": "Server-side rendering and static page generation for lightning speed.",
-        "sortOrder": 1
-      },
-      {
-        "id": "f2",
-        "title": "Headless CMS Integration",
-        "description": "Flexible content keys and dynamic editorial controls.",
-        "sortOrder": 2
-      },
-      {
-        "id": "f3",
-        "title": "Type-Safe APIs",
-        "description": "TypeScript contracts ensuring zero runtime breakages.",
-        "sortOrder": 3
-      }
+      { "id": "f1", "title": "Omni-Channel Strategy", "description": "Unified brand messaging across all digital touchpoints.", "sortOrder": 1 },
+      { "id": "f2", "title": "Data Attribution", "description": "Precision tracking of multi-touch user journeys.", "sortOrder": 2 }
     ],
-    "metrics": [
-      {
-        "value": "99/100",
-        "label": "Lighthouse Performance Score"
-      },
-      {
-        "value": "<200ms",
-        "label": "Server Response Time"
-      }
-    ],
-    "seo": {
-      "metaTitle": "Web Engineering & CMS Development | KR Tasker Digital",
-      "metaDescription": "Bespoke Next.js web application development and headless CMS integration.",
-      "h1": "Web Engineering & CMS Solutions",
-      "focusKeyword": "Next.js development",
-      "indexStatus": "index",
-      "followStatus": "follow"
-    },
-    "updatedAt": "2026-08-24T08:49:30.735Z"
+    "metrics": [{ "value": "+240%", "label": "Revenue Uplift" }, { "value": "4.8x", "label": "Average ROAS" }],
+    "seo": { "metaTitle": "Digital 360 Strategy | KR Tasker Digital", "metaDescription": "Omni-channel marketing campaigns that scale digital brand presence and conversions.", "h1": "Digital 360 Growth Engine", "focusKeyword": "digital 360 agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
   },
   {
     "id": "srv-seo",
-    "name": "SEO & Organic Growth Engine",
-    "slug": "seo-organic-growth",
+    "name": "SEO & Organic Growth",
+    "slug": "seo",
     "status": "published",
     "sortOrder": 2,
-    "eyebrow": "GROWTH",
+    "eyebrow": "Digital Marketing",
     "heroHeading": "Technical SEO & Data-Driven Search Authority",
     "heroDescription": "Engineered search presence with dynamic sitemaps, structured schema, canonical controls, and page speed optimization.",
     "heroCtaText": "Start SEO Audit",
     "features": [
-      {
-        "id": "f4",
-        "title": "Technical SEO Auditing",
-        "description": "Comprehensive crawls identifying indexing, canonical, and link issues.",
-        "sortOrder": 1
-      },
-      {
-        "id": "f5",
-        "title": "On-Page Meta Controls",
-        "description": "SERP previews and real-time content health feedback.",
-        "sortOrder": 2
-      }
+      { "id": "f3", "title": "Technical SEO Auditing", "description": "Comprehensive crawls identifying indexing and link issues.", "sortOrder": 1 },
+      { "id": "f4", "title": "High-Intent Keyword Dominance", "description": "Strategic ranking for commercial and transactional search terms.", "sortOrder": 2 }
     ],
-    "metrics": [
-      {
-        "value": "+180%",
-        "label": "Average Organic Traffic Growth"
-      },
-      {
-        "value": "1st Page",
-        "label": "Search Ranking Target"
-      }
+    "metrics": [{ "value": "+180%", "label": "Organic Traffic Growth" }, { "value": "#1", "label": "Target Keyword Rankings" }],
+    "seo": { "metaTitle": "SEO & Technical Search Growth | KR Tasker Digital", "metaDescription": "Data-driven technical SEO, meta data management, and structured data execution.", "h1": "SEO & Organic Search Engine", "focusKeyword": "technical SEO agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-ppc",
+    "name": "PPC & Paid Search",
+    "slug": "ppc",
+    "status": "published",
+    "sortOrder": 3,
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "High-Converting Google, Meta & LinkedIn Ad Campaigns",
+    "heroDescription": "Performance advertising engineered to capture high-intent buyers and maximize Return on Ad Spend.",
+    "heroCtaText": "Launch Paid Ads",
+    "features": [
+      { "id": "f5", "title": "Precision Audience Targeting", "description": "Granular persona bidding and lookalike modeling.", "sortOrder": 1 },
+      { "id": "f6", "title": "Landing Page Optimization", "description": "A/B tested conversion flows built for maximum ROI.", "sortOrder": 2 }
     ],
-    "seo": {
-      "metaTitle": "SEO & Technical Search Growth | KR Tasker Digital",
-      "metaDescription": "Data-driven technical SEO, meta data management, and structured data execution.",
-      "h1": "SEO & Organic Search Engine",
-      "focusKeyword": "technical SEO agency",
-      "indexStatus": "index",
-      "followStatus": "follow"
-    },
-    "updatedAt": "2026-08-24T08:49:30.735Z"
+    "metrics": [{ "value": "5.2x", "label": "Target ROAS" }, { "value": "-35%", "label": "Cost Per Acquisition" }],
+    "seo": { "metaTitle": "PPC & Paid Advertising Agency | KR Tasker Digital", "metaDescription": "Targeted paid advertising on Google Ads, Meta, and LinkedIn that drives revenue.", "h1": "PPC & Paid Search Advertising", "focusKeyword": "PPC advertising agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-social-media",
+    "name": "Social Media Marketing",
+    "slug": "social-media",
+    "status": "published",
+    "sortOrder": 4,
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "Organic & Paid Social Campaigns That Build Brand Loyalty",
+    "heroDescription": "Compelling visual storytelling and targeted distribution across TikTok, Instagram, and LinkedIn.",
+    "heroCtaText": "Grow Social Reach",
+    "features": [
+      { "id": "f7", "title": "Creative Asset Production", "description": "Short-form video, motion graphics, and editorial copy.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "3.5M+", "label": "Social Impressions" }, { "value": "+95%", "label": "Engagement Rate" }],
+    "seo": { "metaTitle": "Social Media Marketing Agency | KR Tasker Digital", "metaDescription": "Strategic social media management and high-impact campaigns that drive audience action.", "h1": "Social Media Marketing", "focusKeyword": "social media marketing agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-email-marketing",
+    "name": "Email Marketing",
+    "slug": "email-marketing",
+    "status": "published",
+    "sortOrder": 5,
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "Lifecycle Automation & Retention Email Campaigns",
+    "heroDescription": "Segmented flows and personalized messaging that turn one-time buyers into loyal brand advocates.",
+    "heroCtaText": "Automate Emails",
+    "features": [
+      { "id": "f8", "title": "Klaviyo & Mailchimp Flows", "description": "Automated cart abandonment, welcome series, and win-back flows.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "42%", "label": "Average Open Rate" }, { "value": "+130%", "label": "Email Attributed Revenue" }],
+    "seo": { "metaTitle": "Email Marketing & Automation | KR Tasker Digital", "metaDescription": "Bespoke email marketing funnels and automation strategies for sustained customer retention.", "h1": "Email Marketing & Lifecycle Automation", "focusKeyword": "email marketing agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-marketing",
+    "name": "Marketing Strategy",
+    "slug": "marketing",
+    "status": "published",
+    "sortOrder": 6,
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "Full-Funnel Market Positioning & Growth Roadmaps",
+    "heroDescription": "Evidence-based strategic planning designed to outposition competitors and scale enterprise revenue.",
+    "heroCtaText": "Book Strategy Session",
+    "features": [
+      { "id": "f9", "title": "Competitor Benchmarking", "description": "Deep-dive analysis of market share and positioning opportunities.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "100%", "label": "Bespoke Execution" }, { "value": "10x", "label": "Growth Velocity" }],
+    "seo": { "metaTitle": "Marketing Strategy Advisory | KR Tasker Digital", "metaDescription": "Strategic marketing blueprints and executive growth roadmaps for scale-ups.", "h1": "Marketing Strategy & Brand Advisory", "focusKeyword": "marketing strategy agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-web-development",
+    "name": "Web Development",
+    "slug": "web-development",
+    "status": "published",
+    "sortOrder": 7,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "High-Performance Next.js & Headless Web Platforms",
+    "heroDescription": "Ultra-fast, modular web applications built with TypeScript, modern CSS, and headless architectures.",
+    "heroCtaText": "Build Your Platform",
+    "features": [
+      { "id": "f10", "title": "Next.js App Architecture", "description": "Server components, instant rendering, and enterprise scalability.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "99/100", "label": "Lighthouse Score" }, { "value": "<150ms", "label": "Response Time" }],
+    "seo": { "metaTitle": "Next.js Web Development Agency | KR Tasker Digital", "metaDescription": "Custom web development using Next.js, headless CMS, and modern web standards.", "h1": "Web Development & Engineering", "focusKeyword": "Next.js web development", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-shopify-development",
+    "name": "Shopify Development",
+    "slug": "shopify-development",
+    "status": "published",
+    "sortOrder": 8,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "Custom Shopify Plus Stores Engineered for High Conversions",
+    "heroDescription": "Bespoke theme engineering, checkout customizations, and ERP integrations that scale DTC revenue.",
+    "heroCtaText": "Scale Your Store",
+    "features": [
+      { "id": "f11", "title": "Shopify Plus Architecture", "description": "Custom Liquid & Hydrogen headless e-commerce builds.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "+68%", "label": "Checkout Conversion" }, { "value": "<1.2s", "label": "Store Load Speed" }],
+    "seo": { "metaTitle": "Shopify & E-Commerce Development | KR Tasker Digital", "metaDescription": "Custom Shopify themes and headless e-commerce solutions that maximize sales volume.", "h1": "Shopify & E-Commerce Development", "focusKeyword": "Shopify development agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-websites-apps",
+    "name": "Websites & Apps",
+    "slug": "websites-apps",
+    "status": "published",
+    "sortOrder": 9,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "Bespoke Web Applications & Client Portals",
+    "heroDescription": "Scalable web applications, customer portals, and internal tools built for frictionless user experiences.",
+    "heroCtaText": "Consult Engineers",
+    "features": [
+      { "id": "f12", "title": "Cloud-Native Infrastructure", "description": "Secure API endpoints, real-time databases, and responsive UI.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "99.99%", "label": "Uptime Guarantee" }, { "value": "Zero", "label": "Technical Debt" }],
+    "seo": { "metaTitle": "Custom Web Applications & Software | KR Tasker Digital", "metaDescription": "Enterprise web applications, SaaS dashboards, and portal development.", "h1": "Websites & Web Applications", "focusKeyword": "web app development", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-branding",
+    "name": "Branding & Identity",
+    "slug": "branding",
+    "status": "published",
+    "sortOrder": 10,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "Memorable Brand Identities & Design Systems",
+    "heroDescription": "Visual design systems, typography guidelines, and brand assets that establish enduring market authority.",
+    "heroCtaText": "Craft Your Brand",
+    "features": [
+      { "id": "f13", "title": "Comprehensive Brand Guidelines", "description": "Logomarks, color tokens, typography scales, and iconography.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "100%", "label": "Vector Precision" }, { "value": "30+", "label": "Design Artifacts" }],
+    "seo": { "metaTitle": "Brand Identity & Graphic Design | KR Tasker Digital", "metaDescription": "Visual identity design, logos, and comprehensive brand guidelines for leaders.", "h1": "Branding & Visual Identity", "focusKeyword": "branding agency london", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-graphic-design",
+    "name": "Graphic Design",
+    "slug": "graphic-design",
+    "status": "published",
+    "sortOrder": 11,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "High-Impact Visual Assets & Marketing Collateral",
+    "heroDescription": "Digital and print graphics crafted to captivate audiences and reinforce brand authority.",
+    "heroCtaText": "Get Creative Assets",
+    "features": [
+      { "id": "f14", "title": "Marketing Creatives", "description": "Social banners, presentation decks, infographics, and brochures.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "24h", "label": "Turnaround Speed" }, { "value": "4K", "label": "Asset Resolution" }],
+    "seo": { "metaTitle": "Graphic Design & Digital Collateral | KR Tasker Digital", "metaDescription": "Professional graphic design services for digital campaigns, print, and branding.", "h1": "Graphic Design & Creatives", "focusKeyword": "graphic design agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-amazon-ebay",
+    "name": "Amazon & eBay",
+    "slug": "amazon-ebay",
+    "status": "published",
+    "sortOrder": 12,
+    "eyebrow": "Websites & Apps",
+    "heroHeading": "Marketplace Store Setup, A+ Content & Scaling",
+    "heroDescription": "Comprehensive Amazon Seller Central and eBay store management with optimized listing conversions.",
+    "heroCtaText": "Scale Marketplace",
+    "features": [
+      { "id": "f15", "title": "Amazon A+ Content", "description": "Brand storefronts, enhanced brand content, and keyword ranking.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "+110%", "label": "Marketplace Sales" }, { "value": "Top 1%", "label": "Listing Quality" }],
+    "seo": { "metaTitle": "Amazon & eBay Marketplace Management | KR Tasker Digital", "metaDescription": "Marketplace management, Amazon SEO, eBay store optimization, and A+ content.", "h1": "Amazon & eBay Marketplace Scaling", "focusKeyword": "amazon marketplace management", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-ai-solutions",
+    "name": "AI Solutions",
+    "slug": "ai-solutions",
+    "status": "published",
+    "sortOrder": 13,
+    "eyebrow": "AI & Automation",
+    "heroHeading": "Enterprise AI Integrations & Custom Intelligent Agents",
+    "heroDescription": "Deploy custom LLMs, automated reasoning agents, and semantic search into your business stack.",
+    "heroCtaText": "Deploy AI Solutions",
+    "features": [
+      { "id": "f16", "title": "Custom LLM Integrations", "description": "Fine-tuned models and private semantic retrieval engines.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "85%", "label": "Task Automation" }, { "value": "10x", "label": "Data Processing" }],
+    "seo": { "metaTitle": "AI Solutions & Enterprise Agents | KR Tasker Digital", "metaDescription": "Custom AI integrations, intelligent agents, and machine learning solutions.", "h1": "AI Solutions & Enterprise Intelligence", "focusKeyword": "AI solutions agency", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-ai-automation",
+    "name": "AI Automation",
+    "slug": "ai-automation",
+    "status": "published",
+    "sortOrder": 14,
+    "eyebrow": "AI & Automation",
+    "heroHeading": "End-to-End Workflow & Business Process Automation",
+    "heroDescription": "Eliminate repetitive manual operations with intelligent webhook pipelines and autonomous workflows.",
+    "heroCtaText": "Automate Operations",
+    "features": [
+      { "id": "f17", "title": "CRM & ERP Automation", "description": "Real-time sync and automated pipeline progression.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "-60%", "label": "Operational Overhead" }, { "value": "24/7", "label": "Automated Execution" }],
+    "seo": { "metaTitle": "AI Automation & Workflow Engineering | KR Tasker Digital", "metaDescription": "Intelligent business process automation and operational pipeline engineering.", "h1": "AI Automation & Operations", "focusKeyword": "AI automation services", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-business-consultancy",
+    "name": "Business Consultancy",
+    "slug": "business-consultancy",
+    "status": "published",
+    "sortOrder": 15,
+    "eyebrow": "AI & Automation",
+    "heroHeading": "Strategic Scaling, Digital Transformation & Advisory",
+    "heroDescription": "Executive consulting to align technology investments with scalable revenue growth.",
+    "heroCtaText": "Schedule Advisory",
+    "features": [
+      { "id": "f18", "title": "Digital Transformation Roadmap", "description": "Technology stack audit and modernization plan.", "sortOrder": 1 }
+    ],
+    "metrics": [{ "value": "+150%", "label": "Enterprise Value" }, { "value": "100%", "label": "Strategic Alignment" }],
+    "seo": { "metaTitle": "Business Consultancy & Tech Advisory | KR Tasker Digital", "metaDescription": "Strategic digital transformation and enterprise advisory for high-growth businesses.", "h1": "Business Consultancy & Advisory", "focusKeyword": "business consultancy london", "indexStatus": "index", "followStatus": "follow" },
+    "updatedAt": "2026-08-27T10:00:00.000Z"
   }
 ]

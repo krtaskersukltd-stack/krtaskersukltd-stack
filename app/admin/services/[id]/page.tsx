@@ -190,7 +190,9 @@ export default function AdminServiceEditorPage({ params }: { params: Promise<{ i
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-gray-800 block mb-1">Eyebrow Badge</label>
+                  <label className="text-xs font-bold text-gray-800 block mb-1">
+                    Header Menu Category / Eyebrow
+                  </label>
                   <input
                     type="text"
                     value={service.eyebrow || ''}
@@ -198,9 +200,28 @@ export default function AdminServiceEditorPage({ params }: { params: Promise<{ i
                       setService({ ...service, eyebrow: e.target.value })
                       setIsDirty(true)
                     }}
-                    placeholder="e.g. ENGINEERING"
+                    placeholder="e.g. Digital Marketing, Websites & Apps, AI & Automation"
                     className="admin-input"
                   />
+                  <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    {['Digital Marketing', 'Websites & Apps', 'AI & Automation'].map((cat) => (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => {
+                          setService({ ...service, eyebrow: cat })
+                          setIsDirty(true)
+                        }}
+                        className={`text-[10px] px-2 py-0.5 rounded border transition-colors ${
+                          service.eyebrow === cat
+                            ? 'bg-[#0C4651] text-white border-[#0C4651]'
+                            : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div>
