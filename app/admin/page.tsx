@@ -168,6 +168,13 @@ export default function AdminDashboardPage() {
             </p>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
+            <Link
+              href="/studio"
+              target="_blank"
+              className="bg-[#F03E2F] hover:bg-[#D92B1D] text-white font-bold text-xs px-4 py-2 rounded-xl inline-flex items-center gap-1.5 shadow-sm transition-all"
+            >
+              <span>⚡ Open Sanity Studio</span>
+            </Link>
             <Link href="/admin/blog/new" className="btn-lime text-xs">
               + New Blog Article
             </Link>

@@ -110,6 +110,42 @@ export async function saveCmsPages(pages: PageRecord[]): Promise<void> {
 // 2. SERVICES
 export async function getCmsServices(): Promise<ServiceRecord[]> {
   try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { SERVICES_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(SERVICES_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        return sanityData.map((s: any) => ({
+          id: s._id || s.id || `srv-${s.slug}`,
+          name: s.name,
+          slug: s.slug,
+          status: s.status || 'published',
+          sortOrder: s.sortOrder || 1,
+          eyebrow: s.eyebrow || '',
+          heroHeading: s.heroHeading || '',
+          heroDescription: s.heroDescription || '',
+          heroCtaText: s.heroCtaText || 'Get Started',
+          introHeading: s.introHeading || '',
+          introContent: s.introContent || '',
+          features: s.features || [],
+          metrics: s.metrics || [],
+          seo: s.seo || {
+            metaTitle: s.name,
+            metaDescription: s.heroDescription,
+            h1: s.name,
+            focusKeyword: s.name,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: s._updatedAt || new Date().toISOString(),
+        }))
+      }
+    }
+  } catch (err) {
+    // Sanity query failed or offline, fall back to SQLite
+  }
+
+  try {
     const stmt = db.prepare('SELECT * FROM services ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]
     return rows.map((row) => ({
@@ -173,6 +209,45 @@ export async function saveCmsServices(services: ServiceRecord[]): Promise<void> 
 
 // 3. WORK
 export async function getCmsWork(): Promise<CaseStudyRecord[]> {
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { WORK_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(WORK_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        return sanityData.map((w: any) => ({
+          id: w._id || w.id || `work-${w.slug}`,
+          client: w.client || '',
+          title: w.title,
+          slug: w.slug,
+          year: w.year || '2026',
+          category: w.category || 'Case Study',
+          featuredImage: typeof w.featuredImage === 'string' ? w.featuredImage : '',
+          featuredImageAlt: w.featuredImageAlt || w.title,
+          shortDescription: w.shortDescription || '',
+          status: w.status || 'published',
+          sortOrder: w.sortOrder || 1,
+          overview: w.overview || '',
+          challenge: w.challenge || '',
+          solution: w.solution || '',
+          results: w.results || '',
+          metrics: w.metrics || [],
+          seo: w.seo || {
+            metaTitle: w.title,
+            metaDescription: w.shortDescription,
+            h1: w.title,
+            focusKeyword: w.title,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: w._updatedAt || new Date().toISOString(),
+        }))
+      }
+    }
+  } catch (err) {
+    // Sanity query fallback
+  }
+
   try {
     const stmt = db.prepare('SELECT * FROM work ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]
@@ -243,6 +318,44 @@ export async function saveCmsWork(work: CaseStudyRecord[]): Promise<void> {
 
 // 4. BLOGS
 export async function getCmsBlogs(): Promise<BlogPostRecord[]> {
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { POSTS_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(POSTS_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        return sanityData.map((b: any) => ({
+          id: b._id || b.id || `blog-${b.slug}`,
+          slug: b.slug,
+          title: b.title,
+          category: b.category || 'Engineering',
+          authorName: b.authorName || 'KR Tasker Editorial',
+          authorRole: b.authorRole || 'Digital Lead',
+          authorImage: b.authorImage || '',
+          status: b.status || 'published',
+          publishDate: b.publishDate || new Date().toISOString().split('T')[0],
+          excerpt: b.excerpt || '',
+          readingTime: b.readingTime || '5 min read',
+          featuredImage: typeof b.featuredImage === 'string' ? b.featuredImage : '/images/services-grid/seo.png',
+          featuredImageAlt: b.featuredImageAlt || b.title,
+          content: typeof b.content === 'string' ? b.content : '',
+          tags: b.tags || [],
+          seo: b.seo || {
+            metaTitle: b.title,
+            metaDescription: b.excerpt,
+            h1: b.title,
+            focusKeyword: b.category,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: b._updatedAt || new Date().toISOString(),
+        }))
+      }
+    }
+  } catch (err) {
+    // Sanity query fallback
+  }
+
   try {
     const stmt = db.prepare('SELECT * FROM blogs ORDER BY publishDate DESC')
     const rows = stmt.all() as any[]
