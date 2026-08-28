@@ -281,3 +281,46 @@ html.lenis body {
 .lenis-scrolling iframe {
   pointer-events: none;
 }
+
+
+/* Sanity Studio Smooth Scrolling Fix */
+[data-lenis-prevent],
+[data-ui="ScrollContainer"],
+[data-testid="pane"],
+[data-testid="pane-content"],
+[data-testid="document-panel-portal"] {
+  overscroll-behavior: contain !important;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+
+/* Studio Native Cursor Restore */
+[data-lenis-prevent],
+[data-lenis-prevent] *,
+[data-ui="ScrollContainer"],
+[data-ui="ScrollContainer"] *,
+[data-testid="pane"],
+[data-testid="pane"] *,
+#sanity,
+#sanity * {
+  cursor: auto !important;
+}
+
+#sanity a,
+#sanity button,
+#sanity [role="button"],
+[data-lenis-prevent] a,
+[data-lenis-prevent] button,
+[data-lenis-prevent] [role="button"] {
+  cursor: pointer !important;
+}
+
+#sanity input,
+#sanity textarea,
+#sanity [contenteditable="true"],
+[data-lenis-prevent] input,
+[data-lenis-prevent] textarea,
+[data-lenis-prevent] [contenteditable="true"] {
+  cursor: text !important;
+}

@@ -1,4 +1,7 @@
-'use client'
+const fs = require("fs");
+
+// 1. Update components/CustomCursor.tsx
+const customCursorCode = `'use client'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
@@ -144,4 +147,45 @@ export default function CustomCursor() {
       />
     </>
   )
+}
+`;
+fs.writeFileSync("components/CustomCursor.tsx", customCursorCode, "utf-8");
+console.log("Updated components/CustomCursor.tsx");
+
+// 2. Update app/globals.css to ensure Studio and Admin always have standard native cursor
+let globalsCss = fs.readFileSync("app/globals.css", "utf-8");
+if (!globalsCss.includes("Studio Native Cursor Restore")) {
+  globalsCss += `\n
+/* Studio Native Cursor Restore */
+[data-lenis-prevent],
+[data-lenis-prevent] *,
+[data-ui="ScrollContainer"],
+[data-ui="ScrollContainer"] *,
+[data-testid="pane"],
+[data-testid="pane"] *,
+#sanity,
+#sanity * {
+  cursor: auto !important;
+}
+
+#sanity a,
+#sanity button,
+#sanity [role="button"],
+[data-lenis-prevent] a,
+[data-lenis-prevent] button,
+[data-lenis-prevent] [role="button"] {
+  cursor: pointer !important;
+}
+
+#sanity input,
+#sanity textarea,
+#sanity [contenteditable="true"],
+[data-lenis-prevent] input,
+[data-lenis-prevent] textarea,
+[data-lenis-prevent] [contenteditable="true"] {
+  cursor: text !important;
+}
+`;
+  fs.writeFileSync("app/globals.css", globalsCss, "utf-8");
+  console.log("Updated app/globals.css");
 }

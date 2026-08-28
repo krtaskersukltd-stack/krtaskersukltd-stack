@@ -1,8 +1,12 @@
 'use client'
 import { motion, useScroll } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollProgressBar() {
+  const pathname = usePathname()
   const { scrollYProgress } = useScroll()
+
+  if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) return null
 
   return (
     <motion.div

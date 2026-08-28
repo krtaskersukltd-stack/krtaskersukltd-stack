@@ -43,3 +43,6 @@ next-env.d.ts
 /scratch_stitch/
 *.db*
 data/*.db*
+
+# Agents
+./agents/

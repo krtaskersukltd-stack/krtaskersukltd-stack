@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -8,11 +9,17 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
+    // 1. Completely disable Lenis on Sanity Studio and Admin routes
+    if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) {
+      return
+    }
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -20,6 +27,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       wheelMultiplier: 1.0,
       touchMultiplier: 2.0,
       infinite: false,
+      prevent: (node) => {
+        return (
+          node.getAttribute('data-lenis-prevent') === 'true' ||
+          node.closest('[data-lenis-prevent="true"]') !== null ||
+          node.closest('[data-testid="pane"]') !== null ||
+          node.closest('[data-ui="ScrollContainer"]') !== null
+        )
+      },
     })
 
     lenisRef.current = lenis
@@ -40,7 +55,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       lenis.destroy()
       gsap.ticker.remove(updateTicker)
     }
-  }, [])
+  }, [pathname])
 
   return <>{children}</>
 }
