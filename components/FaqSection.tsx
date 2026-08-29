@@ -71,9 +71,9 @@ export default function FaqSection() {
           <div className={styles.headerArea}>
             <span className={styles.tag}>FAQ’s</span>
             <h2 className={styles.title}>The Answers To Your Questions.</h2>
-            <button onClick={scrollToContact} className={styles.btnTouch}>
+            <Link href="/contact" className={styles.btnTouch}>
               Get In Touch
-            </button>
+            </Link>
           </div>
 
           {/* Right Column (Accordion) */}

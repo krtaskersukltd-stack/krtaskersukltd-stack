@@ -83,13 +83,13 @@ export default function ServicesPage() {
               </defs>
             </svg>
 
-            <button
+            <Link
               type="button"
               className={styles.projectButton}
-              onClick={scrollToContact}
+              href="/contact"
             >
               Start A Project
-            </button>
+            </Link>
 
             <div className={styles.mediaPlaceholder}>
               <span>KR Tasker Digital</span>
@@ -173,13 +173,13 @@ export default function ServicesPage() {
               Tailor Our Service To The Client And The Project Requirements.
             </p>
 
-            <button
+            <Link
               type="button"
               className={styles.visionButton}
-              onClick={scrollToContact}
+              href="/contact"
             >
               Start A Project Today
-            </button>
+            </Link>
           </div>
 
           <div className={styles.visionMedia} aria-hidden="true">

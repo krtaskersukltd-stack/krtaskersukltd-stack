@@ -212,10 +212,10 @@ export default function WorkPage() {
                 into measurable impact.
               </p>
               <div className={styles.heroActions}>
-                <button onClick={scrollToContact} className={styles.primaryBtn}>
+                <Link href="/contact" className={styles.primaryBtn}>
                   Start a Project
-                </button>
-                <Link href="/about" className={styles.secondaryBtn}>
+                </Link>
+                <Link href="/team" className={styles.secondaryBtn}>
                   Learn More About Our Team
                 </Link>
               </div>

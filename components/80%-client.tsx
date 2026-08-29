@@ -37,9 +37,9 @@ export default function ClientSatisfaction() {
             <p className={styles.bespokeText}>
               We love our clients, and they love us! Our end-to-end marketing packages bring together SEO, PPC, social media, content, and email marketing into one integrated strategy managed by a dedicated team. No more juggling multiple agencies — get everything you need under one roof.
             </p>
-            <button onClick={scrollToContact} className={styles.btnBespoke}>
+            <Link href="/contact" className={styles.btnBespoke}>
               Get In Touch
-            </button>
+            </Link>
           </div>
           
           <div className={styles.bespokeRight}>

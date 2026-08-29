@@ -108,9 +108,9 @@ export default function DynamicServicePage({ params }: { params: Promise<{ slug:
                 {srv.heroDescription}
               </p>
               <div className={styles.actions}>
-                <button onClick={scrollToContact} className={styles.btnPrimary}>
+                <Link href="/contact" className={styles.btnPrimary}>
                   {srv.heroCtaText || 'Start a Project'}
-                </button>
+                </Link>
                 <a href="/work" className={styles.btnSecondary}>
                   View Case Studies
                 </a>
