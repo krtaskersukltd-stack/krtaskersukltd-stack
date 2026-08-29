@@ -138,9 +138,6 @@
 }
 
 /* ================= DARK THEME (WHEN ON DARK SECTIONS) ================= */
-.darkTheme .logoWrapper {
-  filter: brightness(0) invert(1);
-}
 
 .darkTheme .navButton,
 .darkTheme .navLink {

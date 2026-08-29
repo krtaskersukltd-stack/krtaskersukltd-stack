@@ -51,7 +51,6 @@
 
 /* Custom Logo */
 .logoWrapper {
-  filter: brightness(0) invert(1); 
   display: flex;
   align-items: center;
   gap: 12px;
