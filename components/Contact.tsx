@@ -286,7 +286,7 @@ export default function Contact() {
           {/* Left Column - Contact Details & Team Circles */}
           <div className={styles.sidebar}>
             <div className={styles.sidebarContent}>
-              <div className={styles.logoWrapper}><Image src="/images/Logo.svg" alt="KR Tasker Digital" width={106} height={48} /></div>
+              <div className={styles.logoWrapper}><Image src="/images/Logo.svg" alt="KR Tasker Digital" width={106} height={48}/></div>
 
               {/* Concentric Circles & Team Avatars Graphic */}
               <div className={styles.circlesGraphic}>

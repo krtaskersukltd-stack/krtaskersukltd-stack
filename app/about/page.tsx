@@ -201,7 +201,7 @@ export default function AboutPage() {
               className={styles.leftCol}
             >
               <div className={styles.sectionTag}>
-                Who are we?
+              About Us
               </div>
 
               <h2 className={styles.introHeading}>
