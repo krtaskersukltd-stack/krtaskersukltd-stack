@@ -5,70 +5,263 @@
     "slug": "digital-360",
     "status": "published",
     "sortOrder": 1,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "Integrated Omni-Channel Digital Growth Strategy",
-    "heroDescription": "Full-spectrum digital marketing uniting SEO, paid media, creative content, and conversion optimization.",
+    "eyebrow": "Digital 360",
+    "heroHeading": "Full Service Digital Marketing Package For Small And Large Businesses.",
+    "heroDescription": "Bespoke digital marketing packages tailored to your business needs. Whether you&apos;re a startup or an established enterprise, our full-service approach combines multiple channels into one cohesive strategy that drives results.",
     "heroCtaText": "Start 360 Strategy",
+    "featuredImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f1", "title": "Omni-Channel Strategy", "description": "Unified brand messaging across all digital touchpoints.", "sortOrder": 1 },
-      { "id": "f2", "title": "Data Attribution", "description": "Precision tracking of multi-touch user journeys.", "sortOrder": 2 }
+      {
+        "id": "f-digital-360-1",
+        "title": "Tailored Preposition",
+        "description": "Every full-service package is tailored to your specific business goals, budget, and market. We don't believe in one-size-fits-all solutions — your package is built around what will drive the most meaningful impact for your organisation.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-digital-360-2",
+        "title": "Audit, Strategy & Plan",
+        "description": "We audit your competitor space and past web analytics to establish a robust tactical roadmap with clear objectives, key performance indicators (KPIs), and target milestones.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-digital-360-3",
+        "title": "Structure The Brand",
+        "description": "We craft and standardize visual assets, branding systems, key messages, and design guidelines to ensure your company communicates trust and consistency across all media channels.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-digital-360-4",
+        "title": "Ready For Marketing",
+        "description": "From technical conversion triggers to campaign launch assets, we align search, social, and web optimization frameworks so your marketing starts driving sales instantly.",
+        "sortOrder": 4
+      }
     ],
-    "metrics": [{ "value": "+240%", "label": "Revenue Uplift" }, { "value": "4.8x", "label": "Average ROAS" }],
-    "seo": { "metaTitle": "Digital 360 Strategy | KR Tasker Digital", "metaDescription": "Omni-channel marketing campaigns that scale digital brand presence and conversions.", "h1": "Digital 360 Growth Engine", "focusKeyword": "digital 360 agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "+240%",
+        "label": "Revenue Uplift"
+      },
+      {
+        "value": "4.8x",
+        "label": "Average ROAS"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Digital 360 Strategy | KR Tasker Digital",
+      "metaDescription": "Omni-channel marketing campaigns that scale digital brand presence and conversions.",
+      "h1": "Full Service Digital Marketing Package For Small And Large Businesses.",
+      "focusKeyword": "digital 360 agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.482Z"
   },
   {
     "id": "srv-seo",
-    "name": "SEO & Organic Growth",
+    "name": "SEO",
     "slug": "seo",
     "status": "published",
     "sortOrder": 2,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "Technical SEO & Data-Driven Search Authority",
-    "heroDescription": "Engineered search presence with dynamic sitemaps, structured schema, canonical controls, and page speed optimization.",
+    "eyebrow": "SEO",
+    "heroHeading": "Data-Driven SEO Growth That Drives Revenue.",
+    "heroDescription": "Attract, engage, and convert high-intent customers from Google using performance search engine strategies.",
     "heroCtaText": "Start SEO Audit",
+    "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f3", "title": "Technical SEO Auditing", "description": "Comprehensive crawls identifying indexing and link issues.", "sortOrder": 1 },
-      { "id": "f4", "title": "High-Intent Keyword Dominance", "description": "Strategic ranking for commercial and transactional search terms.", "sortOrder": 2 }
+      {
+        "id": "f-seo-1",
+        "title": "Technical SEO Audits",
+        "description": "In-depth analysis to find and fix crawl errors, indexing bottlenecks, and site speed issues affecting your rankings.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-seo-2",
+        "title": "Keyword Research & Competitor Analysis",
+        "description": "Deep dive into high-intent search queries and competitor gap analysis to pinpoint high-value traffic opportunities.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-seo-3",
+        "title": "On-Page Optimization",
+        "description": "Fine-tuning of meta tags, headers, URL structures, internal links, and content quality to maximize search relevance.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-seo-4",
+        "title": "High Quality Link Building",
+        "description": "Acquiring authoritative, contextually relevant backlinks through secure blogger outreach and digital PR campaign assets.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-seo-5",
+        "title": "Local & Maps Optimization",
+        "description": "Enhancing Google Business Profile ranking and directory syncs to capture map clicks and local commercial intent.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-seo-6",
+        "title": "SEO Analytics & Monthly Reporting",
+        "description": "Clear dashboard views tracking click share, visibility, ranking increases, and bottom-line organic conversion goals.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "+180%", "label": "Organic Traffic Growth" }, { "value": "#1", "label": "Target Keyword Rankings" }],
-    "seo": { "metaTitle": "SEO & Technical Search Growth | KR Tasker Digital", "metaDescription": "Data-driven technical SEO, meta data management, and structured data execution.", "h1": "SEO & Organic Search Engine", "focusKeyword": "technical SEO agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "+180%",
+        "label": "Organic Traffic Growth"
+      },
+      {
+        "value": "#1",
+        "label": "Target Keyword Rankings"
+      }
+    ],
+    "seo": {
+      "metaTitle": "SEO & Technical Search Growth | KR Tasker Digital",
+      "metaDescription": "Data-driven technical SEO, meta data management, and structured data execution.",
+      "h1": "Data-Driven SEO Growth That Drives Revenue.",
+      "focusKeyword": "technical SEO agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.483Z"
   },
   {
     "id": "srv-ppc",
-    "name": "PPC & Paid Search",
+    "name": "PPC Advertising",
     "slug": "ppc",
     "status": "published",
     "sortOrder": 3,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "High-Converting Google, Meta & LinkedIn Ad Campaigns",
-    "heroDescription": "Performance advertising engineered to capture high-intent buyers and maximize Return on Ad Spend.",
+    "eyebrow": "PPC Advertising",
+    "heroHeading": "High-Converting PPC Advertising Campaigns.",
+    "heroDescription": "Capture immediate commercial intent, generate instant leads, and scale ecommerce sales with paid acquisition.",
     "heroCtaText": "Launch Paid Ads",
+    "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f5", "title": "Precision Audience Targeting", "description": "Granular persona bidding and lookalike modeling.", "sortOrder": 1 },
-      { "id": "f6", "title": "Landing Page Optimization", "description": "A/B tested conversion flows built for maximum ROI.", "sortOrder": 2 }
+      {
+        "id": "f-ppc-1",
+        "title": "Google Search & Display Ads",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Google Search & Display Ads to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-ppc-2",
+        "title": "Meta (Facebook & Instagram) Advertising",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Meta (Facebook & Instagram) Advertising to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-ppc-3",
+        "title": "LinkedIn B2B Campaigns",
+        "description": "Professional, end-to-end strategy, execution, and optimization for LinkedIn B2B Campaigns to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-ppc-4",
+        "title": "Dynamic Remarketing & Retargeting",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Dynamic Remarketing & Retargeting to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-ppc-5",
+        "title": "A/B Testing & Ad Copywriting",
+        "description": "Professional, end-to-end strategy, execution, and optimization for A/B Testing & Ad Copywriting to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-ppc-6",
+        "title": "Budget Management & Custom Analytics",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Budget Management & Custom Analytics to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "5.2x", "label": "Target ROAS" }, { "value": "-35%", "label": "Cost Per Acquisition" }],
-    "seo": { "metaTitle": "PPC & Paid Advertising Agency | KR Tasker Digital", "metaDescription": "Targeted paid advertising on Google Ads, Meta, and LinkedIn that drives revenue.", "h1": "PPC & Paid Search Advertising", "focusKeyword": "PPC advertising agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "5.2x",
+        "label": "Target ROAS"
+      },
+      {
+        "value": "-35%",
+        "label": "Cost Per Acquisition"
+      }
+    ],
+    "seo": {
+      "metaTitle": "PPC & Paid Advertising Agency | KR Tasker Digital",
+      "metaDescription": "Targeted paid advertising on Google Ads, Meta, and LinkedIn that drives revenue.",
+      "h1": "High-Converting PPC Advertising Campaigns.",
+      "focusKeyword": "PPC advertising agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.483Z"
   },
   {
     "id": "srv-social-media",
-    "name": "Social Media Marketing",
+    "name": "Social Media",
     "slug": "social-media",
     "status": "published",
     "sortOrder": 4,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "Organic & Paid Social Campaigns That Build Brand Loyalty",
-    "heroDescription": "Compelling visual storytelling and targeted distribution across TikTok, Instagram, and LinkedIn.",
+    "eyebrow": "Social Media",
+    "heroHeading": "Engaging Social Media Campaigns That Spark Action.",
+    "heroDescription": "Build brand authority, grow your organic audience, and foster customer loyalty across all social networks.",
     "heroCtaText": "Grow Social Reach",
+    "featuredImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f7", "title": "Creative Asset Production", "description": "Short-form video, motion graphics, and editorial copy.", "sortOrder": 1 }
+      {
+        "id": "f-social-media-1",
+        "title": "Social Media Audits & Strategy",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Social Media Audits & Strategy to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-social-media-2",
+        "title": "Content Creation & Videography",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Content Creation & Videography to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-social-media-3",
+        "title": "Multi-Channel Account Management",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Multi-Channel Account Management to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-social-media-4",
+        "title": "Influencer & Digital PR Strategy",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Influencer & Digital PR Strategy to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-social-media-5",
+        "title": "Community Moderation & Engagement",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Community Moderation & Engagement to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-social-media-6",
+        "title": "Social Analytics & Reporting",
+        "description": "Key metrics monitoring including click-throughs, engagement, follower growth, and social-referred traffic.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "3.5M+", "label": "Social Impressions" }, { "value": "+95%", "label": "Engagement Rate" }],
-    "seo": { "metaTitle": "Social Media Marketing Agency | KR Tasker Digital", "metaDescription": "Strategic social media management and high-impact campaigns that drive audience action.", "h1": "Social Media Marketing", "focusKeyword": "social media marketing agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "3.5M+",
+        "label": "Social Impressions"
+      },
+      {
+        "value": "+95%",
+        "label": "Engagement Rate"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Social Media Marketing Agency | KR Tasker Digital",
+      "metaDescription": "Strategic social media management and high-impact campaigns that drive audience action.",
+      "h1": "Engaging Social Media Campaigns That Spark Action.",
+      "focusKeyword": "social media marketing agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.483Z"
   },
   {
     "id": "srv-email-marketing",
@@ -76,33 +269,137 @@
     "slug": "email-marketing",
     "status": "published",
     "sortOrder": 5,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "Lifecycle Automation & Retention Email Campaigns",
-    "heroDescription": "Segmented flows and personalized messaging that turn one-time buyers into loyal brand advocates.",
+    "eyebrow": "Email Marketing",
+    "heroHeading": "High-ROI Email Flows That Re-engage Readers.",
+    "heroDescription": "Automate customer journeys, segment audiences, and trigger highly personalized emails.",
     "heroCtaText": "Automate Emails",
+    "featuredImage": "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f8", "title": "Klaviyo & Mailchimp Flows", "description": "Automated cart abandonment, welcome series, and win-back flows.", "sortOrder": 1 }
+      {
+        "id": "f-email-marketing-1",
+        "title": "Email Flow Automation",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Email Flow Automation to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-email-marketing-2",
+        "title": "Newsletter Campaigns",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Newsletter Campaigns to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-email-marketing-3",
+        "title": "List Growth & Segmentation",
+        "description": "Professional, end-to-end strategy, execution, and optimization for List Growth & Segmentation to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-email-marketing-4",
+        "title": "A/B Testing",
+        "description": "Professional, end-to-end strategy, execution, and optimization for A/B Testing to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-email-marketing-5",
+        "title": "Deliverability Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Deliverability Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-email-marketing-6",
+        "title": "Analytical Reporting",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Analytical Reporting to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "42%", "label": "Average Open Rate" }, { "value": "+130%", "label": "Email Attributed Revenue" }],
-    "seo": { "metaTitle": "Email Marketing & Automation | KR Tasker Digital", "metaDescription": "Bespoke email marketing funnels and automation strategies for sustained customer retention.", "h1": "Email Marketing & Lifecycle Automation", "focusKeyword": "email marketing agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "42%",
+        "label": "Average Open Rate"
+      },
+      {
+        "value": "+130%",
+        "label": "Email Attributed Revenue"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Email Marketing & Automation | KR Tasker Digital",
+      "metaDescription": "Bespoke email marketing funnels and automation strategies for sustained customer retention.",
+      "h1": "High-ROI Email Flows That Re-engage Readers.",
+      "focusKeyword": "email marketing agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-marketing",
-    "name": "Marketing Strategy",
+    "name": "Marketing",
     "slug": "marketing",
     "status": "published",
     "sortOrder": 6,
-    "eyebrow": "Digital Marketing",
-    "heroHeading": "Full-Funnel Market Positioning & Growth Roadmaps",
-    "heroDescription": "Evidence-based strategic planning designed to outposition competitors and scale enterprise revenue.",
+    "eyebrow": "Marketing",
+    "heroHeading": "Full-Funnel Marketing That Drives Real Growth.",
+    "heroDescription": "Integrate search, social, and creative strategy to scale your presence and customer base.",
     "heroCtaText": "Book Strategy Session",
+    "featuredImage": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f9", "title": "Competitor Benchmarking", "description": "Deep-dive analysis of market share and positioning opportunities.", "sortOrder": 1 }
+      {
+        "id": "f-marketing-1",
+        "title": "Market Strategy",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Market Strategy to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-marketing-2",
+        "title": "Brand Positioning",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Brand Positioning to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-marketing-3",
+        "title": "Campaign Management",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Campaign Management to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-marketing-4",
+        "title": "Multi-Channel Audits",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Multi-Channel Audits to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-marketing-5",
+        "title": "Competitor Research",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Competitor Research to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-marketing-6",
+        "title": "Conversion Rate Optimization (CRO)",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Conversion Rate Optimization (CRO) to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "100%", "label": "Bespoke Execution" }, { "value": "10x", "label": "Growth Velocity" }],
-    "seo": { "metaTitle": "Marketing Strategy Advisory | KR Tasker Digital", "metaDescription": "Strategic marketing blueprints and executive growth roadmaps for scale-ups.", "h1": "Marketing Strategy & Brand Advisory", "focusKeyword": "marketing strategy agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "100%",
+        "label": "Bespoke Execution"
+      },
+      {
+        "value": "10x",
+        "label": "Growth Velocity"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Marketing Strategy Advisory | KR Tasker Digital",
+      "metaDescription": "Strategic marketing blueprints and executive growth roadmaps for scale-ups.",
+      "h1": "Full-Funnel Marketing That Drives Real Growth.",
+      "focusKeyword": "marketing strategy agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-web-development",
@@ -110,16 +407,68 @@
     "slug": "web-development",
     "status": "published",
     "sortOrder": 7,
-    "eyebrow": "Websites & Apps",
-    "heroHeading": "High-Performance Next.js & Headless Web Platforms",
-    "heroDescription": "Ultra-fast, modular web applications built with TypeScript, modern CSS, and headless architectures.",
+    "eyebrow": "Web Development",
+    "heroHeading": "High-Performance Web Dev For Growth Brands.",
+    "heroDescription": "Fast, accessible, and conversion-optimized websites designed to achieve business goals.",
     "heroCtaText": "Build Your Platform",
+    "featuredImage": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f10", "title": "Next.js App Architecture", "description": "Server components, instant rendering, and enterprise scalability.", "sortOrder": 1 }
+      {
+        "id": "f-web-development-1",
+        "title": "Custom Web Apps",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Custom Web Apps to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-web-development-2",
+        "title": "Responsive Websites",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Responsive Websites to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-web-development-3",
+        "title": "WordPress & Webflow Dev",
+        "description": "Professional, end-to-end strategy, execution, and optimization for WordPress & Webflow Dev to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-web-development-4",
+        "title": "Headless Commerce",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Headless Commerce to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-web-development-5",
+        "title": "Performance Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Performance Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-web-development-6",
+        "title": "API Integrations",
+        "description": "Secure connection of CRM systems, ERP dashboards, and external APIs to automate business workflows.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "99/100", "label": "Lighthouse Score" }, { "value": "<150ms", "label": "Response Time" }],
-    "seo": { "metaTitle": "Next.js Web Development Agency | KR Tasker Digital", "metaDescription": "Custom web development using Next.js, headless CMS, and modern web standards.", "h1": "Web Development & Engineering", "focusKeyword": "Next.js web development", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "99/100",
+        "label": "Lighthouse Score"
+      },
+      {
+        "value": "<150ms",
+        "label": "Response Time"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Next.js Web Development Agency | KR Tasker Digital",
+      "metaDescription": "Custom web development using Next.js, headless CMS, and modern web standards.",
+      "h1": "High-Performance Web Dev For Growth Brands.",
+      "focusKeyword": "Next.js web development",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-shopify-development",
@@ -127,16 +476,68 @@
     "slug": "shopify-development",
     "status": "published",
     "sortOrder": 8,
-    "eyebrow": "Websites & Apps",
-    "heroHeading": "Custom Shopify Plus Stores Engineered for High Conversions",
-    "heroDescription": "Bespoke theme engineering, checkout customizations, and ERP integrations that scale DTC revenue.",
+    "eyebrow": "Shopify Development",
+    "heroHeading": "Custom Shopify Solutions Built to Scale.",
+    "heroDescription": "Leverage the full power of Shopify to launch, manage, and scale your e-commerce store.",
     "heroCtaText": "Scale Your Store",
+    "featuredImage": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f11", "title": "Shopify Plus Architecture", "description": "Custom Liquid & Hydrogen headless e-commerce builds.", "sortOrder": 1 }
+      {
+        "id": "f-shopify-development-1",
+        "title": "Shopify Custom Themes",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Shopify Custom Themes to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-shopify-development-2",
+        "title": "Custom App Development",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Custom App Development to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-shopify-development-3",
+        "title": "Payment & Shipping Setup",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Payment & Shipping Setup to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-shopify-development-4",
+        "title": "Data Migration",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Data Migration to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-shopify-development-5",
+        "title": "Speed Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Speed Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-shopify-development-6",
+        "title": "Conversion Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Conversion Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "+68%", "label": "Checkout Conversion" }, { "value": "<1.2s", "label": "Store Load Speed" }],
-    "seo": { "metaTitle": "Shopify & E-Commerce Development | KR Tasker Digital", "metaDescription": "Custom Shopify themes and headless e-commerce solutions that maximize sales volume.", "h1": "Shopify & E-Commerce Development", "focusKeyword": "Shopify development agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "+68%",
+        "label": "Checkout Conversion"
+      },
+      {
+        "value": "<1.2s",
+        "label": "Store Load Speed"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Shopify & E-Commerce Development | KR Tasker Digital",
+      "metaDescription": "Custom Shopify themes and headless e-commerce solutions that maximize sales volume.",
+      "h1": "Custom Shopify Solutions Built to Scale.",
+      "focusKeyword": "Shopify development agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-websites-apps",
@@ -145,32 +546,136 @@
     "status": "published",
     "sortOrder": 9,
     "eyebrow": "Websites & Apps",
-    "heroHeading": "Bespoke Web Applications & Client Portals",
-    "heroDescription": "Scalable web applications, customer portals, and internal tools built for frictionless user experiences.",
+    "heroHeading": "Bespoke Websites & Apps Built To Convert.",
+    "heroDescription": "We combine industry-leading UI/UX design with custom engineering to build high-performance digital products.",
     "heroCtaText": "Consult Engineers",
+    "featuredImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f12", "title": "Cloud-Native Infrastructure", "description": "Secure API endpoints, real-time databases, and responsive UI.", "sortOrder": 1 }
+      {
+        "id": "f-websites-apps-1",
+        "title": "Custom UI/UX Design",
+        "description": "Bespoke wireframes, high-fidelity layouts, and brand systems centered around user journey, brand alignment, and click conversion.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-websites-apps-2",
+        "title": "Responsive Web Development",
+        "description": "Stunning, fluid websites coded using clean practices that look and load beautifully on desktop, mobile, and tablet screens.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-websites-apps-3",
+        "title": "Next.js & React Applications",
+        "description": "High-performance headless applications prioritizing instant page loads, smooth client states, and future-proof code.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-websites-apps-4",
+        "title": "iOS & Android Mobile Apps",
+        "description": "Feature-rich cross-platform or native app creations keeping your users connected and engaged directly from their devices.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-websites-apps-5",
+        "title": "E-commerce Platforms",
+        "description": "Scalable checkout ecosystems integrated with popular payment gateways, inventory syncs, and conversion-funnel optimization.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-websites-apps-6",
+        "title": "WordPress & Custom CMS",
+        "description": "Flexible, lightweight visual editors permitting your team to instantly edit text, post blogs, and update assets without coding.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "99.99%", "label": "Uptime Guarantee" }, { "value": "Zero", "label": "Technical Debt" }],
-    "seo": { "metaTitle": "Custom Web Applications & Software | KR Tasker Digital", "metaDescription": "Enterprise web applications, SaaS dashboards, and portal development.", "h1": "Websites & Web Applications", "focusKeyword": "web app development", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "99.99%",
+        "label": "Uptime Guarantee"
+      },
+      {
+        "value": "Zero",
+        "label": "Technical Debt"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Custom Web Applications & Software | KR Tasker Digital",
+      "metaDescription": "Enterprise web applications, SaaS dashboards, and portal development.",
+      "h1": "Bespoke Websites & Apps Built To Convert.",
+      "focusKeyword": "web app development",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-branding",
-    "name": "Branding & Identity",
+    "name": "Branding",
     "slug": "branding",
     "status": "published",
     "sortOrder": 10,
-    "eyebrow": "Websites & Apps",
-    "heroHeading": "Memorable Brand Identities & Design Systems",
-    "heroDescription": "Visual design systems, typography guidelines, and brand assets that establish enduring market authority.",
+    "eyebrow": "Branding",
+    "heroHeading": "Identity & Branding Systems That Define.",
+    "heroDescription": "We help companies articulate their purpose, stand out visually, and build deep emotional trust with users.",
     "heroCtaText": "Craft Your Brand",
+    "featuredImage": "https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f13", "title": "Comprehensive Brand Guidelines", "description": "Logomarks, color tokens, typography scales, and iconography.", "sortOrder": 1 }
+      {
+        "id": "f-branding-1",
+        "title": "Logo & Brand Mark Design",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Logo & Brand Mark Design to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-branding-2",
+        "title": "Corporate Visual Identity Systems",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Corporate Visual Identity Systems to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-branding-3",
+        "title": "Palette & Typography System Design",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Palette & Typography System Design to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-branding-4",
+        "title": "Brand Guidelines & Style books",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Brand Guidelines & Style books to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-branding-5",
+        "title": "Product Packaging Design",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Product Packaging Design to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-branding-6",
+        "title": "Brand Copywriting & Verbal Guidelines",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Brand Copywriting & Verbal Guidelines to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "100%", "label": "Vector Precision" }, { "value": "30+", "label": "Design Artifacts" }],
-    "seo": { "metaTitle": "Brand Identity & Graphic Design | KR Tasker Digital", "metaDescription": "Visual identity design, logos, and comprehensive brand guidelines for leaders.", "h1": "Branding & Visual Identity", "focusKeyword": "branding agency london", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "100%",
+        "label": "Vector Precision"
+      },
+      {
+        "value": "30+",
+        "label": "Design Artifacts"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Brand Identity & Graphic Design | KR Tasker Digital",
+      "metaDescription": "Visual identity design, logos, and comprehensive brand guidelines for leaders.",
+      "h1": "Identity & Branding Systems That Define.",
+      "focusKeyword": "branding agency london",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-graphic-design",
@@ -178,16 +683,68 @@
     "slug": "graphic-design",
     "status": "published",
     "sortOrder": 11,
-    "eyebrow": "Websites & Apps",
-    "heroHeading": "High-Impact Visual Assets & Marketing Collateral",
-    "heroDescription": "Digital and print graphics crafted to captivate audiences and reinforce brand authority.",
+    "eyebrow": "Graphic Design",
+    "heroHeading": "Stunning Visuals That Define Brand Identity.",
+    "heroDescription": "Create powerful brand impressions with custom graphics, professional layouts, and modern aesthetics.",
     "heroCtaText": "Get Creative Assets",
+    "featuredImage": "https://images.unsplash.com/photo-1541462608143-67571c6738dd?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f14", "title": "Marketing Creatives", "description": "Social banners, presentation decks, infographics, and brochures.", "sortOrder": 1 }
+      {
+        "id": "f-graphic-design-1",
+        "title": "Brand Identity & Logos",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Brand Identity & Logos to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-graphic-design-2",
+        "title": "Marketing Collateral",
+        "description": "High-end brochures, flyers, pitch decks, and print materials built to command attention during sales cycles.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-graphic-design-3",
+        "title": "UI/UX Web Design",
+        "description": "Professional, end-to-end strategy, execution, and optimization for UI/UX Web Design to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-graphic-design-4",
+        "title": "Digital Banners & Ads",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Digital Banners & Ads to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-graphic-design-5",
+        "title": "Social Media Visuals",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Social Media Visuals to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-graphic-design-6",
+        "title": "Vector Assets",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Vector Assets to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "24h", "label": "Turnaround Speed" }, { "value": "4K", "label": "Asset Resolution" }],
-    "seo": { "metaTitle": "Graphic Design & Digital Collateral | KR Tasker Digital", "metaDescription": "Professional graphic design services for digital campaigns, print, and branding.", "h1": "Graphic Design & Creatives", "focusKeyword": "graphic design agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "24h",
+        "label": "Turnaround Speed"
+      },
+      {
+        "value": "4K",
+        "label": "Asset Resolution"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Graphic Design & Digital Collateral | KR Tasker Digital",
+      "metaDescription": "Professional graphic design services for digital campaigns, print, and branding.",
+      "h1": "Stunning Visuals That Define Brand Identity.",
+      "focusKeyword": "graphic design agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-amazon-ebay",
@@ -195,16 +752,68 @@
     "slug": "amazon-ebay",
     "status": "published",
     "sortOrder": 12,
-    "eyebrow": "Websites & Apps",
-    "heroHeading": "Marketplace Store Setup, A+ Content & Scaling",
-    "heroDescription": "Comprehensive Amazon Seller Central and eBay store management with optimized listing conversions.",
+    "eyebrow": "Amazon & eBay",
+    "heroHeading": "Dominate Marketplaces With Direct SEO & PPC.",
+    "heroDescription": "Maximize organic visibility, optimize product descriptions, and run highly profitable PPC ads.",
     "heroCtaText": "Scale Marketplace",
+    "featuredImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f15", "title": "Amazon A+ Content", "description": "Brand storefronts, enhanced brand content, and keyword ranking.", "sortOrder": 1 }
+      {
+        "id": "f-amazon-ebay-1",
+        "title": "Amazon Seller Setup",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Amazon Seller Setup to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-amazon-ebay-2",
+        "title": "eBay Store Design",
+        "description": "Professional, end-to-end strategy, execution, and optimization for eBay Store Design to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-amazon-ebay-3",
+        "title": "PPC Campaign Management",
+        "description": "Professional, end-to-end strategy, execution, and optimization for PPC Campaign Management to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-amazon-ebay-4",
+        "title": "Product Detail Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Product Detail Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-amazon-ebay-5",
+        "title": "Multi-channel Sync",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Multi-channel Sync to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-amazon-ebay-6",
+        "title": "Customer Feedback Management",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Customer Feedback Management to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "+110%", "label": "Marketplace Sales" }, { "value": "Top 1%", "label": "Listing Quality" }],
-    "seo": { "metaTitle": "Amazon & eBay Marketplace Management | KR Tasker Digital", "metaDescription": "Marketplace management, Amazon SEO, eBay store optimization, and A+ content.", "h1": "Amazon & eBay Marketplace Scaling", "focusKeyword": "amazon marketplace management", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "+110%",
+        "label": "Marketplace Sales"
+      },
+      {
+        "value": "Top 1%",
+        "label": "Listing Quality"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Amazon & eBay Marketplace Management | KR Tasker Digital",
+      "metaDescription": "Marketplace management, Amazon SEO, eBay store optimization, and A+ content.",
+      "h1": "Dominate Marketplaces With Direct SEO & PPC.",
+      "focusKeyword": "amazon marketplace management",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-ai-solutions",
@@ -212,16 +821,68 @@
     "slug": "ai-solutions",
     "status": "published",
     "sortOrder": 13,
-    "eyebrow": "AI & Automation",
-    "heroHeading": "Enterprise AI Integrations & Custom Intelligent Agents",
-    "heroDescription": "Deploy custom LLMs, automated reasoning agents, and semantic search into your business stack.",
+    "eyebrow": "AI Solutions",
+    "heroHeading": "Intelligent AI Solutions To Automate & Scale.",
+    "heroDescription": "Unlock enterprise efficiencies and automate repetitive operations with cognitive artificial intelligence.",
     "heroCtaText": "Deploy AI Solutions",
+    "featuredImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f16", "title": "Custom LLM Integrations", "description": "Fine-tuned models and private semantic retrieval engines.", "sortOrder": 1 }
+      {
+        "id": "f-ai-solutions-1",
+        "title": "Custom LLM Chatbots",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Custom LLM Chatbots to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-ai-solutions-2",
+        "title": "Workflow & Process Automation",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Workflow & Process Automation to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-ai-solutions-3",
+        "title": "Predictive Data Analytics",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Predictive Data Analytics to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-ai-solutions-4",
+        "title": "Cognitive AI Agent Networks",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Cognitive AI Agent Networks to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-ai-solutions-5",
+        "title": "Document & Data Extraction AI",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Document & Data Extraction AI to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-ai-solutions-6",
+        "title": "Enterprise AI Strategy",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Enterprise AI Strategy to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "85%", "label": "Task Automation" }, { "value": "10x", "label": "Data Processing" }],
-    "seo": { "metaTitle": "AI Solutions & Enterprise Agents | KR Tasker Digital", "metaDescription": "Custom AI integrations, intelligent agents, and machine learning solutions.", "h1": "AI Solutions & Enterprise Intelligence", "focusKeyword": "AI solutions agency", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "85%",
+        "label": "Task Automation"
+      },
+      {
+        "value": "10x",
+        "label": "Data Processing"
+      }
+    ],
+    "seo": {
+      "metaTitle": "AI Solutions & Enterprise Agents | KR Tasker Digital",
+      "metaDescription": "Custom AI integrations, intelligent agents, and machine learning solutions.",
+      "h1": "Intelligent AI Solutions To Automate & Scale.",
+      "focusKeyword": "AI solutions agency",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-ai-automation",
@@ -229,16 +890,68 @@
     "slug": "ai-automation",
     "status": "published",
     "sortOrder": 14,
-    "eyebrow": "AI & Automation",
-    "heroHeading": "End-to-End Workflow & Business Process Automation",
-    "heroDescription": "Eliminate repetitive manual operations with intelligent webhook pipelines and autonomous workflows.",
+    "eyebrow": "AI Automation",
+    "heroHeading": "Intelligent AI Systems That Free Up Focus.",
+    "heroDescription": "Leverage custom artificial intelligence to automate repetitive tasks and optimize workflows.",
     "heroCtaText": "Automate Operations",
+    "featuredImage": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f17", "title": "CRM & ERP Automation", "description": "Real-time sync and automated pipeline progression.", "sortOrder": 1 }
+      {
+        "id": "f-ai-automation-1",
+        "title": "Process Automation",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Process Automation to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-ai-automation-2",
+        "title": "Custom Chatbots",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Custom Chatbots to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-ai-automation-3",
+        "title": "AI Agents & Integrations",
+        "description": "Professional, end-to-end strategy, execution, and optimization for AI Agents & Integrations to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-ai-automation-4",
+        "title": "Data Extraction & Analysis",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Data Extraction & Analysis to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-ai-automation-5",
+        "title": "OpenAI API Custom Tooling",
+        "description": "Professional, end-to-end strategy, execution, and optimization for OpenAI API Custom Tooling to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-ai-automation-6",
+        "title": "Workflow Efficiency Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Workflow Efficiency Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "-60%", "label": "Operational Overhead" }, { "value": "24/7", "label": "Automated Execution" }],
-    "seo": { "metaTitle": "AI Automation & Workflow Engineering | KR Tasker Digital", "metaDescription": "Intelligent business process automation and operational pipeline engineering.", "h1": "AI Automation & Operations", "focusKeyword": "AI automation services", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "-60%",
+        "label": "Operational Overhead"
+      },
+      {
+        "value": "24/7",
+        "label": "Automated Execution"
+      }
+    ],
+    "seo": {
+      "metaTitle": "AI Automation & Workflow Engineering | KR Tasker Digital",
+      "metaDescription": "Intelligent business process automation and operational pipeline engineering.",
+      "h1": "Intelligent AI Systems That Free Up Focus.",
+      "focusKeyword": "AI automation services",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.484Z"
   },
   {
     "id": "srv-business-consultancy",
@@ -246,15 +959,142 @@
     "slug": "business-consultancy",
     "status": "published",
     "sortOrder": 15,
-    "eyebrow": "AI & Automation",
-    "heroHeading": "Strategic Scaling, Digital Transformation & Advisory",
-    "heroDescription": "Executive consulting to align technology investments with scalable revenue growth.",
+    "eyebrow": "Business Consultancy",
+    "heroHeading": "Strategic Consultancy That Powers Business.",
+    "heroDescription": "Navigate growth, optimize operations, and achieve long-term success with expert guidance.",
     "heroCtaText": "Schedule Advisory",
+    "featuredImage": "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=600&auto=format&fit=crop",
     "features": [
-      { "id": "f18", "title": "Digital Transformation Roadmap", "description": "Technology stack audit and modernization plan.", "sortOrder": 1 }
+      {
+        "id": "f-business-consultancy-1",
+        "title": "Market Research & Analysis",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Market Research & Analysis to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-business-consultancy-2",
+        "title": "Growth Strategy Planning",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Growth Strategy Planning to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-business-consultancy-3",
+        "title": "Financial Forecasting",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Financial Forecasting to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-business-consultancy-4",
+        "title": "Process Optimization",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Process Optimization to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-business-consultancy-5",
+        "title": "Operations Improvement",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Operations Improvement to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-business-consultancy-6",
+        "title": "Risk Management",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Risk Management to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      }
     ],
-    "metrics": [{ "value": "+150%", "label": "Enterprise Value" }, { "value": "100%", "label": "Strategic Alignment" }],
-    "seo": { "metaTitle": "Business Consultancy & Tech Advisory | KR Tasker Digital", "metaDescription": "Strategic digital transformation and enterprise advisory for high-growth businesses.", "h1": "Business Consultancy & Advisory", "focusKeyword": "business consultancy london", "indexStatus": "index", "followStatus": "follow" },
-    "updatedAt": "2026-08-27T10:00:00.000Z"
+    "metrics": [
+      {
+        "value": "+150%",
+        "label": "Enterprise Value"
+      },
+      {
+        "value": "100%",
+        "label": "Strategic Alignment"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Business Consultancy & Tech Advisory | KR Tasker Digital",
+      "metaDescription": "Strategic digital transformation and enterprise advisory for high-growth businesses.",
+      "h1": "Strategic Consultancy That Powers Business.",
+      "focusKeyword": "business consultancy london",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.485Z"
+  },
+  {
+    "id": "srv-digital-marketing",
+    "name": "Digital Marketing",
+    "slug": "digital-marketing",
+    "status": "published",
+    "sortOrder": 16,
+    "eyebrow": "Digital Marketing",
+    "heroHeading": "A Digital Marketing Agency In UK.",
+    "heroDescription": "Here at KR Tasker Digital, we offer honest advice, industry experience, and a great portfolio of work.",
+    "heroCtaText": "Start a Project",
+    "featuredImage": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop",
+    "features": [
+      {
+        "id": "f-digital-marketing-1",
+        "title": "Digital 360",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Digital 360 to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 1
+      },
+      {
+        "id": "f-digital-marketing-2",
+        "title": "SEO",
+        "description": "Professional, end-to-end strategy, execution, and optimization for SEO to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 2
+      },
+      {
+        "id": "f-digital-marketing-3",
+        "title": "PPC",
+        "description": "Professional, end-to-end strategy, execution, and optimization for PPC to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 3
+      },
+      {
+        "id": "f-digital-marketing-4",
+        "title": "Social Media Marketing",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Social Media Marketing to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 4
+      },
+      {
+        "id": "f-digital-marketing-5",
+        "title": "Google Ads",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Google Ads to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 5
+      },
+      {
+        "id": "f-digital-marketing-6",
+        "title": "Email Marketing",
+        "description": "Professional, end-to-end strategy, execution, and optimization for Email Marketing to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 6
+      },
+      {
+        "id": "f-digital-marketing-7",
+        "title": "CRO",
+        "description": "Professional, end-to-end strategy, execution, and optimization for CRO to maximize conversions, build brand authority, and accelerate customer growth.",
+        "sortOrder": 7
+      }
+    ],
+    "metrics": [
+      {
+        "value": "99%",
+        "label": "Client Satisfaction"
+      },
+      {
+        "value": "5.0 / 5.0",
+        "label": "Average Rating"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Digital Marketing | KR Tasker Digital",
+      "metaDescription": "Here at KR Tasker Digital, we offer honest advice, industry experience, and a great portfolio of work.",
+      "h1": "A Digital Marketing Agency In UK.",
+      "focusKeyword": "Digital Marketing",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-08-29T10:51:27.485Z"
   }
 ]

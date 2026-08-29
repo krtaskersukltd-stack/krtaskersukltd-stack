@@ -82,6 +82,7 @@ export interface ServiceRecord {
   heroCtaText?: string
   introHeading?: string
   introContent?: string
+  featuredImage?: string
   features: ServiceFeature[]
   metrics: ServiceMetric[]
   seo: PageSEO

@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import styles from './80%-client.module.css'
 
 export default function ClientSatisfaction() {

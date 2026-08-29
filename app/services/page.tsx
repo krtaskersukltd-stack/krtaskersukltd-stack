@@ -11,23 +11,41 @@ import ProcessSection from '@/components/ProcessSection'
 import FaqSection from '@/components/FaqSection'
 import styles from './ServicesPage.module.css'
 
-const capabilities = [
+import { useState, useEffect } from 'react'
+
+const DEFAULT_CAPABILITIES = [
   { label: 'Digital 360', href: '/services/digital-360', featured: true },
-  { label: 'SEO', href: '/services/seo' },
-  { label: 'PPC', href: '/services/ppc' },
-  { label: 'Social Media Marketing', href: '/services/social-media' },
-  { label: 'Google Ads', href: '/services/marketing' },
-  { label: 'Email Marketing', href: '/services/email-marketing' },
-  { label: 'CRO', href: '/services/digital-marketing' },
+  { label: 'SEO', href: '/services/seo', featured: false },
+  { label: 'PPC', href: '/services/ppc', featured: false },
+  { label: 'Social Media Marketing', href: '/services/social-media', featured: false },
+  { label: 'Google Ads', href: '/services/marketing', featured: false },
+  { label: 'Email Marketing', href: '/services/email-marketing', featured: false },
+  { label: 'Web Development', href: '/services/web-development', featured: false },
+  { label: 'Shopify Development', href: '/services/shopify-development', featured: false },
 ]
 
 export default function ServicesPage() {
-  const scrollToContact = () => {
-    document.getElementById('contact-form')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
+  const [capabilities, setCapabilities] = useState(DEFAULT_CAPABILITIES)
+
+  useEffect(() => {
+    fetch('/api/cms/services')
+      .then((res) => res.json())
+      .then((data: any[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCapabilities(
+            data
+              .filter((s) => s.status === 'published')
+              .slice(0, 10)
+              .map((s, idx) => ({
+                label: s.name,
+                href: `/services/${s.slug.replace(/^\/services\//, '').replace(/^\//, '')}`,
+                featured: idx === 0,
+              }))
+          )
+        }
+      })
+      .catch(() => {})
+  }, [])
 
   return (
     <main className={styles.page}>

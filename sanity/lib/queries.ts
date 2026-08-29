@@ -15,6 +15,7 @@ export const SERVICES_QUERY = groq`
     heroCtaText,
     introHeading,
     introContent,
+    "featuredImage": featuredImage.asset->url,
     features[] {
       id,
       title,
@@ -51,6 +52,7 @@ export const SERVICE_BY_SLUG_QUERY = groq`
     heroCtaText,
     introHeading,
     introContent,
+    "featuredImage": featuredImage.asset->url,
     features[] {
       id,
       title,

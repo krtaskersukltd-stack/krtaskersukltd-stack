@@ -178,6 +178,9 @@ function initTables(db: DatabaseSync) {
   try {
     db.exec(`ALTER TABLE pages ADD COLUMN sections TEXT DEFAULT '[]';`)
   } catch {}
+  try {
+    db.exec(`ALTER TABLE services ADD COLUMN featuredImage TEXT;`)
+  } catch {}
 }
 
 export const db = getDatabase()

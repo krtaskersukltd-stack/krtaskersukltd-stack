@@ -127,6 +127,7 @@ export async function getCmsServices(): Promise<ServiceRecord[]> {
           heroCtaText: s.heroCtaText || 'Get Started',
           introHeading: s.introHeading || '',
           introContent: s.introContent || '',
+          featuredImage: s.featuredImage || '',
           features: s.features || [],
           metrics: s.metrics || [],
           seo: s.seo || {
@@ -148,34 +149,94 @@ export async function getCmsServices(): Promise<ServiceRecord[]> {
   try {
     const stmt = db.prepare('SELECT * FROM services ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]
-    return rows.map((row) => ({
-      id: row.id,
-      name: row.name,
-      slug: row.slug,
-      status: row.status,
-      sortOrder: row.sortOrder,
-      eyebrow: row.eyebrow,
-      heroHeading: row.heroHeading,
-      heroDescription: row.heroDescription,
-      heroCtaText: row.heroCtaText,
-      introHeading: row.introHeading,
-      introContent: row.introContent,
-      features: JSON.parse(row.features),
-      metrics: JSON.parse(row.metrics),
-      seo: JSON.parse(row.seo),
-      updatedAt: row.updatedAt,
-    }))
+    if (rows && rows.length > 0) {
+      return rows.map((row) => ({
+        id: row.id,
+        name: row.name,
+        slug: row.slug,
+        status: row.status,
+        sortOrder: row.sortOrder,
+        eyebrow: row.eyebrow,
+        heroHeading: row.heroHeading,
+        heroDescription: row.heroDescription,
+        heroCtaText: row.heroCtaText,
+        introHeading: row.introHeading,
+        introContent: row.introContent,
+        featuredImage: row.featuredImage || '',
+        features: JSON.parse(row.features || '[]'),
+        metrics: JSON.parse(row.metrics || '[]'),
+        seo: JSON.parse(row.seo || '{}'),
+        updatedAt: row.updatedAt,
+      }))
+    }
   } catch (err) {
     console.error('getCmsServices DB error', err)
-    return []
   }
+
+  // Fallback to static bundled services.json
+  try {
+    const bundled = (await import('@/data/cms/services.json')).default as ServiceRecord[]
+    if (Array.isArray(bundled) && bundled.length > 0) {
+      return bundled
+    }
+  } catch {
+    // ignore
+  }
+
+  return []
+}
+
+export async function getCmsServiceBySlug(slug: string): Promise<ServiceRecord | null> {
+  const cleanSlug = slug.replace(/^\/services\//, '').replace(/^\//, '')
+
+  // 1. Sanity
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { SERVICE_BY_SLUG_QUERY } = await import('@/sanity/lib/queries')
+      const s = await client.fetch(SERVICE_BY_SLUG_QUERY, { slug: cleanSlug })
+      if (s && s.name) {
+        return {
+          id: s._id || s.id || `srv-${s.slug}`,
+          name: s.name,
+          slug: s.slug,
+          status: s.status || 'published',
+          sortOrder: s.sortOrder || 1,
+          eyebrow: s.eyebrow || '',
+          heroHeading: s.heroHeading || '',
+          heroDescription: s.heroDescription || '',
+          heroCtaText: s.heroCtaText || 'Start a Project',
+          introHeading: s.introHeading || '',
+          introContent: s.introContent || '',
+          featuredImage: s.featuredImage || '',
+          features: s.features || [],
+          metrics: s.metrics || [],
+          seo: s.seo || {
+            metaTitle: s.name,
+            metaDescription: s.heroDescription,
+            h1: s.name,
+            focusKeyword: s.name,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: s._updatedAt || new Date().toISOString(),
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Sanity getCmsServiceBySlug error, falling back:', err)
+  }
+
+  // 2. Local DB / Fallback
+  const allServices = await getCmsServices()
+  return allServices.find((s) => s.slug === cleanSlug || s.slug === `/services/${cleanSlug}` || s.id === cleanSlug) || null
 }
 
 export async function saveCmsServices(services: ServiceRecord[]): Promise<void> {
   const deleteStmt = db.prepare('DELETE FROM services')
   const insertStmt = db.prepare(`
-    INSERT INTO services (id, name, slug, status, sortOrder, eyebrow, heroHeading, heroDescription, heroCtaText, introHeading, introContent, features, metrics, seo, updatedAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO services (id, name, slug, status, sortOrder, eyebrow, heroHeading, heroDescription, heroCtaText, introHeading, introContent, featuredImage, features, metrics, seo, updatedAt)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `)
 
   db.exec('BEGIN TRANSACTION')
@@ -194,9 +255,10 @@ export async function saveCmsServices(services: ServiceRecord[]): Promise<void> 
         s.heroCtaText || '',
         s.introHeading || '',
         s.introContent || '',
+        s.featuredImage || '',
         JSON.stringify(s.features || []),
         JSON.stringify(s.metrics || []),
-        JSON.stringify(s.seo),
+        JSON.stringify(s.seo || {}),
         s.updatedAt || new Date().toISOString()
       )
     }
