@@ -33,7 +33,7 @@ const DEFAULT_SEO: SEOSettingsRecord = {
   defaultTitleTemplate: '%s | KR Tasker Digital',
   defaultMetaDescription: 'Bespoke web development, CMS integration, and SEO optimization by KR Tasker Digital.',
   defaultOgImage: 'https://www.krtaskerdigital.com/og-default.jpg',
-  robotsTxtContent: `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: https://www.krtaskerdigital.com/sitemap.xml`,
+  robotsTxtContent: `User-agent: *\nAllow: /\nDisallow: /studio\nDisallow: /api/\nSitemap: https://www.krtaskerdigital.com/sitemap.xml`,
   sitemapEnabled: true,
 }
 

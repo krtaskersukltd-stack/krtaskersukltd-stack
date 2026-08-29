@@ -6,7 +6,7 @@ import styles from './CustomCursor.module.css'
 
 export default function CustomCursor() {
   const pathname = usePathname()
-  const isExcludedRoute = pathname?.startsWith('/studio') || pathname?.startsWith('/admin')
+  const isExcludedRoute = pathname?.startsWith('/studio')
   
   const [isVisible, setIsVisible] = useState(false)
   const [hovered, setHovered] = useState(false)

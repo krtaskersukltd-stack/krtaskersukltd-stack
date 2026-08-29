@@ -12,8 +12,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const pathname = usePathname()
 
   useEffect(() => {
-    // 1. Completely disable Lenis on Sanity Studio and Admin routes
-    if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) {
+    // 1. Completely disable Lenis on Sanity Studio
+    if (pathname?.startsWith('/studio')) {
       return
     }
 

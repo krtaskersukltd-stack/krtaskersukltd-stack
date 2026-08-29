@@ -6,7 +6,7 @@ export default function ScrollProgressBar() {
   const pathname = usePathname()
   const { scrollYProgress } = useScroll()
 
-  if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) return null
+  if (pathname?.startsWith('/studio')) return null
 
   return (
     <motion.div

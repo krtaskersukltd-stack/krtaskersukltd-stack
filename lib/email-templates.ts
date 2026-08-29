@@ -149,8 +149,8 @@ export function renderInternalLeadEmailHTML(data: InternalLeadEmailProps): strin
         <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
           <tr>
             <td>
-              <a href="https://www.krtaskerdigital.com/admin/enquiries" target="_blank" style="display:inline-block; background-color:#E6FF2A; color:#191E00; font-size:15px; font-weight:700; text-decoration:none; padding:14px 32px; border-radius:8px; border:1px solid #C7E600; box-shadow:0 2px 4px rgba(0,0,0,0.05);">
-                View Lead in Admin Dashboard →
+              <a href="https://www.krtaskerdigital.com/studio" target="_blank" style="display:inline-block; background-color:#E6FF2A; color:#191E00; font-size:15px; font-weight:700; text-decoration:none; padding:14px 32px; border-radius:8px; border:1px solid #C7E600; box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+                Open Sanity Studio CMS →
               </a>
             </td>
           </tr>
