@@ -192,6 +192,7 @@ export interface GlobalSectionsRecord {
   socialLinkedin?: string
   socialTwitter?: string
   socialInstagram?: string
+  socialFacebook?: string
 }
 
 export interface SEOSettingsRecord {

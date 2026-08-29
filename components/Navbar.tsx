@@ -79,7 +79,7 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Dynamically load services from CMS / Admin Panel
+  // Dynamically load additional services from CMS / Admin Panel
   useEffect(() => {
     fetch('/api/cms/services')
       .then((res) => (res.ok ? res.json() : []))
@@ -88,55 +88,69 @@ export default function Navbar() {
           const published = services.filter((s) => s.status === 'published')
           if (published.length === 0) return
 
-          const catMap: Record<string, { label: string; href: string; badge?: string }[]> = {
-            'Digital Marketing': [],
-            'Websites & Apps': [],
-            'AI & Automation': [],
-          }
+          // Base curated lists
+          const digitalMarketingItems = [
+            { label: 'Digital 360', href: '/services/digital-360' },
+            { label: 'SEO & Organic Growth', href: '/services/seo' },
+            { label: 'PPC & Paid Search', href: '/services/ppc' },
+            { label: 'Social Media Marketing', href: '/services/social-media' },
+            { label: 'Email Marketing', href: '/services/email-marketing' },
+            { label: 'Marketing Strategy', href: '/services/marketing' },
+          ]
 
+          const websitesAppsItems = [
+            { label: 'Web Development', href: '/services/web-development' },
+            { label: 'Shopify Development', href: '/services/shopify-development' },
+            { label: 'Websites & Apps', href: '/services/websites-apps' },
+            { label: 'Branding & Identity', href: '/services/branding' },
+            { label: 'Graphic Design', href: '/services/graphic-design' },
+            { label: 'Amazon & eBay', href: '/services/amazon-ebay' },
+          ]
+
+          const aiAutomationItems = [
+            { label: 'AI Solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
+            { label: 'AI Automation', href: '/services/ai-automation' },
+            { label: 'Business Consultancy', href: '/services/business-consultancy' },
+          ]
+
+          const existingHrefs = new Set([
+            ...digitalMarketingItems.map((i) => i.href),
+            ...websitesAppsItems.map((i) => i.href),
+            ...aiAutomationItems.map((i) => i.href),
+          ])
+
+          // Append any newly added custom services dynamically into the 3 clean pillars
           published.forEach((s) => {
-            const rawCat = s.eyebrow?.trim() || ''
-            let category = 'Websites & Apps'
+            const rawSlug = s.slug.startsWith('/') ? s.slug : `/services/${s.slug}`
+            if (existingHrefs.has(rawSlug)) return
 
-            if (
-              /marketing|seo|ppc|social|email|growth/i.test(rawCat) ||
-              /marketing|seo|ppc|social|email|growth/i.test(s.name) ||
-              /marketing|seo|ppc|social|email|growth/i.test(s.slug)
-            ) {
-              category = 'Digital Marketing'
-            } else if (
-              /ai|auto|intel|agent|consult/i.test(rawCat) ||
-              /ai|auto|intel|agent|consult/i.test(s.name) ||
-              /ai|auto|intel|agent|consult/i.test(s.slug)
-            ) {
-              category = 'AI & Automation'
-            } else if (rawCat) {
-              category = rawCat
-            }
-
-            if (!catMap[category]) catMap[category] = []
-
-            const href = s.slug.startsWith('/') ? s.slug : `/services/${s.slug}`
+            const rawCat = (s.eyebrow || '').toLowerCase()
+            const rawName = (s.name || '').toLowerCase()
             const badge =
               /ai-solutions/i.test(s.slug) || /popular/i.test(s.eyebrow || '') ? 'POPULAR' : undefined
+            const newItem = { label: s.name, href: rawSlug, badge }
 
-            catMap[category].push({
-              label: s.name,
-              href,
-              badge,
-            })
+            if (
+              /marketing|seo|ppc|social|email|growth|paid/i.test(rawCat) ||
+              /marketing|seo|ppc|social|email|growth/i.test(rawName)
+            ) {
+              digitalMarketingItems.push(newItem)
+            } else if (
+              /ai|auto|intel|agent|consult|bot/i.test(rawCat) ||
+              /ai|auto|intel|agent|consult/i.test(rawName)
+            ) {
+              aiAutomationItems.push(newItem)
+            } else {
+              websitesAppsItems.push(newItem)
+            }
+            existingHrefs.add(rawSlug)
           })
 
-          const dynamicCategories: ServiceCategory[] = Object.keys(catMap)
-            .filter((cat) => catMap[cat].length > 0)
-            .map((cat) => ({
-              title: cat,
-              items: catMap[cat],
-            }))
-
-          if (dynamicCategories.length > 0) {
-            setCoreServices(dynamicCategories)
-          }
+          setCoreServices([
+            { title: 'Digital Marketing', items: digitalMarketingItems },
+            { title: 'Websites & Apps', items: websitesAppsItems },
+            { title: 'AI & Automation', items: aiAutomationItems },
+          ])
         }
       })
       .catch((err) => console.error('Error loading navigation services:', err))

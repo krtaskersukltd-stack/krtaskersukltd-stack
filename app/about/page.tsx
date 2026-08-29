@@ -233,11 +233,9 @@ export default function AboutPage() {
             >
               <div className={styles.introText}>
                 <p className={styles.introParagraph}>
-                  We are an experienced digital marketing
-                  agency based in the UK, established since
-                  2010. We have built deep expertise in
-                  performance-driven digital growth across
-                  web design, branding, and digital strategy.
+                  We are an Award-Winning Branding and Web Design Agency based in Manchester, UK specialising in Web Design, Web Development, eCommerce and Organic SEO.
+With over a decade of experience, Shape is an energetic, fresh and vibrant team offering creative talent, industry knowledge and extremely high standards.
+We work with ambitious start-up businesses through to large global organisations such as Blackberry, NHS and L'Occitane so we can tailor our services to suit your needs. Our preferred content management system of choice is Craft CMS.
                 </p>
 
                 <p className={styles.introParagraph}>

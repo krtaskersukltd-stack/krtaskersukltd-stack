@@ -18,9 +18,9 @@ export default function Home() {
           url: 'https://www.krtaskerdigital.com',
           logo: 'https://www.krtaskerdigital.com/images/logo.png',
           sameAs: [
-            'https://linkedin.com',
-            'https://twitter.com',
-            'https://instagram.com',
+            'https://www.facebook.com/profile.php?id=61571387696002',
+            'https://www.linkedin.com/company/kr-tasker-digital/',
+            'https://www.instagram.com/krtaskerdigital/',
           ],
         }}
       />

@@ -15,9 +15,9 @@ export default function AdminGlobalSectionsPage() {
     footerEmail: 'info@krtaskerdigital.com',
     footerAddress: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
     footerCopyright: '© 2026 KR Tasker UK Ltd. All rights reserved.',
-    socialLinkedin: 'https://linkedin.com',
-    socialTwitter: 'https://twitter.com',
-    socialInstagram: 'https://instagram.com',
+    socialLinkedin: 'https://www.linkedin.com/company/kr-tasker-digital/',
+    socialInstagram: 'https://www.instagram.com/krtaskerdigital/',
+    socialFacebook: 'https://www.facebook.com/profile.php?id=61571387696002',
   })
 
   const [loading, setLoading] = useState(true)
