@@ -82,110 +82,8 @@ function ServiceCardSlideshow({ images }: { images: string[] }) {
 }
 
 function ServiceCard({ title, desc, tags, isDark, link, images }: ServiceCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) return
-    const card = cardRef.current
-    if (!card) return
-    const rect = card.getBoundingClientRect()
-    
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    card.style.setProperty('--mouse-x', `${x}px`)
-    card.style.setProperty('--mouse-y', `${y}px`)
-    
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    
-    // Rotation mapping (max 10 degrees)
-    const rotateX = ((centerY - y) / centerY) * 8
-    const rotateY = ((x - centerX) / centerX) * 8
-
-    // Translation offsets for depth effect
-    const pullX = ((x - centerX) / centerX) * 12
-    const pullY = ((y - centerY) / centerY) * 12
-
-    gsap.to(card, {
-      rotateX: rotateX,
-      rotateY: rotateY,
-      transformPerspective: 1000,
-      scale: 1.015,
-      duration: 0.3,
-      ease: 'power2.out',
-      overwrite: 'auto'
-    })
-
-    const slideshow = card.querySelector(`.${styles.slideshowContainer}`)
-    const cardInfo = card.querySelector(`.${styles.cardInfo}`)
-    const cta = card.querySelector(`.${styles.cta}`)
-
-    if (slideshow) {
-      gsap.to(slideshow, {
-        x: pullX * 0.8,
-        y: pullY * 0.8,
-        z: 15,
-        duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      })
-    }
-    if (cardInfo) {
-      gsap.to(cardInfo, {
-        x: -pullX * 0.3,
-        y: -pullY * 0.3,
-        z: -10,
-        duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      })
-    }
-    if (cta) {
-      gsap.to(cta, {
-        x: pullX * 0.4,
-        y: pullY * 0.4,
-        z: 10,
-        duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      })
-    }
-  }
-
-  const handleMouseLeave = () => {
-    const card = cardRef.current
-    if (!card) return
-    
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      duration: 0.6,
-      ease: 'power3.out',
-      overwrite: 'auto'
-    })
-
-    const slideshow = card.querySelector(`.${styles.slideshowContainer}`)
-    const cardInfo = card.querySelector(`.${styles.cardInfo}`)
-    const cta = card.querySelector(`.${styles.cta}`)
-
-    if (slideshow) {
-      gsap.to(slideshow, { x: 0, y: 0, z: 0, duration: 0.6, ease: 'power3.out', overwrite: 'auto' })
-    }
-    if (cardInfo) {
-      gsap.to(cardInfo, { x: 0, y: 0, z: 0, duration: 0.6, ease: 'power3.out', overwrite: 'auto' })
-    }
-    if (cta) {
-      gsap.to(cta, { x: 0, y: 0, z: 0, duration: 0.6, ease: 'power3.out', overwrite: 'auto' })
-    }
-  }
-
   return (
     <div 
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className={`${styles.card} ${isDark ? styles.cardTeal : styles.cardCream}`}
     >
       <div className={styles.cardLeft}>
@@ -196,10 +94,9 @@ function ServiceCard({ title, desc, tags, isDark, link, images }: ServiceCardPro
           </div>
           <div className={styles.tags}>
             {tags.map(tag => (
-              <motion.span key={tag} whileHover={{ scale: 1.05, y: -2 }}
-                className={`${styles.tag} ${isDark ? styles.tagCream : styles.tagTeal}`}>
+              <span key={tag} className={`${styles.tag} ${isDark ? styles.tagCream : styles.tagTeal}`}>
                 {tag}
-              </motion.span>
+              </span>
             ))}
           </div>
         </div>
