@@ -1,187 +1,51 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState, useRef } from 'react'
 import styles from './Contact.module.css'
 
-const servicesList = [
-  'Amazon PPC & Growth',
-  'eBay Account Management',
-  'Paid Advertising (Google / Meta)',
-  'Website & CRO',
-  'Branding & Creative',
+const servicesOptions = [
+  'Digital 360',
+  'Web Design',
   'Website Development',
-  'Shopify Store Management',
-  'Social Media',
-  'TikTok Account Management'
+  'Branding & Creative',
+  'SEO & Organic Growth',
+  'PPC & Social Ads',
+  'Shopify & E-Commerce',
+  'AI Transformation',
 ]
 
-const daysList = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-const timesList = [
-  '9:00', '10:00', '11:00', '12:00', '13:00',
-  '14:00', '15:00', '16:00', '17:00', '18:00'
-]
-
-const budgetsList = [
-  'Under £1,000',
-  '£1,000 - £3,000',
-  '£3,000 - £5,000',
-  '£5,000 - £10,000',
-  '£10,000+'
-]
-
-// Concentric circle team portraits matching reference layout
-const teamAvatars = [
-  // Outer ring (radius 450)
-  {
-    id: 1,
-    url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&fit=crop',
-    radius: 310,
-    angle: -132,
-    size: 50,
-    floatDelay: '0s'
-  },
-  {
-    id: 3,
-    url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&h=200&fit=crop',
-    radius: 310,
-    angle: 132,
-    size: 50,
-    floatDelay: '1.2s'
-  },
-  {
-    id: 6,
-    url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&fit=crop',
-    radius: 310,
-    angle: 0,
-    size: 48,
-    floatDelay: '0.4s'
-  },
-  // Second ring (radius 350)
-  {
-    id: 2,
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&h=200&fit=crop',
-    radius: 241,
-    angle: 180,
-    size: 46,
-    floatDelay: '0.6s'
-  },
-  {
-    id: 7,
-    url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&fit=crop',
-    radius: 241,
-    angle: -60,
-    size: 44,
-    floatDelay: '1.0s'
-  },
-  {
-    id: 8,
-    url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&fit=crop',
-    radius: 241,
-    angle: 60,
-    size: 44,
-    floatDelay: '1.6s'
-  },
-  // Third ring (radius 250)
-  {
-    id: 4,
-    url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&fit=crop',
-    radius: 172,
-    angle: -152,
-    size: 36,
-    floatDelay: '1.8s'
-  },
-  {
-    id: 5,
-    url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&fit=crop',
-    radius: 172,
-    angle: 152,
-    size: 36,
-    floatDelay: '2.4s'
-  },
-  {
-    id: 9,
-    url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&fit=crop',
-    radius: 172,
-    angle: 30,
-    size: 34,
-    floatDelay: '0.8s'
-  },
+const budgetOptions = [
+  '2000$',
+  'Under $1,000',
+  '$1,000 - $3,000',
+  '$3,000 - $5,000',
+  '$5,000 - $10,000',
+  '$10,000+',
 ]
 
 export default function Contact() {
-  const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    city: '',
-    message: ''
+    service: 'Digital 360',
+    budget: '2000$',
+    message: '',
   })
-  const [selectedServices, setSelectedServices] = useState<string[]>([])
-  const [selectedDays, setSelectedDays] = useState<string[]>([])
-  const [selectedTimes, setSelectedTimes] = useState<string[]>([])
-  const [selectedBudget, setSelectedBudget] = useState<string>('')
+
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  const toggleService = (srv: string) => {
-    setSelectedServices(prev =>
-      prev.includes(srv) ? prev.filter(x => x !== srv) : [...prev, srv]
-    )
-  }
+  const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const toggleDay = (day: string) => {
-    setSelectedDays(prev =>
-      prev.includes(day) ? prev.filter(x => x !== day) : [...prev, day]
-    )
-  }
-
-  const toggleTime = (time: string) => {
-    setSelectedTimes(prev =>
-      prev.includes(time) ? prev.filter(x => x !== time) : [...prev, time]
-    )
-  }
-
-  const selectBudget = (budget: string) => {
-    setSelectedBudget(budget)
-  }
-
-  const nextStep = () => {
-    if (step === 1) {
-      if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-        alert('Please fill out all required fields marked with *')
-        return
-      }
-    }
-    if (step === 2) {
-      if (selectedServices.length === 0) {
-        alert('Please select at least one service.')
-        return
-      }
-    }
-    if (step === 3) {
-      if (selectedDays.length === 0 || selectedTimes.length === 0) {
-        alert('Please select preferred days and times.')
-        return
-      }
-    }
-    setStep(prev => Math.min(4, prev + 1))
-  }
-
-  const prevStep = () => {
-    setStep(prev => Math.max(1, prev - 1))
+  const handleFocusForm = () => {
+    nameInputRef.current?.focus()
+    nameInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!selectedBudget) {
-      alert('Please select your budget tier.')
-      return
-    }
-
     setIsSubmitting(true)
     setSubmitError(null)
 
@@ -190,483 +54,317 @@ export default function Contact() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          services: selectedServices,
-          preferredDays: selectedDays,
-          preferredTimes: selectedTimes,
-          budget: selectedBudget,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          services: [formData.service],
+          budget: formData.budget,
+          phone: '',
+          city: '',
           website: '',
         }),
       })
+
       const result = await response.json().catch(() => ({}))
+
       if (!response.ok) {
         setSubmitError(result.error || 'Unable to send your request right now.')
       } else {
         setIsSubmitted(true)
       }
     } catch (error) {
-      console.error("Submission error:", error)
-      setSubmitError("Failed to connect to the server. Please try again.")
+      console.error('Contact submission error:', error)
+      setSubmitError('Failed to connect to the server. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const renderProgress = () => (
-    <div className={styles.progressRow}>
-      {/* Step 1 indicator */}
-      <div className={styles.progressStep}>
-        <div className={`${styles.progressCircle} ${step >= 1 ? styles.circleActive : ''}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </div>
-        <span className={`${styles.progressLabelNumber} ${step >= 1 ? styles.labelActive : ''}`}>STEP 1</span>
-        <span className={`${styles.progressLabel} ${step >= 1 ? styles.labelActive : ''}`}>User Details</span>
-      </div>
-
-      <div className={`${styles.progressBarLine} ${step >= 2 ? styles.lineActive : ''}`} />
-
-      {/* Step 2 indicator */}
-      <div className={styles.progressStep}>
-        <div className={`${styles.progressCircle} ${step >= 2 ? styles.circleActive : ''}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6z" />
-            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-          </svg>
-        </div>
-        <span className={`${styles.progressLabelNumber} ${step >= 2 ? styles.labelActive : ''}`}>STEP 2</span>
-        <span className={`${styles.progressLabel} ${step >= 2 ? styles.labelActive : ''}`}>Select Service</span>
-      </div>
-
-      <div className={`${styles.progressBarLine} ${step >= 3 ? styles.lineActive : ''}`} />
-
-      {/* Step 3 indicator */}
-      <div className={styles.progressStep}>
-        <div className={`${styles.progressCircle} ${step >= 3 ? styles.circleActive : ''}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-          </svg>
-        </div>
-        <span className={`${styles.progressLabelNumber} ${step >= 3 ? styles.labelActive : ''}`}>STEP 3</span>
-        <span className={`${styles.progressLabel} ${step >= 3 ? styles.labelActive : ''}`}>Schedule</span>
-      </div>
-
-      <div className={`${styles.progressBarLine} ${step >= 4 ? styles.lineActive : ''}`} />
-
-      {/* Step 4 indicator */}
-      <div className={styles.progressStep}>
-        <div className={`${styles.progressCircle} ${step >= 4 ? styles.circleActive : ''}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="12" y1="1" x2="12" y2="23" />
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-          </svg>
-        </div>
-        <span className={`${styles.progressLabelNumber} ${step >= 4 ? styles.labelActive : ''}`}>STEP 4</span>
-        <span className={`${styles.progressLabel} ${step >= 4 ? styles.labelActive : ''}`}>Budget</span>
-      </div>
-    </div>
-  )
-
   return (
-    <section className={styles.contactSec}>
+    <section className={styles.contactSec} id="contact">
       <div className={styles.container}>
-        <motion.div className={styles.sectionHeader} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2>Let&apos;s Build a <span>Smarter</span><br /><span>Growth</span> Strategy Together</h2>
-          <p>
-            Have a question or want to discuss your growth goals?<br />
+        {/* Top Header Text matching reference */}
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className={styles.headerTitle}>
+            Let&apos;s Build A <span className={styles.tealAccent}>Smarter</span>
+            <br />
+            <span className={styles.tealAccent}>Growth</span> Strategy Together
+          </h2>
+          <p className={styles.headerSub}>
+            Have a question or want to discuss your growth goals?
+            <br />
             Our team is ready to help and usually responds within one business day.
           </p>
         </motion.div>
-        <div className={styles.card}>
-          {/* Left Column - Contact Details & Team Circles */}
-          <div className={styles.sidebar}>
-            <div className={styles.sidebarContent}>
-              <div className={styles.logoWrapper}><Image src="/images/Logo.svg" alt="KR Tasker Digital" width={106} height={48}/></div>
 
-              {/* Concentric Circles & Team Avatars Graphic */}
-              <div className={styles.circlesGraphic}>
-                <div className={styles.orbitGlow} />
-                {/* CSS orbit rings — same coordinate system as avatar pivots */}
-                {[310, 241, 172, 103].map((r) => (
-                  <div
-                    key={r}
-                    style={{
-                      position: 'absolute',
-                      width: r * 2,
-                      height: r * 2,
-                      left: 630 - r,
-                      top: 270 - r,
-                      borderRadius: '50%',
-                      border: '1.2px solid rgba(248, 247, 242, 0.35)',
-                      pointerEvents: 'none',
-                    }}
-                  />
-                ))}
-                {teamAvatars.map((av) => {
-                  // Same center as CSS orbit rings
-                  const pivotX = 650
-                  const pivotY = 270
-                  // Outer orbits move slower, inner orbits faster
-                  const duration = av.radius >= 300 ? 30 : av.radius >= 230 ? 22 : av.radius >= 160 ? 16 : 12
-
-                  return (
-                    <motion.div
-                      key={av.id}
-                      className={styles.orbitPivot}
-                      style={{ left: pivotX, top: pivotY }}
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration, ease: 'linear' }}
-                    >
-                      <div
-                        className={styles.orbitArm}
-                        style={{ transform: `rotate(${av.angle}deg) translateX(${av.radius}px)` }}
-                      >
-                        {/* Counter-rotate to cancel pivot + arm angle — keeps face upright */}
-                        <motion.div
-                          className={styles.avatarNodeItem}
-                          style={{ width: av.size, height: av.size }}
-                          animate={{ rotate: [-(av.angle), -(360 + av.angle)] }}
-                          transition={{ repeat: Infinity, duration, ease: 'linear' }}
-                        >
-                          <div
-                            className={styles.avatarNodeImg}
-                            style={{ backgroundImage: `url(${av.url})` }}
-                          />
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  )
-                })}
+        {/* Main Teal Card */}
+        <motion.div
+          className={styles.card}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className={styles.grid}>
+            {/* Left Column: Let's Connect */}
+            <div className={styles.leftCol}>
+              <div className={styles.availableBadge}>
+                <span className={styles.greenDot} />
+                <span>Available For New Projects</span>
               </div>
 
-              {/* Social Channels */}
-              <div className={styles.socialsWrapper}>
-                <p className={styles.socialsTitle}>Follow Us</p>
-                <div className={styles.socialsRow}>
-                  {[
-                    {
-                      id: 'f',
-                      name: 'Facebook',
-                      href: 'https://www.facebook.com/profile.php?id=61571387696002',
-                    },
-                    {
-                      id: 'ig',
-                      name: 'Instagram',
-                      href: 'https://www.instagram.com/krtaskerdigital/',
-                    },
-                    {
-                      id: 'in',
-                      name: 'LinkedIn',
-                      href: 'https://www.linkedin.com/company/kr-tasker-digital/',
-                    },
-                  ].map((soc) => (
-                    <a
-                      key={soc.id}
-                      href={soc.href}
-                      className={styles.socialBtn}
-                      aria-label={soc.name}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {soc.id === 'f' && (
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                        </svg>
-                      )}
-                      {soc.id === 'ig' && (
-                        <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                      )}
-                      {soc.id === 'in' && (
-                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                      )}
-                    </a>
-                  ))}
+              <h2 className={styles.mainHeading}>
+                Let&apos;s <span className={styles.limeHighlight}>Connect</span>
+              </h2>
+
+              <p className={styles.description}>
+                Feel Free To Contact Me If Having Any Questions. I&apos;m Available For New Projects Or
+                Just For Chatting.
+              </p>
+
+              <button
+                type="button"
+                onClick={handleFocusForm}
+                className={styles.btnGetInTouch}
+                aria-label="Scroll to contact form"
+              >
+                Get In Touch
+              </button>
+
+              {/* Stats Counters */}
+              <div className={styles.statsRow}>
+                <div className={styles.statBlock}>
+                  <div className={styles.statNumber}>
+                    27<span className={styles.statPlus}>+</span>
+                  </div>
+                  <span className={styles.statLabel}>Services we provide</span>
+                </div>
+
+                <div className={styles.statBlock}>
+                  <div className={styles.statNumber}>
+                    200<span className={styles.statPlus}>+</span>
+                  </div>
+                  <span className={styles.statLabel}>Connections World Wide</span>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column - Multi-Step Interactive Form */}
-          <div className={styles.formArea}>
-            {isSubmitted ? (
-              <div className={styles.successWrapper}>
-                <span className={styles.successIcon}>✓</span>
-                <h3 className={styles.successTitle}>Thank You!</h3>
-                <p className={styles.successDesc}>
-                  Your consultation request has been received. Our team will verify details and reach out within 1 business day.
-                </p>
-                <button onClick={() => { setStep(1); setIsSubmitted(false); setSelectedServices([]); setSelectedDays([]); setSelectedTimes([]); setSelectedBudget(''); setSubmitError(null); setIsSubmitting(false); }} className={styles.btnGradient}>
-                  Submit Another Request
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className={styles.formElement}>
-                <div className={styles.desktopProgress}>
-                  {renderProgress()}
+            {/* Right Column: Interactive Form */}
+            <div className={styles.rightCol}>
+              {isSubmitted ? (
+                <div className={styles.successWrapper}>
+                  <div className={styles.successIcon}>✓</div>
+                  <h3 className={styles.successTitle}>Request Sent!</h3>
+                  <p className={styles.successDesc}>
+                    Thank you, <strong>{formData.name}</strong>. We&apos;ve received your message and will
+                    be in touch within 1 business day.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSubmitted(false)
+                      setFormData({
+                        name: '',
+                        email: '',
+                        service: 'Digital 360',
+                        budget: '2000$',
+                        message: '',
+                      })
+                    }}
+                    className={styles.btnReset}
+                  >
+                    Send Another Message
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className={styles.formElement}>
+                  {/* Row 1: Name & Email */}
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.inputLabel} htmlFor="contact-name">
+                        Name
+                      </label>
+                      <input
+                        ref={nameInputRef}
+                        id="contact-name"
+                        type="text"
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className={styles.pillInput}
+                        required
+                      />
+                    </div>
 
-                <div className={styles.formBody}>
-                  {/* STEP 1: CONTACT DETAILS */}
-                  {step === 1 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className={styles.stepContent}
-                    >
-                      <h2 className={styles.formStepTitle}>Contact Us</h2>
-                      <p className={styles.formStepSubtitle}>
-                        Have a question or want to discuss your growth goals?
-                        <span className={styles.hideOnMobile}><br />
-                        Our team is ready to help and usually responds within one business day.</span>
-                      </p>
-                      <div className={styles.mobileProgress}>
-                        {renderProgress()}
-                      </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.inputLabel} htmlFor="contact-email">
+                        Email
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        placeholder="john@krtaskerdigital.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className={styles.pillInput}
+                        required
+                      />
+                    </div>
+                  </div>
 
-                      <div className={styles.inputGrid}>
-                        <div className={styles.inputCol}>
-                          <label className={styles.inputLabel}>Your Name*</label>
-                          <input
-                            type="text"
-                            placeholder="Ex. John Doe"
-                            value={formData.name}
-                            onChange={e => setFormData({ ...formData, name: e.target.value })}
-                            className={styles.textInput}
-                            required
-                          />
-                        </div>
-                        <div className={styles.inputCol}>
-                          <label className={styles.inputLabel}>Email*</label>
-                          <input
-                            type="email"
-                            placeholder="example@gmail.com"
-                            value={formData.email}
-                            onChange={e => setFormData({ ...formData, email: e.target.value })}
-                            className={styles.textInput}
-                            required
-                          />
-                        </div>
-                        <div className={styles.inputCol}>
-                          <label className={styles.inputLabel}>Phone*</label>
-                          <input
-                            type="tel"
-                            placeholder="Enter Phone Number"
-                            value={formData.phone}
-                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                            className={styles.textInput}
-                            required
-                          />
-                        </div>
-                        <div className={styles.inputCol}>
-                          <label className={styles.inputLabel}>City</label>
-                          <input
-                            type="text"
-                            placeholder="Ex. Lahore"
-                            value={formData.city}
-                            onChange={e => setFormData({ ...formData, city: e.target.value })}
-                            className={styles.textInput}
-                          />
-                        </div>
-                        <div className={`${styles.inputCol} ${styles.inputColFull}`}>
-                          <label className={styles.inputLabel}>Message*</label>
-                          <textarea
-                            placeholder="Enter your details here..."
-                            value={formData.message}
-                            onChange={e => setFormData({ ...formData, message: e.target.value })}
-                            className={styles.textareaInput}
-                            rows={4}
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className={styles.actionsRow}>
-                        <button type="button" onClick={nextStep} className={styles.btnGradient}>
-                          Next
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* STEP 2: SELECT SERVICES */}
-                  {step === 2 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className={styles.stepContent}
-                    >
-                      <h2 className={styles.formStepTitle}>Select Services</h2>
-                      <p className={styles.formStepSubtitle}>
-                        Select one or more services you are interested in.
-                      </p>
-                      <div className={styles.mobileProgress}>
-                        {renderProgress()}
-                      </div>
-
-                      <div className={styles.pillsSection}>
-                        <div className={styles.pillsGrid}>
-                          {servicesList.map(srv => {
-                            const isSel = selectedServices.includes(srv)
-                            return (
-                              <button
-                                type="button"
-                                key={srv}
-                                onClick={() => toggleService(srv)}
-                                className={`${styles.pillBtn} ${isSel ? styles.pillBtnSelected : ''}`}
-                              >
-                                {srv}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-
-                      <div className={styles.actionsRow}>
-                        <button type="button" onClick={prevStep} className={styles.btnFlat}>
-                          Previous
-                        </button>
-                        <button type="button" onClick={nextStep} className={styles.btnGradient}>
-                          Next
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* STEP 3: SCHEDULING DETAILS */}
-                  {step === 3 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className={styles.stepContent}
-                    >
-                      <h2 className={styles.formStepTitle}>Schedule Consultation</h2>
-                      <p className={styles.formStepSubtitle}>
-                        Select your preferred day and time to consult.
-                      </p>
-                      <div className={styles.mobileProgress}>
-                        {renderProgress()}
-                      </div>
-
-                      <div className={styles.pillsSection}>
-                        <h4 className={styles.sectionHeading}>Preferred Day to Contact</h4>
-                        <div className={styles.pillsRow}>
-                          {daysList.map(day => {
-                            const isSel = selectedDays.includes(day)
-                            return (
-                              <button
-                                type="button"
-                                key={day}
-                                onClick={() => toggleDay(day)}
-                                className={`${styles.dayTimePill} ${isSel ? styles.dayTimePillSelected : ''}`}
-                              >
-                                {day}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-
-                      <div className={styles.pillsSection}>
-                        <h4 className={styles.sectionHeading}>Preferred Time to Consult</h4>
-                        <div className={styles.timesGrid}>
-                          {timesList.map(time => {
-                            const isSel = selectedTimes.includes(time)
-                            return (
-                              <button
-                                type="button"
-                                key={time}
-                                onClick={() => toggleTime(time)}
-                                className={`${styles.dayTimePill} ${isSel ? styles.dayTimePillSelected : ''}`}
-                              >
-                                {time}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-
-                      <div className={styles.actionsRow}>
-                        <button type="button" onClick={prevStep} className={styles.btnFlat}>
-                          Previous
-                        </button>
-                        <button type="button" onClick={nextStep} className={styles.btnGradient}>
-                          Next
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* STEP 4: BUDGET DETAILS */}
-                  {step === 4 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className={styles.stepContent}
-                    >
-                      <h2 className={styles.formStepTitle}>Select Budget</h2>
-                      <p className={styles.formStepSubtitle}>
-                        Select the monthly budget range for your project.
-                      </p>
-                      <div className={styles.mobileProgress}>
-                        {renderProgress()}
-                      </div>
-
-                      <div className={styles.pillsSection}>
-                        <div className={styles.pillsGrid}>
-                          {budgetsList.map(bgt => {
-                            const isSel = selectedBudget === bgt
-                            return (
-                              <button
-                                type="button"
-                                key={bgt}
-                                onClick={() => selectBudget(bgt)}
-                                className={`${styles.pillBtn} ${isSel ? styles.pillBtnSelected : ''}`}
-                              >
-                                {bgt}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-
-                      <div className={styles.actionsRow}>
-                        <button type="button" onClick={prevStep} className={styles.btnFlat}>
-                          Previous
-                        </button>
-                        <button
-                          type="submit"
-                          className={styles.btnGradient}
-                          disabled={isSubmitting}
+                  {/* Row 2: Services & Budget */}
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.inputLabel} htmlFor="contact-service">
+                        Services
+                      </label>
+                      <div className={styles.selectWrapper}>
+                        <select
+                          id="contact-service"
+                          value={formData.service}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          className={styles.pillSelect}
                         >
-                          {isSubmitting ? 'Booking...' : 'Book Now'}
-                        </button>
+                          {servicesOptions.map((srv) => (
+                            <option key={srv} value={srv}>
+                              {srv}
+                            </option>
+                          ))}
+                        </select>
+                        <svg
+                          className={styles.selectChevron}
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
                       </div>
-                      {submitError && (
-                        <p className={styles.errorText}>
-                          {submitError}
-                        </p>
-                      )}
-                    </motion.div>
-                  )}
-                </div>
+                    </div>
 
-                {/* Bottom details block inside formArea */}
-                
-              </form>
-            )}
+                    <div className={styles.formGroup}>
+                      <label className={styles.inputLabel} htmlFor="contact-budget">
+                        Budget
+                      </label>
+                      <div className={styles.selectWrapper}>
+                        <select
+                          id="contact-budget"
+                          value={formData.budget}
+                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                          className={styles.pillSelect}
+                        >
+                          {budgetOptions.map((bgt) => (
+                            <option key={bgt} value={bgt}>
+                              {bgt}
+                            </option>
+                          ))}
+                        </select>
+                        <svg
+                          className={styles.selectChevron}
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Row 3: Message Textarea */}
+                  <div className={styles.formGroup}>
+                    <label className={styles.inputLabel} htmlFor="contact-message">
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      placeholder="Type your message here....."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className={styles.pillTextarea}
+                      rows={4}
+                      required
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending Request...' : 'Send Request'}
+                  </button>
+
+                  {submitError && <p className={styles.errorText}>{submitError}</p>}
+                </form>
+              )}
+            </div>
           </div>
-        </div>
+
+          {/* ================= TWO ROWS OF MARQUEE EMAILS ================= */}
+          <div className={styles.dualMarqueeWrapper} aria-hidden="true">
+            {/* ROW 1: Scrolling Left */}
+            <div className={styles.tickerTrackLeft}>
+              <div className={styles.tickerGroup}>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+              </div>
+              <div className={styles.tickerGroup}>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+              </div>
+            </div>
+
+            {/* ROW 2: Scrolling Right (Opposite Direction) */}
+            <div className={styles.tickerTrackRight}>
+              <div className={styles.tickerGroup}>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+              </div>
+              <div className={styles.tickerGroup}>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+                <span className={styles.tickerItem}>hello@krtaskerdigital.com</span>
+                <span className={styles.tickerDot}>•</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

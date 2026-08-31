@@ -5,6 +5,7 @@ import Services from '@/components/Services'
 import Testimonials from '@/components/Testimonials'
 import Approach from '@/components/Approach'
 import Contact from '@/components/Contact'
+import FaqSection from '@/components/FaqSection'
 import Footer from '@/components/Footer'
 import StructuredData from '@/components/StructuredData'
 
@@ -35,8 +36,9 @@ export default function Home() {
       <Hero />
       <FeaturedIntro />
       <Services />
-      <Testimonials />
       <Approach />
+      <Testimonials />
+      <FaqSection/>
       <Contact />
       <Footer />
     </main>

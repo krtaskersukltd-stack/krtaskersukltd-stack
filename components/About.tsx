@@ -21,9 +21,13 @@ export default function About() {
             </ul>
           </motion.div>
           <div className={styles.rightCol}>
+            
             <motion.p initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }}
               className={styles.heading}>
-              An independent <span className={styles.underline}>web design</span> and <span className={styles.underline}>branding agency</span> in Manchester set up in 2010 who care, build relationships, have industry experience, and win awards.
+              <span className={styles.tealText}>
+                An independent web design and branding agency in Manchester set up in 2010 who care,
+              </span>{' '}
+              build relationships, have industry experience, and win awards.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }}
               className={styles.buttons}>

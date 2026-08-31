@@ -102,22 +102,7 @@ export default function Hero() {
                 Effortless
               </motion.span>
 
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.15, rotate: 4 }}
-                transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.inlinePill}
-              >
-                <Image
-                  src="/images/hero/hero-app.jpg"
-                  alt="App interface preview"
-                  width={92}
-                  height={92}
-                  className={styles.inlineImg}
-                  priority
-                />
-              </motion.span>
+              
 
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
@@ -128,23 +113,7 @@ export default function Hero() {
                 Design for
               </motion.span>
 
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.15, rotate: -4 }}
-                transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.inlinePill}
-              >
-                <Image
-                  src="/images/hero/hero-dev.jpg"
-                  alt="Creator at work"
-                  width={52}
-                  height={52}
-                  className={styles.inlineImg}
-                  priority
-                />
-              </motion.span>
-
+            
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -166,22 +135,6 @@ export default function Hero() {
                 based in London,
               </motion.span>
 
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.15, rotate: 4 }}
-                transition={{ duration: 0.5, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.inlinePill}
-              >
-                <Image
-                  src="/images/hero/hero-london.jpg"
-                  alt="London landmark"
-                  width={52}
-                  height={52}
-                  className={styles.inlineImg}
-                  priority
-                />
-              </motion.span>
 
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
@@ -289,58 +242,10 @@ export default function Hero() {
                 Your browser does not support HTML5 video.
               </video>
 
-              {/* Top Tag */}
-              <div className={styles.videoHeaderTag}>
-                <span className={styles.livePulse} />
-                <span>Growth &amp; Innovation Reel</span>
-              </div>
+            
+            
 
-              {/* Bottom Video Control Dock */}
-              <div className={styles.videoDock}>
-                <button
-                  type="button"
-                  onClick={toggleVideoPlayback}
-                  className={styles.dockButton}
-                  aria-label={isVideoPaused ? 'Play video' : 'Pause video'}
-                >
-                  {isVideoPaused ? (
-                    <>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                      <span>Play</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="4" width="4" height="16" />
-                        <rect x="14" y="4" width="4" height="16" />
-                      </svg>
-                      <span>Pause</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={toggleMute}
-                  className={styles.dockMuteButton}
-                  aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-                >
-                  {isMuted ? (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                      <line x1="23" y1="9" x2="17" y2="15" />
-                      <line x1="17" y1="9" x2="23" y2="15" />
-                    </svg>
-                  ) : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-                    </svg>
-                  )}
-                </button>
-              </div>
+           
             </div>
           </motion.div>
         </motion.div>

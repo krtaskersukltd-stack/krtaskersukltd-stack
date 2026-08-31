@@ -38,11 +38,15 @@
 }
 
 .heading {
-  font-family: var(--font-display);
-  font-weight: var(--fw-regular);
-  font-size: var(--fs-h2-light);
-  line-height: var(--lh-heading);
-  color: var(--black);
+  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-weight: 700;
+  font-size: var(--fs-h2, clamp(1.5rem, 1.32rem + 0.75vw, 2rem));
+  line-height: var(--lh-heading, 1.2);
+  color: var(--black, #000000);
+}
+
+.tealText {
+  color: var(--teal, #0C4651);
 }
 
 .underline {
