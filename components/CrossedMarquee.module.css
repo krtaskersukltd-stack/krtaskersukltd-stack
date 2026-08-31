@@ -1,0 +1,140 @@
+.crossedMarqueeSection {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(70px, 9vw, 120px) 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  display: flex;
+  align-items: center;
+  transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Bottom/Background Ribbon - Off-White / Cream */
+.ribbonWhite {
+  transform: rotate(-6.8deg);
+  background: #fbfbf9;
+  border-top: 1px solid rgba(12, 70, 81, 0.08);
+  border-bottom: 1px solid rgba(12, 70, 81, 0.08);
+  padding: clamp(14px, 1.6vw, 20px) 0;
+  z-index: 1;
+}
+
+/* Top/Foreground Ribbon - Neon Lime */
+.ribbonLime {
+  transform: rotate(6.8deg);
+  background: #e6ff2a;
+
+  padding: clamp(14px, 1.6vw, 20px) 0;
+  z-index: 2;
+}
+
+.trackLeft,
+.trackRight {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.trackLeft {
+  animation: marqueeLeft 38s linear infinite;
+}
+
+.trackRight {
+  animation: marqueeRight 34s linear infinite;
+}
+
+.itemGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: clamp(16px, 2.2vw, 32px);
+  padding-right: clamp(16px, 2.2vw, 32px);
+}
+
+.itemWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 32px);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.7vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.tealText {
+  color: var(--teal);
+}
+
+.darkText {
+  color: #0b0f12;
+}
+
+.dot {
+  color: #0b0f12;
+  font-size: 0.85em;
+  opacity: 0.55;
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trackLeft,
+  .trackRight {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 768px) {
+  .crossedMarqueeSection {
+    padding: clamp(55px, 8vw, 85px) 0;
+  }
+
+  .ribbonWhite {
+    transform: rotate(-3.5deg);
+    padding: 12px 0;
+  }
+
+  .ribbonLime {
+    transform: rotate(3.5deg);
+    padding: 12px 0;
+  }
+
+  .itemWrapper {
+    font-size: 1.1rem;
+    gap: 16px;
+  }
+
+  .itemGroup {
+    gap: 16px;
+    padding-right: 16px;
+  }
+}

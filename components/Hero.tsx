@@ -1,91 +1,356 @@
 'use client'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import { useRef, useState, MouseEvent } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './Hero.module.css'
 import About from './About'
+import CrossedMarquee from './CrossedMarquee'
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null)
+  const heroRef = useRef<HTMLElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -150])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const [isVideoPaused, setIsVideoPaused] = useState(false)
+  const [isMuted, setIsMuted] = useState(true)
 
-  const splitWords = (phrase: string, isTeal = false) => {
-    return phrase.split(' ').map((word, i) => (
-      <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-        <motion.span
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.05 }}
-          style={{ display: 'inline-block' }}
-          className={isTeal ? styles.tealText : styles.blackText}
-        >
-          {word}&nbsp;
-        </motion.span>
-      </span>
-    ))
+  // Scroll parallax for header
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0.9])
+  const heroY = useTransform(scrollYProgress, [0, 0.45], [0, -30])
+
+  // Mouse tilt effect for the showcase card
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+    stiffness: 250,
+    damping: 25,
+  })
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
+    stiffness: 250,
+    damping: 25,
+  })
+  const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['0%', '100%']), {
+    stiffness: 250,
+    damping: 25,
+  })
+  const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['0%', '100%']), {
+    stiffness: 250,
+    damping: 25,
+  })
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseClientX = e.clientX - rect.left
+    const mouseClientY = e.clientY - rect.top
+
+    mouseX.set(mouseClientX / width - 0.5)
+    mouseY.set(mouseClientY / height - 0.5)
+  }
+
+  const handleMouseLeave = () => {
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  const toggleVideoPlayback = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    if (video.paused) {
+      void video.play()
+      setIsVideoPaused(false)
+    } else {
+      video.pause()
+      setIsVideoPaused(true)
+    }
+  }
+
+  const toggleMute = () => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = !video.muted
+    setIsMuted(video.muted)
   }
 
   return (
-    <section ref={ref} className={styles.hero}>
-      <div className={`${styles.container} ${styles.approachContainer}`}>
+    <section ref={heroRef} className={styles.heroSection}>
+      <div className={styles.container}>
+        <motion.div
+          style={{ opacity: heroOpacity, y: heroY }}
+          className={styles.headerContent}
+        >
+          {/* Main Headline (Exactly 2 lines on Laptop/Desktop) */}
+          <h1 className={styles.headline}>
+            {/* Line 1: Effortless [img] Design for [img] Design Startups */}
+            <span className={styles.line}>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.darkWord}
+              >
+                Effortless
+              </motion.span>
 
-        <div className={styles.outerFrame} />
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.15, rotate: 4 }}
+                transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.inlinePill}
+              >
+                <Image
+                  src="/images/hero/hero-app.jpg"
+                  alt="App interface preview"
+                  width={92}
+                  height={92}
+                  className={styles.inlineImg}
+                  priority
+                />
+              </motion.span>
 
-        <motion.div style={{ y: y1, opacity }} className={styles.contentLayer}>
-          <div className={styles.centerCard}>
-            <div className={styles.flexCol}>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.tealWord}
+              >
+                Design for
+              </motion.span>
 
-              <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
-                className={styles.eyebrow}>
-                Performance Driven Digital Growth
-              </motion.p>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.15, rotate: -4 }}
+                transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.inlinePill}
+              >
+                <Image
+                  src="/images/hero/hero-dev.jpg"
+                  alt="Creator at work"
+                  width={52}
+                  height={52}
+                  className={styles.inlineImg}
+                  priority
+                />
+              </motion.span>
 
-              <h1 className={styles.h1}>
-                {splitWords("We Convert Clicks To")}
-                {splitWords("Conversions", true)}
-              </h1>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.darkWord}
+              >
+                Design Startups
+              </motion.span>
+            </span>
 
-              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
-                className={styles.subtext}>
-                A leading full-service UK digital marketing agency built to outthink, outcreate, and outperform, blending strategy, design, media and AI to deliver real growth for ambitious startups and global enterprises alike.
-              </motion.p>
+            {/* Line 2: based in London, [img] UK */}
+            <span className={styles.line}>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.tealWord}
+              >
+                based in London,
+              </motion.span>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-                className={styles.buttons}>
-                <Link
-                  href="/contact"
-                  className={styles.btnPrimary}
-                >
-                  Start a Project
-                </Link>
-                <Link
-                  href="/work"
-                  className={styles.btnSecondary}
-                >
-                  View Our Work
-                </Link>
-              </motion.div>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.15, rotate: 4 }}
+                transition={{ duration: 0.5, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.inlinePill}
+              >
+                <Image
+                  src="/images/hero/hero-london.jpg"
+                  alt="London landmark"
+                  width={52}
+                  height={52}
+                  className={styles.inlineImg}
+                  priority
+                />
+              </motion.span>
 
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
-                className={styles.reviewsRow}>
-                <span className={styles.reviewsText}>Based on 250+ Reviews</span>
-                <div className={styles.starsRow}>
-                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
-                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
-                  <span className={`${styles.star} ${styles.starActive}`}>★</span>
-                  <span className={`${styles.star} ${styles.starInactive}`}>★</span>
-                  <span className={`${styles.star} ${styles.starInactive}`}>★</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+                className={styles.darkWord}
+              >
+                UK
+              </motion.span>
+            </span>
+          </h1>
+
+          {/* Subtitle description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.subheadline}
+          >
+            A Leading Full-Service UK Digital Marketing Agency Built To Outthink, Outcreate, And
+            Outperform, Blending Strategy, Design, Media And AI To Deliver Real Growth For Ambitious
+            Startups And Global Enterprises Alike.
+          </motion.p>
+
+          {/* Action CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.ctaGroup}
+          >
+            <Link href="/contact" className={styles.btnStartProject}>
+              <span>Start A Project</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={styles.btnArrow}
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+
+            <Link href="/work" className={styles.btnViewWork}>
+              <span>View Our Work</span>
+            </Link>
+          </motion.div>
         </motion.div>
 
+        {/* Video Showcase Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className={styles.showcaseWrapper}
+        >
+          <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: 'preserve-3d',
+            }}
+            className={styles.showcaseCard}
+          >
+            {/* Ambient Lighting Halos */}
+            <div className={styles.glowCyan} />
+            <div className={styles.glowPurple} />
+            <div className={styles.glowRed} />
+
+            {/* Dynamic Glass Glare Effect */}
+            <motion.div
+              style={{
+                left: glareX,
+                top: glareY,
+              }}
+              className={styles.glareEffect}
+            />
+
+            {/* Video Player Container */}
+            <div className={styles.videoContainer}>
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster="/images/curated-brands-showcase.jpg"
+                className={styles.heroVideo}
+                onClick={toggleVideoPlayback}
+              >
+                <source
+                  src="/video/mixkit-hud-style-animated-data-graph-growth-trend-visualization-5396-hd-ready.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support HTML5 video.
+              </video>
+
+              {/* Top Tag */}
+              <div className={styles.videoHeaderTag}>
+                <span className={styles.livePulse} />
+                <span>Growth &amp; Innovation Reel</span>
+              </div>
+
+              {/* Bottom Video Control Dock */}
+              <div className={styles.videoDock}>
+                <button
+                  type="button"
+                  onClick={toggleVideoPlayback}
+                  className={styles.dockButton}
+                  aria-label={isVideoPaused ? 'Play video' : 'Pause video'}
+                >
+                  {isVideoPaused ? (
+                    <>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                      </svg>
+                      <span>Play</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" />
+                        <rect x="14" y="4" width="4" height="16" />
+                      </svg>
+                      <span>Pause</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className={styles.dockMuteButton}
+                  aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                >
+                  {isMuted ? (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                      <line x1="23" y1="9" x2="17" y2="15" />
+                      <line x1="17" y1="9" x2="23" y2="15" />
+                    </svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Embedded Who We Are Section */}
       <About />
+
+      {/* Crossed Dual-Ribbon Marquee Section */}
+      <CrossedMarquee />
     </section>
   )
 }
