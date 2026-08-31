@@ -1,161 +1,214 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
+
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface ServiceCardProps {
-  title: string
+interface ServiceItem {
+  titlePrefix: string
+  titleHighlight: string
   desc: string
   tags: string[]
   isDark: boolean
   link: string
-  images: string[]
+  image: string
+  alt: string
 }
 
-const servicesData: ServiceCardProps[] = [
+const servicesData: ServiceItem[] = [
   {
-    title: 'Digital Marketing',
-    desc: 'We deliver full-funnel digital marketing strategies that combine SEO, paid media, social advertising, and integrated campaigns. From driving organic visibility to scaling paid performance, our specialist teams work together to maximise reach, conversions, and long-term growth across every channel.',
-    tags: ['Digital 360','SEO','PPC','Social Media Marketing','Google ads','Email marketing','CRO'],
+    titlePrefix: 'Digital',
+    titleHighlight: 'Marketing',
+    desc: 'We Deliver Full-Funnel Digital Marketing Strategies That Combine SEO, Paid Media, Social Advertising, And Integrated Campaigns. From Driving Organic Visibility To Scaling Paid Performance, Our Specialist Teams Work Together To Maximise Reach, Conversions, And Long-Term Growth Across Every Channel.',
+    tags: [
+      'Digital 360',
+      'SEO',
+      'PPC',
+      'Social Media Marketing',
+      'Google Ads',
+      'Email Marketing',
+      'CRO',
+    ],
     isDark: true,
-    link: '/services/digital-marketing',
-    images: [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop',
-    ]
+    link: '/contact',
+    image: '/images/services/digital-marketing.png',
+    alt: 'Digital Marketing & Strategy Planning',
   },
   {
-    title: 'Websites & App Designing',
-    desc: 'We create fast, conversion-oriented websites, apps, and e-commerce solutions using WordPress, Shopify, Webflow, and custom platforms. From UX/UI strategy to launch, our skilled team blends creativity and accuracy. We improve every project for speed, search, scalability, and measurable change.',
-    tags: ['Web design & Dev','App Design & Dev','Branding','Logos'],
+    titlePrefix: 'Web & App',
+    titleHighlight: 'Designing',
+    desc: 'We create fast, conversion-oriented websites, apps, and digital solutions designed to elevate brand authority. From UX/UI strategy to interactive launches, our specialized team delivers speed, scalability, and measurable digital engagement.',
+    tags: [
+      'Web Design & Development',
+      'App Design & Development',
+      'Brand Identity',
+      'UI/UX Strategy',
+      'Custom Websites',
+      'E-Commerce',
+    ],
     isDark: false,
-    link: '/services/websites-apps',
-    images: [
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=600&auto=format&fit=crop',
-    ]
+    link: '/contact',
+    image: '/images/services/web-app-design.png',
+    alt: 'Web and Mobile App UI/UX Design Showcase',
   },
   {
-    title: 'AI Solutions',
-    desc: 'Harness the power of artificial intelligence to transform your business operations, customer experiences, and decision-making. From intelligent automation and predictive analytics to custom AI-powered tools and chatbots, we help you integrate cutting-edge technology that drives efficiency, innovation, and competitive advantage.',
-    tags: ['Ai strategy','Custom AI Solutions','Agents & Chatbots','AI Automation','AI Integration'],
+    titlePrefix: 'AI',
+    titleHighlight: 'Automation',
+    desc: 'Harness the power of artificial intelligence to transform your business operations, customer experiences, and decision-making with cutting-edge intelligent automation, custom tools, and predictive analytics.',
+    tags: [
+      'AI Strategy',
+      'Custom AI Solutions',
+      'Agents & Chatbots',
+      'AI Automation',
+      'Growth Analytics',
+    ],
     isDark: true,
-    link: '/services/ai-solutions',
-    images: [
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop',
-    ]
-  }
+    link: '/contact',
+    image: '/images/services/seo-brand-strategy.png',
+    alt: 'AI Solutions and Direction Strategy',
+  },
 ]
 
-function ServiceCardSlideshow({ images }: { images: string[] }) {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [images.length])
-
+function ServiceCard({ service }: { service: ServiceItem }) {
   return (
-    <div className={styles.slideshowContainer}>
-      {images.map((img, i) => (
-        <div
-          key={img}
-          className={styles.slideshowImage}
-          style={{
-            backgroundImage: `url(${img})`,
-            opacity: i === index ? 1 : 0,
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-function ServiceCard({ title, desc, tags, isDark, link, images }: ServiceCardProps) {
-  return (
-    <div 
-      className={`${styles.card} ${isDark ? styles.cardTeal : styles.cardCream}`}
+    <div
+      className={`${styles.card} ${service.isDark ? styles.cardDark : styles.cardLight}`}
     >
+      {/* Left Column */}
       <div className={styles.cardLeft}>
-        <div className={styles.cardInfo}>
-          <div className={styles.cardText}>
-            <h3 className={styles.title}>{title}</h3>
-            <p className={styles.desc}>{desc}</p>
-          </div>
-          <div className={styles.tags}>
-            {tags.map(tag => (
-              <span key={tag} className={`${styles.tag} ${isDark ? styles.tagCream : styles.tagTeal}`}>
-                {tag}
-              </span>
-            ))}
-          </div>
+        <h3 className={styles.title}>
+          {service.titlePrefix} <br />
+          <span className={styles.titleHighlight}>{service.titleHighlight}</span>
+        </h3>
+
+        {/* Pill Tags */}
+        <div className={styles.tags}>
+          {service.tags.map((tag) => (
+            <span
+              key={tag}
+              className={`${styles.tag} ${service.isDark ? styles.tagDark : styles.tagLight}`}
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-        <motion.a 
-          href={link} 
-          whileHover={{ scale: 1.04, boxShadow: '0 0 20px rgba(230,255,42,0.5)' }} 
-          whileTap={{ scale: 0.97 }}
-          data-cursor="Build"
-          className={styles.cta}
-        >
-          Start a project
-        </motion.a>
+
+        {/* Description */}
+        <p className={styles.desc}>{service.desc}</p>
+
+        {/* Action CTA */}
+        <Link href={service.link} className={styles.cta}>
+          Start A Project
+        </Link>
       </div>
-      <div className={styles.slideshowWrapper} data-cursor="View">
-        <ServiceCardSlideshow images={images} />
+
+      {/* Right Column: Image Frame */}
+      <div className={styles.imageWrapper}>
+        <Image
+          src={service.image}
+          alt={service.alt}
+          width={900}
+          height={620}
+          className={styles.cardImage}
+          sizes="(max-width: 1024px) 100vw, 45vw"
+        />
       </div>
     </div>
   )
 }
 
 export default function Services() {
-  const ref = useRef(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (typeof window === 'undefined') return
 
     const cards = gsap.utils.toArray<HTMLElement>(`.${styles.card}`)
 
-    cards.forEach((card) => {
+    // Stacking scroll effect with 100% solid opacity (no white overlay or fading)
+    cards.forEach((card, i) => {
+      // Entrance animation with solid opacity
       gsap.fromTo(
         card,
-        { opacity: 0.3, y: 50 },
+        { y: 50 },
         {
-          opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: card,
-            start: 'top 92%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
-          }
+          },
         }
       )
+
+      // Stacking scale effect for previous cards (without any opacity fade)
+      if (i < cards.length - 1) {
+        const nextCard = cards[i + 1]
+        gsap.to(card, {
+          scale: 0.96,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: nextCard,
+            start: 'top 70%',
+            end: 'top 20%',
+            scrub: true,
+          },
+        })
+      }
     })
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill())
+    }
   }, [])
 
   return (
-    <section ref={ref} className={styles.servicesSec}>
-      <div className={styles.headingContainer}>
-        <h2 className={styles.heading}>
-          Our core <span className={styles.headingSpan}>Services</span>
-        </h2>
-      </div>
-      <div ref={containerRef} className={styles.container}>
-        {servicesData.map((service, index) => (
-          <ServiceCard key={index} {...service} />
-        ))}
+    <section ref={sectionRef} className={styles.servicesSec} id="services">
+      <div className={styles.container}>
+        {/* Section Header: OUR SERVICES with Diagonal Arrow */}
+        <motion.div
+          className={styles.headingContainer}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className={styles.headingWrapper}>
+            <h2 className={styles.headingOur}>OUR</h2>
+            <h2 className={styles.headingServices}>SERVICES</h2>
+          </div>
+
+          <div className={styles.headerArrowWrap} aria-hidden="true">
+            <svg
+              className={styles.headerArrow}
+              viewBox="0 0 48 48"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="38" y1="10" x2="10" y2="38" />
+              <polyline points="30 38 10 38 10 18" />
+            </svg>
+          </div>
+        </motion.div>
+
+        {/* Services Cards List with Sticky Stacking Animation */}
+        <div ref={containerRef} className={styles.cardsList}>
+          {servicesData.map((service, index) => (
+            <ServiceCard key={index} service={service} />
+          ))}
+        </div>
       </div>
     </section>
   )

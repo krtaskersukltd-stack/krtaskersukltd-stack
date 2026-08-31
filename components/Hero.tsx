@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
-import { useRef, useState, MouseEvent } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Hero.module.css'
@@ -10,11 +10,6 @@ import CrossedMarquee from './CrossedMarquee'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const [isVideoPaused, setIsVideoPaused] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
 
   // Scroll parallax for header
   const { scrollYProgress } = useScroll({
@@ -24,64 +19,6 @@ export default function Hero() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0.9])
   const heroY = useTransform(scrollYProgress, [0, 0.45], [0, -30])
 
-  // Mouse tilt effect for the showcase card
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
-    stiffness: 250,
-    damping: 25,
-  })
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
-    stiffness: 250,
-    damping: 25,
-  })
-  const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['0%', '100%']), {
-    stiffness: 250,
-    damping: 25,
-  })
-  const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['0%', '100%']), {
-    stiffness: 250,
-    damping: 25,
-  })
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseClientX = e.clientX - rect.left
-    const mouseClientY = e.clientY - rect.top
-
-    mouseX.set(mouseClientX / width - 0.5)
-    mouseY.set(mouseClientY / height - 0.5)
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0)
-    mouseY.set(0)
-  }
-
-  const toggleVideoPlayback = () => {
-    const video = videoRef.current
-    if (!video) return
-
-    if (video.paused) {
-      void video.play()
-      setIsVideoPaused(false)
-    } else {
-      video.pause()
-      setIsVideoPaused(true)
-    }
-  }
-
-  const toggleMute = () => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = !video.muted
-    setIsMuted(video.muted)
-  }
-
   return (
     <section ref={heroRef} className={styles.heroSection}>
       <div className={styles.container}>
@@ -89,9 +26,9 @@ export default function Hero() {
           style={{ opacity: heroOpacity, y: heroY }}
           className={styles.headerContent}
         >
-          {/* Main Headline (Exactly 2 lines on Laptop/Desktop) */}
+          {/* Main Headline */}
           <h1 className={styles.headline}>
-            {/* Line 1: Effortless [img] Design for [img] Design Startups */}
+            {/* Line 1: Effortless Design for Design Startups */}
             <span className={styles.line}>
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
@@ -102,8 +39,6 @@ export default function Hero() {
                 Effortless
               </motion.span>
 
-              
-
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -113,7 +48,6 @@ export default function Hero() {
                 Design for
               </motion.span>
 
-            
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -124,7 +58,7 @@ export default function Hero() {
               </motion.span>
             </span>
 
-            {/* Line 2: based in London, [img] UK */}
+            {/* Line 2: based in London, UK */}
             <span className={styles.line}>
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
@@ -134,7 +68,6 @@ export default function Hero() {
               >
                 based in London,
               </motion.span>
-
 
               <motion.span
                 initial={{ opacity: 0, y: 25 }}
@@ -189,67 +122,25 @@ export default function Hero() {
             </Link>
           </motion.div>
         </motion.div>
-
-        {/* Video Showcase Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.showcaseWrapper}
-        >
-          <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-              rotateX,
-              rotateY,
-              transformStyle: 'preserve-3d',
-            }}
-            className={styles.showcaseCard}
-          >
-            {/* Ambient Lighting Halos */}
-            <div className={styles.glowCyan} />
-            <div className={styles.glowPurple} />
-            <div className={styles.glowRed} />
-
-            {/* Dynamic Glass Glare Effect */}
-            <motion.div
-              style={{
-                left: glareX,
-                top: glareY,
-              }}
-              className={styles.glareEffect}
-            />
-
-            {/* Video Player Container */}
-            <div className={styles.videoContainer}>
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                poster="/images/curated-brands-showcase.jpg"
-                className={styles.heroVideo}
-                onClick={toggleVideoPlayback}
-              >
-                <source
-                  src="/video/mixkit-hud-style-animated-data-graph-growth-trend-visualization-5396-hd-ready.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support HTML5 video.
-              </video>
-
-            
-            
-
-           
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
+
+      {/* Full-width Image Showcase Wrapper (5px spacing from left and right) */}
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.imageWrapper}
+      >
+        <Image
+          src="/images/curated-brands-showcase.png"
+          alt="KR Tasker Curated Brands & Growth Showcase"
+          width={1920}
+          height={1080}
+          priority
+          sizes="(max-width: 768px) 100vw, 98vw"
+          className={styles.heroImage}
+        />
+      </motion.div>
 
       {/* Embedded Who We Are Section */}
       <About />
