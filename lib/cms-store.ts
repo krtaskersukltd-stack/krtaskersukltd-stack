@@ -313,30 +313,91 @@ export async function getCmsWork(): Promise<CaseStudyRecord[]> {
   try {
     const stmt = db.prepare('SELECT * FROM work ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]
-    return rows.map((row) => ({
-      id: row.id,
-      client: row.client,
-      title: row.title,
-      slug: row.slug,
-      year: row.year,
-      category: row.category,
-      featuredImage: row.featuredImage,
-      featuredImageAlt: row.featuredImageAlt,
-      shortDescription: row.shortDescription,
-      status: row.status,
-      sortOrder: row.sortOrder,
-      overview: row.overview,
-      challenge: row.challenge,
-      solution: row.solution,
-      results: row.results,
-      metrics: JSON.parse(row.metrics),
-      seo: JSON.parse(row.seo),
-      updatedAt: row.updatedAt,
-    }))
+    if (rows && rows.length > 0) {
+      return rows.map((row) => ({
+        id: row.id,
+        client: row.client,
+        title: row.title,
+        slug: row.slug,
+        year: row.year,
+        category: row.category,
+        featuredImage: row.featuredImage,
+        featuredImageAlt: row.featuredImageAlt,
+        shortDescription: row.shortDescription,
+        status: row.status,
+        sortOrder: row.sortOrder,
+        overview: row.overview,
+        challenge: row.challenge,
+        solution: row.solution,
+        results: row.results,
+        metrics: JSON.parse(row.metrics || '[]'),
+        seo: JSON.parse(row.seo || '{}'),
+        updatedAt: row.updatedAt,
+      }))
+    }
   } catch (err) {
     console.error('getCmsWork DB error', err)
-    return []
   }
+
+  // Fallback to static bundled work.json
+  try {
+    const bundled = (await import('@/data/cms/work.json')).default as CaseStudyRecord[]
+    if (Array.isArray(bundled) && bundled.length > 0) {
+      return bundled
+    }
+  } catch {
+    // ignore
+  }
+
+  return []
+}
+
+export async function getCmsWorkBySlug(slug: string): Promise<CaseStudyRecord | null> {
+  const cleanSlug = slug.replace(/^\/work\//, '').replace(/^\//, '')
+
+  // 1. Sanity
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { CASE_STUDY_BY_SLUG_QUERY } = await import('@/sanity/lib/queries')
+      const w = await client.fetch(CASE_STUDY_BY_SLUG_QUERY, { slug: cleanSlug })
+      if (w && w.title) {
+        return {
+          id: w._id || w.id || `work-${w.slug}`,
+          client: w.client || '',
+          title: w.title,
+          slug: w.slug,
+          year: w.year || '2026',
+          category: w.category || 'Case Study',
+          featuredImage: typeof w.featuredImage === 'string' ? w.featuredImage : '',
+          featuredImageAlt: w.featuredImageAlt || w.title,
+          shortDescription: w.shortDescription || '',
+          status: w.status || 'published',
+          sortOrder: w.sortOrder || 1,
+          overview: w.overview || '',
+          challenge: w.challenge || '',
+          solution: w.solution || '',
+          results: w.results || '',
+          metrics: w.metrics || [],
+          seo: w.seo || {
+            metaTitle: w.title,
+            metaDescription: w.shortDescription,
+            h1: w.title,
+            focusKeyword: w.title,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: w._updatedAt || new Date().toISOString(),
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Sanity getCmsWorkBySlug error, falling back:', err)
+  }
+
+  // 2. Local DB / Bundled Fallback
+  const allWork = await getCmsWork()
+  return allWork.find((w) => w.slug === cleanSlug || w.slug === `/work/${cleanSlug}` || w.id === cleanSlug) || null
 }
 
 export async function saveCmsWork(work: CaseStudyRecord[]): Promise<void> {

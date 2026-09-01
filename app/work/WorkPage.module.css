@@ -230,6 +230,14 @@
   flex-direction: column;
 }
 
+.caseCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .cardImageWrapper {
   position: relative;
   width: 100%;
@@ -250,7 +258,8 @@
   display: block;
 }
 
-.caseCard:hover .cardImageWrapper {
+.caseCard:hover .cardImageWrapper,
+.caseCardLink:hover .cardImageWrapper {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(12, 70, 81, 0.08);
 }
@@ -321,7 +330,8 @@
   transition: color 0.2s ease;
 }
 
-.caseCard:hover .cardTitle {
+.caseCard:hover .cardTitle,
+.caseCardLink:hover .cardTitle {
   color: var(--teal);
 }
 

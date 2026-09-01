@@ -4,9 +4,17 @@ import { getCmsWork, saveCmsWork } from '@/lib/cms-store'
 import { ensureCmsSeeded } from '@/lib/cms-seed'
 
 export async function GET() {
-  await ensureCmsSeeded()
-  const work = await getCmsWork()
-  return NextResponse.json(work, { headers: { 'Cache-Control': 'no-store' } })
+  try {
+    const work = await getCmsWork()
+    if (Array.isArray(work) && work.length > 0) {
+      return NextResponse.json(work, { headers: { 'Cache-Control': 'no-store' } })
+    }
+  } catch (err) {
+    console.error('API /api/cms/work error:', err)
+  }
+
+  const fallback = (await import('@/data/cms/work.json')).default
+  return NextResponse.json(fallback, { headers: { 'Cache-Control': 'no-store' } })
 }
 
 export async function POST(request: Request) {

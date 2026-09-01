@@ -1,0 +1,291 @@
+.caseStudyPage {
+  background-color: var(--cream);
+  color: var(--black);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 1. Hero & Breadcrumb */
+.heroSection {
+  padding: 140px 0 40px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray);
+  margin-bottom: 28px;
+}
+
+.breadLink {
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadLink:hover {
+  color: var(--teal);
+}
+
+.breadSep {
+  opacity: 0.5;
+}
+
+.breadCurrent {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.heroContent {
+  max-width: 960px;
+}
+
+.heroMetaTags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.categoryBadge {
+  background: var(--lime);
+  color: var(--teal);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.clientTag,
+.yearTag {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.heroTitle {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.heroDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 36px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  max-width: 600px;
+}
+
+.metricCard {
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.15);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(12, 70, 81, 0.04);
+}
+
+.metricValue {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.metricLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 2. Featured Image Showcase */
+.showcaseSection {
+  padding: 30px 0 60px;
+}
+
+.imageShowcaseWrapper {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(12, 70, 81, 0.3);
+  box-shadow: 0 16px 40px rgba(12, 70, 81, 0.08);
+  background: #ffffff;
+}
+
+.mockupHeader {
+  height: 44px;
+  background: var(--teal);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.mockupTag {
+  background: var(--lime);
+  color: var(--teal);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.showcaseImage {
+  width: 100%;
+  max-height: 650px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3. Deep Dive Narrative Sections */
+.contentSection {
+  padding: 40px 0 100px;
+}
+
+.narrativeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  margin-bottom: 80px;
+}
+
+.narrativeBlock {
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.12);
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: 0 8px 24px rgba(12, 70, 81, 0.03);
+}
+
+.narrativeEyebrow {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.narrativeHeading {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.narrativeText {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444444;
+}
+
+/* CTA Banner */
+.ctaBanner {
+  background: var(--teal);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 60px 48px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(12, 70, 81, 0.2);
+}
+
+.ctaTag {
+  background: rgba(248, 247, 242, 0.15);
+  color: var(--lime);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.ctaHeading {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.ctaSubtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: rgba(248, 247, 242, 0.85);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  color: var(--teal);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+@media (max-width: 992px) {
+  .narrativeGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ctaBanner {
+    padding: 40px 24px;
+  }
+}

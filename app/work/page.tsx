@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useMemo } from 'react'
+import { useState, useRef, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Navbar from '@/components/Navbar'
@@ -10,6 +10,8 @@ import Testimonials from '@/components/Testimonials'
 import styles from './WorkPage.module.css'
 import CategoryTabs from '@/components/CategoryTabs'
 import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
+import fallbackWorkData from '@/data/cms/work.json'
+import type { CaseStudyRecord } from '@/lib/cms-types'
 
 // Categories for Work page
 const filterCategories = [
@@ -20,90 +22,6 @@ const filterCategories = [
   { id: 'ppc', label: 'PPC & Amazon' },
   { id: 'digital360', label: 'Digital 360' },
   { id: 'meta', label: 'Google & Meta Ads' },
-]
-
-interface CaseStudy {
-  id: number
-  title: string
-  category: string
-  client: string
-  year: string
-  tech: string
-  gradient: string
-  imageUrl?: string
-}
-
-const caseStudies: CaseStudy[] = [
-  {
-    id: 1,
-    title: "Refreshing Gary Neville's digital presence",
-    category: 'Websites & Apps',
-    client: 'Couchy',
-    year: '2023',
-    tech: 'Web Design',
-    gradient: 'linear-gradient(135deg, #10525f 0%, #032b32 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 2,
-    title: 'Driving 350% increase in qualified organic leads',
-    category: 'SEO',
-    client: 'Apex Legal',
-    year: '2024',
-    tech: 'SEO Strategy',
-    gradient: 'linear-gradient(135deg, #0C4651 0%, #10525f 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 3,
-    title: 'Modernizing B2B textile manufacturing platform',
-    category: 'Websites & Apps',
-    client: 'Dellas Textiles',
-    year: '2023',
-    tech: 'Web Design',
-    gradient: 'linear-gradient(135deg, #032b32 0%, #0C4651 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 4,
-    title: 'Creating a green brand identity for sustainable energy',
-    category: 'Creative & Branding',
-    client: 'Sustain.co',
-    year: '2024',
-    tech: 'Branding Design',
-    gradient: 'linear-gradient(135deg, #10525f 0%, #0C4651 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 5,
-    title: 'Scaling performance marketing ROAS from 1.5x to 4.2x',
-    category: 'Google & Meta Ads',
-    client: 'Veloce Gear',
-    year: '2024',
-    tech: 'Web Design',
-    gradient: 'linear-gradient(135deg, #0C4651 0%, #032b32 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 6,
-    title: 'Dominating competitive electronics niche with targeted PPC',
-    category: 'PPC & Amazon',
-    client: 'Amazon Pulse',
-    year: '2023',
-    tech: 'Web Design',
-    gradient: 'linear-gradient(135deg, #032b32 0%, #10525f 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 7,
-    title: 'Unified omnichannel marketing for global lifestyle brand',
-    category: 'Digital 360',
-    client: 'Nova Retail',
-    year: '2024',
-    tech: 'Web Design',
-    gradient: 'linear-gradient(135deg, #10525f 0%, #032b32 100%)',
-    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
-  },
 ]
 
 const testimonials = [
@@ -118,25 +36,43 @@ const testimonials = [
 ]
 
 type GridItem =
-  | { type: 'case'; data: CaseStudy }
+  | { type: 'case'; data: CaseStudyRecord }
   | { type: 'testimonial'; data: typeof testimonials[0] }
   | { type: 'cta'; data?: undefined }
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [caseStudiesList, setCaseStudiesList] = useState<CaseStudyRecord[]>(fallbackWorkData as CaseStudyRecord[])
 
-  // Dynamically compute category counts from case studies
+  // Fetch dynamic case studies from /api/cms/work (Sanity / CMS Store)
+  useEffect(() => {
+    fetch('/api/cms/work')
+      .then((res) => res.json())
+      .then((data: CaseStudyRecord[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const published = data.filter((item) => item.status !== 'draft')
+          if (published.length > 0) {
+            setCaseStudiesList(published)
+          }
+        }
+      })
+      .catch(() => {
+        // Safe fallback to bundled work data
+      })
+  }, [])
+
+  // Dynamically compute category counts from dynamic case studies
   const filters = useMemo(() => {
     return filterCategories.map(cat => {
       if (cat.id === 'all') {
-        return { ...cat, count: caseStudies.length }
+        return { ...cat, count: caseStudiesList.length }
       }
-      const count = caseStudies.filter(
+      const count = caseStudiesList.filter(
         cs => cs.category && cs.category.toLowerCase().trim() === cat.label.toLowerCase().trim()
       ).length
       return { ...cat, count }
     })
-  }, [])
+  }, [caseStudiesList])
 
   const headerRef = useRef(null)
   const isHeaderInView = useInView(headerRef, { once: true, margin: '-50px' })
@@ -148,25 +84,29 @@ export default function WorkPage() {
 
     // If "All Work"
     if (activeFilter === 'all') {
-      const left: GridItem[] = [
-        { type: 'case', data: caseStudies[0] }, // Couchy
-        { type: 'case', data: caseStudies[1] }, // Apex Legal
-        { type: 'case', data: caseStudies[3] }, // Sustain.co
-        { type: 'case', data: caseStudies[5] }, // Amazon Pulse
-        { type: 'case', data: caseStudies[6] }, // Nova Retail
-      ]
-      const right: GridItem[] = [
-        { type: 'testimonial', data: testimonials[0] }, // James Walker
-        { type: 'case', data: caseStudies[2] }, // Dellas Textiles
-        { type: 'case', data: caseStudies[4] }, // Veloce Gear
-        { type: 'cta' }, // You're Still Here CTA
-      ]
+      const left: GridItem[] = []
+      const right: GridItem[] = []
+
+      // Testimonial sits at the top of the right column
+      right.push({ type: 'testimonial', data: testimonials[0] })
+
+      caseStudiesList.forEach((cs, idx) => {
+        if (idx % 2 === 0) {
+          left.push({ type: 'case', data: cs })
+        } else {
+          right.push({ type: 'case', data: cs })
+        }
+      })
+
+      // CTA Card placed after 10 case studies in the right column
+      right.push({ type: 'cta' })
+
       return { leftColumnItems: left, rightColumnItems: right }
     }
 
     // Otherwise, filter by category
-    const filteredCases = caseStudies.filter(
-      (cs) => cs.category.toLowerCase() === selectedFilterObj.label.toLowerCase()
+    const filteredCases = caseStudiesList.filter(
+      (cs) => cs.category?.toLowerCase().trim() === selectedFilterObj.label.toLowerCase().trim()
     )
     const left: GridItem[] = []
     const right: GridItem[] = []
@@ -178,7 +118,7 @@ export default function WorkPage() {
       }
     })
     return { leftColumnItems: left, rightColumnItems: right }
-  }, [activeFilter, filters])
+  }, [activeFilter, filters, caseStudiesList])
 
   const scrollToContact = () => {
     const contactSec = document.getElementById('contact-form')
@@ -189,7 +129,8 @@ export default function WorkPage() {
 
   const renderItem = (item: GridItem) => {
     if (item.type === 'case') {
-      const cs = item.data as CaseStudy
+      const cs = item.data as CaseStudyRecord
+      const cleanSlug = (cs.slug || '').replace(/^\/work\//, '').replace(/^\//, '')
       return (
         <motion.div
           layout
@@ -197,28 +138,30 @@ export default function WorkPage() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.35 }}
-          key={`case-${cs.id}`}
+          key={`case-${cs.id || cs.slug}`}
           className={styles.caseCard}
         >
-          <div className={styles.cardImageWrapper}>
-            <div className={styles.mockupHeader}>
-              <span>{cs.client}</span>
-              <span className={styles.caseTechTag}>{cs.tech}</span>
+          <Link href={`/work/${cleanSlug}`} className={styles.caseCardLink}>
+            <div className={styles.cardImageWrapper}>
+              <div className={styles.mockupHeader}>
+                <span>{cs.client}</span>
+                <span className={styles.caseTechTag}>{cs.category}</span>
+              </div>
+              {cs.featuredImage && (
+                <img
+                  src={cs.featuredImage}
+                  alt={cs.featuredImageAlt || cs.title}
+                  className={styles.cardImage}
+                />
+              )}
             </div>
-            {cs.imageUrl && (
-              <img
-                src={cs.imageUrl}
-                alt={cs.title}
-                className={styles.cardImage}
-              />
-            )}
-          </div>
-          <div className={styles.cardContent}>
-            <span className={styles.cardClient}>
-              {cs.year} {cs.client}
-            </span>
-            <h3 className={styles.cardTitle}>{cs.title}</h3>
-          </div>
+            <div className={styles.cardContent}>
+              <span className={styles.cardClient}>
+                {cs.year} {cs.client}
+              </span>
+              <h3 className={styles.cardTitle}>{cs.title}</h3>
+            </div>
+          </Link>
         </motion.div>
       )
     } else if (item.type === 'testimonial') {

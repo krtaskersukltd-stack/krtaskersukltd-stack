@@ -38,6 +38,12 @@ export const caseStudyType = defineType({
       type: 'string',
       options: {
         list: [
+          { title: 'Websites & Apps', value: 'Websites & Apps' },
+          { title: 'Creative & Branding', value: 'Creative & Branding' },
+          { title: 'SEO', value: 'SEO' },
+          { title: 'PPC & Amazon', value: 'PPC & Amazon' },
+          { title: 'Digital 360', value: 'Digital 360' },
+          { title: 'Google & Meta Ads', value: 'Google & Meta Ads' },
           { title: 'Web Development & CMS', value: 'Web Development & CMS' },
           { title: 'E-Commerce & Shopify', value: 'E-Commerce & Shopify' },
           { title: 'SEO & Organic Growth', value: 'SEO & Organic Growth' },

@@ -1,38 +1,302 @@
 [
   {
     "id": "cs-1",
-    "client": "Global Logistics Corp",
-    "title": "Enterprise Fleet Portal & Digital Infrastructure",
-    "slug": "enterprise-fleet-portal",
-    "year": "2026",
-    "category": "Web Engineering",
-    "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-    "featuredImageAlt": "Dashboard analytics visualization",
-    "shortDescription": "Modernizing legacy administrative systems into a real-time responsive Next.js CMS platform.",
+    "client": "Couchy",
+    "title": "Refreshing Gary Neville's digital presence",
+    "slug": "refreshing-gary-nevilles-digital-presence",
+    "year": "2023",
+    "category": "Websites & Apps",
+    "featuredImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Refreshing Gary Neville's digital presence",
+    "shortDescription": "Complete digital transformation and web redesign for Gary Neville's premier brand.",
     "status": "published",
     "sortOrder": 1,
-    "overview": "Rebuilt core customer interaction portal with server-side dynamic rendering.",
-    "challenge": "Legacy system was slow, insecure, and un-editable by non-technical marketing teams.",
-    "solution": "Built custom admin dashboard with role-based access control and live status syncing.",
-    "results": "Reduced page loading latency by 85% and increased administrative editing throughput by 3x.",
+    "overview": "Rebuilt core digital presence with high-performance responsive web engineering.",
+    "challenge": "Legacy digital setup lacked modern speed, responsive aesthetics, and brand authority.",
+    "solution": "Engineered custom Next.js web application with fluid micro-interactions and CMS integration.",
+    "results": "Increased page engagement by 180% and reduced page load times to under 0.5s.",
     "metrics": [
-      {
-        "value": "+240%",
-        "label": "User Engagement"
-      },
-      {
-        "value": "0.4s",
-        "label": "Page Load Time"
-      }
+      { "value": "+180%", "label": "Engagement" },
+      { "value": "0.4s", "label": "Load Time" }
     ],
     "seo": {
-      "metaTitle": "Enterprise Fleet Portal Case Study | KR Tasker Digital",
-      "metaDescription": "Case study on enterprise fleet management portal redesign using Next.js and custom CMS.",
-      "h1": "Enterprise Fleet Portal Case Study",
-      "focusKeyword": "fleet portal case study",
+      "metaTitle": "Refreshing Gary Neville's Digital Presence | KR Tasker Digital",
+      "metaDescription": "Case study on refreshing Gary Neville's digital presence with bespoke web development.",
+      "h1": "Refreshing Gary Neville's Digital Presence",
+      "focusKeyword": "Gary Neville web design",
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-24T08:49:30.746Z"
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-2",
+    "client": "Apex Legal",
+    "title": "Driving 350% increase in qualified organic leads",
+    "slug": "driving-350-increase-in-qualified-organic-leads",
+    "year": "2024",
+    "category": "SEO",
+    "featuredImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Driving 350% increase in qualified organic leads",
+    "shortDescription": "Data-driven technical SEO strategy and high-authority search acquisition for legal firm.",
+    "status": "published",
+    "sortOrder": 2,
+    "overview": "Engineered full technical SEO roadmap and high-intent commercial keyword ranking strategy.",
+    "challenge": "Client was invisible on Google page 1 for high-value legal commercial search terms.",
+    "solution": "Audited and restructured information architecture, fixed Core Web Vitals, and built topical authority clusters.",
+    "results": "Delivered +350% qualified inbound leads and captured 45+ top 3 Google positions.",
+    "metrics": [
+      { "value": "+350%", "label": "Organic Leads" },
+      { "value": "45+", "label": "Top 3 Keywords" }
+    ],
+    "seo": {
+      "metaTitle": "Driving 350% Increase in Qualified Organic Leads | KR Tasker Digital",
+      "metaDescription": "Case study showing how KR Tasker Digital drove 350% more organic search leads for Apex Legal.",
+      "h1": "Driving 350% Increase in Qualified Organic Leads",
+      "focusKeyword": "legal SEO case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-3",
+    "client": "Dellas Textiles",
+    "title": "Modernizing B2B textile manufacturing platform",
+    "slug": "modernizing-b2b-textile-manufacturing-platform",
+    "year": "2023",
+    "category": "Websites & Apps",
+    "featuredImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Modernizing B2B textile manufacturing platform",
+    "shortDescription": "Bespoke headless B2B eCommerce architecture for global textile distributor.",
+    "status": "published",
+    "sortOrder": 3,
+    "overview": "Built custom catalog browsing and wholesale trade ordering engine.",
+    "challenge": "Outdated catalog structure required manual wholesale order quoting and processing.",
+    "solution": "Implemented bespoke headless product configurator and dynamic B2B pricing portal.",
+    "results": "Shortened wholesale ordering cycle by 65% and grew international orders by 220%.",
+    "metrics": [
+      { "value": "+220%", "label": "International B2B Orders" },
+      { "value": "-65%", "label": "Order Processing Time" }
+    ],
+    "seo": {
+      "metaTitle": "Modernizing B2B Textile Manufacturing Platform | KR Tasker Digital",
+      "metaDescription": "Case study on building custom B2B web platform for Dellas Textiles.",
+      "h1": "Modernizing B2B Textile Manufacturing Platform",
+      "focusKeyword": "B2B web development case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-4",
+    "client": "Sustain.co",
+    "title": "Creating a green brand identity for sustainable energy",
+    "slug": "creating-a-green-brand-identity-for-sustainable-energy",
+    "year": "2024",
+    "category": "Creative & Branding",
+    "featuredImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Creating a green brand identity for sustainable energy",
+    "shortDescription": "End-to-end visual identity, design guidelines, and sustainable branding system.",
+    "status": "published",
+    "sortOrder": 4,
+    "overview": "Designed premium brand positioning and digital assets for green energy leader.",
+    "challenge": "Generic branding made it difficult to differentiate in a rapidly crowded clean-tech market.",
+    "solution": "Developed complete visual identity system, custom typography, and digital design standards.",
+    "results": "Elevated brand equity resulting in $12M Series A funding round close.",
+    "metrics": [
+      { "value": "$12M", "label": "Funding Raised" },
+      { "value": "100%", "label": "Brand Redesign" }
+    ],
+    "seo": {
+      "metaTitle": "Creating a Green Brand Identity for Sustainable Energy | KR Tasker Digital",
+      "metaDescription": "Case study on sustainable branding and identity design for Sustain.co.",
+      "h1": "Creating a Green Brand Identity for Sustainable Energy",
+      "focusKeyword": "sustainable brand identity case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-5",
+    "client": "Veloce Gear",
+    "title": "Scaling performance marketing ROAS from 1.5x to 4.2x",
+    "slug": "scaling-performance-marketing-roas-from-1-5x-to-4-2x",
+    "year": "2024",
+    "category": "Google & Meta Ads",
+    "featuredImage": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Scaling performance marketing ROAS",
+    "shortDescription": "Hyper-targeted Meta and Google Ads funnels generating 4.2x return on ad spend.",
+    "status": "published",
+    "sortOrder": 5,
+    "overview": "Structured multi-stage paid acquisition funnels with dynamic creative testing.",
+    "challenge": "Client was plateauing with high customer acquisition costs on legacy ad campaigns.",
+    "solution": "Revamped ad creatives, launched intent-based Google Search ads, and built Meta retargeting loops.",
+    "results": "Boosted ROAS from 1.5x to 4.2x while scaling monthly ad spend by 300%.",
+    "metrics": [
+      { "value": "4.2x", "label": "Average ROAS" },
+      { "value": "+300%", "label": "Profitable Ad Scale" }
+    ],
+    "seo": {
+      "metaTitle": "Scaling Performance Marketing ROAS to 4.2x | KR Tasker Digital",
+      "metaDescription": "How KR Tasker scaled Veloce Gear's paid ads to 4.2x ROAS.",
+      "h1": "Scaling Performance Marketing ROAS to 4.2x",
+      "focusKeyword": "performance marketing ROAS case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-6",
+    "client": "Amazon Pulse",
+    "title": "Dominating competitive electronics niche with targeted PPC",
+    "slug": "dominating-competitive-electronics-niche-with-targeted-ppc",
+    "year": "2023",
+    "category": "PPC & Amazon",
+    "featuredImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Dominating competitive electronics niche",
+    "shortDescription": "Algorithmic Amazon Sponsored Ads campaign optimization reducing TACoS by 40%.",
+    "status": "published",
+    "sortOrder": 6,
+    "overview": "Amazon PPC bidding restructuring and listing conversion optimization.",
+    "challenge": "High Amazon ad spend was cannibalizing margins in a hyper-competitive category.",
+    "solution": "Implemented negative keyword isolation, automated dayparting, and Sponsored Brand video ads.",
+    "results": "Lowered TACoS from 28% to 14% while growing organic rank for 12 core ASINs.",
+    "metrics": [
+      { "value": "14%", "label": "Target TACoS" },
+      { "value": "+95%", "label": "Amazon Sales Growth" }
+    ],
+    "seo": {
+      "metaTitle": "Dominating Amazon Electronics Niche with PPC | KR Tasker Digital",
+      "metaDescription": "Case study on Amazon advertising and PPC management for electronics brand.",
+      "h1": "Dominating Competitive Electronics Niche with Targeted PPC",
+      "focusKeyword": "Amazon PPC case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-7",
+    "client": "Nova Retail",
+    "title": "Unified omnichannel marketing for global lifestyle brand",
+    "slug": "unified-omnichannel-marketing-for-global-lifestyle-brand",
+    "year": "2024",
+    "category": "Digital 360",
+    "featuredImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Unified omnichannel marketing",
+    "shortDescription": "Complete 360 digital growth engine combining SEO, PPC, email, and social.",
+    "status": "published",
+    "sortOrder": 7,
+    "overview": "Comprehensive 360 growth execution across acquisition, conversion, and retention channels.",
+    "challenge": "Fragmented agency partners caused inconsistent messaging and inefficient marketing spend.",
+    "solution": "Consolidated digital strategy under KR Tasker Digital 360 engine with synchronized attribution.",
+    "results": "Drove +210% top-line revenue growth across 4 global markets in 12 months.",
+    "metrics": [
+      { "value": "+210%", "label": "Omnichannel Revenue" },
+      { "value": "4", "label": "Global Markets" }
+    ],
+    "seo": {
+      "metaTitle": "Unified Omnichannel Marketing for Global Lifestyle Brand | KR Tasker Digital",
+      "metaDescription": "Omnichannel 360 digital marketing case study for Nova Retail.",
+      "h1": "Unified Omnichannel Marketing for Global Lifestyle Brand",
+      "focusKeyword": "digital 360 case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-8",
+    "client": "Aura Skincare",
+    "title": "D2C Shopify Plus migration & conversion rate optimization",
+    "slug": "d2c-shopify-plus-migration-conversion-optimization",
+    "year": "2024",
+    "category": "Websites & Apps",
+    "featuredImage": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "D2C Shopify Plus migration",
+    "shortDescription": "Custom high-converting Shopify store boosting mobile conversion rates by 85%.",
+    "status": "published",
+    "sortOrder": 8,
+    "overview": "End-to-end Shopify Plus migration with custom theme architecture and subscription checkout.",
+    "challenge": "Legacy platform had high checkout friction and poor mobile performance.",
+    "solution": "Built custom high-speed Shopify theme with 1-click checkout and customized bundle builder.",
+    "results": "Increased mobile conversion rate by 85% and lifted average order value (AOV) by 32%.",
+    "metrics": [
+      { "value": "+85%", "label": "Mobile Conversion" },
+      { "value": "+32%", "label": "AOV Increase" }
+    ],
+    "seo": {
+      "metaTitle": "D2C Shopify Plus Migration & Conversion Optimization | KR Tasker Digital",
+      "metaDescription": "Case study on Shopify Plus eCommerce migration and CRO for Aura Skincare.",
+      "h1": "D2C Shopify Plus Migration & Conversion Rate Optimization",
+      "focusKeyword": "Shopify Plus case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-9",
+    "client": "Zenith Wealth",
+    "title": "Bespoke fintech web portal & high-intent organic search",
+    "slug": "bespoke-fintech-web-portal-organic-search",
+    "year": "2024",
+    "category": "SEO",
+    "featuredImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Bespoke fintech web portal",
+    "shortDescription": "Fintech client platform and search visibility dominating high-value wealth terms.",
+    "status": "published",
+    "sortOrder": 9,
+    "overview": "Built secure client portal combined with institutional fintech SEO roadmap.",
+    "challenge": "Highly regulated industry requiring strict security compliance and high organic trust signals.",
+    "solution": "Engineered enterprise portal with rigorous security and deployed thought-leadership SEO content.",
+    "results": "Attracted £45M+ in new institutional assets under management via organic channels.",
+    "metrics": [
+      { "value": "£45M+", "label": "New Inbound AUM" },
+      { "value": "#1", "label": "Fintech Search Rank" }
+    ],
+    "seo": {
+      "metaTitle": "Fintech Web Portal & High-Intent SEO Case Study | KR Tasker Digital",
+      "metaDescription": "Case study on bespoke fintech web portal and organic search growth for Zenith Wealth.",
+      "h1": "Bespoke Fintech Web Portal & High-Intent Organic Search",
+      "focusKeyword": "fintech SEO case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "cs-10",
+    "client": "Kroma Studio",
+    "title": "Complete brand evolution & international paid social launch",
+    "slug": "complete-brand-evolution-international-paid-social",
+    "year": "2024",
+    "category": "Creative & Branding",
+    "featuredImage": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop",
+    "featuredImageAlt": "Complete brand evolution",
+    "shortDescription": "Visual identity overhaul and multi-region paid social campaign execution.",
+    "status": "published",
+    "sortOrder": 10,
+    "overview": "Modernized luxury visual brand identity and scaled cross-border creative social ads.",
+    "challenge": "Brand image was perceived as dated, hindering expansion into US and European luxury markets.",
+    "solution": "Redesigned visual identity, art directed new content library, and launched localized paid social ads.",
+    "results": "Generated over 4.5M high-intent brand impressions and 3.8x ad return.",
+    "metrics": [
+      { "value": "4.5M", "label": "Brand Impressions" },
+      { "value": "3.8x", "label": "Paid Social ROAS" }
+    ],
+    "seo": {
+      "metaTitle": "Brand Evolution & Paid Social Launch Case Study | KR Tasker Digital",
+      "metaDescription": "Case study on brand evolution and international paid social for Kroma Studio.",
+      "h1": "Complete Brand Evolution & International Paid Social Launch",
+      "focusKeyword": "luxury branding case study",
+      "indexStatus": "index",
+      "followStatus": "follow"
+    },
+    "updatedAt": "2026-09-01T10:00:00.000Z"
   }
 ]
