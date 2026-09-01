@@ -205,7 +205,7 @@
   color: var(--teal);
 }
 
-/* 3. Case Studies Grid */
+/* 3. Case Studies Grid (2-Column Masonry) */
 .gridSection {
   padding: 22px 0 100px;
 }
@@ -214,18 +214,13 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 52px;
-  row-gap: 34px;
   align-items: start;
 }
 
-/* Left column case studies (Apex Legal, Sustain.co, etc.) staggered down */
-.caseGrid > :nth-child(odd):not(:first-child) {
-  margin-top: 76px;
-}
-
-/* Right column case studies (Dellas Textiles, Veloce Gear, etc.) stay up */
-.caseGrid > :nth-child(even) {
-  margin-top: 0;
+.caseCol {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
 }
 
 /* Case Card Design */
@@ -334,12 +329,11 @@
 .testimonialCard {
   background: transparent;
   border-radius: 0;
-  padding: 0 4px 12px;
+  padding: 0 4px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   box-shadow: none;
-  min-height: 185px;
   border: 0;
 }
 
@@ -359,10 +353,7 @@
   line-height: var(--lh-heading);
   color: var(--black);
   font-weight: 700;
-  margin: 0 0 12px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
+  margin: 0 0 16px;
 }
 
 .authorSection {
@@ -791,10 +782,11 @@
     grid-template-columns: 1fr;
     max-width: 650px;
     margin: 0 auto;
+    gap: 30px;
   }
 
-  .caseGrid > * {
-    margin-top: 0 !important;
+  .caseCol {
+    gap: 30px;
   }
 
   .cardImageWrapper {

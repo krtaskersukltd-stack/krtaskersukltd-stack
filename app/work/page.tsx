@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Navbar from '@/components/Navbar'
@@ -126,54 +126,154 @@ export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('all')
 
   // Dynamically compute category counts from case studies
-  const filters = filterCategories.map(cat => {
-    if (cat.id === 'all') {
-      return { ...cat, count: caseStudies.length }
-    }
-    const count = caseStudies.filter(
-      cs => cs.category && cs.category.toLowerCase().trim() === cat.label.toLowerCase().trim()
-    ).length
-    return { ...cat, count }
-  })
+  const filters = useMemo(() => {
+    return filterCategories.map(cat => {
+      if (cat.id === 'all') {
+        return { ...cat, count: caseStudies.length }
+      }
+      const count = caseStudies.filter(
+        cs => cs.category && cs.category.toLowerCase().trim() === cat.label.toLowerCase().trim()
+      ).length
+      return { ...cat, count }
+    })
+  }, [])
 
   const headerRef = useRef(null)
   const isHeaderInView = useInView(headerRef, { once: true, margin: '-50px' })
 
-  // Filtering Logic
-  const getFilteredItems = () => {
+  // 2-Column Masonry Distribution
+  const { leftColumnItems, rightColumnItems } = useMemo(() => {
     const selectedFilterObj = filters.find((f) => f.id === activeFilter)
-    if (!selectedFilterObj) return []
+    if (!selectedFilterObj) return { leftColumnItems: [], rightColumnItems: [] }
 
     // If "All Work"
     if (activeFilter === 'all') {
-      // Interweave Case Studies, Testimonials & CTA
-      const list: GridItem[] = []
-      list.push({ type: 'case', data: caseStudies[0] }) // Couchy
-      list.push({ type: 'testimonial', data: testimonials[0] }) // James Walker
-      list.push({ type: 'case', data: caseStudies[1] }) // Apex Legal
-      list.push({ type: 'case', data: caseStudies[2] }) // Dellas Textiles
-      list.push({ type: 'case', data: caseStudies[3] }) // Sustain.co
-      list.push({ type: 'case', data: caseStudies[4] }) // Veloce Gear
-      list.push({ type: 'case', data: caseStudies[5] }) // Amazon Pulse
-      list.push({ type: 'cta' }) // You're Still Here
-      list.push({ type: 'case', data: caseStudies[6] }) // Nova Retail
-      return list
+      const left: GridItem[] = [
+        { type: 'case', data: caseStudies[0] }, // Couchy
+        { type: 'case', data: caseStudies[1] }, // Apex Legal
+        { type: 'case', data: caseStudies[3] }, // Sustain.co
+        { type: 'case', data: caseStudies[5] }, // Amazon Pulse
+        { type: 'case', data: caseStudies[6] }, // Nova Retail
+      ]
+      const right: GridItem[] = [
+        { type: 'testimonial', data: testimonials[0] }, // James Walker
+        { type: 'case', data: caseStudies[2] }, // Dellas Textiles
+        { type: 'case', data: caseStudies[4] }, // Veloce Gear
+        { type: 'cta' }, // You're Still Here CTA
+      ]
+      return { leftColumnItems: left, rightColumnItems: right }
     }
 
     // Otherwise, filter by category
     const filteredCases = caseStudies.filter(
       (cs) => cs.category.toLowerCase() === selectedFilterObj.label.toLowerCase()
     )
-    return filteredCases.map((cs) => ({ type: 'case', data: cs }))
-  }
-
-  const items = getFilteredItems()
+    const left: GridItem[] = []
+    const right: GridItem[] = []
+    filteredCases.forEach((cs, idx) => {
+      if (idx % 2 === 0) {
+        left.push({ type: 'case', data: cs })
+      } else {
+        right.push({ type: 'case', data: cs })
+      }
+    })
+    return { leftColumnItems: left, rightColumnItems: right }
+  }, [activeFilter, filters])
 
   const scrollToContact = () => {
     const contactSec = document.getElementById('contact-form')
     if (contactSec) {
       contactSec.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const renderItem = (item: GridItem) => {
+    if (item.type === 'case') {
+      const cs = item.data as CaseStudy
+      return (
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.35 }}
+          key={`case-${cs.id}`}
+          className={styles.caseCard}
+        >
+          <div className={styles.cardImageWrapper}>
+            <div className={styles.mockupHeader}>
+              <span>{cs.client}</span>
+              <span className={styles.caseTechTag}>{cs.tech}</span>
+            </div>
+            {cs.imageUrl && (
+              <img
+                src={cs.imageUrl}
+                alt={cs.title}
+                className={styles.cardImage}
+              />
+            )}
+          </div>
+          <div className={styles.cardContent}>
+            <span className={styles.cardClient}>
+              {cs.year} {cs.client}
+            </span>
+            <h3 className={styles.cardTitle}>{cs.title}</h3>
+          </div>
+        </motion.div>
+      )
+    } else if (item.type === 'testimonial') {
+      const test = item.data as typeof testimonials[0]
+      return (
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.35 }}
+          key={`test-${test.id}`}
+          className={styles.testimonialCard}
+        >
+          <span className={styles.quoteMark}>“</span>
+          <p className={styles.quoteText}>{test.quote}</p>
+          <div className={styles.authorSection}>
+            <div className={styles.authorAvatar}>
+              {test.avatarUrl ? (
+                <img
+                  src={test.avatarUrl}
+                  alt={test.author}
+                  className={styles.authorImage}
+                />
+              ) : (
+                test.initial
+              )}
+            </div>
+            <div>
+              <p className={styles.authorName}>{test.author}</p>
+              <p className={styles.authorRole}>{test.role}</p>
+            </div>
+          </div>
+        </motion.div>
+      )
+    } else if (item.type === 'cta') {
+      return (
+        <motion.div
+          layout
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.35 }}
+          key="cta-card"
+          className={styles.ctaCard}
+        >
+          <h3 className={styles.ctaTitle}>You&apos;re Still Here?!</h3>
+          <p className={styles.ctaDesc}>You must really like us...</p>
+          <button onClick={scrollToContact} className={styles.ctaButton}>
+            Contact Us
+          </button>
+        </motion.div>
+      )
+    }
+    return null
   }
 
   return (
@@ -222,103 +322,21 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 3. Case Studies Grid (Masonry effect) */}
+      {/* 3. Case Studies Grid (2-Column Masonry) */}
       <section className={styles.gridSection}>
         <div className={styles.container}>
-          <motion.div layout className={styles.caseGrid}>
-            <AnimatePresence mode="popLayout">
-              {items.map((item) => {
-                if (item.type === 'case') {
-                  const cs = item.data as CaseStudy
-                  return (
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.4 }}
-                      key={`case-${cs.id}`}
-                      className={styles.caseCard}
-                    >
-                      <div
-                        className={styles.cardImageWrapper}
-                      >
-                        <div className={styles.mockupHeader}>
-                          <span>{cs.client}</span>
-                          <span className={styles.caseTechTag}>{cs.tech}</span>
-                        </div>
-                        {cs.imageUrl && (
-                          <img
-                            src={cs.imageUrl}
-                            alt={cs.title}
-                            className={styles.cardImage}
-                          />
-                        )}
-                      </div>
-                      <div className={styles.cardContent}>
-                        <span className={styles.cardClient}>
-                          {cs.year} {cs.client}
-                        </span>
-                        <h3 className={styles.cardTitle}>{cs.title}</h3>
-                      </div>
-                    </motion.div>
-                  )
-                } else if (item.type === 'testimonial') {
-                  const test = item.data as typeof testimonials[0]
-                  return (
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.4 }}
-                      key={`test-${test.id}`}
-                      className={styles.testimonialCard}
-                    >
-                      <span className={styles.quoteMark}>“</span>
-                      <p className={styles.quoteText}>{test.quote}</p>
-                      <div className={styles.authorSection}>
-                        <div className={styles.authorAvatar}>
-                          {test.avatarUrl ? (
-                            <img
-                              src={test.avatarUrl}
-                              alt={test.author}
-                              className={styles.authorImage}
-                            />
-                          ) : (
-                            test.initial
-                          )}
-                        </div>
-                        <div>
-                          <p className={styles.authorName}>{test.author}</p>
-                          <p className={styles.authorRole}>{test.role}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )
-                } else if (item.type === 'cta') {
-                  return (
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.4 }}
-                      key="cta-card"
-                      className={styles.ctaCard}
-                    >
-                      <h3 className={styles.ctaTitle}>You&apos;re Still Here?!</h3>
-                      <p className={styles.ctaDesc}>You must really like us...</p>
-                      <button onClick={scrollToContact} className={styles.ctaButton}>
-                        Contact Us
-                      </button>
-                    </motion.div>
-                  )
-                }
-                return null
-              })}
-            </AnimatePresence>
-          </motion.div>
+          <div className={styles.caseGrid}>
+            <div className={styles.caseCol}>
+              <AnimatePresence mode="popLayout">
+                {leftColumnItems.map((item) => renderItem(item))}
+              </AnimatePresence>
+            </div>
+            <div className={styles.caseCol}>
+              <AnimatePresence mode="popLayout">
+                {rightColumnItems.map((item) => renderItem(item))}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </section>
 
