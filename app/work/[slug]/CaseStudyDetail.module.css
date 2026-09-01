@@ -1,6 +1,6 @@
 .caseStudyPage {
-  background-color: #0c0e10;
-  color: #ffffff;
+  background-color: var(--cream);
+  color: var(--black);
   min-height: 100vh;
 }
 
@@ -12,7 +12,7 @@
 
 /* 1. Header Meta & Title */
 .headerSection {
-  padding: 130px 0 30px;
+  padding: 140px 0 30px;
 }
 
 .headerTopGrid {
@@ -26,19 +26,20 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  max-width: 450px;
+  max-width: 480px;
 }
 
 .pillTag {
-  background: #181b1e;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #e0e4e6;
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.25);
+  color: var(--teal);
   font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 600;
-  padding: 6px 14px;
+  font-weight: 700;
+  padding: 6px 16px;
   border-radius: 20px;
   letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(12, 70, 81, 0.04);
 }
 
 .headerMetaBlock {
@@ -48,21 +49,21 @@
 
 .eyebrowMeta {
   font-family: var(--font-display);
-  font-size: 13px;
-  color: #8c9398;
+  font-size: 14px;
+  color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: block;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .mainTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: clamp(36px, 4.2vw, 56px);
+  font-size: clamp(36px, 4.5vw, 56px);
   font-weight: 800;
   line-height: 1.1;
-  color: #ffffff;
+  color: var(--black);
   letter-spacing: -0.5px;
 }
 
@@ -76,9 +77,9 @@
   border-radius: 16px;
   overflow: hidden;
   height: clamp(380px, 55vh, 680px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-  background: #14171a;
+  border: 1px solid rgba(12, 70, 81, 0.25);
+  box-shadow: 0 20px 60px rgba(12, 70, 81, 0.08);
+  background: #ffffff;
 }
 
 .heroImage {
@@ -91,7 +92,7 @@
 /* 3. Intro Section & Squad */
 .introSection {
   padding: 50px 0 70px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(12, 70, 81, 0.15);
 }
 
 .introGrid {
@@ -106,7 +107,7 @@
   font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 800;
   line-height: 1.15;
-  color: #ffffff;
+  color: var(--black);
   letter-spacing: -0.5px;
 }
 
@@ -126,10 +127,11 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid #0c0e10;
+  border: 2px solid var(--cream);
   overflow: hidden;
   margin-left: -12px;
-  background: #222;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(12, 70, 81, 0.1);
 }
 
 .avatarWrapper:first-child {
@@ -145,15 +147,15 @@
 .teamLabel {
   font-family: var(--font-display);
   font-size: 13px;
-  color: #8c9398;
-  font-weight: 600;
+  color: var(--teal);
+  font-weight: 700;
 }
 
 .introDesc {
   font-family: 'Inter', sans-serif;
   font-size: 17px;
   line-height: 1.7;
-  color: #a4abb0;
+  color: #333333;
   margin-bottom: 40px;
 }
 
@@ -161,14 +163,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(12, 70, 81, 0.15);
   padding-top: 24px;
 }
 
 .metaKey {
   font-family: var(--font-display);
   font-size: 12px;
-  color: #6a7176;
+  color: var(--gray);
   text-transform: uppercase;
   letter-spacing: 1px;
   display: block;
@@ -178,9 +180,9 @@
 
 .metaVal {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--teal);
   line-height: 1.3;
 }
 
@@ -190,13 +192,14 @@
 }
 
 .darkWordmarkCard {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #0C4651 0%, #032B32 100%);
+  border: 1px solid rgba(12, 70, 81, 0.3);
   border-radius: 16px;
   padding: 90px 40px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 20px 50px rgba(12, 70, 81, 0.15);
 }
 
 .wordmarkContent {
@@ -217,8 +220,8 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 40px;
   padding: 8px 20px;
   max-width: 600px;
@@ -248,7 +251,7 @@
 .playerTrack {
   flex: 1;
   height: 4px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -269,7 +272,7 @@
 .playerTime {
   font-family: monospace;
   font-size: 12px;
-  color: #8c9398;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
 }
 
@@ -285,8 +288,8 @@
 }
 
 .mockupTileLeft {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.2);
   border-radius: 16px;
   padding: 30px;
   display: flex;
@@ -295,6 +298,7 @@
   height: 560px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.05);
 }
 
 .mockupInnerFrame {
@@ -309,7 +313,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(20%);
 }
 
 .overlayQuote {
@@ -327,20 +330,21 @@
 }
 
 .mockupTileRight {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #0C4651 0%, #10525F 100%);
+  border: 1px solid rgba(12, 70, 81, 0.3);
   border-radius: 16px;
   height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
 }
 
 .monogramStoneBox {
   padding: 36px 50px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .stoneMonogram {
@@ -357,21 +361,20 @@
 }
 
 .browserWindow {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.25);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 25px 60px rgba(12, 70, 81, 0.1);
 }
 
 .browserHeader {
   height: 42px;
-  background: #14171a;
+  background: var(--teal);
   display: flex;
   align-items: center;
   padding: 0 16px;
   position: relative;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .browserDots {
@@ -383,7 +386,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .browserUrl {
@@ -391,8 +394,9 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  color: #727a80;
+  color: rgba(255, 255, 255, 0.85);
   font-family: monospace;
+  font-weight: 600;
 }
 
 .browserBody {
@@ -426,7 +430,7 @@
 /* 7. Story Sections */
 .storySection {
   padding: 70px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(12, 70, 81, 0.15);
 }
 
 .storySplitHeader {
@@ -440,8 +444,8 @@
 .storyStepBadge {
   font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 700;
-  color: var(--lime);
+  font-weight: 800;
+  color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: block;
@@ -452,7 +456,7 @@
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(28px, 3.2vw, 42px);
   font-weight: 800;
-  color: #ffffff;
+  color: var(--black);
   letter-spacing: -0.5px;
 }
 
@@ -460,7 +464,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  color: #a4abb0;
+  color: #444444;
 }
 
 .fullWidthMockupCard {
@@ -469,12 +473,13 @@
 
 .stoneBannerDisplay {
   height: 440px;
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #032B32 0%, #0C4651 100%);
+  border: 1px solid rgba(12, 70, 81, 0.3);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 15px 40px rgba(12, 70, 81, 0.1);
 }
 
 .largeMonogramText {
@@ -500,8 +505,9 @@
   border-radius: 16px;
   overflow: hidden;
   height: 380px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #14171a;
+  border: 1px solid rgba(12, 70, 81, 0.2);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.05);
 }
 
 .mosaicImg {
@@ -519,14 +525,15 @@
 }
 
 .identityTypeSpecimen {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #0C4651 0%, #10525F 100%);
+  border: 1px solid rgba(12, 70, 81, 0.3);
   border-radius: 16px;
   padding: 50px 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 360px;
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
 }
 
 .specimenText {
@@ -540,13 +547,15 @@
 
 .identityPaletteBlock {
   background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.2);
   border-radius: 16px;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 360px;
-  color: #111315;
+  color: var(--black);
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.05);
 }
 
 .paletteSwatchesRow {
@@ -568,12 +577,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  color: var(--teal);
 }
 
 .monogramLower {
   font-family: 'Inter', sans-serif;
   font-size: 15px;
-  color: #6a7176;
+  color: var(--gray);
   font-weight: 600;
 }
 
@@ -590,13 +600,13 @@
 }
 
 .tileDark {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #0C4651 0%, #032B32 100%);
   border-radius: 14px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: #ffffff;
 }
 
 .tileEyebrow {
@@ -604,7 +614,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #727a80;
+  color: var(--lime);
   text-transform: uppercase;
 }
 
@@ -620,14 +630,14 @@
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: #a4abb0;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .tileImg {
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #14171a;
+  border: 1px solid rgba(12, 70, 81, 0.2);
+  background: #ffffff;
 }
 
 .fillImg {
@@ -637,7 +647,7 @@
 }
 
 .tileDarkAccented {
-  background: #10525f;
+  background: var(--teal);
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -648,23 +658,25 @@
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 36px;
   font-weight: 900;
-  color: #ffffff;
+  color: var(--lime);
   letter-spacing: 4px;
 }
 
 .tileLight {
   background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.2);
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 14px rgba(12, 70, 81, 0.04);
 }
 
 .tileSayHello {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 20px;
   font-weight: 900;
-  color: #0c0e10;
+  color: var(--teal);
   letter-spacing: 2px;
 }
 
@@ -679,7 +691,8 @@
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(12, 70, 81, 0.25);
+  box-shadow: 0 15px 40px rgba(12, 70, 81, 0.08);
 }
 
 .textureImg {
@@ -709,8 +722,7 @@
 }
 
 .relentlessPoster {
-  background: #060708;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #0C4651 0%, #032B32 100%);
   border-radius: 16px;
   padding: 30px;
   height: 480px;
@@ -718,6 +730,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.1);
 }
 
 .repeatingLines {
@@ -732,14 +745,15 @@
   font-weight: 900;
   font-size: clamp(20px, 2.5vw, 30px);
   letter-spacing: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .highContrastPortrait {
   border-radius: 16px;
   overflow: hidden;
   height: 480px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(12, 70, 81, 0.2);
+  box-shadow: 0 10px 30px rgba(12, 70, 81, 0.08);
 }
 
 .portraitImg {
@@ -751,6 +765,7 @@
 /* 12. "What Next?" */
 .whatNextSection {
   padding: 90px 0 110px;
+  border-top: 1px solid rgba(12, 70, 81, 0.15);
 }
 
 .whatNextHeader {
@@ -763,32 +778,32 @@
 .whatNextEyebrow {
   font-family: var(--font-display);
   font-size: 13px;
-  color: #8c9398;
+  color: var(--teal);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   display: block;
   margin-bottom: 6px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .whatNextTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(32px, 3.5vw, 44px);
   font-weight: 800;
-  color: #ffffff;
+  color: var(--black);
 }
 
 .browseAllBtn {
-  color: var(--lime);
+  color: var(--teal);
   text-decoration: none;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 15px;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .browseAllBtn:hover {
-  opacity: 0.8;
+  color: #032B32;
 }
 
 .relatedGrid {
@@ -809,8 +824,9 @@
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #14171a;
+  border: 1px solid rgba(12, 70, 81, 0.2);
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(12, 70, 81, 0.04);
 }
 
 .relatedImg {
@@ -827,7 +843,7 @@
 .relatedMeta {
   font-family: var(--font-display);
   font-size: 12px;
-  color: #8c9398;
+  color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
@@ -837,14 +853,14 @@
 .relatedTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 19px;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 800;
+  color: var(--black);
   line-height: 1.3;
   transition: color 0.2s ease;
 }
 
 .relatedCard:hover .relatedTitle {
-  color: var(--lime);
+  color: var(--teal);
 }
 
 /* Responsive Rules */
