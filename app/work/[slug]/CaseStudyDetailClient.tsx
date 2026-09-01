@@ -32,53 +32,77 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
     .slice(0, 3)
 
   // Derived pill tags
+  // Derived pill tags
   const tags = [
-    cs.category || 'Website & Apps',
-    'Personal Branding',
-    'Strategy & UX',
-    'Full-Stack Next.js',
+    'Branding',
+    cs.category ? cs.category.split('&')[0].trim() : 'Website',
+    'SEO',
   ]
 
   return (
     <main className={styles.caseStudyPage}>
       <Navbar />
 
-      {/* 1. Header Meta & Title */}
-      <section className={styles.headerSection}>
+      {/* 1. Integrated Folder-Tab Hero Header & Media */}
+      <section className={styles.heroFolderSection}>
         <div className={styles.container}>
-          <div className={styles.headerTopGrid}>
-            <div className={styles.pillsRow}>
-              {tags.map((tag, idx) => (
-                <span key={idx} className={styles.pillTag}>
-                  {tag}
-                </span>
-              ))}
+          {/* Header Row: Pills on Left, Title on Right */}
+          <div className={styles.folderHeaderGrid}>
+            <div className={styles.pillsCol}>
+              <div className={styles.pillsRow}>
+                {tags.map((tag, idx) => (
+                  <span key={idx} className={styles.pillTag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className={styles.headerMetaBlock}>
+            <div className={styles.titleCol}>
               <span className={styles.eyebrowMeta}>
-                {cs.year || '2024'} • {cs.client || 'KR Tasker'}
+                {cs.year || '2023'} • {cs.client || 'Gary Neville'}
               </span>
               <h1 className={styles.mainTitle}>{cs.title}</h1>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 2. Hero Cinematic Image */}
-      <section className={styles.heroImageSection}>
-        <div className={styles.container}>
+          {/* Folder Cutout Hero Image Container */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
-            className={styles.heroMediaCard}
+            className={styles.folderHeroCardWrapper}
           >
-            <img
-              src={cs.featuredImage || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1600&auto=format&fit=crop'}
-              alt={cs.featuredImageAlt || cs.title}
-              className={styles.heroImage}
-            />
+            {/* SVG ClipPath Definition for dynamic shape */}
+            <svg width="0" height="0" className={styles.svgClipDef} aria-hidden="true">
+              <defs>
+                <clipPath id="heroFolderClip" clipPathUnits="objectBoundingBox">
+                  <path d="
+                    M 0, 0.04
+                    C 0, 0.015, 0.01, 0, 0.025, 0
+                    L 0.375, 0
+                    C 0.39, 0, 0.40, 0.015, 0.40, 0.04
+                    L 0.40, 0.13
+                    C 0.40, 0.155, 0.41, 0.17, 0.425, 0.17
+                    L 0.975, 0.17
+                    C 0.99, 0.17, 1, 0.185, 1, 0.21
+                    L 1, 0.96
+                    C 1, 0.985, 0.99, 1, 0.975, 1
+                    L 0.025, 1
+                    C 0.01, 1, 0, 0.985, 0, 0.96
+                    Z
+                  " />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <div className={styles.folderHeroCard}>
+              <img
+                src={cs.featuredImage || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1600&auto=format&fit=crop'}
+                alt={cs.featuredImageAlt || cs.title}
+                className={styles.heroImage}
+              />
+            </div>
           </motion.div>
         </div>
       </section>
