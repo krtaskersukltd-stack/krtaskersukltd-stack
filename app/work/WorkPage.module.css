@@ -38,7 +38,9 @@
 }
 
 /* 1. Hero / Intro Section */
-.heroSection { padding: 154px 0 64px; }
+.heroSection {
+  padding: 154px 0 64px;
+}
 
 .headerGrid {
   display: grid;
@@ -142,7 +144,9 @@
   margin-right: 30px;
 }
 
-.filterTag::before { content: '• '; }
+.filterTag::before {
+  content: '• ';
+}
 
 .filterGrid {
   display: grid;
@@ -155,7 +159,9 @@
   padding-left: 150px;
 }
 
-.filterBtn:nth-child(4) { grid-column: 1; }
+.filterBtn:nth-child(4) {
+  grid-column: 1;
+}
 
 .filterBtn {
   background: transparent;
@@ -212,7 +218,13 @@
   align-items: start;
 }
 
-.caseGrid > :nth-child(even) { margin-top: 76px; }
+.caseGrid > :nth-child(even) {
+  margin-top: 76px;
+}
+
+.caseGrid > :nth-child(2) {
+  margin-top: 0;
+}
 
 /* Case Card Design */
 .caseCard {
@@ -320,7 +332,7 @@
 .testimonialCard {
   background: transparent;
   border-radius: 0;
-  padding: 12px 4px;
+  padding: 0 4px 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -336,6 +348,7 @@
   color: var(--black);
   font-style: italic;
   display: block;
+  margin-bottom: 6px;
 }
 
 .quoteText {
@@ -778,10 +791,18 @@
     margin: 0 auto;
   }
 
-  .caseGrid > :nth-child(even) { margin-top: 0; }
+  .caseGrid> :nth-child(even) {
+    margin-top: 0;
+  }
 
-  .cardImageWrapper { height: 350px; }
-  .testimonialCard, .ctaCard { height: auto; }
+  .cardImageWrapper {
+    height: 350px;
+  }
+
+  .testimonialCard,
+  .ctaCard {
+    height: auto;
+  }
 
   .reviewsHeader {
     flex-direction: column;
@@ -856,8 +877,16 @@
     font-size: 13px;
   }
 
-  .cardImageWrapper { height: 300px; padding: 0; }
-  .testimonialCard, .ctaCard { height: auto; padding: 18px 4px; }
+  .cardImageWrapper {
+    height: 300px;
+    padding: 0;
+  }
+
+  .testimonialCard,
+  .ctaCard {
+    height: auto;
+    padding: 18px 4px;
+  }
 
   .ctaTitle {
     font-size: 30px;

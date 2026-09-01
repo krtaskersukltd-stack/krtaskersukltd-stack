@@ -115,14 +115,6 @@ const testimonials = [
     initial: 'J',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=120&auto=format&fit=crop',
   },
-  {
-    id: 't2',
-    quote: 'The team delivered exceptional results. Our website traffic increased by 150% and conversions doubled in just 3 months.',
-    author: 'Sophie M.',
-    role: 'Operations Lead',
-    initial: 'S',
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=120&auto=format&fit=crop',
-  },
 ]
 
 type GridItem =
@@ -156,12 +148,11 @@ export default function WorkPage() {
     if (activeFilter === 'all') {
       // Interweave Case Studies, Testimonials & CTA
       const list: GridItem[] = []
-      list.push({ type: 'case', data: caseStudies[0] }) // Couchy 1
-      list.push({ type: 'testimonial', data: testimonials[0] }) // Olivia Bambo
+      list.push({ type: 'case', data: caseStudies[0] }) // Couchy
+      list.push({ type: 'testimonial', data: testimonials[0] }) // James Walker
       list.push({ type: 'case', data: caseStudies[1] }) // Apex Legal
       list.push({ type: 'case', data: caseStudies[2] }) // Dellas Textiles
       list.push({ type: 'case', data: caseStudies[3] }) // Sustain.co
-      list.push({ type: 'testimonial', data: testimonials[1] }) // James Walker
       list.push({ type: 'case', data: caseStudies[4] }) // Veloce Gear
       list.push({ type: 'case', data: caseStudies[5] }) // Amazon Pulse
       list.push({ type: 'cta' }) // You're Still Here
