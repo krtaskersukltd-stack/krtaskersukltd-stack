@@ -271,39 +271,57 @@ export async function saveCmsServices(services: ServiceRecord[]): Promise<void> 
 
 // 3. WORK
 export async function getCmsWork(): Promise<CaseStudyRecord[]> {
+  let fallback: CaseStudyRecord[] = []
+  try {
+    const bundled = (await import('@/data/cms/work.json')).default as CaseStudyRecord[]
+    if (Array.isArray(bundled) && bundled.length > 0) {
+      fallback = bundled
+    }
+  } catch {
+    // ignore
+  }
+
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
       const { client } = await import('@/sanity/lib/client')
       const { WORK_QUERY } = await import('@/sanity/lib/queries')
       const sanityData = await client.fetch(WORK_QUERY)
       if (Array.isArray(sanityData) && sanityData.length > 0) {
-        return sanityData.map((w: any) => ({
-          id: w._id || w.id || `work-${w.slug}`,
-          client: w.client || '',
-          title: w.title,
-          slug: w.slug,
-          year: w.year || '2026',
-          category: w.category || 'Case Study',
-          featuredImage: typeof w.featuredImage === 'string' ? w.featuredImage : '',
-          featuredImageAlt: w.featuredImageAlt || w.title,
-          shortDescription: w.shortDescription || '',
-          status: w.status || 'published',
-          sortOrder: w.sortOrder || 1,
-          overview: w.overview || '',
-          challenge: w.challenge || '',
-          solution: w.solution || '',
-          results: w.results || '',
-          metrics: w.metrics || [],
-          seo: w.seo || {
-            metaTitle: w.title,
-            metaDescription: w.shortDescription,
-            h1: w.title,
-            focusKeyword: w.title,
-            indexStatus: 'index',
-            followStatus: 'follow',
-          },
-          updatedAt: w._updatedAt || new Date().toISOString(),
-        }))
+        const sanityList = sanityData
+          .filter((w: any) => w && w.slug && w.slug !== 'enterprise-fleet-portal')
+          .map((w: any) => ({
+            id: w._id || w.id || `work-${w.slug}`,
+            client: w.client || '',
+            title: w.title,
+            slug: w.slug,
+            year: w.year || '2026',
+            category: w.category || 'Case Study',
+            featuredImage: typeof w.featuredImage === 'string' ? w.featuredImage : (w.featuredImage?.asset?.url || ''),
+            featuredImageAlt: w.featuredImageAlt || w.title,
+            shortDescription: w.shortDescription || '',
+            status: w.status || 'published',
+            sortOrder: w.sortOrder || 1,
+            overview: w.overview || '',
+            challenge: w.challenge || '',
+            solution: w.solution || '',
+            results: w.results || '',
+            metrics: w.metrics || [],
+            seo: w.seo || {
+              metaTitle: w.title,
+              metaDescription: w.shortDescription,
+              h1: w.title,
+              focusKeyword: w.title,
+              indexStatus: 'index',
+              followStatus: 'follow',
+            },
+            updatedAt: w._updatedAt || new Date().toISOString(),
+          }))
+
+        // Merge: Sanity documents override or add to the full 10 case studies
+        const sanitySlugs = new Set(sanityList.map((s) => s.slug))
+        const missingFromSanity = fallback.filter((f) => !sanitySlugs.has(f.slug) && !sanitySlugs.has(f.id))
+        const combined = [...sanityList, ...missingFromSanity]
+        return combined.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
       }
     }
   } catch (err) {
@@ -339,17 +357,7 @@ export async function getCmsWork(): Promise<CaseStudyRecord[]> {
     console.error('getCmsWork DB error', err)
   }
 
-  // Fallback to static bundled work.json
-  try {
-    const bundled = (await import('@/data/cms/work.json')).default as CaseStudyRecord[]
-    if (Array.isArray(bundled) && bundled.length > 0) {
-      return bundled
-    }
-  } catch {
-    // ignore
-  }
-
-  return []
+  return fallback
 }
 
 export async function getCmsWorkBySlug(slug: string): Promise<CaseStudyRecord | null> {
