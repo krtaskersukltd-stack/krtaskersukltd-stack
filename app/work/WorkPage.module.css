@@ -218,11 +218,13 @@
   align-items: start;
 }
 
-.caseGrid > :nth-child(even) {
+/* Left column case studies (Apex Legal, Sustain.co, etc.) staggered down */
+.caseGrid > :nth-child(odd):not(:first-child) {
   margin-top: 76px;
 }
 
-.caseGrid > :nth-child(2) {
+/* Right column case studies (Dellas Textiles, Veloce Gear, etc.) stay up */
+.caseGrid > :nth-child(even) {
   margin-top: 0;
 }
 
@@ -791,8 +793,8 @@
     margin: 0 auto;
   }
 
-  .caseGrid> :nth-child(even) {
-    margin-top: 0;
+  .caseGrid > * {
+    margin-top: 0 !important;
   }
 
   .cardImageWrapper {
