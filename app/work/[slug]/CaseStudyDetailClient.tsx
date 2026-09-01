@@ -117,21 +117,20 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
               </h2>
               
               <div className={styles.teamSquad}>
-                <div className={styles.avatarStack}>
+                <div className={styles.squircleAvatarRow}>
                   {TEAM_AVATARS.map((member, idx) => (
-                    <div key={idx} className={styles.avatarWrapper} title={`${member.name} (${member.role})`}>
+                    <div key={idx} className={styles.squircleAvatarWrapper} title={`${member.name} (${member.role})`}>
                       <img src={member.url} alt={member.name} className={styles.avatarImg} />
                     </div>
                   ))}
                 </div>
-                <span className={styles.teamLabel}>KR Tasker Core Project Squad</span>
               </div>
             </div>
 
             <div className={styles.introRight}>
               <p className={styles.introDesc}>
                 {cs.overview ||
-                  `We were hired to reimagine all aspects of the ${cs.client || 'client'} digital brand. From its personal brand identity through to a high-converting bespoke website and editorial design system. The result is a unified platform elevating brand authority, user engagement, and measurable digital growth.`}
+                  `We were tasked to reimagine all aspects of the ${cs.client || 'client'} brand, from personal brand identity through to carefully architectured site structure, design, and build. The website acts as an overview of all digital touchpoints, from business to broadcasting, to charity and public speaking.`}
               </p>
 
               <div className={styles.metaInfoRow}>
@@ -140,8 +139,8 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
                   <span className={styles.metaVal}>{cs.client || 'Gary Neville'}</span>
                 </div>
                 <div className={styles.metaCol}>
-                  <span className={styles.metaKey}>Services</span>
-                  <span className={styles.metaVal}>{cs.category || 'Brand & Web Engineering'}</span>
+                  <span className={styles.metaKey}>Industry</span>
+                  <span className={styles.metaVal}>{cs.category || 'Personal Branding'}</span>
                 </div>
                 <div className={styles.metaCol}>
                   <span className={styles.metaKey}>Duration</span>
@@ -153,28 +152,58 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
         </div>
       </section>
 
-      {/* 4. Visual Block 1: Dark Identity Wordmark & Interactive Bar */}
+      {/* 4. Visual Block 1: Inspiration Dark Video Showcase Player */}
       <section className={styles.showcaseBannerSection}>
         <div className={styles.container}>
-          <div className={styles.darkWordmarkCard}>
-            <div className={styles.wordmarkContent}>
-              <span className={styles.brandDisplayWordmark}>
+          <div className={styles.darkVideoShowcaseCard}>
+            {/* Ambient/Active Video Teaser */}
+            {isPlaying && (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.ambientVideoPlayer}
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+              />
+            )}
+
+            {/* Centered Dual Wordmark Brand Display */}
+            <div className={`${styles.wordmarkContent} ${isPlaying ? styles.wordmarkPlaying : ''}`}>
+              <span className={styles.topSmallWordmark}>
+                {(cs.client || 'G A R Y   N E V I L L E').toUpperCase()}
+              </span>
+              <span className={styles.bottomLargeWordmark}>
                 {(cs.client || 'G A R Y   N E V I L L E').toUpperCase()}
               </span>
             </div>
 
-            <div className={styles.playerBar}>
+            {/* Bottom Controls Bar */}
+            <div className={styles.videoBottomControls}>
+              {/* Lime Play/Pause Button */}
               <button
-                className={styles.playBtn}
+                className={styles.limePlayBtn}
                 onClick={() => setIsPlaying(!isPlaying)}
-                aria-label="Toggle Interactive Preview"
+                aria-label={isPlaying ? 'Pause Video' : 'Play Video'}
               >
                 {isPlaying ? '❚❚' : '▶'}
               </button>
-              <div className={styles.playerTrack}>
-                <div className={`${styles.playerProgress} ${isPlaying ? styles.animateProgress : ''}`} />
+
+              {/* Progress Scrubber Bar */}
+              <div
+                className={styles.videoTrackBar}
+                onClick={() => setIsPlaying(!isPlaying)}
+              >
+                <div className={`${styles.videoTrackFill} ${isPlaying ? styles.animateTrack : ''}`} />
               </div>
-              <span className={styles.playerTime}>{isPlaying ? '01:24 / 03:00' : 'Play Showcase'}</span>
+
+              {/* Play Video Pill Button */}
+              <button
+                className={styles.playVideoPillBtn}
+                onClick={() => setIsPlaying(!isPlaying)}
+              >
+                {isPlaying ? 'Pause video ❚❚' : 'Play video ↗'}
+              </button>
             </div>
           </div>
         </div>
