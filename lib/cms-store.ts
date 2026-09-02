@@ -47,10 +47,61 @@ const DEFAULT_NAV: NavItemRecord[] = [
 
 // 1. PAGES
 export async function getCmsPages(): Promise<PageRecord[]> {
+  let sanityPages: PageRecord[] = []
+
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { PAGES_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(PAGES_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        sanityPages = sanityData.map((p: any) => ({
+          id: p._id || p.id || `page-${p.slug}`,
+          routeKey: p.slug || '',
+          internalName: p.title,
+          publicTitle: p.title,
+          slug: p.slug ? (p.slug.startsWith('/') ? p.slug : `/${p.slug}`) : '',
+          publicUrl: `https://www.krtaskerdigital.com/${(p.slug || '').replace(/^\//, '')}`,
+          isSystemRoute: false,
+          templateKey: p.template || 'standard',
+          parentSlug: '',
+          status: p.status || 'published',
+          seo: {
+            metaTitle: p.seo?.metaTitle || p.title,
+            metaDescription: p.seo?.metaDescription || '',
+            focusKeyword: p.seo?.focusKeyword || '',
+            h1: p.title,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          contentKeys: [],
+          sections: [
+            {
+              id: `sec-${p.slug}`,
+              type: 'rich_text',
+              isEnabled: true,
+              sortOrder: 1,
+              data: {
+                title: p.title,
+                content: p.content || '',
+                featuredImage: p.featuredImage || '',
+                featuredImageAlt: p.featuredImageAlt || p.title,
+              },
+            },
+          ],
+          updatedAt: p._updatedAt || new Date().toISOString(),
+        }))
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsPages Sanity fetch error:', err)
+  }
+
+  let dbPages: PageRecord[] = []
   try {
     const stmt = db.prepare('SELECT * FROM pages ORDER BY isSystemRoute DESC, internalName ASC')
     const rows = stmt.all() as any[]
-    return rows.map((row) => ({
+    dbPages = rows.map((row) => ({
       id: row.id,
       routeKey: row.routeKey,
       internalName: row.internalName,
@@ -68,8 +119,79 @@ export async function getCmsPages(): Promise<PageRecord[]> {
     }))
   } catch (err) {
     console.error('getCmsPages DB error', err)
-    return []
   }
+
+  // Merge: Sanity custom pages take priority or append to system pages
+  if (sanityPages.length > 0) {
+    const sanitySlugs = new Set(sanityPages.map((sp) => sp.slug.toLowerCase()))
+    const remainingDbPages = dbPages.filter(
+      (dp) => !sanitySlugs.has((dp.slug || '').toLowerCase()) && !sanitySlugs.has(`/${dp.routeKey || ''}`.toLowerCase())
+    )
+    return [...sanityPages, ...remainingDbPages]
+  }
+
+  return dbPages
+}
+
+export async function getCmsPageBySlug(slugPath: string): Promise<PageRecord | null> {
+  const cleanSlug = slugPath.replace(/^\//, '').trim()
+
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { PAGE_BY_SLUG_QUERY } = await import('@/sanity/lib/queries')
+      const p = await client.fetch(PAGE_BY_SLUG_QUERY, { slug: cleanSlug })
+      if (p && p.title) {
+        return {
+          id: p._id || p.id || `page-${p.slug}`,
+          routeKey: p.slug || cleanSlug,
+          internalName: p.title,
+          publicTitle: p.title,
+          slug: p.slug ? (p.slug.startsWith('/') ? p.slug : `/${p.slug}`) : `/${cleanSlug}`,
+          publicUrl: `https://www.krtaskerdigital.com/${(p.slug || cleanSlug).replace(/^\//, '')}`,
+          isSystemRoute: false,
+          templateKey: p.template || 'standard',
+          parentSlug: '',
+          status: p.status || 'published',
+          seo: {
+            metaTitle: p.seo?.metaTitle || p.title,
+            metaDescription: p.seo?.metaDescription || '',
+            focusKeyword: p.seo?.focusKeyword || '',
+            h1: p.title,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          contentKeys: [],
+          sections: [
+            {
+              id: `sec-${p.slug || cleanSlug}`,
+              type: 'rich_text',
+              isEnabled: true,
+              sortOrder: 1,
+              data: {
+                title: p.title,
+                content: p.content || '',
+                featuredImage: p.featuredImage || '',
+                featuredImageAlt: p.featuredImageAlt || p.title,
+              },
+            },
+          ],
+          updatedAt: p._updatedAt || new Date().toISOString(),
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsPageBySlug Sanity fetch error:', err)
+  }
+
+  const allPages = await getCmsPages()
+  return (
+    allPages.find(
+      (p) =>
+        p.status === 'published' &&
+        (p.slug === cleanSlug || p.slug === `/${cleanSlug}` || p.routeKey === cleanSlug)
+    ) || null
+  )
 }
 
 export async function saveCmsPages(pages: PageRecord[]): Promise<void> {
@@ -515,6 +637,51 @@ export async function getCmsBlogs(): Promise<BlogPostRecord[]> {
   }
 }
 
+export async function getCmsBlogBySlug(slug: string): Promise<BlogPostRecord | null> {
+  const cleanSlug = slug.replace(/^\/blog\//, '').replace(/^\//, '')
+
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { POST_BY_SLUG_QUERY } = await import('@/sanity/lib/queries')
+      const b = await client.fetch(POST_BY_SLUG_QUERY, { slug: cleanSlug })
+      if (b && b.title) {
+        return {
+          id: b._id || b.id || `blog-${b.slug}`,
+          slug: b.slug,
+          title: b.title,
+          category: b.category || 'Engineering',
+          authorName: b.authorName || 'KR Tasker Editorial',
+          authorRole: b.authorRole || 'Digital Lead',
+          authorImage: b.authorImage || '',
+          status: b.status || 'published',
+          publishDate: b.publishDate || new Date().toISOString().split('T')[0],
+          excerpt: b.excerpt || '',
+          readingTime: b.readingTime || '5 min read',
+          featuredImage: typeof b.featuredImage === 'string' ? b.featuredImage : '/images/services-grid/seo.png',
+          featuredImageAlt: b.featuredImageAlt || b.title,
+          content: typeof b.content === 'string' ? b.content : '',
+          tags: b.tags || [],
+          seo: b.seo || {
+            metaTitle: b.title,
+            metaDescription: b.excerpt,
+            h1: b.title,
+            focusKeyword: b.category,
+            indexStatus: 'index',
+            followStatus: 'follow',
+          },
+          updatedAt: b._updatedAt || new Date().toISOString(),
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Sanity getCmsBlogBySlug error, falling back:', err)
+  }
+
+  const allBlogs = await getCmsBlogs()
+  return allBlogs.find((b) => b.slug === cleanSlug || b.slug === `/blog/${cleanSlug}` || b.id === cleanSlug) || null
+}
+
 export async function saveCmsBlogs(blogs: BlogPostRecord[]): Promise<void> {
   const deleteStmt = db.prepare('DELETE FROM blogs')
   const insertStmt = db.prepare(`
@@ -555,6 +722,31 @@ export async function saveCmsBlogs(blogs: BlogPostRecord[]): Promise<void> {
 
 // 5. TEAM
 export async function getCmsTeam(): Promise<TeamMemberRecord[]> {
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { TEAM_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(TEAM_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        return sanityData.map((t: any) => ({
+          id: t._id || t.id || `team-${t.name}`,
+          name: t.name,
+          role: t.role,
+          photo: t.photo || '',
+          photoAlt: t.photoAlt || t.name,
+          shortBio: t.shortBio || '',
+          linkedinUrl: t.linkedinUrl || '',
+          twitterUrl: t.twitterUrl || '',
+          sortOrder: t.sortOrder || 1,
+          status: t.status || 'published',
+          updatedAt: t._updatedAt || new Date().toISOString(),
+        }))
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsTeam Sanity fetch error:', err)
+  }
+
   try {
     const stmt = db.prepare('SELECT * FROM team ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]
@@ -760,6 +952,31 @@ export async function saveCmsRedirects(redirects: RedirectRecord[]): Promise<voi
 // 9. GLOBAL SECTIONS
 export async function getCmsGlobal(): Promise<GlobalSectionsRecord> {
   try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { SETTINGS_QUERY } = await import('@/sanity/lib/queries')
+      const s = await client.fetch(SETTINGS_QUERY)
+      if (s) {
+        return {
+          ctaHeading: s.ctaHeading || DEFAULT_GLOBAL.ctaHeading,
+          ctaDescription: s.ctaDescription || DEFAULT_GLOBAL.ctaDescription,
+          ctaButtonText: s.ctaButtonText || DEFAULT_GLOBAL.ctaButtonText,
+          ctaButtonLink: s.ctaButtonLink || DEFAULT_GLOBAL.ctaButtonLink,
+          footerPhone: s.footerPhone || DEFAULT_GLOBAL.footerPhone,
+          footerEmail: s.footerEmail || DEFAULT_GLOBAL.footerEmail,
+          footerAddress: s.footerAddress || DEFAULT_GLOBAL.footerAddress,
+          footerCopyright: s.footerCopyright || DEFAULT_GLOBAL.footerCopyright,
+          socialLinkedin: s.socialLinkedin || DEFAULT_GLOBAL.socialLinkedin,
+          socialInstagram: s.socialInstagram || DEFAULT_GLOBAL.socialInstagram,
+          socialFacebook: DEFAULT_GLOBAL.socialFacebook,
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsGlobal Sanity fetch error:', err)
+  }
+
+  try {
     const stmt = db.prepare('SELECT data FROM global_sections WHERE id = "main"')
     const row = stmt.get() as any
     if (row && row.data) return JSON.parse(row.data)
@@ -777,6 +994,26 @@ export async function saveCmsGlobal(globalData: GlobalSectionsRecord): Promise<v
 // 10. SEO SETTINGS
 export async function getCmsSeo(): Promise<SEOSettingsRecord> {
   try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { SETTINGS_QUERY } = await import('@/sanity/lib/queries')
+      const s = await client.fetch(SETTINGS_QUERY)
+      if (s) {
+        return {
+          siteName: s.siteName || DEFAULT_SEO.siteName,
+          defaultTitleTemplate: s.defaultTitleTemplate || DEFAULT_SEO.defaultTitleTemplate,
+          defaultMetaDescription: s.defaultMetaDescription || DEFAULT_SEO.defaultMetaDescription,
+          defaultOgImage: DEFAULT_SEO.defaultOgImage,
+          robotsTxtContent: DEFAULT_SEO.robotsTxtContent,
+          sitemapEnabled: true,
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsSeo Sanity fetch error:', err)
+  }
+
+  try {
     const stmt = db.prepare('SELECT data FROM seo_settings WHERE id = "main"')
     const row = stmt.get() as any
     if (row && row.data) return JSON.parse(row.data)
@@ -793,6 +1030,27 @@ export async function saveCmsSeo(seoData: SEOSettingsRecord): Promise<void> {
 
 // 11. NAVIGATION MENU
 export async function getCmsNavigation(): Promise<NavItemRecord[]> {
+  try {
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { client } = await import('@/sanity/lib/client')
+      const { NAVIGATION_QUERY } = await import('@/sanity/lib/queries')
+      const sanityData = await client.fetch(NAVIGATION_QUERY)
+      if (Array.isArray(sanityData) && sanityData.length > 0) {
+        return sanityData.map((n: any) => ({
+          id: n._id || n.id || `nav-${n.label}`,
+          label: n.label,
+          href: n.href,
+          isExternal: n.href.startsWith('http'),
+          isOpenInNewTab: false,
+          sortOrder: n.sortOrder || 1,
+          isVisible: n.isVisible !== false,
+        }))
+      }
+    }
+  } catch (err) {
+    console.warn('getCmsNavigation Sanity fetch error:', err)
+  }
+
   try {
     const stmt = db.prepare('SELECT * FROM navigation ORDER BY sortOrder ASC')
     const rows = stmt.all() as any[]

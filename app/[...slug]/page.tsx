@@ -1,19 +1,20 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getCmsPages, getCmsGlobal, getCmsWork } from '@/lib/cms-store'
+import { getCmsPageBySlug, getCmsPages, getCmsGlobal, getCmsWork } from '@/lib/cms-store'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import StructuredData from '@/components/StructuredData'
 import Contact from '@/components/Contact'
 import Testimonials from '@/components/Testimonials'
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
   const resolvedParams = await params
   const slugPath = resolvedParams.slug.join('/')
-  const pages = await getCmsPages()
-  const targetPage = pages.find(
-    (p) => p.status === 'published' && (p.slug === slugPath || p.slug === `/${slugPath}` || p.routeKey === slugPath)
-  )
+  const targetPage = await getCmsPageBySlug(slugPath)
 
   if (!targetPage) return {}
 
@@ -41,10 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function DynamicCMSPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params
   const slugPath = resolvedParams.slug.join('/')
-  const pages = await getCmsPages()
-  const targetPage = pages.find(
-    (p) => p.status === 'published' && (p.slug === slugPath || p.slug === `/${slugPath}` || p.routeKey === slugPath)
-  )
+  const targetPage = await getCmsPageBySlug(slugPath)
 
   if (!targetPage) {
     notFound()

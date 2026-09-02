@@ -3,6 +3,9 @@ import { isAdminAuthenticated } from '@/lib/security'
 import { getCmsPages, saveCmsPages } from '@/lib/cms-store'
 import { ensureCmsSeeded } from '@/lib/cms-seed'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET() {
   await ensureCmsSeeded()
   const pages = await getCmsPages()

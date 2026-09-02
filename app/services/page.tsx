@@ -28,7 +28,7 @@ export default function ServicesPage() {
   const [capabilities, setCapabilities] = useState(DEFAULT_CAPABILITIES)
 
   useEffect(() => {
-    fetch('/api/cms/services')
+    fetch('/api/cms/services', { cache: 'no-store' })
       .then((res) => res.json())
       .then((data: any[]) => {
         if (Array.isArray(data) && data.length > 0) {

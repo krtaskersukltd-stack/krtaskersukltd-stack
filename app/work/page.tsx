@@ -46,7 +46,7 @@ export default function WorkPage() {
 
   // Fetch dynamic case studies from /api/cms/work (Sanity / CMS Store)
   useEffect(() => {
-    fetch('/api/cms/work')
+    fetch('/api/cms/work', { cache: 'no-store' })
       .then((res) => res.json())
       .then((data: CaseStudyRecord[]) => {
         if (Array.isArray(data) && data.length > 0) {

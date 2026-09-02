@@ -225,3 +225,54 @@ export const SETTINGS_QUERY = groq`
     socialInstagram
   }
 `
+
+// 6. CUSTOM PAGES
+export const PAGES_QUERY = groq`
+  *[_type == "page" && (!defined(status) || status == "published")] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    template,
+    "featuredImage": featuredImage.asset->url,
+    featuredImageAlt: featuredImage.alt,
+    content,
+    status,
+    seo {
+      metaTitle,
+      metaDescription,
+      focusKeyword
+    },
+    _updatedAt
+  }
+`
+
+export const PAGE_BY_SLUG_QUERY = groq`
+  *[_type == "page" && (slug.current == $slug || slug.current == "/" + $slug || "/" + slug.current == $slug)][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    template,
+    "featuredImage": featuredImage.asset->url,
+    featuredImageAlt: featuredImage.alt,
+    content,
+    status,
+    seo {
+      metaTitle,
+      metaDescription,
+      focusKeyword
+    },
+    _updatedAt
+  }
+`
+
+// 7. NAVIGATION MENU
+export const NAVIGATION_QUERY = groq`
+  *[_type == "navigation" && (isVisible == true || !defined(isVisible))] | order(sortOrder asc) {
+    _id,
+    label,
+    href,
+    sortOrder,
+    isVisible
+  }
+`
+

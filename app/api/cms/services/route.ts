@@ -3,6 +3,9 @@ import { isAdminAuthenticated } from '@/lib/security'
 import { getCmsServices, saveCmsServices } from '@/lib/cms-store'
 import { ensureCmsSeeded } from '@/lib/cms-seed'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET() {
   try {
     const services = await getCmsServices()

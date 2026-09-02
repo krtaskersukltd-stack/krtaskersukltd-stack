@@ -4,12 +4,48 @@ import { validateBlogInput } from '@/lib/blog-schema'
 import { readBlogs, writeBlogs } from '@/lib/blog-store'
 import { hasJsonContentType, hasValidOrigin, isAdminAuthenticated } from '@/lib/security'
 
+import { getCmsBlogs } from '@/lib/cms-store'
+
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function GET() {
   try {
-    return NextResponse.json(await readBlogs(), {
-      headers: { 'Cache-Control': 'public, max-age=0, s-maxage=30, stale-while-revalidate=60' },
+    let cmsList: BlogPost[] = []
+    try {
+      const cmsData = await getCmsBlogs()
+      if (Array.isArray(cmsData) && cmsData.length > 0) {
+        cmsList = cmsData
+          .filter((b) => b.status === 'published')
+          .map((b, idx) => ({
+            id: typeof b.id === 'number' ? b.id : idx + 100,
+            slug: b.slug,
+            title: b.title,
+            category: b.category,
+            readTime: b.readingTime || '5 min read',
+            imageUrl: b.featuredImage || '/images/services-grid/seo.png',
+            date: b.publishDate,
+            authorName: b.authorName,
+            authorRole: b.authorRole,
+            authorImage: b.authorImage || '',
+            content: b.content,
+          }))
+      }
+    } catch {
+      // fallback
+    }
+
+    const localBlogs = await readBlogs()
+    if (cmsList.length > 0) {
+      const sanitySlugs = new Set(cmsList.map((c) => c.slug))
+      const remainingLocal = localBlogs.filter((lb) => !sanitySlugs.has(lb.slug))
+      return NextResponse.json([...cmsList, ...remainingLocal], {
+        headers: { 'Cache-Control': 'no-store' },
+      })
+    }
+
+    return NextResponse.json(localBlogs, {
+      headers: { 'Cache-Control': 'no-store' },
     })
   } catch (error) {
     console.error('Read blogs error:', error)
