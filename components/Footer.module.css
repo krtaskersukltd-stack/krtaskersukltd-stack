@@ -73,8 +73,8 @@
 }
 
 .sendMeBackText {
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
-  font-size: 20px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 16px;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -229,9 +229,9 @@
   border-radius: 8px;
   background: var(--lime, #e6ff2a);
   color: var(--teal, #0c4651);
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
-  font-size: 16px;
-  font-weight: 700;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -335,7 +335,7 @@
 :global(.page-blog) .copyright,
 :global(.page-digital-marketing) .copyright,
 :global(.page-digital-360) .copyright {
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-weight: 400;
 }
 

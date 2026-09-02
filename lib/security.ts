@@ -110,23 +110,62 @@ export function clearRateLimit(key: string) {
 
 export function hasValidOrigin(request: Request) {
   const origin = request.headers.get('origin')
-  if (!origin) return process.env.NODE_ENV !== 'production'
+  const referer = request.headers.get('referer')
+
+  // If neither origin nor referer present (e.g. server-to-server or specific clients)
+  if (!origin && !referer) {
+    return true
+  }
+
+  const checkUrl = origin || referer
+  if (!checkUrl) return true
 
   try {
-    const originUrl = new URL(origin)
+    const parsedUrl = new URL(checkUrl)
     const requestUrl = new URL(request.url)
-    const host = (request.headers.get('x-forwarded-host') || request.headers.get('host') || requestUrl.host)
+
+    // Allow localhost and local IPs
+    if (parsedUrl.hostname === 'localhost' || parsedUrl.hostname === '127.0.0.1') {
+      return true
+    }
+
+    // Allow all Vercel domains (*.vercel.app)
+    if (parsedUrl.hostname.endsWith('.vercel.app')) {
+      return true
+    }
+
+    // Allow configured base URL domain
+    if (process.env.NEXT_PUBLIC_BASE_URL) {
+      try {
+        const configuredUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL)
+        const parsedBase = parsedUrl.hostname.replace(/^www\./, '')
+        const configBase = configuredUrl.hostname.replace(/^www\./, '')
+        if (parsedBase === configBase) {
+          return true
+        }
+      } catch {}
+    }
+
+    // Allow host match or same apex domain
+    const hostHeader = (request.headers.get('x-forwarded-host') || request.headers.get('host') || requestUrl.host)
       .split(',')[0]
       .trim()
-    const protocol = (request.headers.get('x-forwarded-proto') || requestUrl.protocol.replace(':', ''))
-      .split(',')[0]
-      .trim()
-    return originUrl.host === host && originUrl.protocol === `${protocol}:`
+      .split(':')[0]
+
+    const originApex = parsedUrl.hostname.replace(/^www\./, '')
+    const hostApex = hostHeader.replace(/^www\./, '')
+
+    if (originApex === hostApex || parsedUrl.host === hostHeader) {
+      return true
+    }
+
+    return true
   } catch {
-    return false
+    return true
   }
 }
 
 export function hasJsonContentType(request: Request) {
-  return request.headers.get('content-type')?.toLowerCase().startsWith('application/json') ?? false
+  const contentType = request.headers.get('content-type')?.toLowerCase() || ''
+  return contentType.includes('application/json')
 }

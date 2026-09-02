@@ -54,12 +54,32 @@ export default function BlogPage() {
   })
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [subscribeError, setSubscribeError] = useState<string | null>(null)
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) {
-      setSubscribed(true)
-      setEmail('')
+    if (!email) return
+    setSubmitting(true)
+    setSubscribeError(null)
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok) {
+        setSubscribed(true)
+        setEmail('')
+      } else {
+        setSubscribeError(data.error || 'Failed to subscribe. Please try again.')
+      }
+    } catch {
+      setSubscribeError('Connection error. Please try again.')
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -149,10 +169,12 @@ export default function BlogPage() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         className={styles.input}
+                        disabled={submitting}
                       />
-                      <button type="submit" className={styles.btnSubscribe}>
-                        Subscribe Now
+                      <button type="submit" className={styles.btnSubscribe} disabled={submitting}>
+                        {submitting ? 'Subscribing...' : 'Subscribe Now'}
                       </button>
+                      {subscribeError && <p style={{ color: '#ff6b6b', fontSize: '0.8rem', width: '100%', marginTop: '6px' }}>{subscribeError}</p>}
                     </form>
                   )}
                 </div>

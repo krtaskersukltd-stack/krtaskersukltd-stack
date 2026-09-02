@@ -124,8 +124,8 @@
   background-position: center;
   background-size: cover;
   color: var(--black);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 700;
 }
 
 .avatar span {

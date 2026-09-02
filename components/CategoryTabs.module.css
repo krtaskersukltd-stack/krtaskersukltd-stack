@@ -9,8 +9,8 @@
 .eyebrow {
   padding-top: 7px;
   color: var(--black);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
   font-size: var(--fs-button);
 }
 

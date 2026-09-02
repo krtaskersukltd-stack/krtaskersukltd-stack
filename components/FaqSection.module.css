@@ -51,8 +51,8 @@
   border: none;
   padding: 14px 28px;
   border-radius: var(--radius-button);
-  font-family: var(--font-display);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
   font-size: var(--fs-button);
   line-height: 1.0;
   cursor: pointer;
@@ -147,10 +147,10 @@
 }
 
 .faqAnswer {
-  font-family: var(--font-display);
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-weight: var(--fw-regular);
   font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  line-height: 1.6;
   color: var(--black);
   padding: 8px 0 22px;
 }

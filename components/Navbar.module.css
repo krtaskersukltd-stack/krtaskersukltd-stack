@@ -117,7 +117,7 @@
   justify-content: center;
   background: var(--white);
   color: var(--teal);
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-weight: 700;
   font-size: 14.5px;
   padding: 10px 24px;
@@ -218,7 +218,7 @@
 }
 
 .categoryTitle {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -274,7 +274,7 @@
 .megaBadge {
   background: var(--lime);
   color: var(--teal);
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 9.5px;
   font-weight: 800;
   padding: 2px 5px;
@@ -298,7 +298,7 @@
 }
 
 .megaFooterLink {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 13px;
   font-weight: 700;
   color: var(--teal);
@@ -321,7 +321,7 @@
 }
 
 .dropdownHeader {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -479,9 +479,9 @@
   padding: 12px 0;
   background: transparent;
   border: none;
-  font-family: var(--font-display), sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 17px;
+  font-weight: 600;
   color: var(--black);
   cursor: pointer;
   text-align: left;
@@ -515,7 +515,7 @@
 }
 
 .mobileCatTitle {
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -542,9 +542,9 @@
 .drawerDirectLink {
   display: block;
   padding: 12px 0;
-  font-family: var(--font-display), sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 17px;
+  font-weight: 600;
   color: var(--black);
   text-decoration: none;
   border-bottom: 1px solid rgba(12, 70, 81, 0.06);
@@ -569,9 +569,9 @@
   padding: 14px;
   background: var(--teal);
   color: var(--cream);
-  font-family: var(--font-display), sans-serif;
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: var(--radius-tag, 8px);
   text-decoration: none;
   transition: background 0.2s ease;

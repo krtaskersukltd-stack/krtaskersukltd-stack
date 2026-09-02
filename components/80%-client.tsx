@@ -26,10 +26,28 @@ export default function ClientSatisfaction() {
             }}
           />
           <div className={styles.satisfactionCardTop}>
-            <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
-            <strong>80%</strong>
-            <small>Client Satisfaction</small>
-          <div className={styles.googleRating}><span className={styles.googleLogo}><span  className={styles.gBlue}>G</span><span className={styles.gRed}>o</span><span  className={styles.gYellow}>o</span><span className={styles.gBlue}>g</span><span  className={styles.gGreen}>l</span><span className={styles.gRed}>e</span></span>  <span className={styles.ratingsLabel}>Ratings</span><br /><span className= {styles.starsYellow}>★★★★★</span> <small>5.0 / 5.0</small></div>
+            <div className={styles.statLogoBadge}>
+              <img src="/images/fav.png" alt="KR Tasker" className={styles.statLogo} />
+            </div>
+            <strong className={styles.statNumber}>80%</strong>
+            <span className={styles.statSubLabel}>Client Satisfaction</span>
+            <div className={styles.googleRatingBox}>
+              <div className={styles.googleRatingHeader}>
+                <span className={styles.googleLogo}>
+                  <span className={styles.gBlue}>G</span>
+                  <span className={styles.gRed}>o</span>
+                  <span className={styles.gYellow}>o</span>
+                  <span className={styles.gBlue}>g</span>
+                  <span className={styles.gGreen}>l</span>
+                  <span className={styles.gRed}>e</span>
+                </span>
+                <span className={styles.ratingsLabel}>Ratings</span>
+              </div>
+              <div className={styles.googleRatingStars}>
+                <span className={styles.starsYellow}>★★★★★</span>
+                <span className={styles.ratingScore}>5.0 / 5.0</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.bespokeGrid}>

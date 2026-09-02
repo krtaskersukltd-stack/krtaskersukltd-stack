@@ -75,32 +75,32 @@ export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterSubmitting, setNewsletterSubmitting] = useState(false)
   const [newsletterSuccess, setNewsletterSuccess] = useState(false)
+  const [newsletterError, setNewsletterError] = useState<string | null>(null)
 
   const handleNewsletter = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!newsletterEmail) return
     setNewsletterSubmitting(true)
+    setNewsletterError(null)
+
     try {
-      await fetch('/api/contact', {
+      const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'Newsletter Subscriber',
-          email: newsletterEmail,
-          phone: '+440000000000',
-          city: 'Website Subscriber',
-          message: 'User subscribed to KR Tasker Digital Newsletter.',
-          services: ['Newsletter Insights'],
-          preferredDays: ['Mon'],
-          preferredTimes: ['9:00'],
-          budget: 'N/A',
-          website: '',
-        }),
+        body: JSON.stringify({ email: newsletterEmail }),
       })
-      setNewsletterSuccess(true)
-      setNewsletterEmail('')
+
+      const data = await res.json().catch(() => ({}))
+
+      if (res.ok) {
+        setNewsletterSuccess(true)
+        setNewsletterEmail('')
+      } else {
+        setNewsletterError(data.error || 'Failed to subscribe. Please try again.')
+      }
     } catch (err) {
       console.error('Newsletter submission error', err)
+      setNewsletterError('Connection error. Please try again.')
     } finally {
       setNewsletterSubmitting(false)
     }
