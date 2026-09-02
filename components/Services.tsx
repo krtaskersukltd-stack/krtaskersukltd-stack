@@ -130,44 +130,51 @@ export default function Services() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const cards = gsap.utils.toArray<HTMLElement>(`.${styles.card}`)
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(`.${styles.card}`)
 
-    // Stacking scroll effect with 100% solid opacity (no white overlay or fading)
-    cards.forEach((card, i) => {
-      // Entrance animation with solid opacity
-      gsap.fromTo(
-        card,
-        { y: 50 },
-        {
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
+      cards.forEach((card, i) => {
+        // Entrance animation
+        gsap.fromTo(
+          card,
+          { y: 40, opacity: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+
+        // Stacking scale effect for previous cards when next card stacks over it
+        if (i < cards.length - 1) {
+          const nextCard = cards[i + 1]
+          gsap.to(card, {
+            scale: 0.95,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: nextCard,
+              start: 'top 75%',
+              end: 'top 20%',
+              scrub: true,
+            },
+          })
         }
-      )
+      })
+    }, containerRef)
 
-      // Stacking scale effect for previous cards (without any opacity fade)
-      if (i < cards.length - 1) {
-        const nextCard = cards[i + 1]
-        gsap.to(card, {
-          scale: 0.96,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: nextCard,
-            start: 'top 70%',
-            end: 'top 20%',
-            scrub: true,
-          },
-        })
-      }
-    })
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 350)
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      clearTimeout(timer)
+      ctx.revert()
     }
   }, [])
 

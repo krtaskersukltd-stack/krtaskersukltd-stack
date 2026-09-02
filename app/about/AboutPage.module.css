@@ -718,11 +718,11 @@
     opacity: 1;
     offset-path: none;
     animation: none;
-    transform: none !important;
+    transform: none;
   }
 
   .arcCard:hover {
-    transform: translateY(-8px) !important;
+    transform: translateY(-8px);
   }
 
   .twoColLayout {

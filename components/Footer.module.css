@@ -257,7 +257,7 @@
 .bigText {
   width: 100%;
   margin: 0;
-  font-family: 'Cabinet Grotesk', sans-serif !important;
+  font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(102px, 8.33vw, 120px);
   font-weight: 700;
   line-height: 0.92;
@@ -435,7 +435,7 @@
   }
 
   .footerShape {
-    display: block !important;
+    display: block;
     background: var(--teal, #0c4651);
     clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 148px, 0.4px 143.8px, 1.4px 139.8px, 3.2px 136.0px, 5.6px 132.7px, 8.6px 129.6px, 12.0px 127.2px, 15.8px 125.4px, 19.8px 124.4px, 24px 124px, 50px 124px, 54.2px 123.6px, 58.2px 122.6px, 62.0px 120.8px, 65.4px 118.4px, 68.4px 115.4px, 70.8px 112.0px, 72.6px 108.2px, 73.6px 104.2px, 74px 100px, 74px 24px, 74.4px 19.8px, 75.4px 15.8px, 77.2px 12.0px, 79.6px 8.7px, 82.6px 5.6px, 86.0px 3.2px, 89.8px 1.4px, 93.8px 0.4px, 98px 0);
     color: transparent;

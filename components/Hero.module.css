@@ -2,7 +2,7 @@
   background-color: white;
   position: relative;
   overflow: hidden;
-  padding-top: clamp(90px, 8vw, 130px);
+  padding-top: clamp(110px, 9vw, 140px);
   padding-bottom: 0;
   width: 100%;
 }

@@ -165,7 +165,7 @@ if (!globalsCss.includes("Studio Native Cursor Restore")) {
 [data-testid="pane"] *,
 #sanity,
 #sanity * {
-  cursor: auto !important;
+  cursor: auto  ;
 }
 
 #sanity a,
@@ -174,7 +174,7 @@ if (!globalsCss.includes("Studio Native Cursor Restore")) {
 [data-lenis-prevent] a,
 [data-lenis-prevent] button,
 [data-lenis-prevent] [role="button"] {
-  cursor: pointer !important;
+  cursor: pointer  ;
 }
 
 #sanity input,
@@ -183,7 +183,7 @@ if (!globalsCss.includes("Studio Native Cursor Restore")) {
 [data-lenis-prevent] input,
 [data-lenis-prevent] textarea,
 [data-lenis-prevent] [contenteditable="true"] {
-  cursor: text !important;
+  cursor: text  ;
 }
 `;
   fs.writeFileSync("app/globals.css", globalsCss, "utf-8");

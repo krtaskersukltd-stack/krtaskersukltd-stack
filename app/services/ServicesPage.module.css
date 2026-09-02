@@ -74,7 +74,7 @@
   text-transform: capitalize;
 }
 
-.copy p + p {
+.copy p+p {
   margin-top: 18px;
 }
 
@@ -128,7 +128,7 @@
 .mediaPlaceholder::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 45%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .12), transparent 45%);
   content: '';
 }
 
@@ -230,13 +230,13 @@
   text-decoration: none;
 }
 
-.capabilities a > span:first-child {
+.capabilities a>span:first-child {
   border-bottom: 1px solid transparent;
   transition: color 180ms ease, border-color 180ms ease;
 }
 
-.capabilities a:hover > span:first-child,
-.capabilities .featuredCapability > span:first-child {
+.capabilities a:hover>span:first-child,
+.capabilities .featuredCapability>span:first-child {
   border-color: var(--teal);
   color: var(--teal);
 }
@@ -395,7 +395,7 @@
 .visionMedia::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(255,255,255,.14), transparent 52%);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .14), transparent 52%);
   content: '';
 }
 
@@ -504,8 +504,8 @@
   }
 
   .audienceTitle {
-    font-size: clamp(34px, 10vw, 46px) !important;
-    letter-spacing: -1.2px !important;
+    font-size: clamp(34px, 10vw, 46px);
+    letter-spacing: -1.2px;
   }
 
   .capabilities {
@@ -537,8 +537,8 @@
   }
 
   .visionTitle {
-    font-size: clamp(34px, 10vw, 46px) !important;
-    letter-spacing: -1.2px !important;
+    font-size: clamp(34px, 10vw, 46px);
+    letter-spacing: -1.2px;
   }
 
   .visionCopy {

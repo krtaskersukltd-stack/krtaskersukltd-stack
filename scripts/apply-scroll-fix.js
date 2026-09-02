@@ -122,9 +122,9 @@ if (!globalsCss.includes("Sanity Studio Smooth Scrolling Fix")) {
 [data-testid="pane"],
 [data-testid="pane-content"],
 [data-testid="document-panel-portal"] {
-  overscroll-behavior: contain !important;
-  touch-action: pan-y !important;
-  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain  ;
+  touch-action: pan-y  ;
+  -webkit-overflow-scrolling: touch  ;
 }
 `;
   fs.writeFileSync("app/globals.css", globalsCss, "utf-8");
