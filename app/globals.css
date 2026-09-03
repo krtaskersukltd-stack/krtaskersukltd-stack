@@ -251,7 +251,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
-  font-weight: var(--fw-bold);
+  font-weight: 600 !important;
   text-wrap: balance;
 }
 

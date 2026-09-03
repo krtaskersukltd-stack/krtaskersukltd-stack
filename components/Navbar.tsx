@@ -363,15 +363,15 @@ export default function Navbar() {
           aria-label="Main Navigation"
         >
           <ul className={styles.navList}>
-            {/* Services (with main services dropdown) */}
+            {/* Services (clickable link to /services + hover dropdown) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('services')}
             >
-              <button
-                type="button"
-                onClick={() => toggleDropdown('services')}
-                className={`${styles.navLinkBtn} ${
+              <Link
+                href="/services"
+                onClick={() => setActiveDropdown(null)}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${
                   activeDropdown === 'services' || pathname.startsWith('/services')
                     ? styles.activeNav
                     : ''
@@ -380,7 +380,7 @@ export default function Navbar() {
                 aria-haspopup="true"
               >
                 <span>Services</span>
-              </button>
+              </Link>
 
               <AnimatePresence>
                 {activeDropdown === 'services' && (

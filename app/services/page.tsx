@@ -1,220 +1,222 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
+import Approach from '@/components/Approach'
 import Testimonials from '@/components/Testimonials'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import Link from 'next/link'
-import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
-import HappyClients from '@/components/HappyClients'
-import ProcessSection from '@/components/ProcessSection'
-import FaqSection from '@/components/FaqSection'
 import styles from './ServicesPage.module.css'
 
-import { useState, useEffect } from 'react'
+interface SubService {
+  name: string
+  href: string
+}
 
-const DEFAULT_CAPABILITIES = [
-  { label: 'Digital 360', href: '/services/digital-360', featured: true },
-  { label: 'SEO', href: '/services/seo', featured: false },
-  { label: 'PPC', href: '/services/ppc', featured: false },
-  { label: 'Social Media Marketing', href: '/services/social-media', featured: false },
-  { label: 'Google Ads', href: '/services/marketing', featured: false },
-  { label: 'Email Marketing', href: '/services/email-marketing', featured: false },
-  { label: 'Web Development', href: '/services/web-development', featured: false },
-  { label: 'Shopify Development', href: '/services/shopify-development', featured: false },
+interface MainServiceOffering {
+  id: string
+  category: string
+  heading: string
+  image: string
+  alt: string
+  subServices: SubService[]
+}
+
+const MAIN_SERVICES_DATA: MainServiceOffering[] = [
+  {
+    id: 'designing',
+    category: 'Designing',
+    heading: 'Brand Designers And Web Designers In-House Crafting Visuals To Match Your Brand Values.',
+    image: '/images/services/web-app-design.png',
+    alt: 'Web Design & Brand Identity Showcase',
+    subServices: [
+      { name: 'Brand Identity', href: '/services/branding' },
+      { name: 'Web Design', href: '/services/web-development' },
+      { name: 'Ecommerce Design', href: '/services/shopify-development' },
+      { name: 'Shopify', href: '/services/shopify-development' },
+      { name: 'Graphics Design', href: '/services/graphic-design' },
+    ],
+  },
+  {
+    id: 'ai-automation',
+    category: 'AI & Automation',
+    heading: 'Intelligent Automations And AI Workflows To Scale Your Growth, Streamline Operations, And Reduce Costs.',
+    image: '/images/services/digital-marketing.png',
+    alt: 'AI and Intelligent Automation Solutions',
+    subServices: [
+      { name: 'AI Solutions', href: '/services/ai-solutions' },
+      { name: 'AI Automation', href: '/services/ai-automation' },
+      { name: 'Custom AI Agents & Chatbots', href: '/services/ai-solutions' },
+      { name: 'Business Consultancy', href: '/services/business-consultancy' },
+      { name: 'Growth Analytics', href: '/services/digital-360' },
+    ],
+  },
+  {
+    id: 'branding',
+    category: 'Branding',
+    heading: 'Creating Distinctive, Memorable Brands And Design Systems That Connect With Your Audience.',
+    image: '/images/services/seo-brand-strategy.png',
+    alt: 'Brand Identity and Creative Design Showcase',
+    subServices: [
+      { name: 'Brand Strategy', href: '/services/branding' },
+      { name: 'Visual Identity & Logo', href: '/services/branding' },
+      { name: 'Design Systems', href: '/services/web-development' },
+      { name: 'Creative Direction', href: '/services/branding' },
+      { name: 'Marketing Collateral', href: '/services/graphic-design' },
+    ],
+  },
+  {
+    id: 'seo',
+    category: 'SEO & Marketing',
+    heading: 'Full-Funnel Organic Visibility And Data-Driven Search Campaigns That Drive Sustainable Revenue.',
+    image: '/images/featured-image.png',
+    alt: 'SEO and Digital Marketing Growth Showcase',
+    subServices: [
+      { name: 'Technical SEO Audits', href: '/services/seo' },
+      { name: 'On-Page & Keyword Strategy', href: '/services/seo' },
+      { name: 'PPC & Paid Search', href: '/services/ppc' },
+      { name: 'Social Media Marketing', href: '/services/social-media' },
+      { name: 'Email Marketing', href: '/services/email-marketing' },
+    ],
+  },
+  {
+    id: 'shopify',
+    category: 'Shopify & E-Commerce',
+    heading: 'Custom High-Converting Shopify Stores Designed For Seamless Checkout, Speed, And Maximum Conversions.',
+    image: '/images/services/web-app-design.png',
+    alt: 'Shopify and E-Commerce Development Showcase',
+    subServices: [
+      { name: 'Custom Shopify Store', href: '/services/shopify-development' },
+      { name: 'Ecommerce UX/UI', href: '/services/shopify-development' },
+      { name: 'Store Migration & Redesign', href: '/services/shopify-development' },
+      { name: 'App & Payment Integration', href: '/services/shopify-development' },
+      { name: 'Conversion Rate Optimization', href: '/services/digital-360' },
+    ],
+  },
 ]
 
 export default function ServicesPage() {
-  const [capabilities, setCapabilities] = useState(DEFAULT_CAPABILITIES)
-
-  useEffect(() => {
-    fetch('/api/cms/services', { cache: 'no-store' })
-      .then((res) => res.json())
-      .then((data: any[]) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setCapabilities(
-            data
-              .filter((s) => s.status === 'published')
-              .slice(0, 10)
-              .map((s, idx) => ({
-                label: s.name,
-                href: `/services/${s.slug.replace(/^\/services\//, '').replace(/^\//, '')}`,
-                featured: idx === 0,
-              }))
-          )
-        }
-      })
-      .catch(() => {})
-  }, [])
-
   return (
     <main className={styles.page}>
       <Navbar />
 
-      <section className={styles.hero} aria-labelledby="services-heading">
+      {/* 1. HERO SECTION */}
+      <section className={styles.hero} aria-labelledby="services-hero-heading">
         <div className={styles.container}>
-          <div className={styles.introGrid}>
-            <div className={styles.headingBlock}>
-              <p className={styles.eyebrow}>Digital Marketing</p>
+          <motion.div
+            className={styles.heroContent}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+           
 
-              <h1 id="services-heading" className={styles.title}>
-                A <span>Digital Marketing</span> Agency
-                <br className={styles.desktopBreak} /> In UK.
-              </h1>
-            </div>
+            {/* Main Headline */}
+            <h1 id="services-hero-heading" className={styles.title}>
+              Our Creative Services
+              <span className={styles.titleHighlight}>Excellence Delivered</span>
+            </h1>
 
-            <div className={styles.copy}>
-              <p>
-                Here at KR Tasker Digital, we offer honest advice, industry
-                experience, and a great portfolio of work.
-              </p>
-
-              <p>
-                UI/UX, wireframes, research and development, we understand all
-                areas of web design. We can take a start-up business with
-                nothing to a fully functioning brand online and offline. We can
-                revamp an existing website to take a successful brand to the
-                next level. Our talented and creative in-house web design team
-                will work alongside you to create a site that reflects your
-                brand, communicates with your audience, and performs across the
-                latest devices.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.showcase}>
-            {/* Exact responsive clip-path recreated from Group 35.svg */}
-            <svg
-              className={styles.clipDefinition}
-              width="0"
-              height="0"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <defs>
-                <clipPath
-                  id="services-showcase-clip"
-                  clipPathUnits="objectBoundingBox"
-                >
-                  <path d="M .994444 0 C .997514 0 1 .006901 1 .015414 V .984586 C 1 .993098 .997514 1 .994444 1 H .005556 C .002487 1 0 .993098 0 .984586 V .121387 C 0 .110746 .003109 .102119 .006944 .102119 H .104861 C .108697 .102119 .111806 .093493 .111806 .082852 V .019268 C .111806 .008626 .114915 0 .11875 0 H .994444 Z" />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <Link
-              type="button"
-              className={styles.projectButton}
-              href="/contact"
-            >
-              Start A Project
-            </Link>
-
-            <div className={styles.mediaPlaceholder}>
-              <span>KR Tasker Digital</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className={styles.audienceSection}
-        aria-labelledby="audience-heading"
-      >
-        <div className={styles.audienceContainer}>
-          <div className={styles.audienceTop}>
-            <p className={styles.audienceEyebrow}>Digital Marketing</p>
-
-            <h2 id="audience-heading" className={styles.audienceTitle}>
-              Are You A <span>Startup</span> Brand, Well{' '}
-              <span>Established Company</span>, In The UK Or Worldwide? It
-              Doesn&apos;t Matter. We Work With A <span>Range Of Clients</span>.
-            </h2>
-
-            <aside
-              className={styles.capabilities}
-              aria-label="Our company capabilities"
-            >
-              <h3>Our Company Capabilities</h3>
-
-              <nav>
-                {capabilities.map((capability) => (
-                  <Link
-                    key={capability.label}
-                    href={capability.href}
-                    className={
-                      capability.featured
-                        ? styles.featuredCapability
-                        : undefined
-                    }
-                  >
-                    <span>{capability.label}</span>
-                    <span
-                      className={styles.capabilityArrow}
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </Link>
-                ))}
-              </nav>
-            </aside>
-          </div>
-
-          <Link href="/about" className={styles.aboutButton}>
-            About KR Tasker
-          </Link>
-        </div>
-      </section>
-
-      <WorkTogetherMarquee />
-
-      <section
-        className={styles.visionSection}
-        aria-labelledby="vision-heading"
-      >
-        <div className={styles.visionContainer}>
-          <div className={styles.visionContent}>
-            <p className={styles.visionEyebrow}>
-              We Approach Every Project With A Clear Vision.
+            {/* Subtitle Description */}
+            <p className={styles.subtitle}>
+              Ideas, Stories, And Strategies From The Creative Edge Covering Design,
+              Development, And The Tools That Bring Bold Digital Work To Life.
             </p>
 
-            <h2 id="vision-heading" className={styles.visionTitle}>
-              We Like To Remove The &apos;<span>waffle</span>&apos; And Create
-              Impactful <span>Marketing</span>, With Easy To Use Strategies That
-              Are <span>Crucial</span>.
+            {/* Action CTA Buttons */}
+            <div className={styles.ctaGroup}>
+              <Link href="/about" className={styles.btnPrimary}>
+                About KR Tasker
+              </Link>
+              <Link href="/work" className={styles.btnSecondary}>
+                <span>View Our Work</span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 2. "WHAT WE DO" SERVICES SHOWCASE SECTION */}
+      <section className={styles.whatWeDoSec} aria-labelledby="what-we-do-heading">
+        <div className={styles.container}>
+          {/* Section Header */}
+          <motion.div
+            className={styles.sectionHeader}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+         
+            <h2 id="what-we-do-heading" className={styles.sectionHeading}>
+              What We Do
             </h2>
+          </motion.div>
 
-            <p className={styles.visionCopy}>
-              We Don&apos;t Just Build Pretty Websites. Here At KR Tasker
-              Digital, We Understand All Aspects Of A Successful Site, From
-              Design Through Web Development And Testing, To SEO And Hosting. We
-              Tailor Our Service To The Client And The Project Requirements.
-            </p>
+          {/* List of 5 Core Services */}
+          <div className={styles.servicesList}>
+            {MAIN_SERVICES_DATA.map((service, index) => (
+              <motion.article
+                key={service.id}
+                className={styles.serviceRow}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* Left Column: Category Name & Showcase Visual */}
+                <div className={styles.serviceColLeft}>
+                  <h3 className={styles.categoryTag}>
+                    <span className={styles.categoryDot} aria-hidden="true" />
+                    <span>{service.category}</span>
+                  </h3>
 
-            <Link
-              type="button"
-              className={styles.visionButton}
-              href="/contact"
-            >
-              Start A Project Today
-            </Link>
-          </div>
+                  <div className={styles.imageCard}>
+                    <Image
+                      src={service.image}
+                      alt={service.alt}
+                      width={800}
+                      height={550}
+                      className={styles.serviceImg}
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                    />
+                  </div>
+                </div>
 
-          <div className={styles.visionMedia} aria-hidden="true">
-            <span>KR Tasker strategy and marketing</span>
+                {/* Right Column: Heading Description & Interactive Sub-Services */}
+                <div className={styles.serviceColRight}>
+                  <p className={styles.categoryHeadline}>{service.heading}</p>
+
+                  <nav className={styles.subServicesList} aria-label={`${service.category} sub-services`}>
+                    {service.subServices.map((sub) => (
+                      <Link
+                        key={sub.name}
+                        href={sub.href}
+                        className={styles.subServiceItem}
+                      >
+                        <span className={styles.subServiceName}>
+                          <span className={styles.subServiceDot} aria-hidden="true" />
+                          <span>{sub.name}</span>
+                        </span>
+                        <span className={styles.arrowBtn} aria-hidden="true">
+                          <span className={styles.arrowIcon}>→</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
 
-      <HappyClients />
-      <ProcessSection />
+      {/* 3. MOUNTED SECTIONS */}
+      <Approach />
       <Testimonials />
-      <FaqSection />
-
-      <div id="contact-form">
-        <Contact />
-      </div>
-
+      <Contact />
       <Footer />
     </main>
   )
