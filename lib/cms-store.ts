@@ -38,11 +38,51 @@ const DEFAULT_SEO: SEOSettingsRecord = {
 }
 
 const DEFAULT_NAV: NavItemRecord[] = [
-  { id: 'nav-1', label: 'Home', href: '/', sortOrder: 1, isVisible: true },
-  { id: 'nav-2', label: 'Work', href: '/work', sortOrder: 2, isVisible: true },
-  { id: 'nav-3', label: 'About', href: '/about', sortOrder: 3, isVisible: true },
-  { id: 'nav-4', label: 'Blog', href: '/blog', sortOrder: 4, isVisible: true },
-  { id: 'nav-5', label: 'Contact', href: '/contact', sortOrder: 5, isVisible: true },
+  {
+    id: 'nav-services',
+    label: 'Services',
+    href: '/services',
+    menuType: 'dropdown',
+    sortOrder: 1,
+    isVisible: true,
+    dropdownItems: [
+      { title: 'Web Design', tagline: 'Deliver your business to a wider audience', href: '/services/web-development' },
+      { title: 'AI & Automation', tagline: 'Smart workflows and intelligent solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
+      { title: 'Branding', tagline: "Creating brands you're proud of", href: '/services/branding' },
+      { title: 'SEO', tagline: 'Get your brand seen online', href: '/services/seo' },
+      { title: 'Shopify', tagline: 'Custom Shopify store in 4 weeks', href: '/services/shopify-development' },
+    ],
+    featuredCard: {
+      title: 'View all Services',
+      subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
+      href: '/services',
+      image: '/images/services/web-app-design.png',
+    },
+  },
+  {
+    id: 'nav-industries',
+    label: 'Industries',
+    href: '/work',
+    menuType: 'dropdown',
+    sortOrder: 2,
+    isVisible: true,
+    dropdownItems: [
+      { title: 'B2B & Enterprise', tagline: 'High-intent lead pipelines & corporate positioning', href: '/industries/b2b-enterprise' },
+      { title: 'B2C & Consumer', tagline: 'Direct-to-consumer reach & brand loyalty', href: '/industries/b2c-consumer' },
+      { title: 'E-Commerce & Retail', tagline: 'Scalable Shopify Plus stores & checkout growth', href: '/industries/ecommerce-retail' },
+      { title: 'SaaS & Technology', tagline: 'Custom web apps, internal tools & client portals', href: '/industries/saas-technology' },
+    ],
+    featuredCard: {
+      title: 'Explore Case Studies',
+      subtitle: 'See how we deliver measurable organic scale and revenue across every sector',
+      href: '/work',
+      image: '/images/services/digital-marketing.png',
+    },
+  },
+  { id: 'nav-work', label: 'Work', href: '/work', menuType: 'link', sortOrder: 3, isVisible: true },
+  { id: 'nav-about', label: 'About', href: '/about', menuType: 'link', sortOrder: 4, isVisible: true },
+  { id: 'nav-blog', label: 'Blog', href: '/blog', menuType: 'link', sortOrder: 5, isVisible: true },
+  { id: 'nav-contact', label: 'Contact', href: '/contact', menuType: 'link', sortOrder: 6, isVisible: true },
 ]
 
 // 1. PAGES
@@ -243,10 +283,28 @@ export async function getCmsServices(): Promise<ServiceRecord[]> {
           slug: s.slug,
           status: s.status || 'published',
           sortOrder: s.sortOrder || 1,
+          template: s.template || (s.capabilities?.length ? 'category' : 'subservice'),
           eyebrow: s.eyebrow || '',
           heroHeading: s.heroHeading || '',
           heroDescription: s.heroDescription || '',
-          heroCtaText: s.heroCtaText || 'Get Started',
+          heroCtaText: s.heroCtaText || 'Start a project',
+          heroCtaLink: s.heroCtaLink || '/contact',
+          heroBannerImage: s.heroBannerImage || '',
+          heroBannerImageAlt: s.heroBannerImageAlt || s.name,
+          capabilitiesEyebrow: s.capabilitiesEyebrow || s.eyebrow || s.name,
+          capabilitiesHeading: s.capabilitiesHeading || '',
+          capabilitiesCtaText: s.capabilitiesCtaText || 'About KR Tasker',
+          capabilitiesCtaLink: s.capabilitiesCtaLink || '/about',
+          capabilitiesTitle: s.capabilitiesTitle || 'Our Company Capabilities',
+          capabilities: s.capabilities || [],
+          marqueeText: s.marqueeText || "Let's Work Together.",
+          visionEyebrow: s.visionEyebrow || 'We approach every project with a clear vision.',
+          visionHeading: s.visionHeading || '',
+          visionDescription: s.visionDescription || '',
+          visionCtaText: s.visionCtaText || 'Start a project Today',
+          visionCtaLink: s.visionCtaLink || '/contact',
+          visionImage: s.visionImage || '',
+          visionImageAlt: s.visionImageAlt || s.name,
           introHeading: s.introHeading || '',
           introContent: s.introContent || '',
           featuredImage: s.featuredImage || '',
@@ -278,10 +336,28 @@ export async function getCmsServices(): Promise<ServiceRecord[]> {
         slug: row.slug,
         status: row.status,
         sortOrder: row.sortOrder,
+        template: row.template || (row.capabilities ? 'category' : 'subservice'),
         eyebrow: row.eyebrow,
         heroHeading: row.heroHeading,
         heroDescription: row.heroDescription,
         heroCtaText: row.heroCtaText,
+        heroCtaLink: row.heroCtaLink || '/contact',
+        heroBannerImage: row.heroBannerImage || '',
+        heroBannerImageAlt: row.heroBannerImageAlt || row.name,
+        capabilitiesEyebrow: row.capabilitiesEyebrow,
+        capabilitiesHeading: row.capabilitiesHeading,
+        capabilitiesCtaText: row.capabilitiesCtaText,
+        capabilitiesCtaLink: row.capabilitiesCtaLink,
+        capabilitiesTitle: row.capabilitiesTitle,
+        capabilities: row.capabilities ? JSON.parse(row.capabilities) : [],
+        marqueeText: row.marqueeText,
+        visionEyebrow: row.visionEyebrow,
+        visionHeading: row.visionHeading,
+        visionDescription: row.visionDescription,
+        visionCtaText: row.visionCtaText,
+        visionCtaLink: row.visionCtaLink,
+        visionImage: row.visionImage || '',
+        visionImageAlt: row.visionImageAlt || row.name,
         introHeading: row.introHeading,
         introContent: row.introContent,
         featuredImage: row.featuredImage || '',
@@ -324,10 +400,28 @@ export async function getCmsServiceBySlug(slug: string): Promise<ServiceRecord |
           slug: s.slug,
           status: s.status || 'published',
           sortOrder: s.sortOrder || 1,
+          template: s.template || (s.capabilities?.length ? 'category' : 'subservice'),
           eyebrow: s.eyebrow || '',
           heroHeading: s.heroHeading || '',
           heroDescription: s.heroDescription || '',
-          heroCtaText: s.heroCtaText || 'Start a Project',
+          heroCtaText: s.heroCtaText || 'Start a project',
+          heroCtaLink: s.heroCtaLink || '/contact',
+          heroBannerImage: s.heroBannerImage || '',
+          heroBannerImageAlt: s.heroBannerImageAlt || s.name,
+          capabilitiesEyebrow: s.capabilitiesEyebrow || s.eyebrow || s.name,
+          capabilitiesHeading: s.capabilitiesHeading || '',
+          capabilitiesCtaText: s.capabilitiesCtaText || 'About KR Tasker',
+          capabilitiesCtaLink: s.capabilitiesCtaLink || '/about',
+          capabilitiesTitle: s.capabilitiesTitle || 'Our Company Capabilities',
+          capabilities: s.capabilities || [],
+          marqueeText: s.marqueeText || "Let's Work Together.",
+          visionEyebrow: s.visionEyebrow || 'We approach every project with a clear vision.',
+          visionHeading: s.visionHeading || '',
+          visionDescription: s.visionDescription || '',
+          visionCtaText: s.visionCtaText || 'Start a project Today',
+          visionCtaLink: s.visionCtaLink || '/contact',
+          visionImage: s.visionImage || '',
+          visionImageAlt: s.visionImageAlt || s.name,
           introHeading: s.introHeading || '',
           introContent: s.introContent || '',
           featuredImage: s.featuredImage || '',
@@ -1037,9 +1131,12 @@ export async function getCmsNavigation(): Promise<NavItemRecord[]> {
       const sanityData = await client.fetch(NAVIGATION_QUERY)
       if (Array.isArray(sanityData) && sanityData.length > 0) {
         return sanityData.map((n: any) => ({
-          id: n._id || n.id || `nav-${n.label}`,
+          id: n._id || n.id || `nav-${n.label.toLowerCase()}`,
           label: n.label,
           href: n.href,
+          menuType: n.menuType || (n.dropdownItems?.length ? 'dropdown' : 'link'),
+          dropdownItems: n.dropdownItems || [],
+          featuredCard: n.featuredCard || undefined,
           isExternal: n.href.startsWith('http'),
           isOpenInNewTab: false,
           sortOrder: n.sortOrder || 1,
@@ -1052,22 +1149,14 @@ export async function getCmsNavigation(): Promise<NavItemRecord[]> {
   }
 
   try {
-    const stmt = db.prepare('SELECT * FROM navigation ORDER BY sortOrder ASC')
-    const rows = stmt.all() as any[]
-    if (rows.length > 0) {
-      return rows.map((row) => ({
-        id: row.id,
-        label: row.label,
-        href: row.href,
-        isExternal: Boolean(row.isExternal),
-        isOpenInNewTab: Boolean(row.isOpenInNewTab),
-        sortOrder: row.sortOrder,
-        isVisible: Boolean(row.isVisible),
-      }))
+    const bundledNav = (await import('@/data/cms/navigation.json')).default as NavItemRecord[]
+    if (Array.isArray(bundledNav) && bundledNav.length > 0) {
+      return bundledNav
     }
-  } catch (err) {
-    console.error('getCmsNavigation DB error', err)
+  } catch {
+    // fallback
   }
+
   return DEFAULT_NAV
 }
 

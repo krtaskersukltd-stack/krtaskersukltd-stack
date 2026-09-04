@@ -55,13 +55,45 @@ export const serviceType = defineType({
       initialValue: 1,
     }),
     defineField({
+      name: 'template',
+      title: 'Page Template Layout',
+      type: 'string',
+      description: 'Choose between the Main Service/Industry Hub layout (Figma design with Capabilities list) and the Sub-Service Capability layout (Orbit & Features accordion)',
+      options: {
+        list: [
+          { title: 'Main Category / Industry Hub (Figma Layout)', value: 'category' },
+          { title: 'Sub-Service Capability Page (Orbit Layout)', value: 'subservice' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'category',
+    }),
+    defineField({
       name: 'heroHeading',
       title: 'Hero Heading',
       type: 'string',
     }),
     defineField({
-      name: 'featuredImage',
-      title: 'Featured / Hero Image',
+      name: 'heroDescription',
+      title: 'Hero Description / Right Paragraph',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
+      name: 'heroCtaText',
+      title: 'Hero CTA Button Text',
+      type: 'string',
+      initialValue: 'Start a project',
+    }),
+    defineField({
+      name: 'heroCtaLink',
+      title: 'Hero CTA Button Link',
+      type: 'string',
+      initialValue: '/contact',
+    }),
+    defineField({
+      name: 'heroBannerImage',
+      title: 'Hero Showcase Banner Image',
       type: 'image',
       options: { hotspot: true },
       fields: [
@@ -73,16 +105,122 @@ export const serviceType = defineType({
       ],
     }),
     defineField({
-      name: 'heroDescription',
-      title: 'Hero Description',
-      type: 'text',
-      rows: 3,
+      name: 'capabilitiesEyebrow',
+      title: 'Capabilities Section Eyebrow Tag',
+      type: 'string',
+      initialValue: 'Digital Marketing',
     }),
     defineField({
-      name: 'heroCtaText',
-      title: 'Hero CTA Button Text',
+      name: 'capabilitiesHeading',
+      title: 'Capabilities Section Main Heading',
+      type: 'text',
+      rows: 3,
+      initialValue: 'Are You A Startup Brand, Well Established Company, In The UK Or Worldwide? It Doesn’t Matter. We Work With A Range Of Clients.',
+    }),
+    defineField({
+      name: 'capabilitiesCtaText',
+      title: 'Capabilities Section CTA Button Text',
       type: 'string',
-      initialValue: 'Get Started',
+      initialValue: 'About KR Tasker',
+    }),
+    defineField({
+      name: 'capabilitiesCtaLink',
+      title: 'Capabilities Section CTA Button Link',
+      type: 'string',
+      initialValue: '/about',
+    }),
+    defineField({
+      name: 'capabilitiesTitle',
+      title: 'Capabilities Section Subtitle',
+      type: 'string',
+      initialValue: 'Our Company Capabilities',
+    }),
+    defineField({
+      name: 'capabilities',
+      title: 'Company Capabilities (Sub-Pages)',
+      type: 'array',
+      description: 'List of sub-services / sub-pages displayed with arrow links',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', title: 'Capability / Sub-Service Name', type: 'string', validation: (r) => r.required() },
+            { name: 'slug', title: 'Sub-Page Slug / URL (e.g. /services/digital-360 or digital-360)', type: 'string', validation: (r) => r.required() },
+            { name: 'description', title: 'Short Description (Optional)', type: 'string' },
+            { name: 'badge', title: 'Badge (Optional)', type: 'string' },
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              subtitle: 'slug',
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'marqueeText',
+      title: 'Marquee Banner Text',
+      type: 'string',
+      initialValue: "Let's Work Together.",
+    }),
+    defineField({
+      name: 'visionEyebrow',
+      title: 'Vision Split Section Eyebrow Tag',
+      type: 'string',
+      initialValue: 'We approach every project with a clear vision.',
+    }),
+    defineField({
+      name: 'visionHeading',
+      title: 'Vision Split Section Heading',
+      type: 'text',
+      rows: 3,
+      initialValue: "We like to remove the 'waffle' and Impactful marketing, easy to use strategy that are Crucial.",
+    }),
+    defineField({
+      name: 'visionDescription',
+      title: 'Vision Split Section Description',
+      type: 'text',
+      rows: 4,
+      initialValue: "We don't just build pretty websites. Here at KR Tasker Digital, we understand all aspects of a successful site, from design through web development and testing, to SEO and Hosting. We tailor our service to the client and the project requirements.",
+    }),
+    defineField({
+      name: 'visionCtaText',
+      title: 'Vision Split Section CTA Button Text',
+      type: 'string',
+      initialValue: 'Start a project Today',
+    }),
+    defineField({
+      name: 'visionCtaLink',
+      title: 'Vision Split Section CTA Button Link',
+      type: 'string',
+      initialValue: '/contact',
+    }),
+    defineField({
+      name: 'visionImage',
+      title: 'Vision Split Section Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        },
+      ],
+    }),
+    defineField({
+      name: 'featuredImage',
+      title: 'Featured / Sub-Service Accordion Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        },
+      ],
     }),
     defineField({
       name: 'introHeading',
@@ -97,7 +235,7 @@ export const serviceType = defineType({
     }),
     defineField({
       name: 'features',
-      title: 'Key Features',
+      title: 'Key Features (Sub-Service Accordion)',
       type: 'array',
       of: [
         {

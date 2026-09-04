@@ -206,7 +206,25 @@ function initTables(dbInstance: any) {
       dbInstance.exec(`ALTER TABLE pages ADD COLUMN sections TEXT DEFAULT '[]';`)
     } catch {}
     try {
-      dbInstance.exec(`ALTER TABLE services ADD COLUMN featuredImage TEXT;`)
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN template TEXT DEFAULT 'subservice';`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN capabilities TEXT DEFAULT '[]';`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN heroBannerImage TEXT;`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN marqueeText TEXT;`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN visionHeading TEXT;`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN visionDescription TEXT;`)
+    } catch {}
+    try {
+      dbInstance.exec(`ALTER TABLE services ADD COLUMN visionImage TEXT;`)
     } catch {}
   } catch {
     // Ignore init table errors

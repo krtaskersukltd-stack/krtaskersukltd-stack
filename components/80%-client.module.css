@@ -215,7 +215,7 @@
 
 .bespokeRight {
   display: grid;
-  grid-template-columns: minmax(0, 1.75fr) minmax(130px, 1fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(130px, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 12px;
   position: relative;
@@ -223,87 +223,75 @@
   height: 250px;
 }
 
-.satisfactionCard {
-  grid-column: 1 / -1;
-  margin-left: auto;
-  width: 78%;
-  min-height: 185px;
-  border-radius: 7px;
-  background: var(--teal);
-  color: var(--cream);
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  align-items: center;
-  padding: 18px 22px;
-}
-
-.satisfactionCard[hidden] { display: none; }
-
-.statLogo { width: 54px; height: 54px; border-radius: 50%; background: white; }
-.satisfactionCard strong { font: 700 58px/1 'Cabinet Grotesk', sans-serif; }
-.satisfactionCard > small { grid-column: 2; font-size: 11px; }
-
-.channelsImage {
+.orbitCardCol {
   grid-column: 1;
   grid-row: 1 / 3;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border: 1px solid var(--teal);
-  border-radius: 7px;
-  padding: 10px;
+  position: relative;
 }
 
 .statBox {
-  background: var(--lime);
-  color: var(--teal);
+  background: var(--cream);
+  color: var(--black);
   border-radius: 7px;
   grid-column: 2;
   grid-row: 1;
-  padding: 18px 12px;
+  padding: 16px 12px;
   width: 100%;
-  max-width: none;
+  height: 100%;
   position: relative;
   box-shadow: none;
   border: 1px solid var(--teal);
-  background: var(--cream);
-  color: var(--black);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .statVal {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: var(--fs-hero);
   color: var(--teal);
   line-height: 1;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 
 .statLabel {
   font-family: 'Inter', sans-serif;
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 600;
   max-width: none;
   line-height: 1.15;
+  color: var(--black);
 }
 
-.arrowCircle {
-  position: absolute;
-  top: calc(100% + 12px);
-  bottom: auto;
-  right: 0;
+.arrowBox {
+  grid-column: 2;
+  grid-row: 2;
   width: 100%;
-  height: calc(100% - 48px);
+  height: 100%;
   border-radius: 7px;
   background: var(--lime);
   color: var(--teal);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
-.arrowCircle img { width: 58px; height: 58px; }
+
+.arrowBox:hover {
+  transform: scale(1.02);
+  filter: brightness(1.04);
+}
+
+.arrowIcon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
 
 @media (max-width: 1440px) {
   .container {
@@ -325,10 +313,13 @@
   .overviewRow { grid-template-columns: 1fr; gap: 45px; }
   .overviewImage { width: 100%; }
   .satisfactionCardTop { max-width: 430px; margin: 0 auto; }
-  .bespokeRight { margin-top: 0; }
-  .bespokeGrid { grid-template-columns: 1fr; gap: 50px; }
-  .bespokeRight { justify-content: center; }
-  .statBox { max-width: 100%; }
+  .bespokeRight { 
+    margin: 0 auto; 
+    max-width: 500px;
+    width: 100%;
+    height: 240px;
+  }
+  .bespokeGrid { grid-template-columns: 1fr; gap: 40px; }
 }
 
 @media (max-width: 768px) {
@@ -343,5 +334,27 @@
 @media (max-width: 576px) {
   .container {
     padding: 0 16px;
+  }
+  .bespokeRight {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+    gap: 12px;
+  }
+  .orbitCardCol {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    height: 220px;
+    margin-top: 14px;
+  }
+  .statBox {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 110px;
+  }
+  .arrowBox {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 110px;
   }
 }

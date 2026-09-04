@@ -8,6 +8,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import Testimonials from '@/components/Testimonials'
 import BlogCard from '@/components/BlogCard'
+import BlogNewsletter from '@/components/BlogNewsletter'
 import styles from './BlogPage.module.css'
 import CategoryTabs from '@/components/CategoryTabs'
 import { allPosts, BlogPost } from './posts'
@@ -52,55 +53,21 @@ export default function BlogPage() {
     ).length
     return { ...cat, count }
   })
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
-  const [subscribeError, setSubscribeError] = useState<string | null>(null)
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    setSubmitting(true)
-    setSubscribeError(null)
-
-    try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok) {
-        setSubscribed(true)
-        setEmail('')
-      } else {
-        setSubscribeError(data.error || 'Failed to subscribe. Please try again.')
-      }
-    } catch {
-      setSubscribeError('Connection error. Please try again.')
-    } finally {
-      setSubmitting(false)
-    }
-  }
 
   const getFilteredPosts = () => {
     const selectedFilterObj = filters.find((f) => f.id === activeFilter)
     if (!selectedFilterObj) return []
     if (activeFilter === 'all') return posts
     return posts.filter(
-      (p) => p.category.toLowerCase() === selectedFilterObj.label.toLowerCase()
+      (post) =>
+        post.category &&
+        post.category.toLowerCase().trim() === selectedFilterObj.label.toLowerCase().trim()
     )
   }
 
   const filteredPosts = getFilteredPosts()
-  const gridPosts = activeFilter === 'all'
-    ? [...filteredPosts, ...filteredPosts.slice(0, 3)]
-    : filteredPosts
-
-  // In the layout, we intersperse a Newsletter block in the middle of "Explore All"
-  // For instance, after the first 6 posts, we render the Newsletter banner
-  const postsBeforeNewsletter = gridPosts
-  const postsAfterNewsletter = activeFilter === 'all' ? gridPosts.slice(0, 6) : []
+  const postsBeforeNewsletter = activeFilter === 'all' ? filteredPosts.slice(0, 3) : filteredPosts
+  const postsAfterNewsletter = activeFilter === 'all' ? filteredPosts.slice(3) : []
 
   return (
     <main className={`${styles.blogPage} page-blog`}>
@@ -143,47 +110,7 @@ export default function BlogPage() {
 
           {/* Interspersed Newsletter Banner (only on 'Explore All') */}
           {activeFilter === 'all' && (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className={styles.newsletterBanner}
-            >
-              <div className={styles.newsletterContent}>
-                <div className={styles.leftNews}>
-                  <span className={styles.newsTag}>Spam Free Newsletter</span>
-                  <h2 className={styles.newsTitle}>
-                    Receive The Most Up To Date <span className={styles.yellowText}>Insights & Strategies</span>
-                  </h2>
-                </div>
-                <div className={styles.rightNews}>
-                  {subscribed ? (
-                    <p className={styles.subText}>🎉 Thank you for subscribing!</p>
-                  ) : (
-                    <form onSubmit={handleSubscribe} className={styles.formRow}>
-                      <input
-                        type="email"
-                        placeholder="Enter your Email Address here"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className={styles.input}
-                        disabled={submitting}
-                      />
-                      <button type="submit" className={styles.btnSubscribe} disabled={submitting}>
-                        {submitting ? 'Subscribing...' : 'Subscribe Now'}
-                      </button>
-                      {subscribeError && <p style={{ color: '#ff6b6b', fontSize: '0.8rem', width: '100%', marginTop: '6px' }}>{subscribeError}</p>}
-                    </form>
-                  )}
-                </div>
-              </div>
-              <div className={styles.circlesDesign}>
-                <img className={styles.orbitImage} src="/images/blog-newsletter/circle.png" alt="Digital marketing platforms" />
-                <img className={styles.centerVector} src="/images/blog-newsletter/Vector.svg" alt="Growth analytics" />
-              </div>
-            </motion.div>
+            <BlogNewsletter />
           )}
 
           {/* Remainder of the posts */}

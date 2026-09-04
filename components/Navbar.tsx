@@ -43,6 +43,35 @@ const MAIN_SERVICES: MainServiceItem[] = [
   },
 ]
 
+interface MainIndustryItem {
+  title: string
+  tagline: string
+  href: string
+}
+
+const MAIN_INDUSTRIES: MainIndustryItem[] = [
+  {
+    title: 'B2B & Enterprise',
+    tagline: 'High-intent lead pipelines & corporate positioning',
+    href: '/work',
+  },
+  {
+    title: 'B2C & Consumer',
+    tagline: 'Direct-to-consumer reach & brand loyalty',
+    href: '/work',
+  },
+  {
+    title: 'E-Commerce & Retail',
+    tagline: 'Scalable Shopify Plus stores & checkout growth',
+    href: '/services/shopify-development',
+  },
+  {
+    title: 'SaaS & Technology',
+    tagline: 'Custom web apps, internal tools & client portals',
+    href: '/services/websites-apps',
+  },
+]
+
 interface ServiceCategory {
   title: string
   items: { label: string; href: string; badge?: string }[]
@@ -81,7 +110,7 @@ const DEFAULT_CORE_SERVICES: ServiceCategory[] = [
   },
 ]
 
-type DropdownKey = 'services' | null
+type DropdownKey = 'services' | 'industries' | null
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -98,9 +127,60 @@ export default function Navbar() {
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null)
   const navRef = useRef<HTMLElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
+  const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
+  const [servicesCard, setServicesCard] = useState({
+    title: 'View all Services',
+    subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
+    href: '/services',
+    image: '/images/services/web-app-design.png',
+  })
+  const [industriesCard, setIndustriesCard] = useState({
+    title: 'Explore Case Studies',
+    subtitle: 'See how we deliver measurable organic scale and revenue across every sector',
+    href: '/work',
+    image: '/images/services/digital-marketing.png',
+  })
 
-  // Dynamically load additional services from CMS / Admin Panel
+  // Dynamically load Navigation and Services from CMS / Sanity
   useEffect(() => {
+    fetch('/api/cms/navigation')
+      .then((res) => (res.ok ? res.json() : []))
+      .then((navItems: any[]) => {
+        if (Array.isArray(navItems) && navItems.length > 0) {
+          const srvNav = navItems.find(
+            (n) => (n.label || '').toLowerCase() === 'services' || n.href === '/services'
+          )
+          if (srvNav && Array.isArray(srvNav.dropdownItems) && srvNav.dropdownItems.length > 0) {
+            setServicesMenu(srvNav.dropdownItems)
+          }
+          if (srvNav && srvNav.featuredCard?.title) {
+            setServicesCard({
+              title: srvNav.featuredCard.title,
+              subtitle: srvNav.featuredCard.subtitle || '',
+              href: srvNav.featuredCard.href || '/services',
+              image: srvNav.featuredCard.image || '/images/services/web-app-design.png',
+            })
+          }
+
+          const indNav = navItems.find(
+            (n) => (n.label || '').toLowerCase() === 'industries' || n.href === '/work'
+          )
+          if (indNav && Array.isArray(indNav.dropdownItems) && indNav.dropdownItems.length > 0) {
+            setIndustriesMenu(indNav.dropdownItems)
+          }
+          if (indNav && indNav.featuredCard?.title) {
+            setIndustriesCard({
+              title: indNav.featuredCard.title,
+              subtitle: indNav.featuredCard.subtitle || '',
+              href: indNav.featuredCard.href || '/work',
+              image: indNav.featuredCard.image || '/images/services/digital-marketing.png',
+            })
+          }
+        }
+      })
+      .catch((err) => console.error('Error loading navigation items:', err))
+
     fetch('/api/cms/services')
       .then((res) => (res.ok ? res.json() : []))
       .then((services: ServiceRecord[]) => {
@@ -363,7 +443,7 @@ export default function Navbar() {
           aria-label="Main Navigation"
         >
           <ul className={styles.navList}>
-            {/* Services (clickable link to /services + hover dropdown) */}
+            {/* 1. Services (clickable link to /services + hover dropdown) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('services')}
@@ -394,9 +474,9 @@ export default function Navbar() {
                   >
                     <div className={styles.dropdownPointer} />
                     <div className={styles.servicesDropdownCard}>
-                      {/* Left Column: 5 Main Services */}
+                      {/* Left Column: Main Services */}
                       <div className={styles.mainServicesList}>
-                        {MAIN_SERVICES.map((item) => (
+                        {servicesMenu.map((item) => (
                           <Link
                             key={item.title}
                             href={item.href}
@@ -411,20 +491,20 @@ export default function Navbar() {
 
                       {/* Right Column: Featured View All Services Card */}
                       <Link
-                        href="/services"
+                        href={servicesCard.href || '/services'}
                         className={styles.viewAllCard}
                         onClick={() => setActiveDropdown(null)}
                       >
                         <div className={styles.viewAllHeader}>
-                          <span className={styles.viewAllTitle}>View all Services</span>
+                          <span className={styles.viewAllTitle}>{servicesCard.title}</span>
                           <span className={styles.viewAllSubtitle}>
-                            We don&apos;t stop there, check out all the services we offer here at KR Tasker
+                            {servicesCard.subtitle}
                           </span>
                         </div>
                         <div className={styles.viewAllImageWrapper}>
                           <Image
-                            src="/images/services/web-app-design.png"
-                            alt="View all KR Tasker services"
+                            src={servicesCard.image || '/images/services/web-app-design.png'}
+                            alt={servicesCard.title}
                             width={240}
                             height={130}
                             className={styles.viewAllImage}
@@ -437,7 +517,81 @@ export default function Navbar() {
               </AnimatePresence>
             </li>
 
-            {/* Direct Link: Work */}
+            {/* 2. Industries (clickable link to /work + hover dropdown) */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('industries')}
+            >
+              <Link
+                href="/work"
+                onClick={() => setActiveDropdown(null)}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${
+                  activeDropdown === 'industries'
+                    ? styles.activeNav
+                    : ''
+                }`}
+                aria-expanded={activeDropdown === 'industries'}
+                aria-haspopup="true"
+              >
+                <span>Industries</span>
+              </Link>
+
+              <AnimatePresence>
+                {activeDropdown === 'industries' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.servicesDropdownContainer}
+                    onMouseEnter={() => handleMouseEnter('industries')}
+                  >
+                    <div className={styles.dropdownPointer} />
+                    <div className={styles.servicesDropdownCard}>
+                      {/* Left Column: Main Industries */}
+                      <div className={styles.mainServicesList}>
+                        {industriesMenu.map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            className={styles.mainServiceItem}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className={styles.mainServiceTitle}>{item.title}</span>
+                            <span className={styles.mainServiceTagline}>{item.tagline}</span>
+                          </Link>
+                        ))}
+                      </div>
+
+                      {/* Right Column: Featured Industry Case Studies Card */}
+                      <Link
+                        href={industriesCard.href || '/work'}
+                        className={styles.viewAllCard}
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={styles.viewAllHeader}>
+                          <span className={styles.viewAllTitle}>{industriesCard.title}</span>
+                          <span className={styles.viewAllSubtitle}>
+                            {industriesCard.subtitle}
+                          </span>
+                        </div>
+                        <div className={styles.viewAllImageWrapper}>
+                          <Image
+                            src={industriesCard.image || '/images/services/digital-marketing.png'}
+                            alt={industriesCard.title}
+                            width={240}
+                            height={130}
+                            className={styles.viewAllImage}
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* 3. Direct Link: Work */}
             <li className={styles.navItem}>
               <Link
                 href="/work"
@@ -447,7 +601,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* Direct Link: About */}
+            {/* 4. Direct Link: About */}
             <li className={styles.navItem}>
               <Link
                 href="/about"
@@ -457,7 +611,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* Direct Link: Blog */}
+            {/* 5. Direct Link: Blog */}
             <li className={styles.navItem}>
               <Link
                 href="/blog"
@@ -467,7 +621,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* Direct Link: Contact */}
+            {/* 6. Direct Link: Contact */}
             <li className={styles.navItem}>
               <Link
                 href="/contact"
@@ -533,7 +687,7 @@ export default function Navbar() {
               </div>
 
               <div className={styles.drawerBody}>
-                {/* Services Accordion */}
+                {/* 1. Services Accordion */}
                 <div className={styles.drawerAccordion}>
                   <button
                     type="button"
@@ -559,7 +713,7 @@ export default function Navbar() {
                         exit={{ height: 0, opacity: 0 }}
                         className={styles.accordionContent}
                       >
-                        {MAIN_SERVICES.map((item) => (
+                        {servicesMenu.map((item) => (
                           <Link
                             key={item.title}
                             href={item.href}
@@ -576,6 +730,55 @@ export default function Navbar() {
                           className={styles.mobileViewAllLink}
                         >
                           View all Services →
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* 2. Industries Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('industries')}
+                    className={styles.accordionHeader}
+                  >
+                    <span className={styles.drawerHeaderLabel}>
+                      Industries
+                    </span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'industries' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'industries' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.accordionContent}
+                      >
+                        {industriesMenu.map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            <span className={styles.mobileMainTitle}>{item.title}</span>
+                            <span className={styles.mobileMainTagline}>{item.tagline}</span>
+                          </Link>
+                        ))}
+                        <Link
+                          href="/work"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={styles.mobileViewAllLink}
+                        >
+                          Explore all Case Studies →
                         </Link>
                       </motion.div>
                     )}

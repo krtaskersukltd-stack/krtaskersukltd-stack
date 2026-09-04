@@ -29,25 +29,34 @@ documents.push({
 })
 
 // 2. Navigation Items
-const navItems = [
-  { label: 'Home', href: '/', sortOrder: 1 },
-  { label: 'Services', href: '/services', sortOrder: 2 },
-  { label: 'Work', href: '/work', sortOrder: 3 },
-  { label: 'About', href: '/about', sortOrder: 4 },
-  { label: 'Team', href: '/team', sortOrder: 5 },
-  { label: 'Blog', href: '/blog', sortOrder: 6 },
-  { label: 'Contact', href: '/contact', sortOrder: 7 },
-]
-navItems.forEach((nav, idx) => {
-  documents.push({
-    _type: 'navigation',
-    _id: `nav-${nav.label.toLowerCase()}`,
-    label: nav.label,
-    href: nav.href,
-    sortOrder: nav.sortOrder,
-    isVisible: true,
+try {
+  const navData = JSON.parse(fs.readFileSync(path.join(cmsDir, 'navigation.json'), 'utf-8'))
+  navData.forEach((nav) => {
+    documents.push({
+      _type: 'navigation',
+      _id: `nav-${nav.label.toLowerCase()}`,
+      label: nav.label,
+      href: nav.href,
+      menuType: nav.menuType || (nav.dropdownItems?.length ? 'dropdown' : 'link'),
+      sortOrder: nav.sortOrder,
+      isVisible: nav.isVisible !== false,
+      dropdownItems: (nav.dropdownItems || []).map((item, i) => ({
+        _key: `drop_${i}`,
+        title: item.title,
+        tagline: item.tagline || '',
+        href: item.href,
+        badge: item.badge || undefined,
+      })),
+      featuredCard: nav.featuredCard ? {
+        title: nav.featuredCard.title,
+        subtitle: nav.featuredCard.subtitle || '',
+        href: nav.featuredCard.href || '',
+      } : undefined,
+    })
   })
-})
+} catch (e) {
+  console.warn('Could not read navigation.json:', e.message)
+}
 
 // 3. Services
 try {
@@ -58,12 +67,32 @@ try {
       _id: `service-${s.slug}`,
       name: s.name,
       slug: { _type: 'slug', current: s.slug },
+      template: s.template || (s.capabilities?.length ? 'category' : 'subservice'),
       eyebrow: s.eyebrow || 'Websites & Apps',
       status: s.status || 'published',
       sortOrder: s.sortOrder || 1,
       heroHeading: s.heroHeading || s.name,
       heroDescription: s.heroDescription || '',
-      heroCtaText: s.heroCtaText || 'Get Started',
+      heroCtaText: s.heroCtaText || 'Start a project',
+      heroCtaLink: s.heroCtaLink || '/contact',
+      capabilitiesEyebrow: s.capabilitiesEyebrow || s.eyebrow || s.name,
+      capabilitiesHeading: s.capabilitiesHeading || '',
+      capabilitiesCtaText: s.capabilitiesCtaText || 'About KR Tasker',
+      capabilitiesCtaLink: s.capabilitiesCtaLink || '/about',
+      capabilitiesTitle: s.capabilitiesTitle || 'Our Company Capabilities',
+      capabilities: (s.capabilities || []).map((c, i) => ({
+        _key: `cap_${i}`,
+        name: c.name,
+        slug: c.slug,
+        description: c.description || '',
+        badge: c.badge || '',
+      })),
+      marqueeText: s.marqueeText || "Let's Work Together.",
+      visionEyebrow: s.visionEyebrow || 'We approach every project with a clear vision.',
+      visionHeading: s.visionHeading || '',
+      visionDescription: s.visionDescription || '',
+      visionCtaText: s.visionCtaText || 'Start a project Today',
+      visionCtaLink: s.visionCtaLink || '/contact',
       introHeading: s.introHeading || `About ${s.name}`,
       introContent: s.introContent || '',
       features: (s.features || []).map((f, i) => ({

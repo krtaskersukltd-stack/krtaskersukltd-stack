@@ -1,0 +1,112 @@
+[
+  {
+    "id": "nav-services",
+    "label": "Services",
+    "href": "/services",
+    "menuType": "dropdown",
+    "sortOrder": 1,
+    "isVisible": true,
+    "dropdownItems": [
+      {
+        "title": "Web Design",
+        "tagline": "Deliver your business to a wider audience",
+        "href": "/services/web-development"
+      },
+      {
+        "title": "AI & Automation",
+        "tagline": "Smart workflows and intelligent solutions",
+        "href": "/services/ai-solutions",
+        "badge": "POPULAR"
+      },
+      {
+        "title": "Branding",
+        "tagline": "Creating brands you're proud of",
+        "href": "/services/branding"
+      },
+      {
+        "title": "SEO",
+        "tagline": "Get your brand seen online",
+        "href": "/services/seo"
+      },
+      {
+        "title": "Shopify",
+        "tagline": "Custom Shopify store in 4 weeks",
+        "href": "/services/shopify-development"
+      }
+    ],
+    "featuredCard": {
+      "title": "View all Services",
+      "subtitle": "We don't stop there, check out all the services we offer here at KR Tasker",
+      "href": "/services",
+      "image": "/images/services/web-app-design.png"
+    }
+  },
+  {
+    "id": "nav-industries",
+    "label": "Industries",
+    "href": "/work",
+    "menuType": "dropdown",
+    "sortOrder": 2,
+    "isVisible": true,
+    "dropdownItems": [
+      {
+        "title": "B2B & Enterprise",
+        "tagline": "High-intent lead pipelines & corporate positioning",
+        "href": "/industries/b2b-enterprise"
+      },
+      {
+        "title": "B2C & Consumer",
+        "tagline": "Direct-to-consumer reach & brand loyalty",
+        "href": "/industries/b2c-consumer"
+      },
+      {
+        "title": "E-Commerce & Retail",
+        "tagline": "Scalable Shopify Plus stores & checkout growth",
+        "href": "/industries/ecommerce-retail"
+      },
+      {
+        "title": "SaaS & Technology",
+        "tagline": "Custom web apps, internal tools & client portals",
+        "href": "/industries/saas-technology"
+      }
+    ],
+    "featuredCard": {
+      "title": "Explore Case Studies",
+      "subtitle": "See how we deliver measurable organic scale and revenue across every sector",
+      "href": "/work",
+      "image": "/images/services/digital-marketing.png"
+    }
+  },
+  {
+    "id": "nav-work",
+    "label": "Work",
+    "href": "/work",
+    "menuType": "link",
+    "sortOrder": 3,
+    "isVisible": true
+  },
+  {
+    "id": "nav-about",
+    "label": "About",
+    "href": "/about",
+    "menuType": "link",
+    "sortOrder": 4,
+    "isVisible": true
+  },
+  {
+    "id": "nav-blog",
+    "label": "Blog",
+    "href": "/blog",
+    "menuType": "link",
+    "sortOrder": 5,
+    "isVisible": true
+  },
+  {
+    "id": "nav-contact",
+    "label": "Contact",
+    "href": "/contact",
+    "menuType": "link",
+    "sortOrder": 6,
+    "isVisible": true
+  }
+]

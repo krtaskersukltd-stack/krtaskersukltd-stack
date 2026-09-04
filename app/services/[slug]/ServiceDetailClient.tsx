@@ -12,12 +12,23 @@ import Testimonials from '@/components/Testimonials'
 import FaqSection from '@/components/FaqSection'
 import ClientSatisfaction from '@/components/80%-client'
 import StructuredData from '@/components/StructuredData'
+import MainServiceHub from '@/components/MainServiceHub'
 import styles from '../ServicePage.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop'
 
 export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
+  // If template is category / hub, or has capabilities defined, render Figma Category Hub layout
+  const isCategoryHub =
+    srv.template === 'category' ||
+    (srv.capabilities && srv.capabilities.length > 0) ||
+    ['digital-marketing', 'b2b-enterprise', 'b2c-consumer', 'ecommerce-retail', 'saas-technology'].includes(srv.slug)
+
+  if (isCategoryHub) {
+    return <MainServiceHub srv={srv} />
+  }
+
   const [openFeatureIdx, setOpenFeatureIdx] = useState<number | null>(0)
 
   const heroRef = useRef<HTMLDivElement>(null)

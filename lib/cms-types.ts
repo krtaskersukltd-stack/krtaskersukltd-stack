@@ -70,16 +70,41 @@ export interface ServiceMetric {
   label: string
 }
 
+export interface ServiceCapability {
+  name: string
+  slug: string
+  description?: string
+  badge?: string
+}
+
 export interface ServiceRecord {
   id: string
   name: string
   slug: string
   status: PageStatus
   sortOrder: number
+  template?: 'category' | 'subservice' | 'standard'
   eyebrow?: string
   heroHeading: string
   heroDescription: string
   heroCtaText?: string
+  heroCtaLink?: string
+  heroBannerImage?: string
+  heroBannerImageAlt?: string
+  capabilitiesEyebrow?: string
+  capabilitiesHeading?: string
+  capabilitiesCtaText?: string
+  capabilitiesCtaLink?: string
+  capabilitiesTitle?: string
+  capabilities?: ServiceCapability[]
+  marqueeText?: string
+  visionEyebrow?: string
+  visionHeading?: string
+  visionDescription?: string
+  visionCtaText?: string
+  visionCtaLink?: string
+  visionImage?: string
+  visionImageAlt?: string
   introHeading?: string
   introContent?: string
   featuredImage?: string
@@ -205,10 +230,27 @@ export interface SEOSettingsRecord {
   sitemapEnabled: boolean
 }
 
+export interface NavDropdownItem {
+  title: string
+  tagline?: string
+  href: string
+  badge?: string
+}
+
+export interface NavFeaturedCard {
+  title: string
+  subtitle?: string
+  href: string
+  image?: string
+}
+
 export interface NavItemRecord {
   id: string
   label: string
   href: string
+  menuType?: 'link' | 'dropdown'
+  dropdownItems?: NavDropdownItem[]
+  featuredCard?: NavFeaturedCard
   isExternal?: boolean
   isOpenInNewTab?: boolean
   sortOrder: number

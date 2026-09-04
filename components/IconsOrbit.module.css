@@ -1,0 +1,149 @@
+/* components/IconsOrbit.module.css */
+
+.orbitWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card Variant - As shown in Sub Services Bespoke Section */
+.cardContainer {
+  background: var(--cream);
+  border: 1px solid var(--teal);
+  border-radius: 7px;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  padding: 16px;
+  overflow: visible;
+  box-shadow: 0 4px 20px rgba(12, 70, 81, 0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 8px 28px rgba(12, 70, 81, 0.08);
+}
+
+/* Floating purple badge overlapping the top border */
+.topBadge {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(186, 178, 255, 0.42);
+  border: 1.5px solid #8b7bf7;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(139, 123, 247, 0.25);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeGlow {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #8b7bf7;
+  opacity: 0.35;
+  filter: blur(2px);
+}
+
+/* Newsletter Variant - As shown in Blog Page */
+.newsletterContainer {
+  position: absolute;
+  top: 50%;
+  right: 55px;
+  width: 310px;
+  height: 310px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Plain Variant */
+.plainContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Graphic and SVG sizing */
+.orbitGraphic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbitSvg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.rotatingGroup {
+  transform-origin: 151px 145px;
+  will-change: transform;
+}
+
+.rotatingGroup.rotating {
+  animation: orbitClockwise 22s linear infinite;
+}
+
+.orbitWrapper:hover .rotatingGroup.rotating {
+  animation-play-state: paused;
+}
+
+.centerIconGroup {
+  pointer-events: none;
+}
+
+@keyframes orbitClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .newsletterContainer {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: 260px;
+    height: 260px;
+    margin: 20px auto 0;
+  }
+  
+  .topBadge {
+    width: 42px;
+    height: 42px;
+    top: -21px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardContainer {
+    min-height: 200px;
+    padding: 12px;
+  }
+  
+  .topBadge {
+    width: 38px;
+    height: 38px;
+    top: -19px;
+  }
+}

@@ -108,23 +108,7 @@ export default function Footer() {
 
   return (
     <footer ref={ref} className={styles.footerWrapper}>
-      <div className={styles.footerCard}>
-        {/* Single responsive footer shape */}
-        <svg
-          className={styles.footerShape}
-          viewBox={isMobile ? "0 0 390 811" : "0 0 1440 811"}
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d={isMobile
-              ? "M 98 0 C 84.7 0, 74 10.7, 74 24 V 100 C 74 113.3, 63.3 124, 50 124 H 0 V 787 C 0 800.3, 10.7 811, 24 811 H 366 C 379.3 811, 390 800.3, 390 787 V 24 C 390 10.7, 379.3 0, 366 0 H 98 Z"
-              : "M1238 14C1243.52 14 1248 18.4772 1248 24V43C1248 48.5228 1252.48 53 1258 53H1430C1435.52 53 1440 57.4772 1440 63V801C1440 806.523 1435.52 811 1430 811H10C4.47715 811 0 806.523 0 801V176C0 170.477 4.47715 166 10 166H66C71.5229 166 76 161.523 76 156V24C76 18.4772 80.4771 14 86 14H1238Z"
-            }
-            fill="currentColor"
-          />
-        </svg>
-
+      <div className={styles.footerContainer}>
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -150,6 +134,23 @@ export default function Footer() {
             Send <br /> Me <br /> Back
           </span>
         </button>
+
+        <div className={styles.footerCard}>
+          {/* Single responsive footer shape */}
+          <svg
+            className={styles.footerShape}
+            viewBox={isMobile ? "0 0 390 811" : "0 0 1440 811"}
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d={isMobile
+                ? "M 98 0 C 84.7 0, 74 10.7, 74 24 V 100 C 74 113.3, 63.3 124, 50 124 H 0 V 787 C 0 800.3, 10.7 811, 24 811 H 366 C 379.3 811, 390 800.3, 390 787 V 24 C 390 10.7, 379.3 0, 366 0 H 98 Z"
+                : "M1238 14C1243.52 14 1248 18.4772 1248 24V43C1248 48.5228 1252.48 53 1258 53H1430C1435.52 53 1440 57.4772 1440 63V801C1440 806.523 1435.52 811 1430 811H10C4.47715 811 0 806.523 0 801V176C0 170.477 4.47715 166 10 166H66C71.5229 166 76 161.523 76 156V24C76 18.4772 80.4771 14 86 14H1238Z"
+              }
+              fill="currentColor"
+            />
+          </svg>
 
         <nav className={styles.socialsTab} aria-label="Social media links">
           {socialLinks.map(({ name, href, icon }) => (
@@ -316,6 +317,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
   )
 }
