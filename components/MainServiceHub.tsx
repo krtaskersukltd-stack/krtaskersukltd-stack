@@ -20,7 +20,7 @@ const DEFAULT_BANNER = 'https://images.unsplash.com/photo-1522071820081-009f0129
 const DEFAULT_VISION_IMAGE = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop'
 
 const DEFAULT_CAPABILITIES: ServiceCapability[] = [
-  { name: 'Digital 360', slug: '/services/digital-360' },
+  { name: 'Digital 360', slug: '/services/digital-360', badge: 'POPULAR' },
   { name: 'SEO', slug: '/services/seo' },
   { name: 'PPC', slug: '/services/ppc' },
   { name: 'Social Media Marketing', slug: '/services/social-media' },
@@ -28,6 +28,92 @@ const DEFAULT_CAPABILITIES: ServiceCapability[] = [
   { name: 'Email Marketing', slug: '/services/email-marketing' },
   { name: 'CRO', slug: '/services/digital-360' },
 ]
+
+function renderHeroHeading(text: string | undefined, serviceName: string) {
+  if (!text) {
+    return (
+      <>
+        A <span className={styles.tealAccent}>{serviceName}</span> Agency In UK.
+      </>
+    )
+  }
+
+  // Highlight serviceName if found in heading
+  const namePattern = new RegExp(`(${serviceName})`, 'gi')
+  if (namePattern.test(text)) {
+    const parts = text.split(namePattern)
+    return (
+      <>
+        {parts.map((part, i) =>
+          part.toLowerCase() === serviceName.toLowerCase() ? (
+            <span key={i} className={styles.tealAccent}>{part}</span>
+          ) : (
+            part
+          )
+        )}
+      </>
+    )
+  }
+
+  // Generic keyphrase highlights
+  const genericPattern = /(Digital Marketing|Web Design|Websites & Apps|Brand Identity|AI & Automation|B2B & Enterprise|B2C & Consumer|E-Commerce|SaaS)/gi
+  if (genericPattern.test(text)) {
+    const parts = text.split(genericPattern)
+    return (
+      <>
+        {parts.map((part, i) =>
+          genericPattern.test(part) ? (
+            <span key={i} className={styles.tealAccent}>{part}</span>
+          ) : (
+            part
+          )
+        )}
+      </>
+    )
+  }
+
+  return text
+}
+
+function renderCapabilitiesHeading(text: string | undefined) {
+  const content =
+    text ||
+    'Are You A Startup Brand, Well Established Company, In The UK Or Worldwide? It Doesn’t Matter. We Work With A Range Of Clients.'
+
+  const pattern = /(Startup|Established Company|Range Of Clients)/gi
+  const parts = content.split(pattern)
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^(Startup|Established Company|Range Of Clients)$/i.test(part) ? (
+          <span key={i} className={styles.tealAccent}>{part}</span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  )
+}
+
+function renderVisionHeading(text: string | undefined) {
+  const content =
+    text ||
+    "We Like To Remove The 'waffle' And Impactful Marketing, Easy To Use Strategy That Are Crucial."
+
+  const pattern = /('?waffle'?|Marketing|Crucial)/gi
+  const parts = content.split(pattern)
+  return (
+    <>
+      {parts.map((part, i) =>
+        /('?waffle'?|Marketing|Crucial)/i.test(part) ? (
+          <span key={i} className={styles.tealAccent}>{part}</span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  )
+}
 
 export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -79,38 +165,47 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
             </span>
 
             <div className={styles.heroGrid}>
-              {/* Left: Main Heading + CTA */}
+              {/* Left: Main Heading */}
               <div className={styles.heroLeft}>
                 <h1 className={styles.heroTitle}>
-                  {srv.heroHeading || `A ${srv.name} Agency In UK.`}
+                  {renderHeroHeading(srv.heroHeading, srv.name)}
                 </h1>
-                <Link
-                  href={srv.heroCtaLink || '/contact'}
-                  className={styles.heroBtnPrimary}
-                >
-                  {srv.heroCtaText || 'Start a project'}
-                </Link>
               </div>
 
               {/* Right: Multi-paragraph overview */}
               <div className={styles.heroRight}>
                 {heroParagraphs.length > 0 ? (
                   heroParagraphs.map((para, idx) => (
-                    <p key={idx} className={styles.heroParagraph}>
+                    <p
+                      key={idx}
+                      className={
+                        idx === 0 ? styles.heroParagraph : styles.heroParagraph
+                      }
+                    >
                       {para}
                     </p>
                   ))
                 ) : (
                   <>
                     <p className={styles.heroParagraph}>
-                      Here at KR Tasker Digital, we offer honest advice, industry experience, and a great portfolio of work.
+                      Here At KR Tasker Digital, We Offer Honest Advice, Industry Experience, And A Great Portfolio Of Work.
                     </p>
                     <p className={styles.heroParagraph}>
-                      UI/UX, wireframes, research and development — we understand all areas of digital growth. We can take a start-up business with nothing to a fully functioning brand online and offline. We can revamp an existing website or take a successful brand to the next level. Our talented and creative in-house web design and marketing team in the UK will work alongside you in collaboration to create digital experiences that reflect your brand, talk to your audience with meaning and personality, and drive sustainable growth across every channel.
+                      UI/UX, Wireframes, Research And Development — We Understand All Areas Of Web Design. We Can Take A Start-Up Business With Nothing To A Fully Functioning Brand Online And Offline. We Can Revamp An Existing Website Or Take A Successful Brand To The Next Level. Our Talented And Creative In-House Web Design Team In Manchester Will Work Alongside You In Collaboration To Create A Site That Reflects Your Brand, Talks To Your Audience With Meaning And Personality, And Has Great Functionality Across The Latest Devices.
                     </p>
                   </>
                 )}
               </div>
+            </div>
+
+            {/* Figma Action Button placed directly above the showcase banner */}
+            <div className={styles.heroActionRow}>
+              <Link
+                href={srv.heroCtaLink || '/contact'}
+                className={styles.heroBtnPrimary}
+              >
+                {srv.heroCtaText || 'Start A Project'}
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -154,8 +249,7 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
                 {srv.capabilitiesEyebrow || srv.eyebrow || srv.name}
               </span>
               <h2 className={styles.capabilitiesHeading}>
-                {srv.capabilitiesHeading ||
-                  'Are You A Startup Brand, Well Established Company, In The UK Or Worldwide? It Doesn’t Matter. We Work With A Range Of Clients.'}
+                {renderCapabilitiesHeading(srv.capabilitiesHeading)}
               </h2>
               <Link
                 href={srv.capabilitiesCtaLink || '/about'}
@@ -181,14 +275,20 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
                   const targetSlug = cap.slug.startsWith('/')
                     ? cap.slug
                     : `/services/${cap.slug}`
+                  const isFeatured = idx === 0 || cap.badge === 'POPULAR'
                   return (
                     <Link
                       key={idx}
                       href={targetSlug}
                       className={styles.capabilityItem}
                     >
-                      <span className={styles.capabilityName}>{cap.name}</span>
-                      <span className={styles.capabilityArrow} aria-hidden="true">
+                      <span className={isFeatured ? styles.capabilityNameFeatured : styles.capabilityName}>
+                        {cap.name}
+                      </span>
+                      <span
+                        className={isFeatured ? styles.capabilityCircleFeatured : styles.capabilityCircle}
+                        aria-hidden="true"
+                      >
                         ↗
                       </span>
                     </Link>
@@ -200,7 +300,8 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
         </div>
       </section>
 
-    <WorkTogetherMarquee/>
+      {/* 4. Marquee Section */}
+      <WorkTogetherMarquee />
 
       {/* 5. Vision / Remove The Waffle Split Section */}
       <section className={styles.visionSection}>
@@ -215,21 +316,20 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               className={styles.visionLeft}
             >
               <span className={styles.sectionTag}>
-                {srv.visionEyebrow || 'We approach every project with a clear vision.'}
+                {srv.visionEyebrow || 'We Approach Every Project With A Clear Vision.'}
               </span>
               <h2 className={styles.visionHeading}>
-                {srv.visionHeading ||
-                  "We Like To Remove The 'waffle' And Impactful Marketing, Easy To Use Strategy That Are Crucial."}
+                {renderVisionHeading(srv.visionHeading)}
               </h2>
               <p className={styles.visionDesc}>
                 {srv.visionDescription ||
-                  "We don't just build pretty websites. Here at KR Tasker Digital, we understand all aspects of a successful site, from design through web development and testing, to SEO and Hosting. We tailor our service to the client and the project requirements."}
+                  "We Don't Just Build Pretty Websites. Here At KR Tasker Digital, We Understand All Aspects Of A Successful Site, From Design Through Web Development And Testing, To SEO And Hosting. We Tailor Our Service To The Client And The Project Requirements."}
               </p>
               <Link
                 href={srv.visionCtaLink || '/contact'}
                 className={styles.btnVision}
               >
-                {srv.visionCtaText || 'Start a project Today'}
+                {srv.visionCtaText || 'Start A Project Today'}
               </Link>
             </motion.div>
 

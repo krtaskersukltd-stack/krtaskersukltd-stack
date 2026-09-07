@@ -62,8 +62,8 @@
   overflow: hidden;
   cursor: grab;
   transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              height 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.6s ease;
+    height 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.6s ease;
   box-shadow: 0 8px 32px rgba(12, 70, 81, 0.12);
   will-change: transform;
 }
@@ -76,7 +76,7 @@
   width: 320px;
   height: 420px;
   box-shadow: 0 20px 60px rgba(12, 70, 81, 0.25),
-              0 0 0 2px var(--lime);
+    0 0 0 2px var(--lime);
   z-index: 10;
 }
 
@@ -121,12 +121,10 @@
   left: 0;
   right: 0;
   padding: 24px 18px 18px;
-  background: linear-gradient(
-    0deg,
-    rgba(12, 70, 81, 0.85) 0%,
-    rgba(12, 70, 81, 0.4) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(12, 70, 81, 0.85) 0%,
+      rgba(12, 70, 81, 0.4) 60%,
+      transparent 100%);
   z-index: 2;
   display: flex;
   align-items: flex-end;
@@ -226,7 +224,7 @@
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600pxpx) {
   .carouselContainer {
     max-height: 240px;
   }

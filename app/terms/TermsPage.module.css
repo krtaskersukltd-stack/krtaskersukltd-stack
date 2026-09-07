@@ -96,7 +96,7 @@
 
 /* Content Area */
 .content {
-  max-width: 800px;
+  max-width: 600pxpx;
 }
 
 .section {
@@ -144,7 +144,7 @@
 
 .highlightText {
   color: var(--teal);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 /* Media Queries */

@@ -236,7 +236,7 @@
   color: var(--teal, #0c4651);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 600px;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -447,36 +447,34 @@
     min-height: 0;
     background-color: var(--teal, #0c4651);
     border-radius: 24px;
-    clip-path: polygon(
-      104px 0,
-      100% 0,
-      100% 100%,
-      0 100%,
-      0 154px,
-      0.6px 149.2px,
-      2.4px 144.6px,
-      5.4px 140.4px,
-      9.4px 136.8px,
-      14.2px 133.8px,
-      19.8px 131.6px,
-      26px 130.4px,
-      52px 130.4px,
-      58.2px 129.2px,
-      63.8px 127.0px,
-      68.6px 124.0px,
-      72.6px 120.4px,
-      75.6px 116.2px,
-      77.4px 111.4px,
-      78px 106px,
-      78px 24px,
-      78.6px 18.6px,
-      80.4px 13.6px,
-      83.4px 9.4px,
-      87.4px 5.8px,
-      92.2px 2.8px,
-      97.8px 0.8px,
-      104px 0
-    );
+    clip-path: polygon(104px 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 154px,
+        0.6px 149.2px,
+        2.4px 144.6px,
+        5.4px 140.4px,
+        9.4px 136.8px,
+        14.2px 133.8px,
+        19.8px 131.6px,
+        26px 130.4px,
+        52px 130.4px,
+        58.2px 129.2px,
+        63.8px 127.0px,
+        68.6px 124.0px,
+        72.6px 120.4px,
+        75.6px 116.2px,
+        77.4px 111.4px,
+        78px 106px,
+        78px 24px,
+        78.6px 18.6px,
+        80.4px 13.6px,
+        83.4px 9.4px,
+        87.4px 5.8px,
+        92.2px 2.8px,
+        97.8px 0.8px,
+        104px 0);
     overflow: visible;
   }
 

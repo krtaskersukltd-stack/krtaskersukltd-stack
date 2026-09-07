@@ -30,7 +30,7 @@
   font-family: 'Cabinet Grotesk';
   src: url('https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff2') format('woff2'),
     url('https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff') format('woff');
-  font-weight: 800;
+  font-weight: 600px;
   font-display: swap;
   font-style: normal;
 }
@@ -128,7 +128,7 @@
   /* ================= WEIGHTS ================= */
   --fw-regular: 400;
   --fw-medium: 500;
-  --fw-semibold: 600;
+  --fw-semibold: 600px;
   --fw-bold: 700;
 
   /* ================= FONT FAMILIES ================= */
@@ -195,7 +195,7 @@
 }
 
 .hero p {
-  max-width: 600px;
+  max-width: 600pxpx;
   margin-inline: auto;
 }
 
@@ -251,7 +251,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
-  font-weight: 600 !important;
+  font-weight: 600px !important;
   text-wrap: balance;
 }
 
@@ -391,7 +391,7 @@ h3 {
 .form-label {
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: var(--fs-form-label);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .faq-q {

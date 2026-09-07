@@ -34,7 +34,9 @@
   display: inline-block;
 }
 
-.tag::before { content: '• '; }
+.tag::before {
+  content: '• ';
+}
 
 .title {
   font-family: var(--font-display);
@@ -52,7 +54,7 @@
   padding: 14px 28px;
   border-radius: var(--radius-button);
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-weight: 600;
+  font-weight: 600px;
   font-size: var(--fs-button);
   line-height: 1.0;
   cursor: pointer;

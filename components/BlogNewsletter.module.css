@@ -41,7 +41,7 @@
 
 .newsTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: clamp(34px, 3vw, 48px);
   line-height: 1.18;
   letter-spacing: -1px;
@@ -60,7 +60,7 @@
 
 .subText {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 20px;
   color: var(--lime);
 }
@@ -81,7 +81,7 @@
   padding: 15px 18px;
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 600px;
   color: var(--black);
   outline: none;
   transition: all 0.3s ease;
@@ -103,7 +103,7 @@
   border-radius: 5px;
   padding: 11px 16px;
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 16px;
   cursor: pointer;
   white-space: nowrap;

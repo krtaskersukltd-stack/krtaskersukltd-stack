@@ -54,7 +54,7 @@
 
 .tag {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 600px;
   color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -74,7 +74,7 @@
 
 .heroTitle {
   font-size: clamp(32px, 3.5vw, 56px);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.15;
   color: var(--black);
   margin-bottom: 30px;
@@ -191,7 +191,7 @@
 
 .readTimeText {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 600px;
   margin: 0;
 }
 
@@ -209,13 +209,13 @@
 
 .dateVal {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 600px;
   color: var(--black);
   margin: 0;
 }
 
 .contentColumn {
-  max-width: 800px;
+  max-width: 600pxpx;
 }
 
 .paragraph {
@@ -228,7 +228,7 @@
 
 .heading {
   font-size: clamp(24px, 2.2vw, 36px);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.2;
   color: var(--black);
   margin: 56px 0 20px;
@@ -326,7 +326,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive style overrides */
@@ -335,7 +337,7 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .rightHero {
     height: 380px;
   }
@@ -355,7 +357,8 @@
     padding: 100px 0 40px;
   }
 
-  .heroContainer, .bodyContainer {
+  .heroContainer,
+  .bodyContainer {
     padding: 0 24px;
   }
 
@@ -380,9 +383,11 @@
   margin-bottom: 28px;
 }
 
-.richTextBody h2, .richTextBody h3, .richTextBody h1 {
+.richTextBody h2,
+.richTextBody h3,
+.richTextBody h1 {
   font-size: clamp(24px, 2.2vw, 36px);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.2;
   color: var(--black);
   margin: 56px 0 20px;
@@ -410,7 +415,8 @@
   margin: 48px 0;
 }
 
-.richTextBody ul, .richTextBody ol {
+.richTextBody ul,
+.richTextBody ol {
   margin: 24px 0 24px 24px;
   color: rgba(0, 0, 0, 0.8);
   font-size: 18px;

@@ -98,7 +98,7 @@
 .headline {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.7vw, 3.95rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.2;
   letter-spacing: -0.03em;
   margin: 0;
@@ -201,7 +201,7 @@
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 600px;
   text-decoration: none;
   border: 1px solid var(--teal);
   box-shadow: 0 6px 20px rgba(12, 70, 81, 0.25);
@@ -234,7 +234,7 @@
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 600px;
   text-decoration: none;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 16px rgba(230, 255, 42, 0.25);
@@ -254,7 +254,7 @@
   border-radius: clamp(16px, 2.5vw, 32px);
   overflow: hidden;
   position: relative;
-  box-shadow: 
+  box-shadow:
     0 24px 60px -15px rgba(0, 0, 0, 0.3),
     0 4px 20px rgba(12, 70, 81, 0.1);
   border: 1px solid rgba(12, 70, 81, 0.1);
@@ -312,7 +312,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600pxpx) {
   .heroSection {
     padding-top: 75px;
   }

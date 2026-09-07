@@ -93,9 +93,9 @@ function buildCarousel(
   const autoAdvanceCall =
     autoAdvance
       ? gsap.delayedCall(parseFloat(String(autoAdvance)) || 2, () => {
-          self.next()
-          autoAdvanceCall!.restart(true)
-        })
+        self.next()
+        autoAdvanceCall!.restart(true)
+      })
       : undefined
 
   const xSetters = targets.map((el) => gsap.quickSetter(el, 'x', 'px'))
@@ -143,10 +143,10 @@ function buildCarousel(
     },
     to(elOrRotation, vars, direction) {
       vars = vars || {}
-      ;(vars as Record<string, unknown>).rotation =
-        typeof elOrRotation === 'number'
-          ? elOrRotation
-          : self.elementRotation(elOrRotation as Element) ||
+        ; (vars as Record<string, unknown>).rotation =
+          typeof elOrRotation === 'number'
+            ? elOrRotation
+            : self.elementRotation(elOrRotation as Element) ||
             parseFloat(elOrRotation as string)
       vars.overwrite = true
       const { onUpdate, onComplete } = vars
@@ -167,7 +167,7 @@ function buildCarousel(
           self.rotation(getter('rotation'))
           if (onUpdate) { onUpdate.call(this) }
         }
-        ;(vars as Record<string, unknown>).rotation += '_' + direction
+          ; (vars as Record<string, unknown>).rotation += '_' + direction
         return gsap.fromTo(tempDiv, { rotation }, vars)
       }
       return gsap.to(self, vars)
@@ -330,7 +330,7 @@ export default function HeroCarousel() {
 
     const isMobile = window.innerWidth < 800
     const rx = isMobile ? 400 : 1100
-    const ry = isMobile ? 320 : 800
+    const ry = isMobile ? 320 : 600
 
     const carousel = buildCarousel(items, {
       radiusX: rx,
@@ -368,7 +368,7 @@ export default function HeroCarousel() {
     // Responsive resize
     const handleResize = () => {
       const mobile = window.innerWidth < 800
-      carousel.resize(mobile ? 400 : 1100, mobile ? 320 : 800)
+      carousel.resize(mobile ? 400 : 1100, mobile ? 320 : 600)
     }
 
     window.addEventListener('resize', handleResize)

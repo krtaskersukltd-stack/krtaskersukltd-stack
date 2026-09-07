@@ -69,7 +69,7 @@ export async function POST(request: Request) {
           to: [notificationEmail],
           subject: `📩 New Newsletter Subscriber: ${email}`,
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background: #0c4651; color: #ffffff; border-radius: 12px;">
+            <div style="font-family: Arial, sans-serif; max-width: 600pxpx; margin: 0 auto; padding: 24px; background: #0c4651; color: #ffffff; border-radius: 12px;">
               <h2 style="color: #e6ff2a; margin-top: 0;">New Newsletter Subscriber</h2>
               <p style="font-size: 16px; color: #ffffff;">A new user has subscribed to the KR Tasker Digital newsletter:</p>
               <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 8px; font-size: 18px; font-weight: bold; color: #ffffff;">

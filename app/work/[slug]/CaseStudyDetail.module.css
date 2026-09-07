@@ -64,13 +64,13 @@
   letter-spacing: 1.5px;
   margin-bottom: 12px;
   display: block;
-  font-weight: 800;
+  font-weight: 600px;
 }
 
 .mainTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(38px, 4.8vw, 64px);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.08;
   color: var(--black);
   letter-spacing: -0.5px;
@@ -124,7 +124,7 @@
 .introHeading {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(28px, 3.2vw, 44px);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.15;
   color: var(--black);
   letter-spacing: -0.5px;
@@ -190,7 +190,7 @@
 .metaVal {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600px;
   color: var(--teal);
   line-height: 1.3;
 }
@@ -242,7 +242,7 @@
 
 .topSmallWordmark {
   font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 800;
+  font-weight: 600px;
   font-size: clamp(20px, 3.2vw, 36px);
   letter-spacing: 14px;
   color: #ffffff;
@@ -317,8 +317,13 @@
 }
 
 @keyframes videoProgress {
-  0% { width: 0%; }
-  100% { width: 100%; }
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 .playVideoPillBtn {
@@ -352,7 +357,7 @@
   font-family: monospace;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 /* 5. Two Column Mockup Section */
@@ -475,12 +480,12 @@
   font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
   font-family: monospace;
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .browserBody {
   position: relative;
-  height: 600px;
+  height: 600pxpx;
   overflow: hidden;
 }
 
@@ -494,7 +499,7 @@
   position: absolute;
   bottom: 40px;
   left: 40px;
-  max-width: 600px;
+  max-width: 600pxpx;
   color: #ffffff;
 }
 
@@ -523,7 +528,7 @@
 .storyStepBadge {
   font-family: var(--font-display);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600px;
   color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -534,7 +539,7 @@
 .storyTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(28px, 3.2vw, 42px);
-  font-weight: 800;
+  font-weight: 600px;
   color: var(--black);
   letter-spacing: -0.5px;
 }
@@ -663,7 +668,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   color: var(--gray);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 /* 10. Moodboard Grid */
@@ -700,7 +705,7 @@
 .tileHeading {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600px;
   color: #ffffff;
   line-height: 1.2;
 }
@@ -862,13 +867,13 @@
   letter-spacing: 1.5px;
   display: block;
   margin-bottom: 6px;
-  font-weight: 800;
+  font-weight: 600px;
 }
 
 .whatNextTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: clamp(32px, 3.5vw, 44px);
-  font-weight: 800;
+  font-weight: 600px;
   color: var(--black);
 }
 
@@ -876,7 +881,7 @@
   color: var(--teal);
   text-decoration: none;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600px;
   font-size: 15px;
   transition: color 0.2s ease;
 }
@@ -932,7 +937,7 @@
 .relatedTitle {
   font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 600px;
   color: var(--black);
   line-height: 1.3;
   transition: color 0.2s ease;

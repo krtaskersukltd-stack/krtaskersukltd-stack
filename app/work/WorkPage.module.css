@@ -93,7 +93,7 @@
   border-radius: 6px;
   padding: 11px 17px;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 15px;
   cursor: pointer;
   box-shadow: none;
@@ -112,7 +112,7 @@
   border-radius: 6px;
   padding: 10px 17px;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 15px;
   color: var(--teal);
   text-decoration: none;
@@ -135,7 +135,7 @@
 
 .filterTag {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 15px;
   text-transform: none;
   letter-spacing: 0;
@@ -449,7 +449,7 @@
   padding: 8px 18px;
   border-radius: 4px;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 14.5px;
   cursor: pointer;
   box-shadow: none;
@@ -476,7 +476,7 @@
 
 .reviewsTag {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 600px;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -543,7 +543,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--gray);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .starsRow {
@@ -631,7 +631,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: rgba(248, 247, 242, 0.5);
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .metaStars {

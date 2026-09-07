@@ -23,7 +23,7 @@
 .headerTitle {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: #0b0f12;
@@ -48,7 +48,7 @@
   background: radial-gradient(circle at 80% 20%, #0e4c57 0%, #08373f 45%, #05262c 100%);
   border-radius: clamp(24px, 3.5vw, 36px);
   padding: clamp(32px, 5vw, 64px) clamp(24px, 5vw, 64px) 0;
-  box-shadow: 
+  box-shadow:
     0 24px 60px -15px rgba(5, 38, 44, 0.4),
     0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -100,10 +100,13 @@
 }
 
 @keyframes pulseDot {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(1.2);
@@ -114,7 +117,7 @@
 .mainHeading {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 5vw, 4.5rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.08;
   letter-spacing: -0.03em;
   color: #ffffff;
@@ -177,7 +180,7 @@
 .statNumber {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 4vw, 3.8rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1;
   color: #ffffff;
   letter-spacing: -0.02em;
@@ -223,7 +226,7 @@
 .inputLabel {
   font-family: var(--font-body);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 600px;
   color: #ffffff;
 }
 
@@ -369,7 +372,7 @@
   background: var(--lime, #e6ff2a);
   color: #0b0f12;
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -378,7 +381,7 @@
 .successTitle {
   font-family: var(--font-display);
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 600px;
   color: #ffffff;
   margin: 0;
 }
@@ -446,6 +449,12 @@
   will-change: transform;
 }
 
+/* Pause marquee when user hovers over the tracks or wrapper */
+.dualMarqueeWrapper:hover .tickerTrackLeft,
+.dualMarqueeWrapper:hover .tickerTrackRight {
+  animation-play-state: paused;
+}
+
 .tickerGroup {
   display: flex;
   align-items: center;
@@ -461,6 +470,16 @@
   color: rgba(255, 255, 255, 0.9);
   letter-spacing: -0.02em;
   white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  display: inline-block;
+}
+
+.tickerItem:hover {
+  color: var(--lime, #e6ff2a);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .tickerDot {
@@ -473,6 +492,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -482,6 +502,7 @@
   0% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0);
   }

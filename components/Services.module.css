@@ -1,7 +1,7 @@
 .servicesSec {
   padding-block: clamp(60px, 8vw, 120px);
   position: relative;
-  
+
   background-color: var(--white, #ffffff);
 }
 
@@ -35,7 +35,7 @@
 .headingOur {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
   font-size: clamp(3.2rem, 7vw, 7.2rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: #000000;
@@ -46,7 +46,7 @@
 .headingServices {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
   font-size: clamp(3.2rem, 7vw, 7.2rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: var(--teal, #0c4651);
@@ -113,7 +113,7 @@
   background: radial-gradient(circle at 80% 20%, #0d4a55 0%, #08373f 45%, #05262c 100%);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 28px 70px -15px rgba(5, 38, 44, 0.45),
     0 4px 24px rgba(0, 0, 0, 0.1);
 }
@@ -123,7 +123,7 @@
   background-color: var(--cream, #f8f7f2);
   color: var(--teal, #0c4651);
   border: 1px solid rgba(12, 70, 81, 0.22);
-  box-shadow: 
+  box-shadow:
     0 24px 60px -15px rgba(12, 70, 81, 0.14),
     0 4px 20px rgba(0, 0, 0, 0.04);
 }
@@ -141,7 +141,7 @@
 .title {
   font-family: var(--font-display);
   font-size: clamp(4.4rem, 6.2vw, 5.8rem);
-  font-weight: 800;
+  font-weight: 600px;
   line-height: 1.08;
 
   letter-spacing: 0.02em;
@@ -174,7 +174,7 @@
 .tag {
   font-family: var(--font-body);
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 600px;
   padding: 6px 14px;
   border-radius: 9999px;
   letter-spacing: 0.01em;
