@@ -134,7 +134,10 @@ export default function Contact() {
                 className={styles.btnGetInTouch}
                 aria-label="Scroll to contact form"
               >
-                Get In Touch
+                <span>Get In Touch</span>
+                <svg className={styles.buttonIcon} viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 15 15 5M7 5h8v8" />
+                </svg>
               </button>
 
               {/* Stats Counters */}
@@ -305,7 +308,12 @@ export default function Contact() {
 
                   {/* Submit Button */}
                   <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-                    {isSubmitting ? 'Sending Request...' : 'Send Request'}
+                    <span>{isSubmitting ? 'Sending Request...' : 'Send Request'}</span>
+                    {!isSubmitting && (
+                      <svg className={styles.buttonIcon} viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="m4 10 11-5-4 11-2-4-5-2Z" />
+                      </svg>
+                    )}
                   </button>
 
                   {submitError && <p className={styles.errorText}>{submitError}</p>}
@@ -319,23 +327,23 @@ export default function Contact() {
             {/* ROW 1: Scrolling Left */}
             <div className={styles.tickerTrackLeft}>
               <div className={styles.tickerGroup}>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
               </div>
               <div className={styles.tickerGroup}>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
               </div>
             </div>
@@ -343,23 +351,23 @@ export default function Contact() {
             {/* ROW 2: Scrolling Right (Opposite Direction) */}
             <div className={styles.tickerTrackRight}>
               <div className={styles.tickerGroup}>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
               </div>
               <div className={styles.tickerGroup}>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
-                <a href="mailto:info@krtaskerdigital.com" className={styles.tickerItem}>info@krtaskerdigital.com</a>
+                <a href="mailto:hello@krtaskerdigital.com" className={styles.tickerItem}>hello@krtaskerdigital.com</a>
                 <span className={styles.tickerDot}>•</span>
               </div>
             </div>
