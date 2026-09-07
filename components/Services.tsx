@@ -255,15 +255,15 @@ export default function Services() {
             </svg>
           </div>
         </motion.div>
+      </div>
 
-        {/* Services Cards List with Sticky Stacking Animation */}
-        <div ref={containerRef} className={styles.cardsList}>
-          {servicesData.map((service, index) => (
-            <div className={styles.cardSlot} key={service.titlePrefix} style={{ zIndex: index + 1 }}>
-              <ServiceCard service={service} />
-            </div>
-          ))}
-        </div>
+      {/* Services Cards List with Sticky Stacking Animation */}
+      <div ref={containerRef} className={styles.cardsList}>
+        {servicesData.map((service, index) => (
+          <div className={styles.cardSlot} key={service.titlePrefix} style={{ zIndex: index + 1 }}>
+            <ServiceCard service={service} />
+          </div>
+        ))}
       </div>
     </section>
   )
