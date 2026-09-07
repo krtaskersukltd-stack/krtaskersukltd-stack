@@ -236,6 +236,7 @@
   top: calc(100% + 14px);
   left: -20px;
   z-index: 1001;
+  overscroll-behavior: contain;
 }
 
 /* Invisible bridge so mouse never drops out between header and dropdown */
@@ -274,6 +275,9 @@
   border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
   z-index: 1;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* Left Column: Main Services */
@@ -281,6 +285,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overscroll-behavior: contain;
 }
 
 .mainServiceItem {
@@ -412,8 +417,9 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  max-height: 250px;
+  max-height: 380px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding-right: 4px;
 }
 
@@ -593,6 +599,9 @@
     0 20px 50px rgba(0, 0, 0, 0.12),
     0 4px 14px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .industriesDropdownContainer {
@@ -617,6 +626,22 @@
     0 4px 14px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.06);
   max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.servicesDropdownCard::-webkit-scrollbar,
+.industriesMenuCard::-webkit-scrollbar,
+.objectivesMenuCard::-webkit-scrollbar {
+  width: 4px;
+}
+
+.servicesDropdownCard::-webkit-scrollbar-thumb,
+.industriesMenuCard::-webkit-scrollbar-thumb,
+.objectivesMenuCard::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
 }
 
 /* ================= MOBILE HAMBURGER & DRAWER ================= */

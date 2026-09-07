@@ -113,10 +113,19 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          scale: isClicked ? 0.75 : hovered ? 1.6 : 1,
-          borderColor: isClicked ? 'var(--lime)' : hovered ? 'var(--lime)' : 'var(--teal)',
-          borderWidth: isClicked ? '3.5px' : '1.5px',
-          backgroundColor: hovered ? 'rgba(230, 255, 42, 0.15)' : 'rgba(0,0,0,0)',
+          scale: isClicked ? 0.8 : hovered ? 1.6 : 1,
+          borderColor: '#0c4651',
+          borderWidth: isClicked ? '2px' : '1.5px',
+          backgroundColor: isClicked
+            ? 'rgba(230, 255, 42, 0.45)'
+            : hovered
+            ? 'rgba(230, 255, 42, 0.25)'
+            : 'rgba(230, 255, 42, 0.08)',
+          boxShadow: isClicked
+            ? '0 0 0 2.5px #e6ff2a, 0 4px 18px rgba(230, 255, 42, 0.5)'
+            : hovered
+            ? '0 0 0 2px #e6ff2a, 0 4px 16px rgba(230, 255, 42, 0.35)'
+            : '0 0 0 1.5px #e6ff2a, 0 2px 8px rgba(12, 70, 81, 0.15)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 25 }}
       >
@@ -137,8 +146,9 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          scale: isClicked ? 1.8 : hovered ? 0 : 1,
-          backgroundColor: isClicked ? 'var(--lime)' : 'var(--teal)',
+          scale: isClicked ? 1.4 : hovered ? 0 : 1,
+          backgroundColor: '#e6ff2a',
+          borderColor: '#0c4651',
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 20 }}
       />

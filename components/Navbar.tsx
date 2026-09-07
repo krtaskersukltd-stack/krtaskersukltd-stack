@@ -678,6 +678,8 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={styles.servicesDropdownContainer}
+                    data-lenis-prevent="true"
+                    onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('services')}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -863,6 +865,8 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={styles.servicesDropdownContainer}
+                    data-lenis-prevent="true"
+                    onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('amazon')}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -954,6 +958,8 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={styles.servicesDropdownContainer}
+                    data-lenis-prevent="true"
+                    onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('objectives')}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -1058,6 +1064,8 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={`${styles.servicesDropdownContainer} ${styles.industriesDropdownContainer}`}
+                    data-lenis-prevent="true"
+                    onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('industries')}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -1176,6 +1184,7 @@ export default function Navbar() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               className={styles.mobileDrawer}
+              data-lenis-prevent="true"
             >
               <div className={styles.drawerHeader}>
                 <Logo />
