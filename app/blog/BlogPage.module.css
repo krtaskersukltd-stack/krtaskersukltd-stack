@@ -19,8 +19,8 @@
 }
 
 .sectionTag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 14px;
   text-transform: none;
   letter-spacing: 0;
@@ -68,7 +68,7 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   color: var(--black);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: clamp(20px, 1.55vw, 28px);
 }
@@ -152,11 +152,11 @@
 }
 
 .newsTag::before {
-  content: '• ';
+  content: "• ";
 }
 
 .newsTitle {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: clamp(34px, 3vw, 48px);
   line-height: 1.18;
@@ -175,7 +175,7 @@
 }
 
 .subText {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: var(--lime);
@@ -204,7 +204,7 @@
 }
 
 .input::placeholder {
-  color: #898A8E;
+  color: #898a8e;
 }
 
 .input:focus {
@@ -218,13 +218,15 @@
   border: none;
   border-radius: 5px;
   padding: 11px 16px;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
   white-space: nowrap;
   box-shadow: 0 4px 15px rgba(230, 255, 42, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btnSubscribe:hover {

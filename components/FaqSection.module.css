@@ -13,7 +13,7 @@
 
 .faqGrid {
   display: grid;
-  grid-template-columns: .9fr 1.55fr;
+  grid-template-columns: 0.9fr 1.55fr;
   gap: var(--space-block);
   align-items: flex-start;
 }
@@ -35,7 +35,7 @@
 }
 
 .tag::before {
-  content: '• ';
+  content: "• ";
 }
 
 .title {
@@ -53,14 +53,16 @@
   border: none;
   padding: 14px 28px;
   border-radius: var(--radius-button);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-weight: 600px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-weight: 600;
   font-size: var(--fs-button);
-  line-height: 1.0;
+  line-height: 1;
   cursor: pointer;
   width: fit-content;
   box-shadow: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .btnTouch:hover {
@@ -80,7 +82,9 @@
   padding: 0 26px;
   background: #f5f4ef;
   overflow: hidden;
-  transition: background-color .25s ease, transform .25s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .accordionItem:hover {
@@ -103,6 +107,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   text-align: left;
   cursor: pointer;
   color: var(--black);
@@ -111,10 +116,11 @@
 
 .questionText {
   font-family: var(--font-display);
-  font-weight: var(--fw-regular);
+  font-weight: 600;
   font-size: var(--fs-faq);
   line-height: var(--lh-heading);
   color: var(--black);
+  flex: 1;
   transition: color 0.3s ease;
 }
 
@@ -125,6 +131,9 @@
 .arrowIcon {
   width: 34px;
   height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: #dfe3e3;
   display: flex;
@@ -132,7 +141,9 @@
   justify-content: center;
   font-size: 20px;
   color: var(--teal);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .itemOpen .arrowIcon {
@@ -149,7 +160,7 @@
 }
 
 .faqAnswer {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-weight: var(--fw-regular);
   font-size: var(--fs-body);
   line-height: 1.6;

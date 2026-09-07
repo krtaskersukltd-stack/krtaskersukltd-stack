@@ -26,32 +26,45 @@ export interface MainServiceItem {
 
 const MAIN_SERVICES: MainServiceItem[] = [
   {
-    id: 'web-design',
-    title: 'Web Design',
+    id: 'web-development',
+    title: 'Web Development',
     tagline: 'Deliver your business to a wider audience',
     href: '/services/web-development',
     image: '/images/services/web-app-design.png',
     subServices: [
       { title: 'Website Design & Development', href: '/services/website-design-development' },
-      { title: 'Shopify Store Development', href: '/services/shopify-store-development' },
-      { title: 'WordPress Development', href: '/services/wordpress-development' },
-      { title: 'B2B / SaaS Websites', href: '/services/b2b-saas-websites' },
-      { title: 'Custom Website Development', href: '/services/custom-website-development' },
-      { title: 'Website Maintenance & Support', href: '/services/website-maintenance-support' },
+      { title: 'E-Commerce Web Development', href: '/services/ecommerce-web-development' },
+      { title: 'B2B', href: '/services/b2b' },
+      { title: 'SaaS', href: '/services/saas' },
+      { title: 'Custom Web Development', href: '/services/custom-web-development' },
     ],
   },
   {
     id: 'ai-automation',
-    title: 'AI & Automation',
+    title: 'AI Automation',
     tagline: 'Smart workflows and intelligent solutions',
     href: '/services/ai-solutions',
     badge: 'POPULAR',
     image: '/images/services/ai-automation.jpg',
     subServices: [
-      { title: 'AI ChatBot Development', href: '/services/ai-chatbot-development' },
+      { title: 'AI Chatbot', href: '/services/ai-chatbot' },
       { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
       { title: 'CRM Automation', href: '/services/crm-automation' },
       { title: 'AI Integration', href: '/services/ai-integration' },
+    ],
+  },
+  {
+    id: 'designing',
+    title: 'Designing',
+    tagline: "Creating brands and visual experiences you're proud of",
+    href: '/services/branding',
+    image: '/images/services/graphic-branding.jpg',
+    subServices: [
+      { title: 'UI/UX Design', href: '/services/ui-ux-design' },
+      { title: '3D Design & Automation', href: '/services/3d-design-automation' },
+      { title: 'Graphic Design', href: '/services/graphic-design' },
+      { title: 'Branding', href: '/services/branding' },
+      { title: 'Logo Making', href: '/services/logo-making' },
     ],
   },
   {
@@ -61,24 +74,9 @@ const MAIN_SERVICES: MainServiceItem[] = [
     href: '/services/digital-marketing',
     image: '/images/services/digital-marketing.png',
     subServices: [
-      { title: 'Digital 360° Marketing', href: '/services/digital-360' },
+      { title: 'Digital 360', href: '/services/digital-360' },
       { title: 'Social Media Marketing', href: '/services/social-media' },
-      { title: 'PPC (Pay-Per-Click)', href: '/services/ppc' },
-    ],
-  },
-  {
-    id: 'branding',
-    title: 'Branding',
-    tagline: "Creating brands you're proud of",
-    href: '/services/branding',
-    image: '/images/services/graphic-branding.jpg',
-    subServices: [
-      { title: '3D Modeling & Visualization', href: '/services/3d-modeling-visualization' },
-      { title: 'Logo Design / Logo Making', href: '/services/logo-design' },
-      { title: 'Brochure Design', href: '/services/brochure-design' },
-      { title: 'Flyer Design', href: '/services/flyer-design' },
-      { title: 'UI/UX Design', href: '/services/ui-ux-design' },
-      { title: 'Brand Strategy & Identity', href: '/services/branding' },
+      { title: 'PPC', href: '/services/ppc' },
     ],
   },
   {
@@ -89,26 +87,13 @@ const MAIN_SERVICES: MainServiceItem[] = [
     image: '/images/services/seo-brand-strategy.png',
     subServices: [
       { title: 'Local SEO', href: '/services/local-seo' },
+      { title: 'International SEO', href: '/services/international-seo' },
+      { title: 'National SEO', href: '/services/national-seo' },
       { title: 'E-Commerce SEO', href: '/services/ecommerce-seo' },
       { title: 'Link Building', href: '/services/link-building' },
-      { title: 'Lead Gen SEO', href: '/services/lead-gen-seo' },
+      { title: 'Lead Generation SEO', href: '/services/lead-gen-seo' },
       { title: 'Technical SEO', href: '/services/technical-seo' },
-      { title: 'AI SEO / GEO', href: '/services/ai-seo-geo' },
-      { title: 'International / National SEO', href: '/services/international-seo' },
       { title: 'SEO Audit (Free)', href: '/services/seo-audit' },
-    ],
-  },
-  {
-    id: 'shopify',
-    title: 'Shopify & E-Commerce',
-    tagline: 'Custom Shopify store in 4 weeks',
-    href: '/services/shopify-development',
-    image: '/images/services/amazon-ebay.jpg',
-    subServices: [
-      { title: 'Shopify Store Development', href: '/services/shopify-store-development' },
-      { title: 'Custom Shopify Themes & Apps', href: '/services/custom-website-development' },
-      { title: 'Amazon & eBay Services', href: '/services/amazon-ebay' },
-      { title: 'Product Listing Optimization', href: '/services/product-listing-optimization' },
     ],
   },
   {
@@ -122,6 +107,100 @@ const MAIN_SERVICES: MainServiceItem[] = [
       { title: 'Email Campaign Management', href: '/services/email-campaign-management' },
       { title: 'Email Marketing Strategy', href: '/services/email-marketing-strategy' },
       { title: 'Email Design', href: '/services/email-design' },
+    ],
+  },
+]
+
+export interface NavLinkItem {
+  title: string
+  href: string
+}
+
+export const BUSINESS_OBJECTIVES: NavLinkItem[] = [
+  { title: 'Increase Brand Awareness', href: '/business-objectives/increase-brand-awareness' },
+  { title: 'Improve Search Engine Rankings', href: '/business-objectives/improve-search-engine-rankings' },
+  { title: 'Lead Generation', href: '/business-objectives/lead-generation' },
+  { title: 'Increase Website Traffic', href: '/business-objectives/increase-website-traffic' },
+  { title: 'Increase Conversions', href: '/business-objectives/increase-conversions' },
+  { title: 'Social Media Engagement', href: '/business-objectives/social-media-engagement' },
+  { title: 'Customer Retention', href: '/business-objectives/customer-retention' },
+]
+
+export const INDUSTRIES_COLUMNS: NavLinkItem[][] = [
+  [
+    { title: 'Dental', href: '/industries/dental' },
+    { title: 'Healthcare', href: '/industries/healthcare' },
+    { title: 'Law Firms', href: '/industries/law-firms' },
+    { title: 'Real Estate', href: '/industries/real-estate' },
+    { title: 'SaaS', href: '/industries/saas' },
+    { title: 'B2B', href: '/industries/b2b' },
+    { title: 'eCommerce', href: '/industries/ecommerce' },
+    { title: 'Construction', href: '/industries/construction' },
+  ],
+  [
+    { title: 'Hotels & Hospitality', href: '/industries/hotels-hospitality' },
+    { title: 'Restaurants', href: '/industries/restaurants' },
+    { title: 'Beauty', href: '/industries/beauty' },
+    { title: 'Hair Salons', href: '/industries/hair-salons' },
+    { title: 'Accountants', href: '/industries/accountants' },
+    { title: 'Insurance', href: '/industries/insurance' },
+    { title: 'Higher Education', href: '/industries/higher-education' },
+    { title: 'Startups & Scale-ups', href: '/industries/startups-scale-ups' },
+  ],
+  [
+    { title: 'CBD', href: '/industries/cbd' },
+    { title: 'Chiropractors', href: '/industries/chiropractors' },
+    { title: 'Pest Control', href: '/industries/pest-control' },
+    { title: 'Airbnb', href: '/industries/airbnb' },
+    { title: 'Solar', href: '/industries/solar' },
+    { title: 'Retail', href: '/industries/retail' },
+    { title: 'AI Marketing', href: '/industries/ai-marketing' },
+    { title: 'White Label', href: '/industries/white-label' },
+  ],
+]
+
+export interface AmazonColumnGroup {
+  header: string
+  items: NavLinkItem[]
+}
+
+export const AMAZON_COLUMNS: AmazonColumnGroup[] = [
+  {
+    header: 'Full Service',
+    items: [
+      { title: 'Full service management', href: '/services/full-service-management' },
+      { title: 'Advertising (PPC) management', href: '/services/advertising-ppc-management' },
+      { title: 'Amazon SEO', href: '/services/amazon-seo' },
+      { title: 'Amazon account audit', href: '/services/amazon-account-audit' },
+      { title: 'SOPs', href: '/services/sops' },
+      { title: 'All services', href: '/services/amazon-ebay' },
+      { title: 'Consulting', href: '/services/amazon-consulting' },
+      { title: 'Book a coaching call', href: '/services/book-a-coaching-call' },
+    ],
+  },
+  {
+    header: 'Design',
+    items: [
+      { title: 'Brand guidelines', href: '/services/brand-guidelines' },
+      { title: 'Brand story', href: '/services/brand-story' },
+      { title: 'Brand store', href: '/services/brand-store' },
+      { title: 'Listing images', href: '/services/listing-images' },
+      { title: 'Enhanced brand content A+', href: '/services/enhanced-brand-content-a-plus' },
+      { title: 'Main image CTR hack', href: '/services/main-image-ctr-hack' },
+      { title: 'Listing optimization', href: '/services/listing-optimization' },
+      { title: 'Full listing optimization', href: '/services/full-listing-optimization' },
+    ],
+  },
+  {
+    header: 'Troubleshooting',
+    items: [
+      { title: 'Listing reinstatement', href: '/services/listing-reinstatement' },
+      { title: 'Account suspension', href: '/services/account-suspension' },
+      { title: 'PPC Advertising audit', href: '/services/ppc-advertising-audit' },
+      { title: 'Brand name change', href: '/services/brand-name-change' },
+      { title: 'Troubleshooting hours', href: '/services/troubleshooting-hours' },
+      { title: 'UPC to GS1 change', href: '/services/upc-to-gs1-change' },
+      { title: 'Remote fulfillment with FBA setup', href: '/services/remote-fulfillment-fba-setup' },
     ],
   },
 ]
@@ -193,7 +272,7 @@ const DEFAULT_CORE_SERVICES: ServiceCategory[] = [
   },
 ]
 
-type DropdownKey = 'services' | 'industries' | null
+type DropdownKey = 'services' | 'objectives' | 'industries' | 'amazon' | null
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -212,7 +291,7 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
   const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
-  const [hoveredServiceId, setHoveredServiceId] = useState<string>('web-design')
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>('web-development')
   const [servicesCard, setServicesCard] = useState({
     title: 'View all Services',
     subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
@@ -740,7 +819,202 @@ export default function Navbar() {
               </AnimatePresence>
             </li>
 
-            {/* 2. Industries (clickable link to /work + hover dropdown) */}
+            {/* 2. Amazon (hover dropdown with 3 columns) */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('amazon')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/services/amazon-ebay"
+                onClick={() => setActiveDropdown(null)}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${
+                  activeDropdown === 'amazon' ? styles.activeNav : ''
+                }`}
+                aria-expanded={activeDropdown === 'amazon'}
+                aria-haspopup="true"
+              >
+                <span>Amazon</span>
+                <svg
+                  className={`${styles.navChevron} ${
+                    activeDropdown === 'amazon' ? styles.chevronRotated : ''
+                  }`}
+                  viewBox="0 0 10 6"
+                  width="10"
+                  height="6"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+
+              <AnimatePresence>
+                {activeDropdown === 'amazon' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.servicesDropdownContainer}
+                    onMouseEnter={() => handleMouseEnter('amazon')}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className={styles.dropdownPointer} />
+                    <div className={styles.industriesMenuCard}>
+                      {AMAZON_COLUMNS.map((col, colIdx) => (
+                        <div key={colIdx} className={styles.subServicesCard}>
+                          <div className={styles.subServicesHeader}>
+                            <span className={styles.subServicesTitle}>{col.header}</span>
+                          </div>
+                          <div className={styles.subServicesList}>
+                            {col.items.map((item) => (
+                              <Link
+                                key={item.title}
+                                href={item.href}
+                                className={styles.subServiceItem}
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                <span className={styles.subServiceDot} />
+                                <span className={styles.subServiceText}>{item.title}</span>
+                                <svg
+                                  className={styles.subServiceArrow}
+                                  viewBox="0 0 16 16"
+                                  width="12"
+                                  height="12"
+                                  fill="none"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M6 3L11 8L6 13"
+                                    stroke="currentColor"
+                                    strokeWidth="1.8"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* 3. Business Objectives (hover dropdown) */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('objectives')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/services"
+                onClick={() => setActiveDropdown(null)}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${
+                  activeDropdown === 'objectives' ? styles.activeNav : ''
+                }`}
+                aria-expanded={activeDropdown === 'objectives'}
+                aria-haspopup="true"
+              >
+                <span>Business Objectives</span>
+                <svg
+                  className={`${styles.navChevron} ${
+                    activeDropdown === 'objectives' ? styles.chevronRotated : ''
+                  }`}
+                  viewBox="0 0 10 6"
+                  width="10"
+                  height="6"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+
+              <AnimatePresence>
+                {activeDropdown === 'objectives' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.servicesDropdownContainer}
+                    onMouseEnter={() => handleMouseEnter('objectives')}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className={styles.dropdownPointer} />
+                    <div className={styles.objectivesMenuCard}>
+                      <div className={styles.subServicesCard}>
+                        <div className={styles.subServicesHeader}>
+                          <span className={styles.subServicesTitle}>Business Objectives</span>
+                          <span className={styles.subServicesSubtitle}>
+                            Strategic growth goals tailored for your scale:
+                          </span>
+                        </div>
+                        <div className={styles.subServicesList}>
+                          {BUSINESS_OBJECTIVES.map((obj) => (
+                            <Link
+                              key={obj.title}
+                              href={obj.href}
+                              className={styles.subServiceItem}
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className={styles.subServiceDot} />
+                              <span className={styles.subServiceText}>{obj.title}</span>
+                              <svg
+                                className={styles.subServiceArrow}
+                                viewBox="0 0 16 16"
+                                width="12"
+                                height="12"
+                                fill="none"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M6 3L11 8L6 13"
+                                  stroke="currentColor"
+                                  strokeWidth="1.8"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className={styles.subServicesFooter}>
+                          <Link
+                            href="/services"
+                            className={styles.viewAllServicesLink}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span>Explore All Services</span>
+                            <span className={styles.footerArrow} aria-hidden="true">
+                              →
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* 3. Industries (hover dropdown with 3 columns) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('industries')}
@@ -783,48 +1057,45 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className={styles.servicesDropdownContainer}
+                    className={`${styles.servicesDropdownContainer} ${styles.industriesDropdownContainer}`}
                     onMouseEnter={() => handleMouseEnter('industries')}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className={styles.dropdownPointer} />
-                    <div className={styles.servicesDropdownCard}>
-                      {/* Left Column: Main Industries */}
-                      <div className={styles.mainServicesList}>
-                        {industriesMenu.map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            className={styles.mainServiceItem}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            <span className={styles.mainServiceTitle}>{item.title}</span>
-                            <span className={styles.mainServiceTagline}>{item.tagline}</span>
-                          </Link>
-                        ))}
-                      </div>
-
-                      {/* Right Column: Featured Industry Case Studies Card */}
-                      <Link
-                        href={industriesCard.href || '/work'}
-                        className={styles.viewAllCard}
-                        onClick={() => setActiveDropdown(null)}
-                      >
-                        <div className={styles.viewAllHeader}>
-                          <span className={styles.viewAllTitle}>{industriesCard.title}</span>
-                          <span className={styles.viewAllSubtitle}>
-                            {industriesCard.subtitle}
-                          </span>
+                    <div className={styles.industriesMenuCard}>
+                      {INDUSTRIES_COLUMNS.map((col, colIdx) => (
+                        <div key={colIdx} className={styles.subServicesCard}>
+                          <div className={styles.subServicesList}>
+                            {col.map((item) => (
+                              <Link
+                                key={item.title}
+                                href={item.href}
+                                className={styles.subServiceItem}
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                <span className={styles.subServiceDot} />
+                                <span className={styles.subServiceText}>{item.title}</span>
+                                <svg
+                                  className={styles.subServiceArrow}
+                                  viewBox="0 0 16 16"
+                                  width="12"
+                                  height="12"
+                                  fill="none"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M6 3L11 8L6 13"
+                                    stroke="currentColor"
+                                    strokeWidth="1.8"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </Link>
+                            ))}
+                          </div>
                         </div>
-                        <div className={styles.viewAllImageWrapper}>
-                          <Image
-                            src={industriesCard.image || '/images/services/digital-marketing.png'}
-                            alt={industriesCard.title}
-                            width={240}
-                            height={130}
-                            className={styles.viewAllImage}
-                          />
-                        </div>
-                      </Link>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -851,15 +1122,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* 5. Direct Link: Blog */}
-            <li className={styles.navItem}>
-              <Link
-                href="/blog"
-                className={`${styles.navLink} ${pathname.startsWith('/blog') ? styles.activeNav : ''}`}
-              >
-                Blog
-              </Link>
-            </li>
+
 
             {/* 6. Direct Link: Contact */}
             <li className={styles.navItem}>
@@ -882,7 +1145,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Toggle Button */}
           <button
             type="button"
-            className={styles.hamburger}
+            className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerHidden : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -951,6 +1214,7 @@ export default function Navbar() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
                         {servicesMenu.map((item) => (
@@ -976,7 +1240,91 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* 2. Industries Accordion */}
+                {/* 2. Amazon Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('amazon')}
+                    className={styles.accordionHeader}
+                  >
+                    <span className={styles.drawerHeaderLabel}>
+                      Amazon
+                    </span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'amazon' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'amazon' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                        className={styles.accordionContent}
+                      >
+                        {AMAZON_COLUMNS.flatMap(col => col.items).map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            <span className={styles.mobileMainTitle}>{item.title}</span>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* 3. Business Objectives Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('objectives')}
+                    className={styles.accordionHeader}
+                  >
+                    <span className={styles.drawerHeaderLabel}>
+                      Business Objectives
+                    </span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'objectives' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'objectives' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                        className={styles.accordionContent}
+                      >
+                        {BUSINESS_OBJECTIVES.map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            <span className={styles.mobileMainTitle}>{item.title}</span>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* 3. Industries Accordion */}
                 <div className={styles.drawerAccordion}>
                   <button
                     type="button"
@@ -1000,9 +1348,10 @@ export default function Navbar() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
-                        {industriesMenu.map((item) => (
+                        {INDUSTRIES_COLUMNS.flat().map((item) => (
                           <Link
                             key={item.title}
                             href={item.href}
@@ -1010,7 +1359,6 @@ export default function Navbar() {
                             className={styles.mobileSubLink}
                           >
                             <span className={styles.mobileMainTitle}>{item.title}</span>
-                            <span className={styles.mobileMainTagline}>{item.tagline}</span>
                           </Link>
                         ))}
                         <Link
@@ -1042,13 +1390,7 @@ export default function Navbar() {
                   About
                 </Link>
 
-                <Link
-                  href="/blog"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={styles.drawerDirectLink}
-                >
-                  Blog
-                </Link>
+
 
                 <Link
                   href="/contact"

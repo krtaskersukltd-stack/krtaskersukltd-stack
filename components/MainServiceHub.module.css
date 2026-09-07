@@ -1,7 +1,7 @@
 .page {
-  background: var(--white, #FAF9F5);
+  background: var(--white, #faf9f5);
   min-height: 100vh;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   overflow-x: hidden;
 }
 
@@ -19,14 +19,14 @@
 /* 1. Hero Section */
 .heroSection {
   padding: 130px 0 20px;
-  background: var(--white, #FAF9F5);
+  background: var(--white, #faf9f5);
 }
 
 .heroTag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 13px;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
@@ -40,7 +40,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--black, #0B0F12);
+  background-color: var(--black, #0b0f12);
 }
 
 .heroGrid {
@@ -56,11 +56,15 @@
 }
 
 .heroTitle {
-  font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Cabinet Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   font-size: clamp(38px, 4.4vw, 64px);
   line-height: 1.08;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   letter-spacing: -1.8px;
   margin: 0;
 }
@@ -72,16 +76,16 @@
 }
 
 .heroLeadParagraph {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 15px;
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.6;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   margin-bottom: 16px;
 }
 
 .heroParagraph {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13.5px;
   font-weight: 400;
   line-height: 1.65;
@@ -104,8 +108,8 @@
   color: #ffffff;
   padding: 10px 22px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 13.5px;
   letter-spacing: 0.1px;
   text-decoration: none;
@@ -123,7 +127,7 @@
 /* 2. Hero Banner Showcase */
 .bannerSection {
   padding: 0 0 70px;
-  background: var(--white, #FAF9F5);
+  background: var(--white, #faf9f5);
 }
 
 .bannerCard {
@@ -145,7 +149,7 @@
 /* 3. Capabilities & Clients Section */
 .capabilitiesSection {
   padding: 30px 0 80px;
-  background: var(--white, #FAF9F5);
+  background: var(--white, #faf9f5);
 }
 
 .capabilitiesGrid {
@@ -161,10 +165,10 @@
 }
 
 .sectionTag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 13px;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   margin-bottom: 16px;
   display: inline-flex;
   align-items: center;
@@ -178,15 +182,19 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--black, #0B0F12);
+  background-color: var(--black, #0b0f12);
 }
 
 .capabilitiesHeading {
-  font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Cabinet Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   font-size: clamp(30px, 3.2vw, 48px);
   line-height: 1.18;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   letter-spacing: -1.2px;
   margin: 0 0 28px;
 }
@@ -199,8 +207,8 @@
   color: #ffffff;
   padding: 10px 22px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 13.5px;
   letter-spacing: 0.1px;
   text-decoration: none;
@@ -222,10 +230,14 @@
 }
 
 .capabilitiesTitle {
-  font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Cabinet Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   font-size: clamp(18px, 1.8vw, 24px);
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   letter-spacing: -0.4px;
   margin: 0 0 18px;
 }
@@ -247,7 +259,7 @@
 }
 
 .capabilityName {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 14.5px;
   color: #1f2937;
@@ -255,8 +267,8 @@
 }
 
 .capabilityNameFeatured {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 14.5px;
   color: #0c4651;
   transition: color 0.2s ease;
@@ -310,7 +322,7 @@
 /* 5. Vision / Remove Waffle Section */
 .visionSection {
   padding: 80px 0 90px;
-  background: var(--white, #FAF9F5);
+  background: var(--white, #faf9f5);
 }
 
 .visionGrid {
@@ -326,17 +338,21 @@
 }
 
 .visionHeading {
-  font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Cabinet Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-weight: 700;
   font-size: clamp(30px, 3.2vw, 48px);
   line-height: 1.18;
-  color: var(--black, #0B0F12);
+  color: var(--black, #0b0f12);
   letter-spacing: -1.2px;
   margin: 0 0 20px;
 }
 
 .visionDesc {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14.5px;
   line-height: 1.65;
   color: #4b5563;
@@ -352,8 +368,8 @@
   color: #ffffff;
   padding: 10px 22px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 13.5px;
   letter-spacing: 0.1px;
   text-decoration: none;

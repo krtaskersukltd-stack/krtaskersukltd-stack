@@ -55,7 +55,7 @@
 }
 
 .heroTitle {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: var(--fs-hero);
   line-height: var(--lh-heading);
@@ -73,7 +73,7 @@
 }
 
 .heroDesc {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: var(--lh-body);
   color: var(--black);
@@ -92,12 +92,14 @@
   border: none;
   border-radius: 6px;
   padding: 11px 17px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 15px;
   cursor: pointer;
   box-shadow: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .primaryBtn:hover {
@@ -111,8 +113,8 @@
   border: 1px solid var(--teal);
   border-radius: 6px;
   padding: 10px 17px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 15px;
   color: var(--teal);
   text-decoration: none;
@@ -134,8 +136,8 @@
 }
 
 .filterTag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 15px;
   text-transform: none;
   letter-spacing: 0;
@@ -145,7 +147,7 @@
 }
 
 .filterTag::before {
-  content: '• ';
+  content: "• ";
 }
 
 .filterGrid {
@@ -245,7 +247,9 @@
   border-radius: 3px;
   overflow: hidden;
   box-shadow: none;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s ease;
   padding: 0;
   background: var(--cream);
   border: 1px solid rgba(12, 70, 81, 0.45);
@@ -272,7 +276,9 @@
   padding: 0 13px;
   background: var(--teal);
   color: white;
-  font: 700 18px 'Cabinet Grotesk', sans-serif;
+  font:
+    700 18px "Cabinet Grotesk",
+    sans-serif;
 }
 
 .mockupDot {
@@ -321,7 +327,7 @@
 }
 
 .cardTitle {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: var(--fs-h2);
   color: var(--black);
@@ -348,7 +354,7 @@
 }
 
 .quoteMark {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-size: var(--fs-quote-mark);
   line-height: 1;
   color: var(--black);
@@ -383,7 +389,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
   overflow: hidden;
@@ -397,7 +403,7 @@
 }
 
 .authorName {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: var(--fs-form-label);
   color: var(--black);
@@ -405,7 +411,7 @@
 }
 
 .authorRole {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: var(--fs-body);
   color: var(--black);
   line-height: 1.2;
@@ -427,7 +433,7 @@
 }
 
 .ctaTitle {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: var(--fs-heading);
   color: var(--black);
@@ -435,7 +441,7 @@
 }
 
 .ctaDesc {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: var(--fs-body);
   color: var(--black);
@@ -448,8 +454,8 @@
   border: none;
   padding: 8px 18px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 14.5px;
   cursor: pointer;
   box-shadow: none;
@@ -475,8 +481,8 @@
 }
 
 .reviewsTag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -486,7 +492,7 @@
 }
 
 .reviewsHeading {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 48px;
   color: var(--black);
@@ -531,30 +537,30 @@
 }
 
 .googleLogoText {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 18px;
   color: var(--black);
 }
 
 .googleRatingsText {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--gray);
-  font-weight: 600px;
+  font-weight: 600;
 }
 
 .starsRow {
-  color: #FFD700;
+  color: #ffd700;
   font-size: 16px;
   display: flex;
   gap: 3px;
 }
 
 .badgeScore {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 14px;
   color: var(--black);
@@ -585,7 +591,7 @@
 }
 
 .carouselQuoteIcon {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-size: 110px;
   line-height: 0.5;
   color: var(--lime);
@@ -594,7 +600,7 @@
 }
 
 .carouselQuote {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 500;
   font-size: 34px;
   line-height: 1.45;
@@ -619,19 +625,19 @@
 }
 
 .metaGoogleLogo {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
   color: var(--cream);
 }
 
 .metaGoogleRatings {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: rgba(248, 247, 242, 0.5);
-  font-weight: 600px;
+  font-weight: 600;
 }
 
 .metaStars {
@@ -648,7 +654,7 @@
 }
 
 .metaScore {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 12px;
   color: var(--cream);
@@ -660,14 +666,14 @@
 }
 
 .carouselAuthorName {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: var(--lime);
 }
 
 .carouselAuthorRole {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   color: rgba(248, 247, 242, 0.6);
   margin-top: 4px;
@@ -724,14 +730,12 @@
   border-radius: 12px;
 }
 
-
 /* --- RESPONSIVENESS MEDIA QUERIES --- */
 
 @media (max-width: 1440px) {
   .container {
     padding: 0 80px;
   }
-
 }
 
 @media (max-width: 1200px) {
@@ -817,7 +821,6 @@
   .googleBadge {
     align-self: flex-start;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -859,7 +862,6 @@
   .carouselAuthor {
     text-align: left;
   }
-
 }
 
 @media (max-width: 576px) {
@@ -899,5 +901,4 @@
   .quoteText {
     font-size: 16px;
   }
-
 }

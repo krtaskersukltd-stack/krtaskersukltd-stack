@@ -11,7 +11,8 @@
   display: flex;
   justify-content: center;
   pointer-events: none;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.35s ease,
     padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     top 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,14 +64,18 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 /* Scrolled on Dark Sections */
 .darkTheme.scrolled .container {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
 /* Left: Logo (Maintains normal full size on scroll) */
@@ -105,9 +110,9 @@
 /* Default Nav Link: Normal full readable size */
 .navLinkBtn,
 .navLink {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 15px;
-  font-weight: 600px;
+  font-weight: 600;
   color: #0b0f12;
   text-decoration: none;
   background: transparent;
@@ -118,14 +123,16 @@
   align-items: center;
   gap: 6px;
   white-space: nowrap;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
   user-select: none;
   position: relative;
 }
 
 .navLinkBtn:hover,
 .navLink:hover {
-  color: var(--teal, #0C4651);
+  color: var(--teal, #0c4651);
 }
 
 /* Active Nav Link */
@@ -152,7 +159,7 @@
 
 .darkTheme .activeNav {
   color: #ffffff;
-  font-weight: 600px;
+  font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 8px;
   text-decoration-thickness: 2px;
@@ -189,7 +196,7 @@
   justify-content: center;
   background: var(--lime);
   color: #0b0f12;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-weight: 700;
   font-size: 14.5px;
   padding: 10px 24px;
@@ -233,7 +240,7 @@
 
 /* Invisible bridge so mouse never drops out between header and dropdown */
 .servicesDropdownContainer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -24px;
   left: 0;
@@ -261,7 +268,9 @@
   background: #ffffff;
   border-radius: 20px;
   padding: 22px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
   z-index: 1;
@@ -281,7 +290,9 @@
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 10px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
   position: relative;
 }
 
@@ -299,7 +310,7 @@
 }
 
 .mainServiceTitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 15px;
   font-weight: 600;
   color: #0b0f12;
@@ -308,7 +319,7 @@
 
 .activeServiceItem .mainServiceTitle,
 .mainServiceItem:hover .mainServiceTitle {
-  color: var(--teal, #0C4651);
+  color: var(--teal, #0c4651);
 }
 
 .serviceItemBadge {
@@ -325,7 +336,7 @@
 .activeServiceIndicator {
   font-size: 16px;
   font-weight: 700;
-  color: var(--teal, #0C4651);
+  color: var(--teal, #0c4651);
   opacity: 0;
   transform: translateX(-4px);
   transition: all 0.2s ease;
@@ -338,7 +349,7 @@
 }
 
 .mainServiceTagline {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12.5px;
   font-weight: 400;
   color: #64748b;
@@ -373,7 +384,7 @@
 }
 
 .subServicesTitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 16px;
   font-weight: 700;
   color: #0b0f12;
@@ -390,7 +401,7 @@
 }
 
 .subServicesSubtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12px;
   font-weight: 400;
   color: #64748b;
@@ -428,17 +439,17 @@
 }
 
 .subServiceItem:hover {
-  background: #0C4651;
+  background: #0c4651;
   color: #ffffff;
   transform: translateX(3px);
-  border-color: #0C4651;
+  border-color: #0c4651;
 }
 
 .subServiceDot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--teal, #0C4651);
+  background-color: var(--teal, #0c4651);
   flex-shrink: 0;
   transition: background-color 0.2s ease;
 }
@@ -448,7 +459,7 @@
 }
 
 .subServiceText {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 13px;
   font-weight: 500;
   color: #1e293b;
@@ -467,7 +478,9 @@
 .subServiceArrow {
   color: #94a3b8;
   flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .subServiceItem:hover .subServiceArrow {
@@ -484,12 +497,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--teal, #0C4651);
+  color: var(--teal, #0c4651);
   text-decoration: none;
-  transition: gap 0.2s ease, color 0.2s ease;
+  transition:
+    gap 0.2s ease,
+    color 0.2s ease;
 }
 
 .viewAllServicesLink:hover {
@@ -515,7 +530,10 @@
   justify-content: space-between;
   gap: 12px;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .viewAllCard:hover {
@@ -531,14 +549,14 @@
 }
 
 .viewAllTitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 16px;
   font-weight: 700;
   color: #0b0f12;
 }
 
 .viewAllSubtitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12.5px;
   font-weight: 400;
   color: #64748b;
@@ -565,6 +583,42 @@
   transform: scale(1.04);
 }
 
+/* ================= OBJECTIVES & INDUSTRIES DROPDOWN CARDS ================= */
+.objectivesMenuCard {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.industriesDropdownContainer {
+  left: auto;
+  right: -50px;
+}
+
+.industriesDropdownContainer .dropdownPointer {
+  left: auto;
+  right: 92px;
+}
+
+.industriesMenuCard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 220px));
+  gap: 12px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: calc(100vw - 32px);
+}
+
 /* ================= MOBILE HAMBURGER & DRAWER ================= */
 .hamburger {
   display: none;
@@ -582,14 +636,23 @@
 .hamburgerBar {
   width: 100%;
   height: 2.5px;
-  background-color: #0C4651;
+  background-color: #0c4651;
   border-radius: 3px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s ease,
+    background-color 0.3s ease;
 }
 
 .darkTheme .hamburgerBar,
 .scrolled .hamburgerBar {
   background-color: #0b0f12;
+}
+
+.hamburgerHidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .barOpenTop {
@@ -608,10 +671,11 @@
 .mobileBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 1050;
+  pointer-events: auto;
 }
 
 /* Mobile Drawer */
@@ -622,13 +686,14 @@
   width: 100%;
   max-width: 380px;
   height: 100vh;
-  background: #0b0f12;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 1060;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.14);
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .drawerHeader {
@@ -636,16 +701,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .drawerCloseBtn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f4f5f6;
+  color: #0b0f12;
   font-size: 16px;
   font-weight: 700;
   display: flex;
@@ -653,6 +718,8 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .drawerCloseBtn:hover {
@@ -673,7 +740,7 @@
 .drawerAccordion {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   padding-bottom: 6px;
 }
 
@@ -682,19 +749,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 14px 0;
   background: transparent;
   border: none;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 17px;
-  font-weight: 600px;
-  color: #ffffff;
+  font-weight: 600;
+  color: #0b0f12;
   cursor: pointer;
   text-align: left;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .accordionHeader:hover {
-  color: var(--lime);
+  color: var(--teal, #0c4651);
 }
 
 .drawerHeaderLabel {
@@ -704,9 +773,11 @@
 }
 
 .accordionIcon {
-  font-size: 16px;
-  color: var(--lime);
-  transition: transform 0.25s ease;
+  display: inline-block;
+  font-size: 15px;
+  color: var(--teal, #0c4651);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
 }
 
 .accordionIconOpen {
@@ -730,61 +801,61 @@
 }
 
 .mobileMainTitle {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 15.5px;
-  font-weight: 600px;
-  color: #ffffff;
+  font-weight: 600;
+  color: #0b0f12;
   transition: color 0.2s ease;
 }
 
 .mobileSubLink:hover .mobileMainTitle {
-  color: var(--lime);
+  color: var(--teal, #0c4651);
 }
 
 .mobileMainTagline {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12.5px;
   font-weight: 400;
-  color: #94a3b8;
+  color: #64748b;
   margin-top: 1px;
 }
 
 .mobileViewAllLink {
   display: inline-block;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 13.5px;
   font-weight: 700;
-  color: var(--lime);
+  color: var(--teal, #0c4651);
   text-decoration: none;
   margin-top: 6px;
   padding: 4px 0;
 }
 
 .mobileViewAllLink:hover {
-  color: #ffffff;
+  color: #000000;
   text-decoration: underline;
 }
 
 .drawerDirectLink {
   display: block;
   padding: 12px 0;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 17px;
-  font-weight: 600px;
-  color: #ffffff;
+  font-weight: 600;
+  color: #0b0f12;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   transition: color 0.2s ease;
 }
 
 .drawerDirectLink:hover {
-  color: var(--lime);
+  color: var(--teal, #0c4651);
 }
 
 .drawerFooter {
   padding: 20px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  background: #ffffff;
 }
 
 .drawerCtaBtn {
@@ -795,7 +866,7 @@
   padding: 14px;
   background: var(--lime);
   color: #0b0f12;
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 16px;
   font-weight: 700;
   border-radius: 999px;
@@ -804,8 +875,8 @@
 }
 
 .drawerCtaBtn:hover {
-  background: #ffffff;
-  color: #0b0f12;
+  background: var(--teal, #0c4651);
+  color: #ffffff;
 }
 
 /* ================= RESPONSIVE BREAKPOINTS ================= */
@@ -843,7 +914,9 @@
     max-width: 100%;
   }
 }
-.homeHeader:not(.scrolled) { padding-top: 52px; }
+.homeHeader:not(.scrolled) {
+  padding-top: 52px;
+}
 .availabilityNotch {
   position: absolute;
   top: 0;
@@ -859,12 +932,42 @@
   background: var(--teal, #0c4651);
   color: white;
   font-size: 11px;
-  clip-path: polygon(0 0, 100% 0, 97% 3%, 94% 12%, 92% 28%, 91% 55%, 89% 76%, 86% 91%, 82% 100%, 18% 100%, 14% 91%, 11% 76%, 9% 55%, 8% 28%, 6% 12%, 3% 3%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    97% 3%,
+    94% 12%,
+    92% 28%,
+    91% 55%,
+    89% 76%,
+    86% 91%,
+    82% 100%,
+    18% 100%,
+    14% 91%,
+    11% 76%,
+    9% 55%,
+    8% 28%,
+    6% 12%,
+    3% 3%
+  );
   transition: opacity 0.2s;
 }
-.availabilityNotch span { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
-.scrolled .availabilityNotch { opacity: 0; }
+.availabilityNotch span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+}
+.scrolled .availabilityNotch {
+  opacity: 0;
+}
 @media (max-width: 640px) {
-  .homeHeader:not(.scrolled) { padding-top: 40px; }
-  .availabilityNotch { width: 220px; height: 28px; font-size: 10px; }
+  .homeHeader:not(.scrolled) {
+    padding-top: 40px;
+  }
+  .availabilityNotch {
+    width: 220px;
+    height: 28px;
+    font-size: 10px;
+  }
 }

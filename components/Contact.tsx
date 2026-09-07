@@ -1,8 +1,45 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
 import styles from './Contact.module.css'
+
+function AnimatedCounter({ to, suffix = '', duration = 2 }: { to: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
+
+  useEffect(() => {
+    if (!isInView) return
+
+    let startTime: number | null = null
+    let animationFrameId: number
+
+    const updateCounter = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1)
+      const easeOutProgress = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.floor(easeOutProgress * to))
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(updateCounter)
+      } else {
+        setCount(to)
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(updateCounter)
+
+    return () => cancelAnimationFrame(animationFrameId)
+  }, [isInView, to, duration])
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  )
+}
 
 const servicesOptions = [
   'Digital 360',
@@ -141,14 +178,14 @@ export default function Contact() {
               <div className={styles.statsRow}>
                 <div className={styles.statBlock}>
                   <div className={styles.statNumber}>
-                    27+
+                    <AnimatedCounter to={27} suffix="+" duration={1.8} />
                   </div>
                   <span className={styles.statLabel}>Services we provide</span>
                 </div>
 
                 <div className={styles.statBlock}>
                   <div className={styles.statNumber}>
-                    200+
+                    <AnimatedCounter to={200} suffix="+" duration={2.2} />
                   </div>
                   <span className={styles.statLabel}>Connections World Wide</span>
                 </div>

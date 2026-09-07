@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getCmsServiceBySlug, getCmsServices } from '@/lib/cms-store'
+import { getCmsServiceBySlug } from '@/lib/cms-store'
 import ServiceDetailClient from '@/app/services/[slug]/ServiceDetailClient'
 import fallbackServices from '@/data/cms/services.json'
 import type { ServiceRecord } from '@/lib/cms-types'
@@ -21,7 +21,8 @@ function slugToTitle(slug: string): string {
     crm: 'CRM',
     b2b: 'B2B',
     saas: 'SaaS',
-    cbd: 'CBD',
+    cro: 'CRO',
+    roi: 'ROI',
   }
 
   return slug
@@ -31,60 +32,59 @@ function slugToTitle(slug: string): string {
     .join(' ')
 }
 
-async function resolveIndustry(rawSlug: string): Promise<ServiceRecord | null> {
-  const cleanSlug = (rawSlug || '').replace(/^\/industries\//, '').replace(/^\/services\//, '').replace(/^\//, '')
+async function resolveObjective(rawSlug: string): Promise<ServiceRecord | null> {
+  const cleanSlug = (rawSlug || '').replace(/^\/business-objectives\//, '').replace(/^\/services\//, '').replace(/^\//, '')
   
   try {
     const srv = await getCmsServiceBySlug(cleanSlug)
     if (srv) return srv
   } catch (e) {
-    console.error('getCmsServiceBySlug error in industries:', e)
+    console.error('getCmsServiceBySlug error in business objectives:', e)
   }
 
   const fallback = (fallbackServices as ServiceRecord[]).find(
     (s) =>
       s.slug === cleanSlug ||
-      s.slug === `industries/${cleanSlug}` ||
-      s.slug === `services/${cleanSlug}` ||
-      s.id === `srv-${cleanSlug}` ||
+      s.slug === `business-objectives/${cleanSlug}` ||
+      s.id === `obj-${cleanSlug}` ||
       s.id === cleanSlug
   )
   if (fallback) return fallback
 
   const formattedTitle = slugToTitle(cleanSlug)
   return {
-    id: `ind-${cleanSlug}`,
+    id: `obj-${cleanSlug}`,
     name: formattedTitle,
     slug: cleanSlug,
     status: 'published',
     sortOrder: 99,
-    eyebrow: 'Industry Expertise',
-    heroHeading: `${formattedTitle} Digital Growth Solutions`,
-    heroDescription: `Specialized digital marketing, web engineering, and performance growth strategies tailored for the ${formattedTitle} sector.`,
-    heroCtaText: 'Schedule Consultation',
+    eyebrow: 'Business Objective',
+    heroHeading: `Strategic Solutions To ${formattedTitle}`,
+    heroDescription: `Accelerate your revenue and market position with data-backed digital marketing, SEO, and bespoke web platforms targeted specifically to ${formattedTitle.toLowerCase()}.`,
+    heroCtaText: 'Achieve This Goal',
     featuredImage: '/images/services/digital-marketing.png',
     features: [
       {
-        id: `f-ind-${cleanSlug}-1`,
-        title: `${formattedTitle} Market Strategy`,
-        description: `Custom growth pipelines, search authority, and client acquisition funnels designed specifically for ${formattedTitle} brands.`,
+        id: `f-obj-${cleanSlug}-1`,
+        title: `Targeted ${formattedTitle} Strategy`,
+        description: `Bespoke roadmap designed around clear KPIs to systematically achieve and surpass your ${formattedTitle.toLowerCase()} benchmarks.`,
         sortOrder: 1,
       },
       {
-        id: `f-ind-${cleanSlug}-2`,
-        title: 'Conversion & Operational Scaling',
-        description: `High-conversion digital presence, CRM automation, and performance analytics tuned for industry-specific buyer behaviors.`,
+        id: `f-obj-${cleanSlug}-2`,
+        title: 'Full-Funnel Measurement & Optimization',
+        description: `Continuous tracking, audience refinement, and conversion rate optimization to sustain exponential digital ROI.`,
         sortOrder: 2,
       },
     ],
     metrics: [
-      { value: '3.4x', label: 'Average Growth' },
-      { value: '99%', label: 'Client Satisfaction' },
+      { value: '+260%', label: 'Benchmark Impact' },
+      { value: '4.9x', label: 'Average ROAS' },
     ],
     seo: {
-      metaTitle: `${formattedTitle} Digital Marketing & Solutions | KR Tasker Digital`,
-      metaDescription: `Discover high-performance digital strategies and bespoke web development for ${formattedTitle} by KR Tasker Digital.`,
-      h1: `${formattedTitle} Digital Growth Solutions`,
+      metaTitle: `${formattedTitle} | KR Tasker Digital`,
+      metaDescription: `Achieve ${formattedTitle} with data-driven performance marketing and bespoke web engineering by KR Tasker Digital.`,
+      h1: `Strategic Solutions To ${formattedTitle}`,
       focusKeyword: cleanSlug,
       indexStatus: 'index',
       followStatus: 'follow',
@@ -95,11 +95,11 @@ async function resolveIndustry(rawSlug: string): Promise<ServiceRecord | null> {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const srv = await resolveIndustry(slug)
+  const srv = await resolveObjective(slug)
 
   if (!srv) {
     return {
-      title: 'Industry Not Found | KR Tasker Digital',
+      title: 'Objective Not Found | KR Tasker Digital',
     }
   }
 
@@ -113,7 +113,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       type: 'website',
-      url: `https://www.krtaskerdigital.com/industries/${srv.slug}`,
+      url: `https://www.krtaskerdigital.com/business-objectives/${srv.slug}`,
     },
     robots: {
       index: srv.seo?.indexStatus !== 'noindex',
@@ -122,9 +122,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function DynamicIndustryPage({ params }: PageProps) {
+export default async function DynamicObjectivePage({ params }: PageProps) {
   const { slug } = await params
-  const srv = await resolveIndustry(slug)
+  const srv = await resolveObjective(slug)
 
   if (!srv || srv.status === 'draft') {
     notFound()

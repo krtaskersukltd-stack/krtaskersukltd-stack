@@ -24,6 +24,12 @@ function slugToTitle(slug: string): string {
     b2b: 'B2B',
     saas: 'SaaS',
     cro: 'CRO',
+    fba: 'FBA',
+    sop: 'SOP',
+    sops: 'SOPs',
+    ctr: 'CTR',
+    upc: 'UPC',
+    gs1: 'GS1',
   }
 
   return slug

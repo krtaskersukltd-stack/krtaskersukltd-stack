@@ -1,8 +1,9 @@
 .footerWrapper {
-  width: 100%;
-  max-width: 1440px;
+  --footer-gutter: 5px;
+  width: calc(100% - (var(--footer-gutter) * 2));
   margin-inline: auto;
-  padding: 72px var(--container-pad, 24px) 42px;
+  margin-bottom: var(--footer-gutter);
+  padding: 48px 0 var(--footer-gutter);
   box-sizing: border-box;
 }
 
@@ -14,7 +15,7 @@
 .footerCard {
   position: relative;
   width: 100%;
-  min-height: clamp(700px, 56.32vw, 811px);
+  min-height: clamp(560px, 44vw, 650px);
   isolation: isolate;
 }
 
@@ -31,7 +32,7 @@
 .content {
   position: relative;
   z-index: 2;
-  padding: 60px clamp(78px, 8.82vw, 127px) 52px;
+  padding: 42px clamp(78px, 8.82vw, 127px) 36px;
 }
 
 .sendMeBackTab {
@@ -63,7 +64,9 @@
   place-items: center;
   background: var(--lime, #e6ff2a);
   color: var(--teal, #0c4651);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .sendMeBackTab:hover .arrowCircle {
@@ -78,7 +81,7 @@
 }
 
 .sendMeBackText {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
@@ -105,7 +108,9 @@
   background: var(--lime, #e6ff2a);
   color: var(--teal, #0c4651);
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .socialIcon svg {
@@ -143,7 +148,7 @@
 .colTitle,
 .newsletterTitle {
   margin: 0 0 26px;
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: var(--font-display, "Cabinet Grotesk", sans-serif);
   font-size: clamp(18px, 1.67vw, 24px);
   font-weight: 700;
   line-height: 1.1;
@@ -169,7 +174,9 @@
 
 .link span {
   display: block;
-  transition: color 180ms ease, transform 180ms ease;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .link:hover span {
@@ -234,9 +241,9 @@
   border-radius: 8px;
   background: var(--lime, #e6ff2a);
   color: var(--teal, #0c4651);
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: 15px;
-  font-weight: 600px;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -255,15 +262,15 @@
 
 .bigTextWrapper {
   width: 100%;
-  margin: clamp(64px, 9vw, 122px) auto clamp(38px, 4.5vw, 62px);
+  margin: clamp(28px, 3.8vw, 48px) auto clamp(20px, 2.5vw, 32px);
   text-align: center;
 }
 
 .bigText {
   width: 100%;
   margin: 0;
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: clamp(102px, 8.33vw, 120px);
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: clamp(80px, 6.8vw, 106px);
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.045em;
@@ -294,7 +301,7 @@
 
 .infoTitle {
   margin: 0 0 18px;
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: var(--font-display, "Cabinet Grotesk", sans-serif);
   font-size: clamp(17px, 1.67vw, 24px);
   font-weight: 700;
   line-height: 1.1;
@@ -340,7 +347,7 @@
 :global(.page-blog) .copyright,
 :global(.page-digital-marketing) .copyright,
 :global(.page-digital-360) .copyright {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-weight: 400;
 }
 
@@ -350,7 +357,9 @@
   padding: 0 15px;
   align-items: center;
   justify-content: center;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .btnCta:hover {
@@ -372,7 +381,7 @@
 
 @media (max-width: 1180px) {
   .footerWrapper {
-    padding-inline: 18px;
+    padding-inline: 0;
   }
 
   .content {
@@ -436,7 +445,7 @@
 
 @media (max-width: 720px) {
   .footerWrapper {
-    padding: 0 clamp(12px, 3.5vw, 24px) 36px;
+    padding: 0 0 36px;
   }
 
   .footerShape {
@@ -447,34 +456,36 @@
     min-height: 0;
     background-color: var(--teal, #0c4651);
     border-radius: 24px;
-    clip-path: polygon(104px 0,
-        100% 0,
-        100% 100%,
-        0 100%,
-        0 154px,
-        0.6px 149.2px,
-        2.4px 144.6px,
-        5.4px 140.4px,
-        9.4px 136.8px,
-        14.2px 133.8px,
-        19.8px 131.6px,
-        26px 130.4px,
-        52px 130.4px,
-        58.2px 129.2px,
-        63.8px 127.0px,
-        68.6px 124.0px,
-        72.6px 120.4px,
-        75.6px 116.2px,
-        77.4px 111.4px,
-        78px 106px,
-        78px 24px,
-        78.6px 18.6px,
-        80.4px 13.6px,
-        83.4px 9.4px,
-        87.4px 5.8px,
-        92.2px 2.8px,
-        97.8px 0.8px,
-        104px 0);
+    clip-path: polygon(
+      104px 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 154px,
+      0.6px 149.2px,
+      2.4px 144.6px,
+      5.4px 140.4px,
+      9.4px 136.8px,
+      14.2px 133.8px,
+      19.8px 131.6px,
+      26px 130.4px,
+      52px 130.4px,
+      58.2px 129.2px,
+      63.8px 127px,
+      68.6px 124px,
+      72.6px 120.4px,
+      75.6px 116.2px,
+      77.4px 111.4px,
+      78px 106px,
+      78px 24px,
+      78.6px 18.6px,
+      80.4px 13.6px,
+      83.4px 9.4px,
+      87.4px 5.8px,
+      92.2px 2.8px,
+      97.8px 0.8px,
+      104px 0
+    );
     overflow: visible;
   }
 
@@ -638,7 +649,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .arrowCircle,
   .socialIcon,
   .link span,

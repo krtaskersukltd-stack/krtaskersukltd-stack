@@ -9,13 +9,13 @@
 .eyebrow {
   padding-top: 7px;
   color: var(--black);
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-weight: 600px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-weight: 600;
   font-size: var(--fs-button);
 }
 
 .eyebrow::before {
-  content: '• ';
+  content: "• ";
 }
 
 .tab {
@@ -27,7 +27,7 @@
   background: transparent;
   color: var(--black);
   cursor: pointer;
-  font-family: 'Cabinet Grotesk', 'Inter', sans-serif;
+  font-family: "Cabinet Grotesk", "Inter", sans-serif;
   font-size: var(--fs-heading);
   font-weight: 700;
   line-height: 1.1;

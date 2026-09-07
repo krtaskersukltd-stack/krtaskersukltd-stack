@@ -1,36 +1,48 @@
 /* ================= FONT DECLARATIONS ================= */
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/J6PPRPKWXDUIYA47IXLEQB4R4OPVYDQH/N2ZXAXWEHVMLISD2TIXJC7EF4GOY43L4/NXM4Z4TDCMYWBZ7AVI2N6DQ5VMWNENMU.woff2') format('woff2'),
-    url('https://cdn.fontshare.com/wf/J6PPRPKWXDUIYA47IXLEQB4R4OPVYDQH/N2ZXAXWEHVMLISD2TIXJC7EF4GOY43L4/NXM4Z4TDCMYWBZ7AVI2N6DQ5VMWNENMU.woff') format('woff');
+  font-family: "Cabinet Grotesk";
+  src:
+    url("https://cdn.fontshare.com/wf/J6PPRPKWXDUIYA47IXLEQB4R4OPVYDQH/N2ZXAXWEHVMLISD2TIXJC7EF4GOY43L4/NXM4Z4TDCMYWBZ7AVI2N6DQ5VMWNENMU.woff2")
+      format("woff2"),
+    url("https://cdn.fontshare.com/wf/J6PPRPKWXDUIYA47IXLEQB4R4OPVYDQH/N2ZXAXWEHVMLISD2TIXJC7EF4GOY43L4/NXM4Z4TDCMYWBZ7AVI2N6DQ5VMWNENMU.woff")
+      format("woff");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/CKQBK2QBTCDREE7L3MXZ3PPW7LDNJCWU/OTOY7FQFSFOJVZKJWKO2EHUJLOGBDN4Q/4CO2ETY7NITKLUDKMYJ75RHJSPHOJ7XT.woff2') format('woff2'),
-    url('https://cdn.fontshare.com/wf/CKQBK2QBTCDREE7L3MXZ3PPW7LDNJCWU/OTOY7FQFSFOJVZKJWKO2EHUJLOGBDN4Q/4CO2ETY7NITKLUDKMYJ75RHJSPHOJ7XT.woff') format('woff');
+  font-family: "Cabinet Grotesk";
+  src:
+    url("https://cdn.fontshare.com/wf/CKQBK2QBTCDREE7L3MXZ3PPW7LDNJCWU/OTOY7FQFSFOJVZKJWKO2EHUJLOGBDN4Q/4CO2ETY7NITKLUDKMYJ75RHJSPHOJ7XT.woff2")
+      format("woff2"),
+    url("https://cdn.fontshare.com/wf/CKQBK2QBTCDREE7L3MXZ3PPW7LDNJCWU/OTOY7FQFSFOJVZKJWKO2EHUJLOGBDN4Q/4CO2ETY7NITKLUDKMYJ75RHJSPHOJ7XT.woff")
+      format("woff");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/XMXWOHABYLQDJ42L65EFRYNVRY37HQCB/B2O4O6V3JMFM2WDCYQI3A47L5U4THDUL/WN5274VQ3AUBDFP74GB4EC4XYJ3EKVNE.woff2') format('woff2'),
-    url('https://cdn.fontshare.com/wf/XMXWOHABYLQDJ42L65EFRYNVRY37HQCB/B2O4O6V3JMFM2WDCYQI3A47L5U4THDUL/WN5274VQ3AUBDFP74GB4EC4XYJ3EKVNE.woff') format('woff');
+  font-family: "Cabinet Grotesk";
+  src:
+    url("https://cdn.fontshare.com/wf/XMXWOHABYLQDJ42L65EFRYNVRY37HQCB/B2O4O6V3JMFM2WDCYQI3A47L5U4THDUL/WN5274VQ3AUBDFP74GB4EC4XYJ3EKVNE.woff2")
+      format("woff2"),
+    url("https://cdn.fontshare.com/wf/XMXWOHABYLQDJ42L65EFRYNVRY37HQCB/B2O4O6V3JMFM2WDCYQI3A47L5U4THDUL/WN5274VQ3AUBDFP74GB4EC4XYJ3EKVNE.woff")
+      format("woff");
   font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff2') format('woff2'),
-    url('https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff') format('woff');
-  font-weight: 600px;
+  font-family: "Cabinet Grotesk";
+  src:
+    url("https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff2")
+      format("woff2"),
+    url("https://cdn.fontshare.com/wf/ZX6AQLSFYVDPN2URWO2MQFGTYYOHIS64/TPYPKOYWFQVNJHLLRXD4KFYX4LUOUW4Z/6QH2ALVTTK7IRVO5MYOQQ3OZNXW5SSS3.woff")
+      format("woff");
+  font-weight: 600;
   font-display: swap;
   font-style: normal;
 }
@@ -42,11 +54,11 @@
 :root {
   /* ================= BRAND COLOR TOKENS ================= */
   --white: #ffffff;
-  --cream: #F8F7F2;
-  --teal: #0C4651;
-  --lime: #E6FF2A;
+  --cream: #f8f7f2;
+  --teal: #0c4651;
+  --lime: #e6ff2a;
   --black: #000000;
-  --gray: #898A8E;
+  --gray: #898a8e;
 
   /* ================= TYPE SCALE ================= */
   /* clamp(mobile, fluid, DESKTOP-EXACT) — top value = exact Figma px */
@@ -58,7 +70,7 @@
   /* 44 → 120 */
   --fs-hero-lg: clamp(2.125rem, 1.11rem + 4.32vw, 5rem);
   /* 34 → 80  */
-  --fs-hero: clamp(2rem, 1.30rem + 3vw, 4rem);
+  --fs-hero: clamp(2rem, 1.3rem + 3vw, 4rem);
   /* 32 → 64  */
   --fs-quote-mark: clamp(2.5rem, 2.06rem + 1.88vw, 3.75rem);
   /* 40 → 60  */
@@ -72,7 +84,7 @@
   /* 24 → 32  */
   --fs-ratings: clamp(1.5rem, 1.32rem + 0.75vw, 2rem);
   /* 24 → 32  */
-  --fs-accordion: clamp(1.375rem, 1.20rem + 0.75vw, 2rem);
+  --fs-accordion: clamp(1.375rem, 1.2rem + 0.75vw, 2rem);
   /* 22 → 32  */
   --fs-stat: clamp(1.375rem, 1.29rem + 0.38vw, 1.625rem);
   /* 22 → 26  */
@@ -80,9 +92,9 @@
   /* 18 → 24  */
   --fs-card-lg: clamp(1.125rem, 0.99rem + 0.56vw, 1.5rem);
   /* 18 → 24  */
-  --fs-faq: clamp(1.0625rem, 1.00rem + 0.28vw, 1.25rem);
+  --fs-faq: clamp(1.125rem, 0.99rem + 0.56vw, 1.5rem);
   /* 17 → 20  */
-  --fs-step-label: clamp(1.0625rem, 1.00rem + 0.28vw, 1.25rem);
+  --fs-step-label: clamp(1.0625rem, 1rem + 0.28vw, 1.25rem);
   /* 17 → 20  */
   --fs-name: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
   /* 16 → 18  */
@@ -132,9 +144,19 @@
   --fw-bold: 700;
 
   /* ================= FONT FAMILIES ================= */
-  --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  --font-accent: var(--font-accent, 'Poppins', sans-serif);
+  --font-display:
+    "Cabinet Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --font-body: var(
+    --font-body,
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+  --font-accent: var(--font-accent, "Poppins", sans-serif);
 
   /* ================= BORDER RADIUS (exact) ================= */
   --radius-tag: 8px;
@@ -164,8 +186,8 @@
   /* 24px → 80px fluid side padding */
   --radius-hero: 14px;
   /* hero bordered frames (differs from 10px cards) */
-  --hero-border: 1px solid #0C4651;
-  --hero-card-fill: #F8F7F2;
+  --hero-border: 1px solid #0c4651;
+  --hero-card-fill: #f8f7f2;
 
   --site-max-width: 1440px;
   --site-gutter: var(--container-pad);
@@ -215,7 +237,7 @@ html {
 
 body {
   background-color: var(--white);
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   font-weight: var(--fw-regular);
@@ -233,11 +255,11 @@ nav,
 p,
 li,
 label {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
 }
 
 p {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-body);
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.8);
@@ -250,7 +272,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: var(--font-display, "Cabinet Grotesk", sans-serif);
   font-weight: 600px !important;
   text-wrap: balance;
 }
@@ -267,7 +289,7 @@ h6 *,
 }
 
 h1 {
-  font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
+  font-family: var(--font-display, "Cabinet Grotesk", sans-serif);
   font-size: var(--fs-hero);
   line-height: var(--lh-heading);
   font-weight: var(--fw-bold);
@@ -345,39 +367,39 @@ h3 {
 }
 
 .stat {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-stat);
   font-weight: var(--fw-bold);
 }
 
 .stat-xl {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-stat-xl);
   font-weight: var(--fw-semibold);
   line-height: 1;
 }
 
 .process-num {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-process-num);
   font-weight: var(--fw-bold);
   line-height: 1;
 }
 
 .eyebrow {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-eyebrow);
   font-weight: var(--fw-semibold);
 }
 
 .card-lg {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-card-lg);
   line-height: var(--lh-heading);
 }
 
 .quote {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-quote);
   line-height: 1.22;
 }
@@ -389,9 +411,9 @@ h3 {
 }
 
 .form-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-form-label);
-  font-weight: 600px;
+  font-weight: 600;
 }
 
 .faq-q {
@@ -401,52 +423,52 @@ h3 {
 }
 
 .accordion-title {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-accordion);
   font-weight: var(--fw-medium);
 }
 
 .step-label {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-step-label);
   font-weight: var(--fw-semibold);
   letter-spacing: 0.02em;
 }
 
 .step-word {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-step-word);
   letter-spacing: 0.02em;
 }
 
 .caption {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-caption);
   font-weight: var(--fw-medium);
 }
 
 .micro {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-micro);
 }
 
 /* buttons + inputs */
 .btn {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-button);
   font-weight: var(--fw-bold);
   border-radius: var(--radius-button);
 }
 
 .form-input {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-input);
   font-weight: var(--fw-medium);
   line-height: var(--lh-input);
 }
 
 .nav-link {
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-eyebrow);
   font-weight: var(--fw-semibold);
 }
@@ -478,17 +500,17 @@ section {
 }
 
 /* Shared homepage alignment and background system */
-main>section {
+main > section {
   width: 100%;
 }
 
-main>section:not(:first-of-type) {
+main > section:not(:first-of-type) {
   background: transparent;
   background-color: transparent;
   background-image: none;
 }
 
-main>section>[class*="_container_"],
+main > section > [class*="_container_"],
 main [class*="container"] {
   width: 100%;
   max-width: var(--container-max);
@@ -508,7 +530,7 @@ main [class*="container"] {
   }
 }
 
-main>footer>[class*="_footerCard_"] {
+main > footer > [class*="_footerCard_"] {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
@@ -543,7 +565,6 @@ html.lenis body {
   pointer-events: none;
 }
 
-
 /* Sanity Studio Smooth Scrolling Fix */
 [data-lenis-prevent],
 [data-ui="ScrollContainer"],
@@ -554,7 +575,6 @@ html.lenis body {
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
-
 
 /* Studio Native Cursor Restore */
 [data-lenis-prevent],

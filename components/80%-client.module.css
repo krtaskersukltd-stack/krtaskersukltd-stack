@@ -24,7 +24,8 @@
   width: 100%;
   height: 315px;
   border-radius: 7px;
-  background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=85&w=1200&auto=format&fit=crop') center/cover;
+  background: url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=85&w=1200&auto=format&fit=crop")
+    center/cover;
 }
 
 .satisfactionCardTop {
@@ -66,8 +67,8 @@
 }
 
 .statNumber {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 600px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 600;
   font-size: clamp(54px, 5.5vw, 68px);
   color: #ffffff;
   line-height: 1;
@@ -76,7 +77,7 @@
 }
 
 .statSubLabel {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13.5px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
@@ -87,7 +88,7 @@
 }
 
 .googleRatingBox {
-  background: #FAF9F5;
+  background: #faf9f5;
   border-radius: 10px;
   padding: 10px 20px 8px;
   display: flex;
@@ -102,13 +103,13 @@
 }
 
 .googleRatingBox::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -8px;
   top: -8px;
   width: 40px;
   height: 55px;
-  background: #E6FF2A;
+  background: #e6ff2a;
   filter: blur(10px);
   opacity: 0.85;
   pointer-events: none;
@@ -124,32 +125,32 @@
 }
 
 .googleLogo {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: -0.2px;
 }
 
 .gBlue {
-  color: #4285F4;
+  color: #4285f4;
 }
 
 .gRed {
-  color: #EA4335;
+  color: #ea4335;
 }
 
 .gYellow {
-  color: #FBBC05;
+  color: #fbbc05;
 }
 
 .gGreen {
-  color: #34A853;
+  color: #34a853;
 }
 
 .ratingsLabel {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13.5px;
-  font-weight: 600px;
+  font-weight: 600;
   color: #2b2b2b;
 }
 
@@ -162,21 +163,21 @@
 }
 
 .starsYellow {
-  color: #FBBC04;
+  color: #fbbc04;
   font-size: 13px;
   letter-spacing: 2px;
 }
 
 .ratingScore {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 11px;
-  font-weight: 600px;
+  font-weight: 600;
   color: #444444;
 }
 
 .bespokeGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(430px, .9fr);
+  grid-template-columns: minmax(0, 1.55fr) minmax(430px, 0.9fr);
   gap: 48px;
   align-items: center;
 }
@@ -187,7 +188,7 @@
 }
 
 .sectionHeading {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: var(--fs-heading);
   color: var(--black);
@@ -196,7 +197,7 @@
 }
 
 .bespokeText {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: var(--lh-body);
   color: var(--black);
@@ -210,8 +211,8 @@
   border: none;
   border-radius: 5px;
   padding: 9px 15px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   font-size: 15px;
   cursor: pointer;
   width: fit-content;
@@ -262,8 +263,8 @@
 }
 
 .statVal {
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 600px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 600;
   font-size: var(--fs-hero);
   color: var(--teal);
   line-height: 1;
@@ -271,9 +272,9 @@
 }
 
 .statLabel {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
-  font-weight: 600px;
+  font-weight: 600;
   max-width: none;
   line-height: 1.15;
   color: var(--black);
@@ -290,7 +291,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .arrowBox:hover {

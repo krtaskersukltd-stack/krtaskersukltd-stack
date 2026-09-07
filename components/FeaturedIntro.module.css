@@ -48,12 +48,14 @@
   border-radius: var(--radius-button);
   background: var(--teal);
   color: var(--cream);
-  font-family: var(--font-body, 'Inter', sans-serif);
+  font-family: var(--font-body, "Inter", sans-serif);
   font-size: var(--fs-button);
-  font-weight: 600px;
-  line-height: 1.0;
+  font-weight: 600;
+  line-height: 1;
   text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .button:hover {
@@ -266,7 +268,7 @@
   .projectBadge {
     right: 18%;
     bottom: 5%;
-    transform: scale(.85);
+    transform: scale(0.85);
     transform-origin: right bottom;
   }
 

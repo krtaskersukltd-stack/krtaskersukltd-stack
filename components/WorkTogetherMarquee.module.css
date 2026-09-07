@@ -32,10 +32,14 @@
 .marqueeText {
   display: inline-block;
   padding-right: 0;
-  color: var(--black, #0B0F12);
-  font-family: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--black, #0b0f12);
+  font-family:
+    "Cabinet Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-size: clamp(48px, 6.2vw, 92px);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.05;
   letter-spacing: -2px;
   text-transform: none;
@@ -72,7 +76,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .marqueeTrackLeft,
   .marqueeTrackRight {
     animation-play-state: paused;

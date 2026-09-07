@@ -3,7 +3,7 @@
   color: var(--black);
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .heroSection {
@@ -54,7 +54,7 @@
 
 .tag {
   font-size: 14px;
-  font-weight: 600px;
+  font-weight: 600;
   color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -74,7 +74,7 @@
 
 .heroTitle {
   font-size: clamp(32px, 3.5vw, 56px);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.15;
   color: var(--black);
   margin-bottom: 30px;
@@ -191,7 +191,7 @@
 
 .readTimeText {
   font-size: 14px;
-  font-weight: 600px;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -209,7 +209,7 @@
 
 .dateVal {
   font-size: 15px;
-  font-weight: 600px;
+  font-weight: 600;
   color: var(--black);
   margin: 0;
 }
@@ -228,7 +228,7 @@
 
 .heading {
   font-size: clamp(24px, 2.2vw, 36px);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.2;
   color: var(--black);
   margin: 56px 0 20px;
@@ -387,7 +387,7 @@
 .richTextBody h3,
 .richTextBody h1 {
   font-size: clamp(24px, 2.2vw, 36px);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.2;
   color: var(--black);
   margin: 56px 0 20px;
