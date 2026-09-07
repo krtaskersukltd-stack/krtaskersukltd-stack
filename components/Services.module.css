@@ -92,20 +92,40 @@
   will-change: transform, opacity;
 }
 
-/* Sticky Offsets for 3 Cards */
+/* Sticky Offsets for 7 Cards */
 .card:nth-child(1) {
-  top: clamp(90px, 12vh, 130px);
+  top: clamp(80px, 10vh, 110px);
   z-index: 1;
 }
 
 .card:nth-child(2) {
-  top: clamp(110px, 15vh, 155px);
+  top: clamp(95px, 12vh, 126px);
   z-index: 2;
 }
 
 .card:nth-child(3) {
-  top: clamp(130px, 18vh, 180px);
+  top: clamp(110px, 14vh, 142px);
   z-index: 3;
+}
+
+.card:nth-child(4) {
+  top: clamp(125px, 16vh, 158px);
+  z-index: 4;
+}
+
+.card:nth-child(5) {
+  top: clamp(140px, 18vh, 174px);
+  z-index: 5;
+}
+
+.card:nth-child(6) {
+  top: clamp(155px, 20vh, 190px);
+  z-index: 6;
+}
+
+.card:nth-child(7) {
+  top: clamp(170px, 22vh, 206px);
+  z-index: 7;
 }
 
 /* Dark Card (Teal) */
@@ -270,18 +290,38 @@
   }
 
   .card:nth-child(1) {
-    top: clamp(60px, 8vh, 90px);
+    top: clamp(55px, 7vh, 75px);
     z-index: 1;
   }
 
   .card:nth-child(2) {
-    top: clamp(80px, 11vh, 115px);
+    top: clamp(67px, 8.5vh, 89px);
     z-index: 2;
   }
 
   .card:nth-child(3) {
-    top: clamp(100px, 14vh, 140px);
+    top: clamp(79px, 10vh, 103px);
     z-index: 3;
+  }
+
+  .card:nth-child(4) {
+    top: clamp(91px, 11.5vh, 117px);
+    z-index: 4;
+  }
+
+  .card:nth-child(5) {
+    top: clamp(103px, 13vh, 131px);
+    z-index: 5;
+  }
+
+  .card:nth-child(6) {
+    top: clamp(115px, 14.5vh, 145px);
+    z-index: 6;
+  }
+
+  .card:nth-child(7) {
+    top: clamp(127px, 16vh, 159px);
+    z-index: 7;
   }
 
   .imageWrapper {
@@ -310,18 +350,38 @@
   }
 
   .card:nth-child(1) {
-    top: 55px;
+    top: 50px;
     z-index: 1;
   }
 
   .card:nth-child(2) {
-    top: 72px;
+    top: 60px;
     z-index: 2;
   }
 
   .card:nth-child(3) {
-    top: 89px;
+    top: 70px;
     z-index: 3;
+  }
+
+  .card:nth-child(4) {
+    top: 80px;
+    z-index: 4;
+  }
+
+  .card:nth-child(5) {
+    top: 90px;
+    z-index: 5;
+  }
+
+  .card:nth-child(6) {
+    top: 100px;
+    z-index: 6;
+  }
+
+  .card:nth-child(7) {
+    top: 110px;
+    z-index: 7;
   }
 
   .title {

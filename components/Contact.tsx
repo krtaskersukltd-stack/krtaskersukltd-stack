@@ -92,9 +92,9 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <h2 className={styles.headerTitle}>
-            Let&apos;s Build A <span className={styles.tealAccent}>Smarter</span>
+            Let&apos;s Build A Smarter
             <br />
-            <span className={styles.tealAccent}>Growth</span> Strategy Together
+            Growth Strategy Together
           </h2>
           <p className={styles.headerSub}>
             Have a question or want to discuss your growth goals?
@@ -120,7 +120,7 @@ export default function Contact() {
               </div>
 
               <h2 className={styles.mainHeading}>
-                Let&apos;s <span className={styles.limeHighlight}>Connect</span>
+                Let&apos;s Connect
               </h2>
 
               <p className={styles.description}>
@@ -135,23 +135,20 @@ export default function Contact() {
                 aria-label="Scroll to contact form"
               >
                 <span>Get In Touch</span>
-                <svg className={styles.buttonIcon} viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M5 15 15 5M7 5h8v8" />
-                </svg>
               </button>
 
               {/* Stats Counters */}
               <div className={styles.statsRow}>
                 <div className={styles.statBlock}>
                   <div className={styles.statNumber}>
-                    27<span className={styles.statPlus}>+</span>
+                    27+
                   </div>
                   <span className={styles.statLabel}>Services we provide</span>
                 </div>
 
                 <div className={styles.statBlock}>
                   <div className={styles.statNumber}>
-                    200<span className={styles.statPlus}>+</span>
+                    200+
                   </div>
                   <span className={styles.statLabel}>Connections World Wide</span>
                 </div>
@@ -297,7 +294,7 @@ export default function Contact() {
                     </label>
                     <textarea
                       id="contact-message"
-                      placeholder="Type your message here....."
+                      placeholder="Type your message here......"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className={styles.pillTextarea}
@@ -309,11 +306,6 @@ export default function Contact() {
                   {/* Submit Button */}
                   <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
                     <span>{isSubmitting ? 'Sending Request...' : 'Send Request'}</span>
-                    {!isSubmitting && (
-                      <svg className={styles.buttonIcon} viewBox="0 0 20 20" aria-hidden="true">
-                        <path d="m4 10 11-5-4 11-2-4-5-2Z" />
-                      </svg>
-                    )}
                   </button>
 
                   {submitError && <p className={styles.errorText}>{submitError}</p>}
