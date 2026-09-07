@@ -12,6 +12,27 @@ interface PageProps {
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
+function slugToTitle(slug: string): string {
+  const acronyms: Record<string, string> = {
+    ai: 'AI',
+    seo: 'SEO',
+    geo: 'GEO',
+    ppc: 'PPC',
+    crm: 'CRM',
+    ui: 'UI',
+    ux: 'UX',
+    b2b: 'B2B',
+    saas: 'SaaS',
+    cro: 'CRO',
+  }
+
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((word) => acronyms[word.toLowerCase()] || (word.charAt(0).toUpperCase() + word.slice(1)))
+    .join(' ')
+}
+
 async function resolveService(rawSlug: string): Promise<ServiceRecord | null> {
   const cleanSlug = (rawSlug || '').replace(/^\/services\//, '').replace(/^\//, '')
   
@@ -26,7 +47,49 @@ async function resolveService(rawSlug: string): Promise<ServiceRecord | null> {
   const fallback = (fallbackServices as ServiceRecord[]).find(
     (s) => s.slug === cleanSlug || s.slug === `/services/${cleanSlug}` || s.id === cleanSlug
   )
-  return fallback || null
+  if (fallback) return fallback
+
+  // Automatic title-first placeholder for newly linked sub-services
+  const formattedTitle = slugToTitle(cleanSlug)
+  return {
+    id: `srv-${cleanSlug}`,
+    name: formattedTitle,
+    slug: cleanSlug,
+    status: 'published',
+    sortOrder: 99,
+    eyebrow: 'Our Services',
+    heroHeading: formattedTitle,
+    heroDescription: `Comprehensive, data-driven ${formattedTitle} solutions engineered by KR Tasker Digital to accelerate your business performance and market visibility.`,
+    heroCtaText: 'Start A Project',
+    featuredImage: '/images/services/web-app-design.png',
+    features: [
+      {
+        id: `f-${cleanSlug}-1`,
+        title: `${formattedTitle} Strategy & Execution`,
+        description: `Bespoke strategy, implementation, and ongoing management for ${formattedTitle} tailored to drive measurable ROI.`,
+        sortOrder: 1,
+      },
+      {
+        id: `f-${cleanSlug}-2`,
+        title: 'Performance & Optimization',
+        description: `Continuous monitoring, conversion tracking, and iterative optimization to maximize long-term digital growth.`,
+        sortOrder: 2,
+      },
+    ],
+    metrics: [
+      { value: '100%', label: 'Delivery Commitment' },
+      { value: '24/7', label: 'Support & Advisory' },
+    ],
+    seo: {
+      metaTitle: `${formattedTitle} | KR Tasker Digital`,
+      metaDescription: `Discover high-performance ${formattedTitle} services by KR Tasker Digital.`,
+      h1: formattedTitle,
+      focusKeyword: cleanSlug,
+      indexStatus: 'index',
+      followStatus: 'follow',
+    },
+    updatedAt: new Date().toISOString(),
+  }
 }
 
 export async function generateStaticParams() {

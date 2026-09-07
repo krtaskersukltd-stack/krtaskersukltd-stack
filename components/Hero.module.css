@@ -98,7 +98,7 @@
 .headline {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.7vw, 3.95rem);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.03em;
   margin: 0;
@@ -201,7 +201,7 @@
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 600px;
+  font-weight: 600;
   text-decoration: none;
   border: 1px solid var(--teal);
   box-shadow: 0 6px 20px rgba(12, 70, 81, 0.25);
@@ -234,7 +234,7 @@
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 600px;
+  font-weight: 600;
   text-decoration: none;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 16px rgba(230, 255, 42, 0.25);
@@ -341,3 +341,17 @@
     display: none;
   }
 }
+.revealWord { display: inline-block; white-space: nowrap; }
+.revealLetter {
+  display: inline-block;
+  animation: letterReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--letter-delay);
+}
+@keyframes letterReveal {
+  from { opacity: 0; transform: translateY(65%) rotateX(-35deg); filter: blur(7px); }
+  to { opacity: 1; transform: translateY(0) rotateX(0); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revealLetter { animation: none; }
+}
+@media (max-width: 600px) { .heroSection { padding-top: 105px; } }

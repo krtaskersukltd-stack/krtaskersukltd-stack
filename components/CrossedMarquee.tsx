@@ -23,7 +23,7 @@ function ServiceItemGroup({ ariaHidden = false }: { ariaHidden?: boolean }) {
           <span className={item.color === 'teal' ? styles.tealText : styles.darkText}>
             {item.name}
           </span>
-          <span className={styles.dot}>•</span>
+          <span className={styles.dot} aria-hidden="true">✣</span>
         </span>
       ))}
     </div>

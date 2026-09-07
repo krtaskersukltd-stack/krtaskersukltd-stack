@@ -188,52 +188,40 @@ export default function Services() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>(`.${styles.card}`)
+    const media = gsap.matchMedia()
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+      const slots = gsap.utils.toArray<HTMLElement>(`.${styles.cardSlot}`)
+      const cards = slots.map(slot => slot.firstElementChild as HTMLElement)
+      const desktop = window.matchMedia('(min-width: 1025px)').matches
 
-      cards.forEach((card, i) => {
-        // Entrance animation
-        gsap.fromTo(
-          card,
-          { y: 40, opacity: 0.9 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 88%',
-              toggleActions: 'play none none none',
-            },
-          }
-        )
-
-        // Stacking scale effect for previous cards when next card stacks over it
+      slots.forEach((slot, i) => {
+        // A tall card sticks only after its bottom is readable.
+        gsap.set(slot, { top: () => Math.min(96, window.innerHeight - slot.offsetHeight - 32) })
         if (i < cards.length - 1) {
-          const nextCard = cards[i + 1]
-          gsap.to(card, {
-            scale: 0.95,
+          gsap.to(cards[i], {
+            scale: desktop ? 0.86 : 0.96,
+            rotation: desktop ? (i % 2 === 0 ? 4 : -4) : 0,
+            opacity: 0.5,
             ease: 'none',
             scrollTrigger: {
-              trigger: nextCard,
-              start: 'top 75%',
-              end: 'top 20%',
-              scrub: true,
+              trigger: slots[i + 1], start: 'top bottom', end: 'top 18%',
+              scrub: true, invalidateOnRefresh: true,
             },
           })
         }
       })
+      const refreshOffsets = () => slots.forEach(slot => {
+        gsap.set(slot, { top: Math.min(96, window.innerHeight - slot.offsetHeight - 32) })
+      })
+      ScrollTrigger.addEventListener('refreshInit', refreshOffsets)
+      return () => ScrollTrigger.removeEventListener('refreshInit', refreshOffsets)
     }, containerRef)
 
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh()
-    }, 350)
+    // Images have reserved dimensions; fonts can still change the card height.
+    let disposed = false
+    document.fonts.ready.then(() => { if (!disposed) ScrollTrigger.refresh() })
+    return () => { disposed = true; media.revert() }
 
-    return () => {
-      clearTimeout(timer)
-      ctx.revert()
-    }
   }, [])
 
   return (
@@ -271,7 +259,9 @@ export default function Services() {
         {/* Services Cards List with Sticky Stacking Animation */}
         <div ref={containerRef} className={styles.cardsList}>
           {servicesData.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <div className={styles.cardSlot} key={service.titlePrefix} style={{ zIndex: index + 1 }}>
+              <ServiceCard service={service} />
+            </div>
           ))}
         </div>
       </div>

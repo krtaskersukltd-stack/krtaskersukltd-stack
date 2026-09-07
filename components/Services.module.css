@@ -7,9 +7,9 @@
 
 .container {
   width: 100%;
-  max-width: var(--container-max, 1380px);
+  max-width: 1600px;
   margin: 0 auto;
-  padding-inline: var(--container-pad, clamp(16px, 4vw, 48px));
+  padding-inline: clamp(16px, 3vw, 48px);
   display: flex;
   flex-direction: column;
   gap: clamp(36px, 5vw, 60px);
@@ -35,7 +35,7 @@
 .headingOur {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
   font-size: clamp(3.2rem, 7vw, 7.2rem);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: #000000;
@@ -46,7 +46,7 @@
 .headingServices {
   font-family: var(--font-display, 'Cabinet Grotesk', sans-serif);
   font-size: clamp(3.2rem, 7vw, 7.2rem);
-  font-weight: 600px;
+  font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.03em;
   color: var(--teal, #0c4651);
@@ -72,17 +72,17 @@
 .cardsList {
   display: flex;
   flex-direction: column;
-  gap: clamp(40px, 6vw, 70px);
+  gap: clamp(100px, 20vh, 220px);
   width: 100%;
   position: relative;
 }
 
 .card {
-  position: sticky;
+  position: relative;
   border-radius: clamp(24px, 3.5vw, 36px);
   padding: clamp(36px, 5vw, 60px);
   display: grid;
-  grid-template-columns: 1.15fr 0.95fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
   gap: clamp(32px, 4.5vw, 64px);
   align-items: center;
   overflow: hidden;
@@ -93,40 +93,19 @@
 }
 
 /* Sticky Offsets for 7 Cards */
-.card:nth-child(1) {
-  top: clamp(80px, 10vh, 110px);
-  z-index: 1;
-}
 
-.card:nth-child(2) {
-  top: clamp(95px, 12vh, 126px);
-  z-index: 2;
-}
 
-.card:nth-child(3) {
-  top: clamp(110px, 14vh, 142px);
-  z-index: 3;
-}
 
-.card:nth-child(4) {
-  top: clamp(125px, 16vh, 158px);
-  z-index: 4;
-}
 
-.card:nth-child(5) {
-  top: clamp(140px, 18vh, 174px);
-  z-index: 5;
-}
 
-.card:nth-child(6) {
-  top: clamp(155px, 20vh, 190px);
-  z-index: 6;
-}
 
-.card:nth-child(7) {
-  top: clamp(170px, 22vh, 206px);
-  z-index: 7;
-}
+
+
+
+
+
+
+
 
 /* Dark Card (Teal) */
 .cardDark {
@@ -160,11 +139,11 @@
 /* Title */
 .title {
   font-family: var(--font-display);
-  font-size: clamp(4.4rem, 6.2vw, 5.8rem);
-  font-weight: 600px;
+  font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+  font-weight: 600;
   line-height: 1.08;
 
-  letter-spacing: 0.02em;
+  letter-spacing: -0.03em;
   margin: 0;
 }
 
@@ -194,7 +173,7 @@
 .tag {
   font-family: var(--font-body);
   font-size: 0.8125rem;
-  font-weight: 600px;
+  font-weight: 600;
   padding: 6px 14px;
   border-radius: 9999px;
   letter-spacing: 0.01em;
@@ -286,43 +265,22 @@
     display: flex;
     flex-direction: column;
     gap: 28px;
-    position: sticky;
+    position: relative;
   }
 
-  .card:nth-child(1) {
-    top: clamp(55px, 7vh, 75px);
-    z-index: 1;
-  }
+  
 
-  .card:nth-child(2) {
-    top: clamp(67px, 8.5vh, 89px);
-    z-index: 2;
-  }
+  
 
-  .card:nth-child(3) {
-    top: clamp(79px, 10vh, 103px);
-    z-index: 3;
-  }
+  
 
-  .card:nth-child(4) {
-    top: clamp(91px, 11.5vh, 117px);
-    z-index: 4;
-  }
+  
 
-  .card:nth-child(5) {
-    top: clamp(103px, 13vh, 131px);
-    z-index: 5;
-  }
+  
 
-  .card:nth-child(6) {
-    top: clamp(115px, 14.5vh, 145px);
-    z-index: 6;
-  }
+  
 
-  .card:nth-child(7) {
-    top: clamp(127px, 16vh, 159px);
-    z-index: 7;
-  }
+  
 
   .imageWrapper {
     order: -1;
@@ -345,44 +303,23 @@
   .card {
     padding: 24px 18px;
     gap: 20px;
-    position: sticky;
+    position: relative;
     border-radius: 20px;
   }
 
-  .card:nth-child(1) {
-    top: 50px;
-    z-index: 1;
-  }
+  
 
-  .card:nth-child(2) {
-    top: 60px;
-    z-index: 2;
-  }
+  
 
-  .card:nth-child(3) {
-    top: 70px;
-    z-index: 3;
-  }
+  
 
-  .card:nth-child(4) {
-    top: 80px;
-    z-index: 4;
-  }
+  
 
-  .card:nth-child(5) {
-    top: 90px;
-    z-index: 5;
-  }
+  
 
-  .card:nth-child(6) {
-    top: 100px;
-    z-index: 6;
-  }
+  
 
-  .card:nth-child(7) {
-    top: 110px;
-    z-index: 7;
-  }
+  
 
   .title {
     font-size: clamp(2rem, 8.5vw, 2.75rem);
@@ -396,4 +333,16 @@
     font-size: 0.75rem;
     padding: 5px 12px;
   }
+}
+.cardSlot { position: sticky; top: 96px; }
+.card { min-height: min(760px, 82svh); }
+.title { overflow-wrap: anywhere; }
+@media (max-width: 1024px) {
+  .card { min-height: 0; }
+  .cardSlot { position: relative; top: auto !important; }
+  .cardsList { gap: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cardSlot { position: relative; top: auto !important; }
+  .cardsList { gap: 48px; }
 }

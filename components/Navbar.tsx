@@ -9,37 +9,120 @@ import Logo from './Logo'
 import styles from './Navbar.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
-interface MainServiceItem {
+export interface SubServiceLink {
+  title: string
+  href: string
+}
+
+export interface MainServiceItem {
+  id?: string
   title: string
   tagline: string
   href: string
+  badge?: string
+  image?: string
+  subServices: SubServiceLink[]
 }
 
 const MAIN_SERVICES: MainServiceItem[] = [
   {
+    id: 'web-design',
     title: 'Web Design',
     tagline: 'Deliver your business to a wider audience',
     href: '/services/web-development',
+    image: '/images/services/web-app-design.png',
+    subServices: [
+      { title: 'Website Design & Development', href: '/services/website-design-development' },
+      { title: 'Shopify Store Development', href: '/services/shopify-store-development' },
+      { title: 'WordPress Development', href: '/services/wordpress-development' },
+      { title: 'B2B / SaaS Websites', href: '/services/b2b-saas-websites' },
+      { title: 'Custom Website Development', href: '/services/custom-website-development' },
+      { title: 'Website Maintenance & Support', href: '/services/website-maintenance-support' },
+    ],
   },
   {
+    id: 'ai-automation',
     title: 'AI & Automation',
     tagline: 'Smart workflows and intelligent solutions',
     href: '/services/ai-solutions',
+    badge: 'POPULAR',
+    image: '/images/services/ai-automation.jpg',
+    subServices: [
+      { title: 'AI ChatBot Development', href: '/services/ai-chatbot-development' },
+      { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
+      { title: 'CRM Automation', href: '/services/crm-automation' },
+      { title: 'AI Integration', href: '/services/ai-integration' },
+    ],
   },
   {
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    tagline: 'Full-funnel performance and growth',
+    href: '/services/digital-marketing',
+    image: '/images/services/digital-marketing.png',
+    subServices: [
+      { title: 'Digital 360° Marketing', href: '/services/digital-360' },
+      { title: 'Social Media Marketing', href: '/services/social-media' },
+      { title: 'PPC (Pay-Per-Click)', href: '/services/ppc' },
+    ],
+  },
+  {
+    id: 'branding',
     title: 'Branding',
     tagline: "Creating brands you're proud of",
     href: '/services/branding',
+    image: '/images/services/graphic-branding.jpg',
+    subServices: [
+      { title: '3D Modeling & Visualization', href: '/services/3d-modeling-visualization' },
+      { title: 'Logo Design / Logo Making', href: '/services/logo-design' },
+      { title: 'Brochure Design', href: '/services/brochure-design' },
+      { title: 'Flyer Design', href: '/services/flyer-design' },
+      { title: 'UI/UX Design', href: '/services/ui-ux-design' },
+      { title: 'Brand Strategy & Identity', href: '/services/branding' },
+    ],
   },
   {
+    id: 'seo',
     title: 'SEO',
     tagline: 'Get your brand seen online',
     href: '/services/seo',
+    image: '/images/services/seo-brand-strategy.png',
+    subServices: [
+      { title: 'Local SEO', href: '/services/local-seo' },
+      { title: 'E-Commerce SEO', href: '/services/ecommerce-seo' },
+      { title: 'Link Building', href: '/services/link-building' },
+      { title: 'Lead Gen SEO', href: '/services/lead-gen-seo' },
+      { title: 'Technical SEO', href: '/services/technical-seo' },
+      { title: 'AI SEO / GEO', href: '/services/ai-seo-geo' },
+      { title: 'International / National SEO', href: '/services/international-seo' },
+      { title: 'SEO Audit (Free)', href: '/services/seo-audit' },
+    ],
   },
   {
-    title: 'Shopify',
+    id: 'shopify',
+    title: 'Shopify & E-Commerce',
     tagline: 'Custom Shopify store in 4 weeks',
     href: '/services/shopify-development',
+    image: '/images/services/amazon-ebay.jpg',
+    subServices: [
+      { title: 'Shopify Store Development', href: '/services/shopify-store-development' },
+      { title: 'Custom Shopify Themes & Apps', href: '/services/custom-website-development' },
+      { title: 'Amazon & eBay Services', href: '/services/amazon-ebay' },
+      { title: 'Product Listing Optimization', href: '/services/product-listing-optimization' },
+    ],
+  },
+  {
+    id: 'email-marketing',
+    title: 'Email Marketing',
+    tagline: 'Automated campaigns that convert',
+    href: '/services/email-marketing',
+    image: '/images/services/email-marketing.jpg',
+    subServices: [
+      { title: 'Email Automation', href: '/services/email-automation' },
+      { title: 'Email Campaign Management', href: '/services/email-campaign-management' },
+      { title: 'Email Marketing Strategy', href: '/services/email-marketing-strategy' },
+      { title: 'Email Design', href: '/services/email-design' },
+    ],
   },
 ]
 
@@ -129,6 +212,7 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
   const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>('web-design')
   const [servicesCard, setServicesCard] = useState({
     title: 'View all Services',
     subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
@@ -152,7 +236,23 @@ export default function Navbar() {
             (n) => (n.label || '').toLowerCase() === 'services' || n.href === '/services'
           )
           if (srvNav && Array.isArray(srvNav.dropdownItems) && srvNav.dropdownItems.length > 0) {
-            setServicesMenu(srvNav.dropdownItems)
+            const merged = srvNav.dropdownItems.map((cmsItem: any) => {
+              const matched = MAIN_SERVICES.find(
+                (m) =>
+                  (m.title || '').toLowerCase() === (cmsItem.title || '').toLowerCase() ||
+                  m.id === cmsItem.id
+              )
+              return {
+                ...cmsItem,
+                id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
+                subServices:
+                  cmsItem.subServices && cmsItem.subServices.length > 0
+                    ? cmsItem.subServices
+                    : matched?.subServices || [],
+                image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
+              }
+            })
+            setServicesMenu(merged)
           }
           if (srvNav && srvNav.featuredCard?.title) {
             setServicesCard({
@@ -219,7 +319,6 @@ export default function Navbar() {
             ...aiAutomationItems.map((i) => i.href),
           ])
 
-          // Append any newly added custom services dynamically into the 3 clean pillars
           published.forEach((s) => {
             const rawSlug = s.slug.startsWith('/') ? s.slug : `/services/${s.slug}`
             if (existingHrefs.has(rawSlug)) return
@@ -354,7 +453,6 @@ export default function Navbar() {
 
       setIsDarkSection(isDark)
 
-      // Dynamically compute the pill's translucent frosted background from the section color
       if (isDark) {
         setPillStyle({
           backgroundColor: `rgba(${rVal}, ${gVal}, ${bVal}, 0.45)`,
@@ -410,9 +508,10 @@ export default function Navbar() {
   }
 
   const handleMouseLeave = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null)
-    }, 150)
+    }, 280)
   }
 
   const toggleDropdown = (key: DropdownKey) => {
@@ -423,14 +522,25 @@ export default function Navbar() {
     setMobileAccordion(prev => (prev === key ? null : key))
   }
 
+  // Active hovered service for the right-hand panel
+  const activeService =
+    servicesMenu.find(
+      (s) =>
+        (s.id && s.id === hoveredServiceId) ||
+        (s.title || '').toLowerCase() === (hoveredServiceId || '').toLowerCase()
+    ) || servicesMenu[0]
+
   return (
     <header
       ref={navRef}
-      className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${
+      className={`${styles.header} ${pathname === '/' ? styles.homeHeader : ''} ${scrolled ? styles.scrolled : ''} ${
         isHidden ? styles.hidden : ''
       } ${isDarkSection ? styles.darkTheme : ''}`}
       onMouseLeave={handleMouseLeave}
     >
+      {pathname === '/' && <div className={styles.availabilityNotch}>
+        <span aria-hidden="true" />Available For New Projects
+      </div>}
       <div className={styles.container}>
         {/* Left: Brand Logo */}
         <div className={styles.logoWrapper}>
@@ -447,6 +557,7 @@ export default function Navbar() {
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('services')}
+              onMouseLeave={handleMouseLeave}
             >
               <Link
                 href="/services"
@@ -460,6 +571,24 @@ export default function Navbar() {
                 aria-haspopup="true"
               >
                 <span>Services</span>
+                <svg
+                  className={`${styles.navChevron} ${
+                    activeDropdown === 'services' ? styles.chevronRotated : ''
+                  }`}
+                  viewBox="0 0 10 6"
+                  width="10"
+                  height="6"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
 
               <AnimatePresence>
@@ -471,46 +600,140 @@ export default function Navbar() {
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className={styles.servicesDropdownContainer}
                     onMouseEnter={() => handleMouseEnter('services')}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className={styles.dropdownPointer} />
                     <div className={styles.servicesDropdownCard}>
-                      {/* Left Column: Main Services */}
+                      {/* Left Column: Main Services List */}
                       <div className={styles.mainServicesList}>
-                        {servicesMenu.map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            className={styles.mainServiceItem}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            <span className={styles.mainServiceTitle}>{item.title}</span>
-                            <span className={styles.mainServiceTagline}>{item.tagline}</span>
-                          </Link>
-                        ))}
+                        {servicesMenu.map((item) => {
+                          const isCurrent =
+                            (item.id && item.id === hoveredServiceId) ||
+                            item.title.toLowerCase() === (hoveredServiceId || '').toLowerCase() ||
+                            (!hoveredServiceId && item === servicesMenu[0])
+
+                          return (
+                            <Link
+                              key={item.title}
+                              href={item.href}
+                              className={`${styles.mainServiceItem} ${
+                                isCurrent ? styles.activeServiceItem : ''
+                              }`}
+                              onMouseEnter={() =>
+                                setHoveredServiceId(item.id || item.title.toLowerCase())
+                              }
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <div className={styles.mainServiceRow}>
+                                <span className={styles.mainServiceTitle}>{item.title}</span>
+                                {item.badge && (
+                                  <span className={styles.serviceItemBadge}>{item.badge}</span>
+                                )}
+                                <span
+                                  className={`${styles.activeServiceIndicator} ${
+                                    isCurrent ? styles.indicatorVisible : ''
+                                  }`}
+                                  aria-hidden="true"
+                                >
+                                  ›
+                                </span>
+                              </div>
+                              <span className={styles.mainServiceTagline}>{item.tagline}</span>
+                            </Link>
+                          )
+                        })}
                       </div>
 
-                      {/* Right Column: Featured View All Services Card */}
-                      <Link
-                        href={servicesCard.href || '/services'}
-                        className={styles.viewAllCard}
-                        onClick={() => setActiveDropdown(null)}
-                      >
-                        <div className={styles.viewAllHeader}>
-                          <span className={styles.viewAllTitle}>{servicesCard.title}</span>
-                          <span className={styles.viewAllSubtitle}>
-                            {servicesCard.subtitle}
+                      {/* Right Column: Sub-Services Display Box */}
+                      <div className={styles.subServicesCard}>
+                        <div className={styles.subServicesHeader}>
+                          <div className={styles.subServicesHeaderTop}>
+                            <span className={styles.subServicesTitle}>{activeService.title}</span>
+                            {activeService.badge && (
+                              <span className={styles.subServicesBadge}>
+                                {activeService.badge}
+                              </span>
+                            )}
+                          </div>
+                          <span className={styles.subServicesSubtitle}>
+                            {activeService.tagline || 'Specialized Solutions & Pages:'}
                           </span>
                         </div>
-                        <div className={styles.viewAllImageWrapper}>
-                          <Image
-                            src={servicesCard.image || '/images/services/web-app-design.png'}
-                            alt={servicesCard.title}
-                            width={240}
-                            height={130}
-                            className={styles.viewAllImage}
-                          />
+
+                        {/* Sub-Services Interactive Links List */}
+                        <div className={styles.subServicesList}>
+                          {activeService.subServices && activeService.subServices.length > 0 ? (
+                            activeService.subServices.map((sub) => (
+                              <Link
+                                key={sub.title}
+                                href={sub.href}
+                                className={styles.subServiceItem}
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                <span className={styles.subServiceDot} />
+                                <span className={styles.subServiceText}>{sub.title}</span>
+                                <svg
+                                  className={styles.subServiceArrow}
+                                  viewBox="0 0 16 16"
+                                  width="12"
+                                  height="12"
+                                  fill="none"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    d="M6 3L11 8L6 13"
+                                    stroke="currentColor"
+                                    strokeWidth="1.8"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </Link>
+                            ))
+                          ) : (
+                            <Link
+                              href={activeService.href}
+                              className={styles.subServiceItem}
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className={styles.subServiceDot} />
+                              <span className={styles.subServiceText}>
+                                Explore {activeService.title}
+                              </span>
+                              <svg
+                                className={styles.subServiceArrow}
+                                viewBox="0 0 16 16"
+                                width="12"
+                                height="12"
+                                fill="none"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M6 3L11 8L6 13"
+                                  stroke="currentColor"
+                                  strokeWidth="1.8"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </Link>
+                          )}
                         </div>
-                      </Link>
+
+                        {/* Footer Link & Mini Visual Accent */}
+                        <div className={styles.subServicesFooter}>
+                          <Link
+                            href={activeService.href || '/services'}
+                            className={styles.viewAllServicesLink}
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span>View All in {activeService.title}</span>
+                            <span className={styles.footerArrow} aria-hidden="true">
+                              →
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -521,19 +744,36 @@ export default function Navbar() {
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('industries')}
+              onMouseLeave={handleMouseLeave}
             >
               <Link
                 href="/work"
                 onClick={() => setActiveDropdown(null)}
                 className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'industries'
-                    ? styles.activeNav
-                    : ''
+                  activeDropdown === 'industries' ? styles.activeNav : ''
                 }`}
                 aria-expanded={activeDropdown === 'industries'}
                 aria-haspopup="true"
               >
                 <span>Industries</span>
+                <svg
+                  className={`${styles.navChevron} ${
+                    activeDropdown === 'industries' ? styles.chevronRotated : ''
+                  }`}
+                  viewBox="0 0 10 6"
+                  width="10"
+                  height="6"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
 
               <AnimatePresence>

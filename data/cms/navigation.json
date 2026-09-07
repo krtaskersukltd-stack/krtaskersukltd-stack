@@ -8,30 +8,103 @@
     "isVisible": true,
     "dropdownItems": [
       {
+        "id": "web-design",
         "title": "Web Design",
         "tagline": "Deliver your business to a wider audience",
-        "href": "/services/web-development"
+        "href": "/services/web-development",
+        "image": "/images/services/web-app-design.png",
+        "subServices": [
+          { "title": "Website Design & Development", "href": "/services/website-design-development" },
+          { "title": "Shopify Store Development", "href": "/services/shopify-store-development" },
+          { "title": "WordPress Development", "href": "/services/wordpress-development" },
+          { "title": "B2B / SaaS Websites", "href": "/services/b2b-saas-websites" },
+          { "title": "Custom Website Development", "href": "/services/custom-website-development" },
+          { "title": "Website Maintenance & Support", "href": "/services/website-maintenance-support" }
+        ]
       },
       {
+        "id": "ai-automation",
         "title": "AI & Automation",
         "tagline": "Smart workflows and intelligent solutions",
         "href": "/services/ai-solutions",
-        "badge": "POPULAR"
+        "badge": "POPULAR",
+        "image": "/images/services/ai-automation.jpg",
+        "subServices": [
+          { "title": "AI ChatBot Development", "href": "/services/ai-chatbot-development" },
+          { "title": "AI Voice Agent", "href": "/services/ai-voice-agent" },
+          { "title": "CRM Automation", "href": "/services/crm-automation" },
+          { "title": "AI Integration", "href": "/services/ai-integration" }
+        ]
       },
       {
+        "id": "digital-marketing",
+        "title": "Digital Marketing",
+        "tagline": "Full-funnel performance and growth",
+        "href": "/services/digital-marketing",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Digital 360° Marketing", "href": "/services/digital-360" },
+          { "title": "Social Media Marketing", "href": "/services/social-media" },
+          { "title": "PPC (Pay-Per-Click)", "href": "/services/ppc" }
+        ]
+      },
+      {
+        "id": "branding",
         "title": "Branding",
         "tagline": "Creating brands you're proud of",
-        "href": "/services/branding"
+        "href": "/services/branding",
+        "image": "/images/services/graphic-branding.jpg",
+        "subServices": [
+          { "title": "3D Modeling & Visualization", "href": "/services/3d-modeling-visualization" },
+          { "title": "Logo Design / Logo Making", "href": "/services/logo-design" },
+          { "title": "Brochure Design", "href": "/services/brochure-design" },
+          { "title": "Flyer Design", "href": "/services/flyer-design" },
+          { "title": "UI/UX Design", "href": "/services/ui-ux-design" },
+          { "title": "Brand Strategy & Identity", "href": "/services/branding" }
+        ]
       },
       {
+        "id": "seo",
         "title": "SEO",
         "tagline": "Get your brand seen online",
-        "href": "/services/seo"
+        "href": "/services/seo",
+        "image": "/images/services/seo-brand-strategy.png",
+        "subServices": [
+          { "title": "Local SEO", "href": "/services/local-seo" },
+          { "title": "E-Commerce SEO", "href": "/services/ecommerce-seo" },
+          { "title": "Link Building", "href": "/services/link-building" },
+          { "title": "Lead Gen SEO", "href": "/services/lead-gen-seo" },
+          { "title": "Technical SEO", "href": "/services/technical-seo" },
+          { "title": "AI SEO / GEO", "href": "/services/ai-seo-geo" },
+          { "title": "International / National SEO", "href": "/services/international-seo" },
+          { "title": "SEO Audit (Free)", "href": "/services/seo-audit" }
+        ]
       },
       {
-        "title": "Shopify",
-        "tagline": "Custom Shopify store in 4 weeks",
-        "href": "/services/shopify-development"
+        "id": "email-marketing",
+        "title": "Email Marketing",
+        "tagline": "Automated campaigns that convert",
+        "href": "/services/email-marketing",
+        "image": "/images/services/email-marketing.jpg",
+        "subServices": [
+          { "title": "Email Automation", "href": "/services/email-automation" },
+          { "title": "Email Campaign Management", "href": "/services/email-campaign-management" },
+          { "title": "Email Marketing Strategy", "href": "/services/email-marketing-strategy" },
+          { "title": "Email Design", "href": "/services/email-design" }
+        ]
+      },
+      {
+        "id": "shopify",
+        "title": "Shopify & Marketplaces",
+        "tagline": "Custom Shopify store & marketplace scale",
+        "href": "/services/shopify-development",
+        "image": "/images/services/amazon-ebay.jpg",
+        "subServices": [
+          { "title": "Shopify Store Development", "href": "/services/shopify-store-development" },
+          { "title": "Custom Shopify Themes & Apps", "href": "/services/custom-website-development" },
+          { "title": "Amazon & eBay Services", "href": "/services/amazon-ebay" },
+          { "title": "Product Listing Optimization", "href": "/services/product-listing-optimization" }
+        ]
       }
     ],
     "featuredCard": {

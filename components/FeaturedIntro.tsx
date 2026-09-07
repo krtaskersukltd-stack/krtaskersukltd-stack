@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import styles from './FeaturedIntro.module.css'
+import ScrollFillText from './ScrollFillText'
 
 const orbitItems = [
   { icon: '▦', className: styles.iconLeftTop },
@@ -24,8 +25,7 @@ export default function FeaturedIntro() {
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className={styles.heading}>
-            For Bold Ideas For <span>Real World Results,</span><br />
-            See How We Bring Digital To Life.
+            <ScrollFillText text="For Bold Ideas For Real World Results, See How We Bring Digital To Life." />
           </h2>
           <p className={styles.description}>
             From visionary startups to established industry leaders, we help brands grow with bold

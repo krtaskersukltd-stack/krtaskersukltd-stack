@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, type CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Hero.module.css'
@@ -27,57 +27,30 @@ export default function Hero() {
           className={styles.headerContent}
         >
           {/* Main Headline */}
-          <h1 className={styles.headline}>
-            {/* Line 1: Effortless Design for Design Startups */}
-            <span className={styles.line}>
-              <motion.span
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.darkWord}
-              >
-                Effortless
-              </motion.span>
-
-              <motion.span
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.tealWord}
-              >
-                Design for
-              </motion.span>
-
-              <motion.span
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.darkWord}
-              >
-                Design Startups
-              </motion.span>
-            </span>
-
-            {/* Line 2: based in London, UK */}
-            <span className={styles.line}>
-              <motion.span
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.tealWord}
-              >
-                based in London,
-              </motion.span>
-
-              <motion.span
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.darkWord}
-              >
-                UK
-              </motion.span>
-            </span>
+          <h1 className={styles.headline} aria-label="Effortless Design for Design Startups based in London, UK">
+            {[
+              [{ text: 'Effortless', teal: false }, { text: 'Design for', teal: true }, { text: 'Design Startups', teal: false }],
+              [{ text: 'based in London,', teal: true }, { text: 'UK', teal: false }],
+            ].map((line, lineIndex) => (
+              <span className={styles.line} key={lineIndex} aria-hidden="true">
+                {line.map((part, partIndex) => (
+                  <span className={part.teal ? styles.tealWord : styles.darkWord} key={part.text}>
+                    {part.text.split(' ').map((word, wordIndex) => (
+                      <span key={wordIndex}>
+                        <span className={styles.revealWord}>
+                          {Array.from(word).map((letter, letterIndex) => (
+                            <span className={styles.revealLetter} key={letterIndex}
+                              style={{ '--letter-delay': `${0.12 + lineIndex * 0.32 + partIndex * 0.13 + wordIndex * 0.07 + letterIndex * 0.025}s` } as CSSProperties}>
+                              {letter}
+                            </span>
+                          ))}
+                        </span>{wordIndex < part.text.split(' ').length - 1 ? ' ' : ''}
+                      </span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+            ))}
           </h1>
 
           {/* Subtitle description */}

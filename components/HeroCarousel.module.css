@@ -224,7 +224,7 @@
 
 }
 
-@media (max-width: 600pxpx) {
+@media (max-width: 600px) {
   .carouselContainer {
     max-height: 240px;
   }
