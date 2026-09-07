@@ -1,7 +1,10 @@
 .testimonials {
   --card-width: 589px;
   --card-height: 268px;
-  --slide-step: 550px;
+  --side-scale: 0.78;
+  --card-gap: 32px;
+  --step-d1: calc((var(--card-width) * (1 + var(--side-scale)) / 2) + var(--card-gap));
+  --step-d2: calc((var(--card-width) * var(--side-scale)) + var(--card-gap));
   min-height: 500px;
   padding-block: var(--space-section);
   overflow: hidden;
@@ -128,9 +131,8 @@
   cursor: pointer;
   transform-origin: center center;
   overflow: hidden;
-  translate: var(--card-x) 0;
-  transition: translate .72s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease;
-  will-change: translate, transform;
+  transition: transform .55s cubic-bezier(.25, 1, .5, 1), opacity .55s ease, box-shadow .3s ease;
+  will-change: transform, opacity;
 }
 
 .cardActive {
@@ -293,7 +295,10 @@
   .testimonials {
     --card-width: min(84vw, 420px);
     --card-height: 210px;
-    --slide-step: min(76vw, 370px);
+    --side-scale: 0.85;
+    --card-gap: 16px;
+    --step-d1: calc((var(--card-width) * 0.925) + var(--card-gap));
+    --step-d2: calc((var(--card-width) * 0.85) + var(--card-gap));
     min-height: 550px;
   }
 
@@ -322,10 +327,6 @@
     padding: 25px 22px;
   }
 
-  .card {
-    translate: var(--card-x-mobile) 0;
-  }
-
   .reviewText {
     height: 92px;
     -webkit-line-clamp: 5;
@@ -335,7 +336,9 @@
 @media (max-width: 440px) {
   .testimonials {
     --card-width: 88vw;
-    --slide-step: 80vw;
+    --card-gap: 12px;
+    --step-d1: calc((var(--card-width) * 0.925) + var(--card-gap));
+    --step-d2: calc((var(--card-width) * 0.85) + var(--card-gap));
   }
 
   .cardRating {
