@@ -691,7 +691,7 @@
   height: 100%;
   width: 0%;
   background: var(--lime);
-  animation: fillProgressBar 5s linear forwards;
+  animation: fillProgressBar 3s linear forwards;
 }
 
 @keyframes fillProgressBar {
