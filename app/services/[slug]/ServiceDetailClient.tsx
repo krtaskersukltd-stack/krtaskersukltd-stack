@@ -19,6 +19,40 @@ import type { ServiceRecord } from '@/lib/cms-types'
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop'
 
+const DEFAULT_FEATURE_IMAGES = [
+  'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1556742049-0a67e55722ee?q=80&w=800&auto=format&fit=crop',
+]
+
+const FEATURE_IMAGES_BY_SLUG: Record<string, string[]> = {
+  'amazon-ebay': [
+    'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop', // Amazon Seller Setup
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop', // eBay Store Design
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop', // PPC Campaign Management
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop', // Product Detail Optimization
+    'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop', // Multi-channel Sync
+    'https://images.unsplash.com/photo-1556742049-0a67e55722ee?q=80&w=800&auto=format&fit=crop', // Customer Feedback Management
+  ],
+  'seo': [
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop',
+  ],
+  'digital-360': [
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=800&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=800&auto=format&fit=crop',
+  ],
+}
+
 export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
   // If template is category / hub, or has capabilities defined, render Figma Category Hub layout
   const isCategoryHub =
@@ -30,7 +64,8 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
     return <MainServiceHub srv={srv} />
   }
 
-  const [openFeatureIdx, setOpenFeatureIdx] = useState<number | null>(0)
+  const [openFeatureIdx, setOpenFeatureIdx] = useState<number>(0)
+  const [timerKey, setTimerKey] = useState<number>(0)
 
   const heroRef = useRef<HTMLDivElement>(null)
   const isHeroInView = useInView(heroRef, { once: true, margin: '-50px' })
@@ -43,6 +78,24 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
       ]
 
   const featureBgImage = srv.featuredImage || DEFAULT_IMAGE
+
+  const handleFeatureClick = (i: number) => {
+    setOpenFeatureIdx(i)
+    setTimerKey((prev) => prev + 1)
+  }
+
+  const handleNextFeature = () => {
+    setOpenFeatureIdx((prev) => (prev + 1) % featuresList.length)
+    setTimerKey((prev) => prev + 1)
+  }
+
+  const activeIdx = openFeatureIdx ?? 0
+  const activeFeature = featuresList[activeIdx]
+  const activeImage =
+    activeFeature?.image ||
+    FEATURE_IMAGES_BY_SLUG[srv.slug]?.[activeIdx] ||
+    DEFAULT_FEATURE_IMAGES[activeIdx % DEFAULT_FEATURE_IMAGES.length] ||
+    featureBgImage
 
   return (
     <main className={styles.page}>
@@ -121,14 +174,19 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
       <section className={styles.featuresSection}>
         <div className={styles.container}>
           <div className={styles.featuresGrid}>
-            <div
-              className={styles.featuresLeft}
-              style={{
-                backgroundImage: `url(${featureBgImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
+            <div className={styles.featuresLeft}>
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`feat-img-${activeIdx}`}
+                  src={activeImage}
+                  alt={activeFeature?.title || srv.name}
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45, ease: 'easeInOut' }}
+                  className={styles.featureActiveImage}
+                />
+              </AnimatePresence>
               <span className={styles.featuresTag}>Service Features</span>
             </div>
             <div className={styles.featuresRight}>
@@ -136,8 +194,13 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
                 {featuresList.map((feat: any, i: number) => {
                   const isOpen = openFeatureIdx === i
                   return (
-                    <div key={i} className={`${styles.accordionItem} ${isOpen ? styles.itemOpen : ''}`}>
-                      <button onClick={() => setOpenFeatureIdx(isOpen ? null : i)} className={styles.accordionHeader}>
+                    <div key={feat.id || i} className={`${styles.accordionItem} ${isOpen ? styles.itemOpen : ''}`}>
+                      <button
+                        type="button"
+                        onClick={() => handleFeatureClick(i)}
+                        className={styles.accordionHeader}
+                        aria-expanded={isOpen}
+                      >
                         <span className={styles.accordionTitle}>{feat.title}</span>
                         <span className={`${styles.accordionSign} ${isOpen ? styles.signOpen : ''}`}>
                           {isOpen ? '−' : '+'}
@@ -154,6 +217,13 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
                           >
                             <div className={styles.accordionContent}>
                               {feat.description || feat.content}
+                            </div>
+                            <div className={styles.progressBarTrack}>
+                              <div
+                                key={`progress-${i}-${timerKey}`}
+                                className={styles.progressBarFill}
+                                onAnimationEnd={handleNextFeature}
+                              />
                             </div>
                           </motion.div>
                         )}

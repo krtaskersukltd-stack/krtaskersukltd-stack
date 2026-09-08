@@ -578,9 +578,20 @@
 }
 
 .featuresLeft {
+  position: relative;
   min-height: 380px;
   border-radius: 9px;
   background: #d9d9d9;
+  overflow: hidden;
+}
+
+.featureActiveImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9px;
 }
 
 .featuresRight::before {
@@ -614,12 +625,13 @@
 }
 
 .accordionItem {
-  border-bottom: 1px solid rgba(12, 70, 81, 0.7);
+  border-bottom: 1px solid rgba(12, 70, 81, 0.25);
   padding: 0;
+  position: relative;
 }
 
 .itemOpen {
-  border-color: var(--teal);
+  border-bottom-color: transparent;
 }
 
 .accordionHeader {
@@ -636,41 +648,22 @@
 }
 
 .accordionTitle {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
   font-size: clamp(23px, 2vw, 31px);
   line-height: 1.05;
-}
-
-.accordionSign {
-  display: none;
-}
-
-.accordionContent {
-  max-width: 610px;
-  padding: 0 0 14px;
-  font-size: 14px;
-  line-height: 1.18;
-}
-
-.itemOpen {
-  border-image: linear-gradient(90deg, var(--lime) 0 18%, var(--teal) 18% 100%)
-    1;
-}
-
-.accordionTitle {
-  font-weight: 700;
-  font-size: 24px;
-  color: var(--teal);
+  color: var(--black);
   transition: color 0.3s ease;
 }
 
 .accordionItem:hover .accordionTitle {
-  color: var(--black);
+  color: var(--teal);
 }
 
 .accordionSign {
+  display: none;
   font-size: 24px;
   color: var(--teal);
-  transition: transform 0.3s ease;
 }
 
 .accordionContentContainer {
@@ -679,28 +672,39 @@
 
 .accordionContent {
   font-family: "Inter", sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--gray);
-  padding-bottom: 24px;
-}
-
-.featuresRight .accordionTitle {
-  color: var(--black);
-  font-size: clamp(23px, 2vw, 31px);
-  line-height: 1.05;
-}
-
-.featuresRight .accordionSign {
-  display: none;
-}
-
-.featuresRight .accordionContent {
   max-width: 610px;
   padding: 0 0 14px;
-  color: var(--black);
   font-size: 14px;
-  line-height: 1.18;
+  line-height: 1.25;
+  color: var(--black);
+}
+
+.progressBarTrack {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: rgba(12, 70, 81, 0.25);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  width: 0%;
+  background: var(--lime);
+  animation: fillProgressBar 5s linear forwards;
+}
+
+@keyframes fillProgressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.featuresRight:hover .progressBarFill {
+  animation-play-state: paused;
 }
 
 @media (max-width: 1440px) {
