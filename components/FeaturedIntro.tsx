@@ -26,7 +26,8 @@ export default function FeaturedIntro() {
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         >
           <AnimatedHeading as="h2" className={styles.heading}>
-            For Bold Ideas For Real World Results, See How We Bring Digital To Life.
+            For Bold Ideas For <span>Real World Results,</span><br />
+            See How We Bring <span>Digital</span> To Life.
           </AnimatedHeading>
           <p className={styles.description}>
             <ScrollFillText text="From visionary startups to established industry leaders, we help brands grow with bold creative, full-funnel strategy and specialist-level execution, building digital experiences that drive real traffic, leads, and long-term growth." />

@@ -124,7 +124,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #0b0f12;
+  background: var(--teal, #0c4651);
   color: #ffffff;
   padding: 12px 28px;
   border-radius: 9999px;
@@ -179,7 +179,9 @@
 }
 
 .sectionHeader {
-  margin-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: 0;
+  padding-bottom: clamp(30px, 3.5vw, 48px);
+  border-bottom: 1px solid rgba(11, 15, 18, 0.5);
 }
 
 .sectionEyebrow {
@@ -189,10 +191,9 @@
   font-family: var(--font-body, "Inter", sans-serif);
   font-size: 0.875rem;
   font-weight: 600;
-  text-transform: uppercase;
-  color: #64748b;
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
+  color: var(--teal, #0c4651);
+  letter-spacing: 0;
+  margin: 0 0 clamp(26px, 3vw, 38px);
 }
 
 .eyebrowDot {
@@ -216,23 +217,22 @@
 .servicesList {
   display: flex;
   flex-direction: column;
-  gap: clamp(48px, 6vw, 84px);
+  gap: 0;
   width: 100%;
 }
 
 /* Single Service Row */
 .serviceRow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
-  gap: clamp(32px, 5vw, 68px);
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.88fr);
+  gap: clamp(54px, 8vw, 112px);
   align-items: flex-start;
-  padding-bottom: clamp(44px, 5.5vw, 72px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-block: clamp(38px, 4vw, 58px);
+  border-bottom: 1px solid rgba(11, 15, 18, 0.5);
 }
 
 .serviceRow:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+  border-bottom: 1px solid rgba(11, 15, 18, 0.5);
 }
 
 /* Left Column: Category Name & Showcase Image */
@@ -251,7 +251,7 @@
   font-size: clamp(1.4rem, 2vw, 1.85rem);
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #0b0f12;
+  color: var(--teal, #0c4651);
   margin: 0;
 }
 
@@ -265,8 +265,8 @@
 
 .imageCard {
   width: 100%;
-  aspect-ratio: 16 / 11;
-  border-radius: clamp(16px, 2.5vw, 24px);
+  aspect-ratio: 1.53 / 1;
+  border-radius: clamp(15px, 1.5vw, 20px);
   overflow: hidden;
   position: relative;
   background-color: #0d1117;
@@ -320,7 +320,7 @@
 .subServicesList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   width: 100%;
 }
 
@@ -328,18 +328,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
-  border-radius: 14px;
+  min-height: clamp(58px, 5vw, 72px);
+  padding: 10px 12px;
+  border-radius: 0;
   background: transparent;
   text-decoration: none;
-  border: 1px solid transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(11, 15, 18, 0.18);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .subServiceItem:hover {
   background: rgba(12, 70, 81, 0.04);
-  border-color: rgba(12, 70, 81, 0.08);
-  transform: translateX(4px);
+  transform: none;
+}
+
+.subServiceItem:first-child .subServiceName {
+  color: var(--teal, #0c4651);
+}
+
+.subServiceItem:first-child .subServiceDot {
+  background-color: var(--teal, #0c4651);
 }
 
 .subServiceName {
@@ -374,7 +383,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--lime, #e6ff2a);
+  background: #e2e4e4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -382,19 +391,30 @@
   font-size: 15px;
   font-weight: 700;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(230, 255, 42, 0.2);
+  box-shadow: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subServiceItem:first-child .arrowBtn,
+.subServiceItem:hover .arrowBtn {
+  background: var(--lime, #e6ff2a);
+  color: var(--teal, #0c4651);
+  box-shadow: 0 4px 12px rgba(230, 255, 42, 0.28);
 }
 
 .arrowIcon {
   display: inline-block;
+  transform: rotate(0deg);
   transition: transform 0.25s ease;
 }
 
+.subServiceItem:first-child .arrowIcon {
+  transform: rotate(-45deg);
+}
+
 .subServiceItem:hover .arrowBtn {
-  background: #0b0f12;
-  color: var(--lime, #e6ff2a);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--lime, #e6ff2a);
+  color: var(--teal, #0c4651);
 }
 
 .subServiceItem:hover .arrowIcon {

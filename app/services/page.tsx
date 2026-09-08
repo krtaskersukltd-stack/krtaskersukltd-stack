@@ -150,7 +150,10 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-         
+            <p className={styles.sectionEyebrow}>
+              <span className={styles.eyebrowDot} aria-hidden="true" />
+              (Services)
+            </p>
             <AnimatedHeading as="h2" id="what-we-do-heading" className={styles.sectionHeading}>
               What We Do
             </AnimatedHeading>

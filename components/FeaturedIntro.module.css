@@ -1,6 +1,6 @@
 .section {
   background: var(--white);
-  padding-block: var(--space-section);
+  padding-block: clamp(56px, 5vw, 80px);
   overflow: hidden;
 }
 
@@ -10,20 +10,22 @@
   margin: 0 auto;
   padding-inline: var(--container-pad);
   display: grid;
-  grid-template-columns: 1fr 445px;
+  grid-template-columns: minmax(0, 650px) 445px;
+  justify-content: space-between;
   align-items: center;
   gap: var(--space-block);
 }
 
 .copy {
   min-width: 0;
+  max-width: 650px;
 }
 
 .heading {
   margin: 0 0 16px;
   color: var(--black);
   font-family: var(--font-display);
-  font-size: var(--fs-heading);
+  font-size: clamp(2rem, 2.5vw, 3rem);
   font-weight: var(--fw-bold);
   line-height: var(--lh-heading);
 }
@@ -37,7 +39,7 @@
   margin: 0 0 24px;
   color: var(--black);
   font-family: var(--font-body);
-  font-size: var(--fs-body);
+  font-size: clamp(0.875rem, 0.95vw, 1.125rem);
   line-height: var(--lh-body);
 }
 

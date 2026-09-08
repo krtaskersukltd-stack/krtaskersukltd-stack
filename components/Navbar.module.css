@@ -386,7 +386,7 @@
   font-family: var(--font-body, "Inter", sans-serif);
   font-size: clamp(14px, 0.9vw, 17px);
   font-weight: 700;
-  color: var(--lime, #e6ff2a);
+  color: #ffffff;
 }
 
 .subServicesTitle::before {
@@ -459,7 +459,7 @@
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background-color: var(--lime, #e6ff2a);
+  background-color: currentColor;
   flex-shrink: 0;
   margin-right: 2px;
 }
@@ -468,7 +468,7 @@
   font-family: var(--font-body, "Inter", sans-serif);
   font-size: clamp(12px, 0.72vw, 14px);
   font-weight: 400;
-  color: #ffffff;
+  color: inherit;
   flex: 1;
   white-space: nowrap;
   overflow: visible;
