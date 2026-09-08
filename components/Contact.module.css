@@ -50,7 +50,7 @@
     radial-gradient(circle at 72% 45%, rgba(8, 79, 91, 0.36), transparent 46%),
     linear-gradient(112deg, #0c5c68 0%, #0b4b56 45%, #04363d 100%);
   border-radius: clamp(28px, 3.1vw, 50px);
-  padding: clamp(42px, 5vw, 76px) clamp(28px, 3vw, 48px) 0;
+  padding: clamp(42px, 5vw, 76px) clamp(28px, 3vw, 48px);
   box-shadow:
     0 24px 60px -15px rgba(5, 38, 44, 0.4),
     0 4px 20px rgba(0, 0, 0, 0.08);
@@ -65,7 +65,7 @@
   grid-template-columns: minmax(0, 0.91fr) minmax(0, 1.09fr);
   gap: clamp(42px, 5vw, 76px);
   align-items: start;
-  padding-bottom: clamp(54px, 5vw, 76px);
+  padding-bottom: 0;
 }
 
 /* ================= LEFT COLUMN ================= */
@@ -162,12 +162,90 @@
   box-shadow: 0 10px 24px rgba(230, 255, 42, 0.35);
 }
 
+/* Direct Contact Info (Phone & Email) */
+.directContactInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(24px, 3vw, 36px);
+  width: 100%;
+}
+
+.contactItemLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.contactItemLink:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--lime, #e6ff2a);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contactIconCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(230, 255, 42, 0.15);
+  color: var(--lime, #e6ff2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.contactItemLink:hover .contactIconCircle {
+  background: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  transform: scale(1.05);
+}
+
+.contactItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contactItemLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contactItemValue {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.contactItemLink:hover .contactItemValue {
+  color: var(--lime, #e6ff2a);
+}
+
 /* Stats Section */
 .statsRow {
   display: flex;
   align-items: flex-start;
   gap: clamp(24px, 3.2vw, 48px);
-  margin-top: clamp(48px, 6vw, 84px);
+  margin-top: clamp(28px, 3.5vw, 48px);
   flex-wrap: nowrap;
 }
 
@@ -425,93 +503,6 @@
   margin: 0;
 }
 
-/* ================= TWO ROWS OF MARQUEE EMAILS ================= */
-.dualMarqueeWrapper {
-  width: calc(100% + clamp(48px, 10vw, 128px));
-  margin-left: calc(-1 * clamp(24px, 5vw, 64px));
-  margin-right: calc(-1 * clamp(24px, 5vw, 64px));
-  padding: 12px 0 44px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Row 1 track (moves Left) */
-.tickerTrackLeft {
-  display: flex;
-  width: max-content;
-  animation: scrollLeft 32s linear infinite;
-  will-change: transform;
-}
-
-/* Row 2 track (moves Right or offset) */
-.tickerTrackRight {
-  display: flex;
-  width: max-content;
-  animation: scrollRight 36s linear infinite;
-  will-change: transform;
-}
-
-/* Pause marquee when user hovers over the tracks or wrapper */
-.dualMarqueeWrapper:hover .tickerTrackLeft,
-.dualMarqueeWrapper:hover .tickerTrackRight {
-  animation-play-state: paused;
-}
-
-.tickerGroup {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  padding-right: 34px;
-  flex-shrink: 0;
-}
-
-.tickerItem {
-  font-family: var(--font-body);
-  font-size: clamp(1.4rem, 2.35vw, 2.375rem);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
-  display: inline-block;
-}
-
-.tickerItem:hover {
-  color: var(--lime, #e6ff2a);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.tickerDot {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.25rem;
-  opacity: 0.9;
-}
-
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes scrollRight {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 992px) {
@@ -558,14 +549,7 @@
     white-space: normal;
   }
 
-  .dualMarqueeWrapper {
-    gap: 8px;
-    padding: 12px 0 10px;
-  }
 
-  .tickerItem {
-    font-size: 1.15rem;
-  }
 
   .pillTextarea {
     min-height: 180px;
