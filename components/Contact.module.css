@@ -1,6 +1,4 @@
 .contactSec {
-  padding: clamp(64px, 7vw, 104px) 0 clamp(48px, 5vw, 76px);
-  background-color: var(--background, #fbfbf9);
   position: relative;
   overflow: hidden;
 }
@@ -518,6 +516,12 @@
   .statsRow {
     gap: 36px;
     margin-top: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--container-pad);
   }
 }
 

@@ -14,7 +14,7 @@
 
 .header {
   text-align: center;
-  max-width: 600pxpx;
+  max-width: 600px;
   margin: 0 auto var(--space-block);
 }
 
@@ -203,7 +203,6 @@
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 24px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -223,10 +222,10 @@
 }
 
 .mobileCardWrapper {
-  width: 82vw;
-  max-width: 320px;
-  flex-shrink: 0;
-  scroll-snap-align: center;
+  width: 100%;
+  max-width: 100%;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
 }
 
 .mobileCard {

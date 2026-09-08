@@ -282,6 +282,15 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding-inline: var(--container-pad);
+  }
+
+  .imageWrapper {
+    width: calc(100% - (var(--container-pad) * 2));
+    margin-inline: auto;
+  }
+
   .headline {
     font-size: clamp(1.75rem, 5.5vw, 2.5rem);
     line-height: 1.25;

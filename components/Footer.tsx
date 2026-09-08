@@ -65,6 +65,7 @@ export default function Footer() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   const [isMobile, setIsMobile] = useState(false)
+  const [openFooterColumn, setOpenFooterColumn] = useState<string | null>(null)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 720)
@@ -219,9 +220,25 @@ export default function Footer() {
           <div className={styles.mainRow}>
             <div className={styles.linksArea}>
               {Object.entries(links).map(([column, items], columnIndex) => (
-                <div key={column} className={styles.linkColumn}>
-                  <p className={styles.colTitle}>{column}</p>
-                  <div className={styles.linksList}>
+                <div
+                  key={column}
+                  className={`${styles.linkColumn} ${openFooterColumn === column ? styles.linkColumnOpen : ''}`}
+                >
+                  <button
+                    type="button"
+                    className={styles.colTitle}
+                    aria-expanded={!isMobile || openFooterColumn === column}
+                    aria-controls={`footer-${column.toLowerCase()}-links`}
+                    onClick={() => {
+                      if (isMobile) {
+                        setOpenFooterColumn(current => current === column ? null : column)
+                      }
+                    }}
+                  >
+                    <span>{column}</span>
+                    <span className={styles.accordionIcon} aria-hidden="true">+</span>
+                  </button>
+                  <div id={`footer-${column.toLowerCase()}-links`} className={styles.linksList}>
                     {items.map((link, linkIndex) => (
                       <Link
                         key={link}

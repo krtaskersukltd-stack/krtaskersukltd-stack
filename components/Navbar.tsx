@@ -457,7 +457,9 @@ function TwoColumnDropdown({
       <div className={styles.subServicesCard}>
         <div className={styles.subServicesHeader}>
           <div className={styles.subServicesHeaderTop}>
-            <span className={styles.subServicesTitle}>{activeItem.title}</span>
+            <span className={styles.subServicesTitle}>
+              {activeItem.subServices?.[0]?.title || activeItem.title}
+            </span>
             {activeItem.badge && (
               <span className={styles.subServicesBadge}>{activeItem.badge}</span>
             )}
@@ -470,7 +472,7 @@ function TwoColumnDropdown({
         {/* Sub-Services Interactive Links List */}
         <div className={styles.subServicesList}>
           {activeItem.subServices && activeItem.subServices.length > 0 ? (
-            activeItem.subServices.map((sub) => (
+            activeItem.subServices.slice(1).map((sub) => (
               <Link
                 key={sub.title}
                 href={sub.href}
@@ -495,18 +497,28 @@ function TwoColumnDropdown({
           )}
         </div>
 
-        {/* Footer Link */}
         <div className={styles.subServicesFooter}>
-          <Link
-            href={activeItem.href || defaultViewAllHref}
-            className={styles.viewAllServicesLink}
-            onClick={onClose}
-          >
-            <span>View All in {activeItem.title}</span>
-            <span className={styles.footerArrow} aria-hidden="true">
-              →
-            </span>
-          </Link>
+          {activeItem.image && (
+            <div className={styles.dropdownPreviewImage}>
+              <Image
+                src={activeItem.image}
+                alt=""
+                fill
+                sizes="110px"
+                className={styles.dropdownPreviewImg}
+              />
+            </div>
+          )}
+          <div className={styles.dropdownPreviewCopy}>
+            <p>{activeItem.tagline}</p>
+            <Link
+              href={activeItem.href || defaultViewAllHref}
+              className={styles.viewAllServicesLink}
+              onClick={onClose}
+            >
+              View all services
+            </Link>
+          </div>
         </div>
       </div>
     </div>

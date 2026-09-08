@@ -1,5 +1,5 @@
 .servicesSec {
-  padding-block: clamp(60px, 8vw, 120px);
+  padding-block: var(--space-section);
   position: relative;
 
   background-color: var(--white, #ffffff);
@@ -9,7 +9,7 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding-inline: clamp(16px, 3vw, 48px);
+  padding-inline: var(--container-pad);
   display: flex;
   flex-direction: column;
   gap: clamp(36px, 5vw, 60px);
@@ -325,10 +325,14 @@
 .title { overflow-wrap: anywhere; }
 @media (max-width: 1024px) {
   .card { min-height: 0; }
-  .cardSlot { position: relative; top: auto !important; }
-  .cardsList { gap: 56px; }
+  .cardSlot { position: sticky; top: 64px; }
+  .cardsList {
+    gap: clamp(40px, 10vh, 70px);
+    width: calc(100% - (var(--container-pad) * 2));
+    margin-inline: auto;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cardSlot { position: relative; top: auto !important; }
+  .cardSlot { position: relative; top: auto; }
   .cardsList { gap: 48px; }
 }

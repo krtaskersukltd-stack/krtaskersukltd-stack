@@ -44,12 +44,12 @@ export default function ProcessSection() {
 
   useEffect(() => {
     const media = gsap.matchMedia()
-    media.add('(min-width: 901px)', () => {
+    media.add('(prefers-reduced-motion: no-preference)', () => {
       const section = sectionRef.current
       const track = trackRef.current
       if (!section || !track) return
 
-      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * 0.16)
+      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * 0.08)
       const tween = gsap.to(track, {
         x: () => -distance(),
         ease: 'none',

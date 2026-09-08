@@ -194,6 +194,15 @@
   /* unified — same as container-pad */
 }
 
+@media (max-width: 768px) {
+  :root {
+    --space-section: 24px;
+    --space-section-sm: 16px;
+    --container-pad: 12px;
+    --site-gutter: 12px;
+  }
+}
+
 /* centered content container */
 .container {
   width: 100%;

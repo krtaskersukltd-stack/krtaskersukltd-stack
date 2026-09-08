@@ -271,12 +271,12 @@
 
 .servicesDropdownCard {
   display: grid;
-  grid-template-columns: 260px 320px;
-  gap: 16px;
+  grid-template-columns: clamp(210px, 12vw, 230px) clamp(250px, 14.5vw, 280px);
+  gap: 10px;
   background: #f8f7f2;
-  border-radius: 28px;
-  padding: 20px;
-  border: 1.5px solid #0c4651;
+  border-radius: 20px;
+  padding: 12px;
+  border: 1px solid #0c4651;
   box-shadow:
     0 24px 60px -10px rgba(0, 0, 0, 0.18),
     0 8px 24px -4px rgba(0, 0, 0, 0.08);
@@ -289,16 +289,16 @@
 .mainServicesList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .mainServiceItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 46px;
-  padding: 0 8px 0 20px;
-  border-radius: 9999px;
+  height: clamp(35px, 2.15vw, 41px);
+  padding: 0 6px 0 12px;
+  border-radius: 7px;
   background-color: #ffffff;
   text-decoration: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
@@ -308,16 +308,16 @@
 
 .mainServiceTitle {
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: clamp(13px, 0.78vw, 15px);
+  font-weight: 500;
   color: #111827;
   transition: color 0.2s ease;
   white-space: nowrap;
 }
 
 .circleBadge {
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   background: #dfe4e7;
   display: flex;
@@ -353,15 +353,15 @@
 /* Right Column: Solid Dark Teal Sub-Services Card */
 .subServicesCard {
   background: #0c4651;
-  border-radius: 22px;
-  padding: 22px 18px;
+  border-radius: 14px;
+  padding: 15px 14px 13px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 14px;
+  gap: 8px;
   color: #ffffff;
   box-sizing: border-box;
-  min-height: 380px;
+  min-height: 281px;
 }
 
 .subServicesHeader {
@@ -380,16 +380,27 @@
 }
 
 .subServicesTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 17px;
+  font-size: clamp(14px, 0.9vw, 17px);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--lime, #e6ff2a);
+}
+
+.subServicesTitle::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .subServicesBadge {
   background: var(--lime, #e6ff2a);
   color: #0b0f12;
-  font-size: 10px;
+  font-size: clamp(10px, 0.6vw, 12px);
   font-weight: 800;
   padding: 2px 7px;
   border-radius: 9999px;
@@ -398,7 +409,7 @@
 
 .subServicesSubtitle {
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 12px;
+  display: none;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.35;
@@ -407,8 +418,8 @@
 .subServicesList {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  max-height: 240px;
+  gap: 1px;
+  max-height: 150px;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 4px;
@@ -426,28 +437,27 @@
 .subServiceItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 9999px;
+  gap: 7px;
+  padding: 4px 1px;
+  border-radius: 0;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  border: 0;
   color: #ffffff;
-  font-size: 13px;
+  font-size: clamp(12px, 0.72vw, 14px);
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .subServiceItem:hover {
-  background: rgba(230, 255, 42, 0.18);
-  border-color: rgba(230, 255, 42, 0.4);
+  background: transparent;
   color: var(--lime, #e6ff2a);
   transform: translateX(3px);
 }
 
 .subServiceDot {
-  width: 5px;
-  height: 5px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background-color: var(--lime, #e6ff2a);
   flex-shrink: 0;
@@ -456,13 +466,69 @@
 
 .subServiceText {
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: clamp(12px, 0.72vw, 14px);
+  font-weight: 400;
   color: #ffffff;
   flex: 1;
   white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
+}
+
+.subServicesFooter {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 9px;
+  align-items: stretch;
+  min-height: 68px;
+}
+
+.dropdownPreviewImage {
+  position: relative;
+  min-height: 68px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownPreviewImg {
+  object-fit: cover;
+}
+
+.dropdownPreviewCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.dropdownPreviewCopy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(10px, 0.62vw, 12px);
+  line-height: 1.35;
+}
+
+.viewAllServicesLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0c4651;
+  font-size: clamp(10px, 0.62vw, 12px);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.viewAllServicesLink:hover {
+  background: var(--lime, #e6ff2a);
+  color: #0c4651;
 }
 
 /* Dropdown Position Alignments */
@@ -495,25 +561,66 @@
 .hamburger {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: transparent;
-  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(12, 70, 81, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   padding: 0;
   z-index: 1100;
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hamburger:hover {
+  background: #f4f6f7;
+  border-color: rgba(12, 70, 81, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(12, 70, 81, 0.1);
+}
+
+.hamburger:hover .hamburgerBar:nth-child(2) {
+  width: 17px;
+  margin-right: 0;
+}
+
+.hamburger:active {
+  transform: scale(0.95);
+}
+
+.scrolled .hamburger {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(12, 70, 81, 0.15);
 }
 
 .hamburgerBar {
-  width: 100%;
-  height: 2.5px;
-  background-color: #0c4651;
-  border-radius: 3px;
+  height: 2px;
+  background-color: var(--teal, #0c4651);
+  border-radius: 999px;
   transition:
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.2s ease,
-    background-color 0.3s ease;
+    background-color 0.3s ease,
+    width 0.25s ease,
+    margin 0.25s ease;
+}
+
+.hamburgerBar:nth-child(1) {
+  width: 17px;
+}
+
+.hamburgerBar:nth-child(2) {
+  width: 12px;
+  margin-right: 5px;
+}
+
+.hamburgerBar:nth-child(3) {
+  width: 17px;
 }
 
 .darkTheme .hamburgerBar,
@@ -768,6 +875,10 @@
 }
 
 @media (max-width: 960px) {
+  .scrolled {
+    top: -5px;
+  }
+
   .mainNav {
     display: none;
   }
@@ -777,7 +888,17 @@
   }
 
   .scrolled .container {
-    padding: 8px 16px 8px 20px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--container-pad);
+  }
+
+  .scrolled .container {
+    padding: 0 var(--container-pad);
   }
 }
 
