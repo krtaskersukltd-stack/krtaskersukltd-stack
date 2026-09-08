@@ -96,19 +96,6 @@
 
 /* Sticky Offsets for 7 Cards */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Dark Card (Teal) */
 .cardDark {
   background: radial-gradient(circle at 80% 20%, #0d4a55 0%, #08373f 45%, #05262c 100%);
@@ -139,6 +126,12 @@
 }
 
 /* Title */
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .title {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 4.5vw, 4.8rem);
@@ -147,6 +140,11 @@
 
   letter-spacing: -0.03em;
   margin: 0;
+  transition: opacity 0.2s ease;
+}
+
+.titleLink:hover .title {
+  opacity: 0.92;
 }
 
 .cardDark .title {
@@ -181,8 +179,14 @@
   letter-spacing: 0.01em;
   display: inline-flex;
   align-items: center;
-  cursor: default;
-  transition: transform 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .tagDark {
@@ -252,6 +256,9 @@
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
   background-color: #0d1117;
   transform-style: preserve-3d;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .cardImage {
@@ -259,6 +266,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageWrapper:hover .cardImage {
+  transform: scale(1.035);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -269,20 +281,6 @@
     gap: 28px;
     position: relative;
   }
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   .imageWrapper {
     order: -1;
@@ -308,20 +306,6 @@
     position: relative;
     border-radius: 20px;
   }
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   .title {
     font-size: clamp(2rem, 8.5vw, 2.75rem);

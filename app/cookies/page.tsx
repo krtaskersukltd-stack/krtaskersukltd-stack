@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
@@ -61,14 +62,14 @@ export default function CookiesPolicyPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.container}>
-          <motion.h1 
+          <AnimatedHeading as="h1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className={styles.heroTitle}
           >
             Cookies Policy
-          </motion.h1>
+          </AnimatedHeading>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -85,7 +86,7 @@ export default function CookiesPolicyPage() {
         <div className={styles.contentLayout}>
           {/* Sidebar */}
           <aside className={styles.sidebar}>
-            <h3 className={styles.sidebarTitle}>Table of Contents</h3>
+            <AnimatedHeading as="h3" className={styles.sidebarTitle}>Table of Contents</AnimatedHeading>
             <ul className={styles.tocList}>
               {sections.map((sec) => (
                 <li key={sec.id}>
@@ -103,7 +104,7 @@ export default function CookiesPolicyPage() {
           {/* Detailed Policy Text */}
           <article className={styles.content}>
             <section id="what-are-cookies" className={styles.section}>
-              <h2 className={styles.sectionHeading}>1. What Are Cookies</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>1. What Are Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 Cookies are small text files that are stored on your computer, mobile device, or tablet when you visit a website. They are widely used by website owners to make websites work more efficiently, improve user experience, and provide analytical reporting information.
               </p>
@@ -113,7 +114,7 @@ export default function CookiesPolicyPage() {
             </section>
 
             <section id="how-use-cookies" className={styles.section}>
-              <h2 className={styles.sectionHeading}>2. How We Use Cookies</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>2. How We Use Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 At KR Tasker Digital, we use cookies to improve your browsing experience, analyze site performance, and support our marketing efforts. Specifically, we use cookies to:
               </p>
@@ -126,7 +127,7 @@ export default function CookiesPolicyPage() {
             </section>
 
             <section id="types-cookies" className={styles.section}>
-              <h2 className={styles.sectionHeading}>3. Types of Cookies We Use</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Types of Cookies We Use</AnimatedHeading>
               <p className={styles.paragraph}>
                 We categorize the cookies on our site into the following groups:
               </p>
@@ -147,7 +148,7 @@ export default function CookiesPolicyPage() {
             </section>
 
             <section id="third-party-cookies" className={styles.section}>
-              <h2 className={styles.sectionHeading}>4. Third-Party Cookies</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Third-Party Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 In addition to our first-party cookies, we may also work with third-party partners who set cookies on our website to help us analyze usage or serve targeted ads:
               </p>
@@ -162,7 +163,7 @@ export default function CookiesPolicyPage() {
             </section>
 
             <section id="managing-cookies" className={styles.section}>
-              <h2 className={styles.sectionHeading}>5. Managing Cookies</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Managing Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 You have the right to choose whether to accept or refuse cookies. Most web browsers are configured to accept cookies by default, but you can usually adjust your settings to decline or delete cookies:
               </p>
@@ -186,7 +187,7 @@ export default function CookiesPolicyPage() {
             </section>
 
             <section id="updates-policy" className={styles.section}>
-              <h2 className={styles.sectionHeading}>6. Updates & Inquiries</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Updates & Inquiries</AnimatedHeading>
               <p className={styles.paragraph}>
                 We may update this Cookies Policy from time to time in response to shifting operational, legal, or regulatory requirements. We encourage you to review this policy periodically to stay informed about our use of cookies.
               </p>

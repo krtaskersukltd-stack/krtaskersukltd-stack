@@ -4,7 +4,7 @@
   background: var(--white);
   min-height: 100vh;
   color: var(--black);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .container {

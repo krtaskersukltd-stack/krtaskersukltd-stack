@@ -1,8 +1,10 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import React from 'react'
 import Link from 'next/link'
 import IconsOrbit from './IconsOrbit'
+import ScrollFillText from './ScrollFillText'
 import styles from './80%-client.module.css'
 
 export default function ClientSatisfaction() {
@@ -49,9 +51,9 @@ export default function ClientSatisfaction() {
         {/* Bespoke Marketing Packages Grid with Mounted Icons Orbit Card */}
         <div className={styles.bespokeGrid}>
           <div className={styles.bespokeLeft}>
-            <h2 className={styles.sectionHeading}>Bespoke Full-Service Marketing Packages</h2>
+            <AnimatedHeading as="h2" className={styles.sectionHeading}>Bespoke Full-Service Marketing Packages</AnimatedHeading>
             <p className={styles.bespokeText}>
-              We love our clients, and they love us! Our end-to-end marketing packages bring together SEO, PPC, social media, content, and email marketing into one integrated strategy managed by a dedicated team. No more juggling multiple agencies — get everything you need under one roof.
+              <ScrollFillText text="We love our clients, and they love us! Our end-to-end marketing packages bring together SEO, PPC, social media, content, and email marketing into one integrated strategy managed by a dedicated team. No more juggling multiple agencies — get everything you need under one roof." />
             </p>
             <Link href="/contact" className={styles.btnBespoke}>
               Get In Touch
@@ -66,7 +68,7 @@ export default function ClientSatisfaction() {
 
             {/* 2. Stat Box: 17k+ Organic Users */}
             <div className={styles.statBox}>
-              <h3 className={styles.statVal}>17k+</h3>
+              <AnimatedHeading as="h3" className={styles.statVal}>17k+</AnimatedHeading>
               <p className={styles.statLabel}>Organic Users Within 12 Months</p>
             </div>
 

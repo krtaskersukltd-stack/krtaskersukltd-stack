@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Link from 'next/link'
@@ -70,9 +71,9 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
           >
             <div className={styles.leftHero}>
               <span className={styles.sectionTag}>{srv.eyebrow || srv.name}</span>
-              <h1 className={styles.heroTitle}>
+              <AnimatedHeading as="h1" className={styles.heroTitle}>
                 {srv.heroHeading || srv.name}
-              </h1>
+              </AnimatedHeading>
               <p className={styles.heroDesc}>
                 {srv.heroDescription}
               </p>

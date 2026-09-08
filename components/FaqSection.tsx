@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -71,7 +72,7 @@ export default function FaqSection() {
           {/* Left Column */}
           <div className={styles.headerArea}>
             <span className={styles.tag}>FAQ’s</span>
-            <h2 className={styles.title}>The Answers To Your Questions.</h2>
+            <AnimatedHeading as="h2" className={styles.title}>The Answers To Your Questions.</AnimatedHeading>
             <Link href="/contact" className={styles.btnTouch}>
               Get In Touch
             </Link>

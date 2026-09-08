@@ -1,10 +1,12 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useRef, useState, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
+import ScrollFillText from '@/components/ScrollFillText'
 import styles from './Approach.module.css'
 
 interface CardData {
@@ -152,11 +154,11 @@ export default function Approach() {
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
           className={styles.header}
         >
-          <h2 className={styles.title}>
+          <AnimatedHeading as="h2" className={styles.title}>
             Our <span className={styles.titleSpan}>Approach</span>
-          </h2>
+          </AnimatedHeading>
           <p className={styles.desc}>
-            The Approach is how we turn vision into measurable growth. It&apos;s a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success.
+            <ScrollFillText text="The Approach is how we turn vision into measurable growth. It's a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success." />
           </p>
           <Link href="/about" className={styles.cta}>
             <motion.span 
@@ -204,9 +206,9 @@ export default function Approach() {
                     onMouseLeave={(e) => handleMouseLeave(e, card)}
                   >
                     <div className={styles.cardHeader}>
-                      <h3 className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
+                      <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
                         {card.title}
-                      </h3>
+                      </AnimatedHeading>
                     </div>
 
                     <div className={styles.cardIcon}>
@@ -234,9 +236,9 @@ export default function Approach() {
           {cardsData.map((card) => (
             <div key={card.id} className={styles.mobileCardWrapper}>
               <div className={`${styles.mobileCard} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}>
-                <h3 className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
+                <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
                   {card.title}
-                </h3>
+                </AnimatedHeading>
                 <div className={styles.mobileIconWrap}>
                   <Image
                     src={card.icon}

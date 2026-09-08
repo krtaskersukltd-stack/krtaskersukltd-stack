@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState, useRef, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
@@ -12,6 +13,7 @@ import CategoryTabs from '@/components/CategoryTabs'
 import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
 import fallbackWorkData from '@/data/cms/work.json'
 import type { CaseStudyRecord } from '@/lib/cms-types'
+import ScrollFillText from '@/components/ScrollFillText'
 
 // Categories for Work page
 const filterCategories = [
@@ -159,7 +161,7 @@ export default function WorkPage() {
               <span className={styles.cardClient}>
                 {cs.year} {cs.client}
               </span>
-              <h3 className={styles.cardTitle}>{cs.title}</h3>
+              <AnimatedHeading as="h3" className={styles.cardTitle}>{cs.title}</AnimatedHeading>
             </div>
           </Link>
         </motion.div>
@@ -177,7 +179,7 @@ export default function WorkPage() {
           className={styles.testimonialCard}
         >
           <span className={styles.quoteMark}>“</span>
-          <p className={styles.quoteText}>{test.quote}</p>
+          <ScrollFillText as="p" className={styles.quoteText} text={test.quote} />
           <div className={styles.authorSection}>
             <div className={styles.authorAvatar}>
               {test.avatarUrl ? (
@@ -208,7 +210,7 @@ export default function WorkPage() {
           key="cta-card"
           className={styles.ctaCard}
         >
-          <h3 className={styles.ctaTitle}>You&apos;re Still Here?!</h3>
+          <AnimatedHeading as="h3" className={styles.ctaTitle}>You&apos;re Still Here?!</AnimatedHeading>
           <p className={styles.ctaDesc}>You must really like us...</p>
           <button onClick={scrollToContact} className={styles.ctaButton}>
             Contact Us
@@ -234,17 +236,16 @@ export default function WorkPage() {
           >
             <div className={styles.leftHeader}>
               <span className={styles.sectionTag}>Work</span>
-              <h1 className={styles.heroTitle}>
+              <AnimatedHeading as="h1" className={styles.heroTitle}>
                 Delivering Amazing Results For Remarkable Businesses
-              </h1>
+              </AnimatedHeading>
             </div>
             <div className={styles.rightHeader}>
-              <p className={styles.heroDesc}>
-                See how we translate ideas into results. Real clients, real metrics, straight to the point.
-                From tripling organic traffic to doubling conversion rates and driving six-figure growth, our
-                case studies show what happens when strategy, creativity, and data collide — turning ambition
-                into measurable impact.
-              </p>
+              <ScrollFillText
+                as="p"
+                className={styles.heroDesc}
+                text="See how we translate ideas into results. Real clients, real metrics, straight to the point. From tripling organic traffic to doubling conversion rates and driving six-figure growth, our case studies show what happens when strategy, creativity, and data collide — turning ambition into measurable impact."
+              />
               <div className={styles.heroActions}>
                 <Link href="/contact" className={styles.primaryBtn}>
                   Start a Project

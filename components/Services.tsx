@@ -1,11 +1,13 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ScrollFillText from './ScrollFillText'
 import styles from './Services.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,6 +23,44 @@ interface ServiceItem {
   alt: string
 }
 
+const tagToSlug: Record<string, string> = {
+  'Website Design & Development': '/services/website-design-development',
+  'E-Commerce Web Development': '/services/ecommerce-web-development',
+  'B2B': '/services/b2b',
+  'SaaS': '/services/saas',
+  'Custom Web Development': '/services/custom-web-development',
+  'AI Chatbot': '/services/ai-chatbot',
+  'AI Voice Agent': '/services/ai-voice-agent',
+  'CRM Automation': '/services/crm-automation',
+  'AI Integration': '/services/ai-integration',
+  'UI/UX Design': '/services/ui-ux-design',
+  '3D Design & Automation': '/services/3d-design-automation',
+  'Graphic Design': '/services/graphic-design',
+  'Branding': '/services/branding',
+  'Logo Making': '/services/logo-making',
+  'Digital 360': '/services/digital-360',
+  'Social Media Marketing': '/services/social-media',
+  'PPC': '/services/ppc',
+  'Local SEO': '/services/local-seo',
+  'International SEO': '/services/international-seo',
+  'National SEO': '/services/national-seo',
+  'E-Commerce SEO': '/services/ecommerce-seo',
+  'Link Building': '/services/link-building',
+  'Lead Generation SEO': '/services/lead-gen-seo',
+  'Technical SEO': '/services/technical-seo',
+  'SEO Audit (Free)': '/services/seo-audit',
+  'Email Automation': '/services/email-automation',
+  'Email Campaign Management': '/services/email-campaign-management',
+  'Email Marketing Strategy': '/services/email-marketing-strategy',
+  'Email Design': '/services/email-design',
+  'Full Service Management': '/services/full-service-management',
+  'Advertising (PPC) Management': '/services/advertising-ppc-management',
+  'Amazon SEO': '/services/amazon-seo',
+  'Amazon Account Audit': '/services/amazon-account-audit',
+  'Listing Optimization': '/services/listing-optimization',
+  'Account Suspension & Reinstatement': '/services/account-suspension',
+}
+
 const servicesData: ServiceItem[] = [
   {
     titlePrefix: 'Web',
@@ -34,7 +74,7 @@ const servicesData: ServiceItem[] = [
       'Custom Web Development',
     ],
     isDark: true,
-    link: '/contact',
+    link: '/services/web-development',
     image: '/images/services/web-app-design.png',
     alt: 'Web Design & Development Services',
   },
@@ -49,7 +89,7 @@ const servicesData: ServiceItem[] = [
       'AI Integration',
     ],
     isDark: false,
-    link: '/contact',
+    link: '/services/ai-solutions',
     image: '/images/services/ai-automation.jpg',
     alt: 'AI Automation, Chatbots & Voice Agents',
   },
@@ -65,7 +105,7 @@ const servicesData: ServiceItem[] = [
       'Logo Making',
     ],
     isDark: true,
-    link: '/contact',
+    link: '/services/branding',
     image: '/images/services/graphic-branding.jpg',
     alt: 'Creative Designing, 3D Design, UI/UX & Branding',
   },
@@ -79,7 +119,7 @@ const servicesData: ServiceItem[] = [
       'PPC',
     ],
     isDark: false,
-    link: '/contact',
+    link: '/services/digital-marketing',
     image: '/images/services/digital-marketing.png',
     alt: 'Digital 360, Social Media & PPC Marketing',
   },
@@ -98,7 +138,7 @@ const servicesData: ServiceItem[] = [
       'SEO Audit (Free)',
     ],
     isDark: true,
-    link: '/contact',
+    link: '/services/seo',
     image: '/images/services/seo-brand-strategy.png',
     alt: 'Search Engine Optimization & Organic SEO Growth',
   },
@@ -113,7 +153,7 @@ const servicesData: ServiceItem[] = [
       'Email Design',
     ],
     isDark: false,
-    link: '/contact',
+    link: '/services/email-marketing',
     image: '/images/services/email-marketing.jpg',
     alt: 'Email Marketing, Automation & Campaign Management',
   },
@@ -130,7 +170,7 @@ const servicesData: ServiceItem[] = [
       'Account Suspension & Reinstatement',
     ],
     isDark: true,
-    link: '/contact',
+    link: '/services/amazon-ebay',
     image: '/images/services/amazon-ebay.jpg',
     alt: 'Amazon Marketplace Management, PPC & Optimization Services',
   },
@@ -143,34 +183,47 @@ function ServiceCard({ service }: { service: ServiceItem }) {
     >
       {/* Left Column */}
       <div className={styles.cardLeft}>
-        <h3 className={styles.title}>
-          {service.titlePrefix} <br />
-          <span className={styles.titleHighlight}>{service.titleHighlight}</span>
-        </h3>
+        <Link href={service.link} className={styles.titleLink}>
+          <AnimatedHeading as="h3" className={styles.title}>
+            {service.titlePrefix} <br />
+            <span className={styles.titleHighlight}>{service.titleHighlight}</span>
+          </AnimatedHeading>
+        </Link>
 
         {/* Pill Tags */}
         <div className={styles.tags}>
           {service.tags.map((tag) => (
-            <span
+            <Link
               key={tag}
+              href={tagToSlug[tag] || service.link}
               className={`${styles.tag} ${service.isDark ? styles.tagDark : styles.tagLight}`}
             >
               {tag}
-            </span>
+            </Link>
           ))}
         </div>
 
         {/* Description */}
-        <p className={styles.desc}>{service.desc}</p>
+        <p className={styles.desc}>
+          <ScrollFillText
+            text={service.desc}
+            startColor={service.isDark ? 'rgba(255, 255, 255, 0.45)' : '#a3a8a9'}
+            endColor={service.isDark ? '#ffffff' : '#0c4651'}
+          />
+        </p>
 
         {/* Action CTA */}
         <Link href={service.link} className={styles.cta}>
-          Start A Project
+          Explore Service ↗
         </Link>
       </div>
 
       {/* Right Column: Image Frame */}
-      <div className={styles.imageWrapper}>
+      <Link
+        href={service.link}
+        className={styles.imageWrapper}
+        aria-label={`Explore ${service.titlePrefix} ${service.titleHighlight}`}
+      >
         <Image
           src={service.image}
           alt={service.alt}
@@ -179,7 +232,7 @@ function ServiceCard({ service }: { service: ServiceItem }) {
           className={styles.cardImage}
           sizes="(max-width: 1024px) 100vw, 45vw"
         />
-      </div>
+      </Link>
     </div>
   )
 }
@@ -239,8 +292,8 @@ export default function Services() {
           transition={{ duration: 0.6 }}
         >
           <div className={styles.headingWrapper}>
-            <h2 className={styles.headingOur}>OUR</h2>
-            <h2 className={styles.headingServices}>SERVICES</h2>
+            <AnimatedHeading as="h2" className={styles.headingOur}>OUR</AnimatedHeading>
+            <AnimatedHeading as="h2" className={styles.headingServices}>SERVICES</AnimatedHeading>
           </div>
 
           <div className={styles.headerArrowWrap} aria-hidden="true">

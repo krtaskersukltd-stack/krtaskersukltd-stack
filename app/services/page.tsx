@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -114,10 +115,10 @@ export default function ServicesPage() {
            
 
             {/* Main Headline */}
-            <h1 id="services-hero-heading" className={styles.title}>
+            <AnimatedHeading as="h1" id="services-hero-heading" className={styles.title}>
               Our Creative Services
               <span className={styles.titleHighlight}>Excellence Delivered</span>
-            </h1>
+            </AnimatedHeading>
 
             {/* Subtitle Description */}
             <p className={styles.subtitle}>
@@ -150,9 +151,9 @@ export default function ServicesPage() {
             transition={{ duration: 0.5 }}
           >
          
-            <h2 id="what-we-do-heading" className={styles.sectionHeading}>
+            <AnimatedHeading as="h2" id="what-we-do-heading" className={styles.sectionHeading}>
               What We Do
-            </h2>
+            </AnimatedHeading>
           </motion.div>
 
           {/* List of 5 Core Services */}
@@ -168,10 +169,10 @@ export default function ServicesPage() {
               >
                 {/* Left Column: Category Name & Showcase Visual */}
                 <div className={styles.serviceColLeft}>
-                  <h3 className={styles.categoryTag}>
+                  <AnimatedHeading as="h3" className={styles.categoryTag}>
                     <span className={styles.categoryDot} aria-hidden="true" />
                     <span>{service.category}</span>
-                  </h3>
+                  </AnimatedHeading>
 
                   <div className={styles.imageCard}>
                     <Image

@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
@@ -62,14 +63,14 @@ export default function PrivacyPolicyPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.container}>
-          <motion.h1 
+          <AnimatedHeading as="h1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className={styles.heroTitle}
           >
             Privacy Policy
-          </motion.h1>
+          </AnimatedHeading>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -86,7 +87,7 @@ export default function PrivacyPolicyPage() {
         <div className={styles.contentLayout}>
           {/* Sidebar */}
           <aside className={styles.sidebar}>
-            <h3 className={styles.sidebarTitle}>Table of Contents</h3>
+            <AnimatedHeading as="h3" className={styles.sidebarTitle}>Table of Contents</AnimatedHeading>
             <ul className={styles.tocList}>
               {sections.map((sec) => (
                 <li key={sec.id}>
@@ -104,7 +105,7 @@ export default function PrivacyPolicyPage() {
           {/* Detailed Policy Text */}
           <article className={styles.content}>
             <section id="info-collect" className={styles.section}>
-              <h2 className={styles.sectionHeading}>1. Information We Collect</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>1. Information We Collect</AnimatedHeading>
               <p className={styles.paragraph}>
                 At KR Tasker Digital, we value your privacy and are committed to safeguarding your personal data. We collect information in two main ways when you interact with our website or hire us for digital services:
               </p>
@@ -119,7 +120,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="how-use" className={styles.section}>
-              <h2 className={styles.sectionHeading}>2. How We Use Information</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>2. How We Use Information</AnimatedHeading>
               <p className={styles.paragraph}>
                 We process your personal information to achieve business and operational objectives, including:
               </p>
@@ -133,7 +134,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="legal-basis" className={styles.section}>
-              <h2 className={styles.sectionHeading}>3. Legal Basis for Processing</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Legal Basis for Processing</AnimatedHeading>
               <p className={styles.paragraph}>
                 Under the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018, we only process your personal data under valid legal bases:
               </p>
@@ -154,7 +155,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="sharing" className={styles.section}>
-              <h2 className={styles.sectionHeading}>4. Sharing & Disclosure</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Sharing & Disclosure</AnimatedHeading>
               <p className={styles.paragraph}>
                 We do not sell, rent, or lease your personal information to third parties. We may share your information in the following limited situations:
               </p>
@@ -172,7 +173,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="security" className={styles.section}>
-              <h2 className={styles.sectionHeading}>5. Data Security & Retention</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Data Security & Retention</AnimatedHeading>
               <p className={styles.paragraph}>
                 We take industry-standard technical and organizational security measures to protect your personal data from unauthorized access, alteration, loss, disclosure, or destruction.
               </p>
@@ -182,7 +183,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="rights" className={styles.section}>
-              <h2 className={styles.sectionHeading}>6. Your GDPR Rights</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Your GDPR Rights</AnimatedHeading>
               <p className={styles.paragraph}>
                 If you are located in the UK or the European Economic Area (EEA), you possess key privacy rights under the GDPR:
               </p>
@@ -209,7 +210,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section id="changes" className={styles.section}>
-              <h2 className={styles.sectionHeading}>7. Policy Changes</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>7. Policy Changes</AnimatedHeading>
               <p className={styles.paragraph}>
                 We may update this Privacy Policy from time to time to reflect operational, technological, or regulatory changes. Any modifications will be posted directly on this page, with the updated date clearly indicated at the top. We encourage you to review this page periodically to stay informed about how we protect your information.
               </p>

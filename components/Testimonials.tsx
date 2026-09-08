@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
@@ -136,15 +137,15 @@ export default function Testimonials() {
   }
 
   return (
-    <section ref={sectionRef} className={styles.testimonials}>
+    <section id="testimonials" ref={sectionRef} className={styles.testimonials}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>• Client Results &amp; Reviews</p>
-            <h2 className={styles.heading}>
+            <AnimatedHeading as="h2" className={styles.heading}>
               Trusted By <span>Growing Brands.</span><br />
               Backed By Real 5-Star Reviews.
-            </h2>
+            </AnimatedHeading>
           </div>
           <div className={styles.headerRight} aria-label="Google rating 5 out of 5">
             <div className={styles.googleRatings}>

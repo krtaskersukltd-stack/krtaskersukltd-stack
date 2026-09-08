@@ -1,3 +1,4 @@
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getCmsPageBySlug, getCmsPages, getCmsGlobal, getCmsWork } from '@/lib/cms-store'
@@ -68,9 +69,9 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E6FF2A] bg-[#125764] px-3 py-1 rounded-full inline-block">
             {targetPage.templateKey === 'seo_landing' ? 'SEO LANDING PAGE' : 'KR TASKER DIGITAL'}
           </span>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
+          <AnimatedHeading as="h1" className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
             {h1Text}
-          </h1>
+          </AnimatedHeading>
           {targetPage.seo?.metaDescription && (
             <p className="text-base sm:text-xl text-[#d2e7eb] max-w-3xl font-normal leading-relaxed">
               {targetPage.seo.metaDescription}
@@ -83,7 +84,7 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
       <section className="flex-1 py-16 px-6 sm:px-12 max-w-6xl mx-auto w-full space-y-16">
         {sections.length === 0 ? (
           <div className="bg-white p-8 sm:p-12 rounded-2xl border border-[#E5E4E0] shadow-sm space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Overview</h2>
+            <AnimatedHeading as="h2" className="text-2xl font-bold text-gray-900">Overview</AnimatedHeading>
             <div className="prose prose-teal max-w-none text-gray-700 leading-relaxed">
               <p>
                 Welcome to {targetPage.internalName}. Partner with KR Tasker Digital for bespoke web architecture, search engine optimization, and enterprise digital solutions.
@@ -97,7 +98,7 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
               if (sec.type === 'hero' || sec.type === 'rich_text') {
                 return (
                   <div key={sec.id} className="bg-white p-8 sm:p-12 rounded-2xl border border-[#E5E4E0] shadow-sm space-y-4">
-                    {sec.data?.title && <h2 className="text-2xl font-bold text-gray-900">{sec.data.title}</h2>}
+                    {sec.data?.title && <AnimatedHeading as="h2" className="text-2xl font-bold text-gray-900">{sec.data.title}</AnimatedHeading>}
                     <div className="prose prose-teal max-w-none text-gray-700 leading-relaxed whitespace-pre-line">
                       {sec.data?.content || sec.data?.subtext || ''}
                     </div>
@@ -109,12 +110,12 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
                 return (
                   <div key={sec.id} className="space-y-8">
                     {sec.data?.heading && (
-                      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center">{sec.data.heading}</h2>
+                      <AnimatedHeading as="h2" className="text-2xl sm:text-3xl font-bold text-gray-900 text-center">{sec.data.heading}</AnimatedHeading>
                     )}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {sec.data.items.map((item: any, idx: number) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-[#E5E4E0] shadow-sm space-y-2">
-                          <h3 className="font-bold text-lg text-[#0C4651]">{item.title}</h3>
+                          <AnimatedHeading as="h3" className="font-bold text-lg text-[#0C4651]">{item.title}</AnimatedHeading>
                           <p className="text-xs text-gray-600 leading-relaxed">{item.description}</p>
                         </div>
                       ))}
@@ -126,11 +127,11 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
               if (sec.type === 'faq' && Array.isArray(sec.data?.items)) {
                 return (
                   <div key={sec.id} className="bg-white p-8 sm:p-12 rounded-2xl border border-[#E5E4E0] shadow-sm space-y-6">
-                    <h2 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                    <AnimatedHeading as="h2" className="text-2xl font-bold text-gray-900">Frequently Asked Questions</AnimatedHeading>
                     <div className="divide-y divide-gray-100">
                       {sec.data.items.map((faq: any, idx: number) => (
                         <div key={idx} className="py-4 space-y-1">
-                          <h3 className="font-semibold text-base text-gray-900">{faq.question}</h3>
+                          <AnimatedHeading as="h3" className="font-semibold text-base text-gray-900">{faq.question}</AnimatedHeading>
                           <p className="text-xs text-gray-600 leading-relaxed">{faq.answer}</p>
                         </div>
                       ))}
@@ -141,7 +142,7 @@ export default async function DynamicCMSPage({ params }: { params: Promise<{ slu
 
               return (
                 <div key={sec.id} className="bg-white p-8 rounded-2xl border border-[#E5E4E0]">
-                  <h3 className="font-bold text-gray-900">{sec.data?.title || sec.type}</h3>
+                  <AnimatedHeading as="h3" className="font-bold text-gray-900">{sec.data?.title || sec.type}</AnimatedHeading>
                   <p className="text-xs text-gray-500 mt-1">{sec.data?.content || ''}</p>
                 </div>
               )

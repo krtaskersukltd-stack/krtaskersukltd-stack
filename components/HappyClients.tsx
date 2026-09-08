@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion } from 'framer-motion'
 import styles from './HappyClients.module.css'
 
@@ -82,7 +83,7 @@ export default function HappyClients() {
       <div className={styles.container}>
         <header className={styles.header}>
           <span className={styles.tag}>Hear it from our friends</span>
-          <h2 className={styles.heading}>What Our Happy Clients Say About Us</h2>
+          <AnimatedHeading as="h2" className={styles.heading}>What Our Happy Clients Say About Us</AnimatedHeading>
         </header>
 
         <div className={styles.grid}>

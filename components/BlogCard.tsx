@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import styles from './BlogCard.module.css'
 
 interface BlogCardProps {
@@ -30,7 +31,7 @@ export default function BlogCard({ title, readTime, gradient, imageUrl, category
           <span className={styles.bullet}>•</span>
           <span className={styles.readTime}>{readTime}</span>
         </div>
-        <h3 className={styles.title}>{title}</h3>
+        <AnimatedHeading as="h3" className={styles.title}>{title}</AnimatedHeading>
       </div>
     </article>
   )

@@ -26,8 +26,20 @@ export interface MainServiceItem {
 
 const MAIN_SERVICES: MainServiceItem[] = [
   {
-    id: 'web-development',
-    title: 'Web Development',
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    tagline: 'Full-funnel performance and growth',
+    href: '/services/digital-marketing',
+    image: '/images/services/digital-marketing.png',
+    subServices: [
+      { title: 'Digital 360', href: '/services/digital-360' },
+      { title: 'Social Media Marketing', href: '/services/social-media' },
+      { title: 'PPC', href: '/services/ppc' },
+    ],
+  },
+  {
+    id: 'website-development',
+    title: 'Website Development',
     tagline: 'Deliver your business to a wider audience',
     href: '/services/web-development',
     image: '/images/services/web-app-design.png',
@@ -40,22 +52,8 @@ const MAIN_SERVICES: MainServiceItem[] = [
     ],
   },
   {
-    id: 'ai-automation',
-    title: 'AI Automation',
-    tagline: 'Smart workflows and intelligent solutions',
-    href: '/services/ai-solutions',
-    badge: 'POPULAR',
-    image: '/images/services/ai-automation.jpg',
-    subServices: [
-      { title: 'AI Chatbot', href: '/services/ai-chatbot' },
-      { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
-      { title: 'CRM Automation', href: '/services/crm-automation' },
-      { title: 'AI Integration', href: '/services/ai-integration' },
-    ],
-  },
-  {
-    id: 'designing',
-    title: 'Designing',
+    id: 'graphics-design',
+    title: 'Graphics Design',
     tagline: "Creating brands and visual experiences you're proud of",
     href: '/services/branding',
     image: '/images/services/graphic-branding.jpg',
@@ -68,15 +66,31 @@ const MAIN_SERVICES: MainServiceItem[] = [
     ],
   },
   {
-    id: 'digital-marketing',
-    title: 'Digital Marketing',
-    tagline: 'Full-funnel performance and growth',
-    href: '/services/digital-marketing',
-    image: '/images/services/digital-marketing.png',
+    id: 'ai-automation',
+    title: 'Ai Automation',
+    tagline: 'Smart workflows and intelligent solutions',
+    href: '/services/ai-solutions',
+    image: '/images/services/ai-automation.jpg',
     subServices: [
-      { title: 'Digital 360', href: '/services/digital-360' },
-      { title: 'Social Media Marketing', href: '/services/social-media' },
-      { title: 'PPC', href: '/services/ppc' },
+      { title: 'AI Chatbot', href: '/services/ai-chatbot' },
+      { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
+      { title: 'CRM Automation', href: '/services/crm-automation' },
+      { title: 'AI Integration', href: '/services/ai-integration' },
+    ],
+  },
+  {
+    id: 'amazon-ebay',
+    title: 'Amazon / eBay',
+    tagline: 'Marketplace growth, PPC & optimization',
+    href: '/services/amazon-ebay',
+    image: '/images/services/amazon-ebay.jpg',
+    subServices: [
+      { title: 'Full Service Management', href: '/services/full-service-management' },
+      { title: 'Advertising (PPC) Management', href: '/services/advertising-ppc-management' },
+      { title: 'Amazon SEO', href: '/services/amazon-seo' },
+      { title: 'Amazon Account Audit', href: '/services/amazon-account-audit' },
+      { title: 'Listing Optimization', href: '/services/listing-optimization' },
+      { title: 'Account Suspension', href: '/services/account-suspension' },
     ],
   },
   {
@@ -205,6 +219,300 @@ export const AMAZON_COLUMNS: AmazonColumnGroup[] = [
   },
 ]
 
+export const AMAZON_MENU_ITEMS: MainServiceItem[] = [
+  {
+    id: 'full-service',
+    title: 'Full Service',
+    tagline: 'End-to-end marketplace management & scaling',
+    href: '/services/amazon-ebay',
+    subServices: [
+      { title: 'Full service management', href: '/services/full-service-management' },
+      { title: 'Advertising (PPC) management', href: '/services/advertising-ppc-management' },
+      { title: 'Amazon SEO', href: '/services/amazon-seo' },
+      { title: 'Amazon account audit', href: '/services/amazon-account-audit' },
+      { title: 'SOPs', href: '/services/sops' },
+      { title: 'All services', href: '/services/amazon-ebay' },
+      { title: 'Consulting', href: '/services/amazon-consulting' },
+      { title: 'Book a coaching call', href: '/services/book-a-coaching-call' },
+    ],
+  },
+  {
+    id: 'amazon-design',
+    title: 'Design',
+    tagline: 'High-converting creative & brand storefronts',
+    href: '/services/amazon-ebay',
+    subServices: [
+      { title: 'Brand guidelines', href: '/services/brand-guidelines' },
+      { title: 'Brand story', href: '/services/brand-story' },
+      { title: 'Brand store', href: '/services/brand-store' },
+      { title: 'Listing images', href: '/services/listing-images' },
+      { title: 'Enhanced brand content A+', href: '/services/enhanced-brand-content-a-plus' },
+      { title: 'Main image CTR hack', href: '/services/main-image-ctr-hack' },
+      { title: 'Listing optimization', href: '/services/listing-optimization' },
+      { title: 'Full listing optimization', href: '/services/full-listing-optimization' },
+    ],
+  },
+  {
+    id: 'amazon-troubleshooting',
+    title: 'Troubleshooting',
+    tagline: 'Reinstatements, audit & technical account fixes',
+    href: '/services/amazon-ebay',
+    subServices: [
+      { title: 'Listing reinstatement', href: '/services/listing-reinstatement' },
+      { title: 'Account suspension', href: '/services/account-suspension' },
+      { title: 'PPC Advertising audit', href: '/services/ppc-advertising-audit' },
+      { title: 'Brand name change', href: '/services/brand-name-change' },
+      { title: 'Troubleshooting hours', href: '/services/troubleshooting-hours' },
+      { title: 'UPC to GS1 change', href: '/services/upc-to-gs1-change' },
+      { title: 'Remote fulfillment with FBA setup', href: '/services/remote-fulfillment-fba-setup' },
+    ],
+  },
+]
+
+export const OBJECTIVES_MENU_ITEMS: MainServiceItem[] = [
+  {
+    id: 'traffic-visibility',
+    title: 'Traffic & Visibility',
+    tagline: 'Scale brand reach & organic search dominance',
+    href: '/services',
+    subServices: [
+      { title: 'Increase Brand Awareness', href: '/business-objectives/increase-brand-awareness' },
+      { title: 'Improve Search Engine Rankings', href: '/business-objectives/improve-search-engine-rankings' },
+      { title: 'Increase Website Traffic', href: '/business-objectives/increase-website-traffic' },
+    ],
+  },
+  {
+    id: 'leads-conversions',
+    title: 'Leads & Conversions',
+    tagline: 'High-intent pipelines & ROI acceleration',
+    href: '/services',
+    subServices: [
+      { title: 'Lead Generation', href: '/business-objectives/lead-generation' },
+      { title: 'Increase Conversions', href: '/business-objectives/increase-conversions' },
+    ],
+  },
+  {
+    id: 'engagement-retention',
+    title: 'Engagement & Retention',
+    tagline: 'Long-term community & customer loyalty',
+    href: '/services',
+    subServices: [
+      { title: 'Social Media Engagement', href: '/business-objectives/social-media-engagement' },
+      { title: 'Customer Retention', href: '/business-objectives/customer-retention' },
+    ],
+  },
+]
+
+export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
+  {
+    id: 'corporate-professional',
+    title: 'Professional & B2B',
+    tagline: 'Enterprise positioning & client acquisition',
+    href: '/work',
+    subServices: [
+      { title: 'Law Firms', href: '/industries/law-firms' },
+      { title: 'Accountants', href: '/industries/accountants' },
+      { title: 'Insurance', href: '/industries/insurance' },
+      { title: 'Real Estate', href: '/industries/real-estate' },
+      { title: 'Construction', href: '/industries/construction' },
+      { title: 'B2B', href: '/industries/b2b' },
+    ],
+  },
+  {
+    id: 'health-medical',
+    title: 'Health & Wellness',
+    tagline: 'Patient bookings & trusted local authority',
+    href: '/work',
+    subServices: [
+      { title: 'Dental', href: '/industries/dental' },
+      { title: 'Healthcare', href: '/industries/healthcare' },
+      { title: 'Chiropractors', href: '/industries/chiropractors' },
+      { title: 'Beauty', href: '/industries/beauty' },
+      { title: 'Hair Salons', href: '/industries/hair-salons' },
+      { title: 'CBD', href: '/industries/cbd' },
+    ],
+  },
+  {
+    id: 'tech-ecommerce',
+    title: 'Tech & E-Commerce',
+    tagline: 'Scale web apps & retail checkout conversion',
+    href: '/work',
+    subServices: [
+      { title: 'SaaS', href: '/industries/saas' },
+      { title: 'eCommerce', href: '/industries/ecommerce' },
+      { title: 'AI Marketing', href: '/industries/ai-marketing' },
+      { title: 'Startups & Scale-ups', href: '/industries/startups-scale-ups' },
+      { title: 'White Label', href: '/industries/white-label' },
+    ],
+  },
+  {
+    id: 'hospitality-local',
+    title: 'Hospitality & Local',
+    tagline: 'Direct reservations & neighborhood reach',
+    href: '/work',
+    subServices: [
+      { title: 'Hotels & Hospitality', href: '/industries/hotels-hospitality' },
+      { title: 'Restaurants', href: '/industries/restaurants' },
+      { title: 'Airbnb', href: '/industries/airbnb' },
+      { title: 'Pest Control', href: '/industries/pest-control' },
+      { title: 'Solar', href: '/industries/solar' },
+      { title: 'Retail', href: '/industries/retail' },
+      { title: 'Higher Education', href: '/industries/higher-education' },
+    ],
+  },
+]
+
+export const RESULTS_MENU_ITEMS: MainServiceItem[] = [
+  {
+    id: 'case-studies',
+    title: 'Case Studies',
+    tagline: 'Real growth stories, verified metrics & client ROI',
+    href: '/work',
+    subServices: [
+      { title: 'All Case Studies', href: '/work' },
+      { title: 'E-Commerce & Amazon Growth', href: '/work' },
+      { title: 'Websites & Apps Development', href: '/work' },
+      { title: 'SEO & Organic Scale', href: '/work' },
+      { title: 'Paid Advertising & PPC', href: '/work' },
+    ],
+  },
+  {
+    id: 'testimonials',
+    title: 'Testimonials',
+    tagline: '5-star client reviews & verified transformations',
+    href: '/#testimonials',
+    subServices: [
+      { title: 'Client Reviews & Feedback', href: '/#testimonials' },
+      { title: 'Google 5.0 Star Ratings', href: '/#testimonials' },
+      { title: 'Video & Written Testimonials', href: '/#testimonials' },
+      { title: 'Brand Founder Stories', href: '/#testimonials' },
+    ],
+  },
+]
+
+function TwoColumnDropdown({
+  items,
+  activeId,
+  setActiveId,
+  onClose,
+  defaultViewAllHref,
+}: {
+  items: MainServiceItem[]
+  activeId: string
+  setActiveId: (id: string) => void
+  onClose: () => void
+  defaultViewAllHref: string
+}) {
+  const activeItem =
+    items.find(
+      (s) =>
+        (s.id && s.id === activeId) ||
+        (s.title || '').toLowerCase() === (activeId || '').toLowerCase()
+    ) || items[0]
+
+  return (
+    <div className={styles.servicesDropdownCard}>
+      {/* Left Column: Categories List */}
+      <div className={styles.mainServicesList}>
+        {items.map((item) => {
+          const isCurrent =
+            (item.id && item.id === activeId) ||
+            item.title.toLowerCase() === (activeId || '').toLowerCase()
+
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`${styles.mainServiceItem} ${
+                isCurrent ? styles.activeServiceItem : ''
+              }`}
+              onMouseEnter={() =>
+                setActiveId(item.id || item.title.toLowerCase())
+              }
+              onClick={onClose}
+            >
+              <span className={styles.mainServiceTitle}>{item.title}</span>
+              <div className={styles.circleBadge}>
+                <svg
+                  className={styles.circleChevron}
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* Right Column: Sub-Services Display Box */}
+      <div className={styles.subServicesCard}>
+        <div className={styles.subServicesHeader}>
+          <div className={styles.subServicesHeaderTop}>
+            <span className={styles.subServicesTitle}>{activeItem.title}</span>
+            {activeItem.badge && (
+              <span className={styles.subServicesBadge}>{activeItem.badge}</span>
+            )}
+          </div>
+          <span className={styles.subServicesSubtitle}>
+            {activeItem.tagline || 'Specialized Solutions & Pages:'}
+          </span>
+        </div>
+
+        {/* Sub-Services Interactive Links List */}
+        <div className={styles.subServicesList}>
+          {activeItem.subServices && activeItem.subServices.length > 0 ? (
+            activeItem.subServices.map((sub) => (
+              <Link
+                key={sub.title}
+                href={sub.href}
+                className={styles.subServiceItem}
+                onClick={onClose}
+              >
+                <span className={styles.subServiceDot} />
+                <span className={styles.subServiceText}>{sub.title}</span>
+              </Link>
+            ))
+          ) : (
+            <Link
+              href={activeItem.href}
+              className={styles.subServiceItem}
+              onClick={onClose}
+            >
+              <span className={styles.subServiceDot} />
+              <span className={styles.subServiceText}>
+                Explore {activeItem.title}
+              </span>
+            </Link>
+          )}
+        </div>
+
+        {/* Footer Link */}
+        <div className={styles.subServicesFooter}>
+          <Link
+            href={activeItem.href || defaultViewAllHref}
+            className={styles.viewAllServicesLink}
+            onClick={onClose}
+          >
+            <span>View All in {activeItem.title}</span>
+            <span className={styles.footerArrow} aria-hidden="true">
+              →
+            </span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 interface MainIndustryItem {
   title: string
   tagline: string
@@ -272,7 +580,7 @@ const DEFAULT_CORE_SERVICES: ServiceCategory[] = [
   },
 ]
 
-type DropdownKey = 'services' | 'objectives' | 'industries' | 'amazon' | null
+type DropdownKey = 'services' | 'objectives' | 'industries' | 'amazon' | 'results' | null
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -291,7 +599,11 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
   const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
-  const [hoveredServiceId, setHoveredServiceId] = useState<string>('web-development')
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>('digital-marketing')
+  const [hoveredAmazonId, setHoveredAmazonId] = useState<string>('full-service')
+  const [hoveredObjectivesId, setHoveredObjectivesId] = useState<string>('traffic-visibility')
+  const [hoveredIndustriesId, setHoveredIndustriesId] = useState<string>('corporate-professional')
+  const [hoveredResultsId, setHoveredResultsId] = useState<string>('case-studies')
   const [servicesCard, setServicesCard] = useState({
     title: 'View all Services',
     subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
@@ -617,9 +929,41 @@ export default function Navbar() {
       } ${isDarkSection ? styles.darkTheme : ''}`}
       onMouseLeave={handleMouseLeave}
     >
-      {pathname === '/' && <div className={styles.availabilityNotch}>
-        <span aria-hidden="true" />Available For New Projects
-      </div>}
+      {pathname === '/' && (
+        <Link
+          href="/contact"
+          className={styles.availabilityNotch}
+          onClick={(e) => {
+            if (pathname === '/') {
+              const contactEl = document.getElementById('contact')
+              if (contactEl) {
+                e.preventDefault()
+                contactEl.scrollIntoView({ behavior: 'smooth' })
+              }
+            }
+          }}
+          aria-label="Available For New Projects - Contact Us"
+        >
+          <svg
+            className={styles.notchSvg}
+            viewBox="0 0 270 34"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0 0 C8 1 16 4 22 10 C24 19 30 26 38 31 C42 33 45 34 49 34 H221 C225 34 228 33 232 31 C240 26 246 19 248 10 C254 4 262 1 270 0 Z"
+              className={styles.notchPath}
+            />
+          </svg>
+          <span className={styles.pulseDot} aria-hidden="true">
+            <span className={styles.pulseRing} />
+            <span className={styles.pulseCore} />
+          </span>
+          <span className={styles.notchText}>Available For New Projects</span>
+        </Link>
+      )}
       <div className={styles.container}>
         {/* Left: Brand Logo */}
         <div className={styles.logoWrapper}>
@@ -683,145 +1027,19 @@ export default function Navbar() {
                     onMouseEnter={() => handleMouseEnter('services')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className={styles.dropdownPointer} />
-                    <div className={styles.servicesDropdownCard}>
-                      {/* Left Column: Main Services List */}
-                      <div className={styles.mainServicesList}>
-                        {servicesMenu.map((item) => {
-                          const isCurrent =
-                            (item.id && item.id === hoveredServiceId) ||
-                            item.title.toLowerCase() === (hoveredServiceId || '').toLowerCase() ||
-                            (!hoveredServiceId && item === servicesMenu[0])
-
-                          return (
-                            <Link
-                              key={item.title}
-                              href={item.href}
-                              className={`${styles.mainServiceItem} ${
-                                isCurrent ? styles.activeServiceItem : ''
-                              }`}
-                              onMouseEnter={() =>
-                                setHoveredServiceId(item.id || item.title.toLowerCase())
-                              }
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <div className={styles.mainServiceRow}>
-                                <span className={styles.mainServiceTitle}>{item.title}</span>
-                                {item.badge && (
-                                  <span className={styles.serviceItemBadge}>{item.badge}</span>
-                                )}
-                                <span
-                                  className={`${styles.activeServiceIndicator} ${
-                                    isCurrent ? styles.indicatorVisible : ''
-                                  }`}
-                                  aria-hidden="true"
-                                >
-                                  ›
-                                </span>
-                              </div>
-                              <span className={styles.mainServiceTagline}>{item.tagline}</span>
-                            </Link>
-                          )
-                        })}
-                      </div>
-
-                      {/* Right Column: Sub-Services Display Box */}
-                      <div className={styles.subServicesCard}>
-                        <div className={styles.subServicesHeader}>
-                          <div className={styles.subServicesHeaderTop}>
-                            <span className={styles.subServicesTitle}>{activeService.title}</span>
-                            {activeService.badge && (
-                              <span className={styles.subServicesBadge}>
-                                {activeService.badge}
-                              </span>
-                            )}
-                          </div>
-                          <span className={styles.subServicesSubtitle}>
-                            {activeService.tagline || 'Specialized Solutions & Pages:'}
-                          </span>
-                        </div>
-
-                        {/* Sub-Services Interactive Links List */}
-                        <div className={styles.subServicesList}>
-                          {activeService.subServices && activeService.subServices.length > 0 ? (
-                            activeService.subServices.map((sub) => (
-                              <Link
-                                key={sub.title}
-                                href={sub.href}
-                                className={styles.subServiceItem}
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                <span className={styles.subServiceDot} />
-                                <span className={styles.subServiceText}>{sub.title}</span>
-                                <svg
-                                  className={styles.subServiceArrow}
-                                  viewBox="0 0 16 16"
-                                  width="12"
-                                  height="12"
-                                  fill="none"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M6 3L11 8L6 13"
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Link>
-                            ))
-                          ) : (
-                            <Link
-                              href={activeService.href}
-                              className={styles.subServiceItem}
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <span className={styles.subServiceDot} />
-                              <span className={styles.subServiceText}>
-                                Explore {activeService.title}
-                              </span>
-                              <svg
-                                className={styles.subServiceArrow}
-                                viewBox="0 0 16 16"
-                                width="12"
-                                height="12"
-                                fill="none"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  d="M6 3L11 8L6 13"
-                                  stroke="currentColor"
-                                  strokeWidth="1.8"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </Link>
-                          )}
-                        </div>
-
-                        {/* Footer Link & Mini Visual Accent */}
-                        <div className={styles.subServicesFooter}>
-                          <Link
-                            href={activeService.href || '/services'}
-                            className={styles.viewAllServicesLink}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            <span>View All in {activeService.title}</span>
-                            <span className={styles.footerArrow} aria-hidden="true">
-                              →
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+                    <TwoColumnDropdown
+                      items={servicesMenu}
+                      activeId={hoveredServiceId}
+                      setActiveId={setHoveredServiceId}
+                      onClose={() => setActiveDropdown(null)}
+                      defaultViewAllHref="/services"
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
 
-            {/* 2. Amazon (hover dropdown with 3 columns) */}
+            {/* 2. Amazon (hover dropdown matching 2-panel style) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('amazon')}
@@ -864,57 +1082,25 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className={styles.servicesDropdownContainer}
+                    className={`${styles.servicesDropdownContainer} ${styles.amazonDropdownContainer}`}
                     data-lenis-prevent="true"
                     onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('amazon')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className={styles.dropdownPointer} />
-                    <div className={styles.industriesMenuCard}>
-                      {AMAZON_COLUMNS.map((col, colIdx) => (
-                        <div key={colIdx} className={styles.subServicesCard}>
-                          <div className={styles.subServicesHeader}>
-                            <span className={styles.subServicesTitle}>{col.header}</span>
-                          </div>
-                          <div className={styles.subServicesList}>
-                            {col.items.map((item) => (
-                              <Link
-                                key={item.title}
-                                href={item.href}
-                                className={styles.subServiceItem}
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                <span className={styles.subServiceDot} />
-                                <span className={styles.subServiceText}>{item.title}</span>
-                                <svg
-                                  className={styles.subServiceArrow}
-                                  viewBox="0 0 16 16"
-                                  width="12"
-                                  height="12"
-                                  fill="none"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M6 3L11 8L6 13"
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <TwoColumnDropdown
+                      items={AMAZON_MENU_ITEMS}
+                      activeId={hoveredAmazonId}
+                      setActiveId={setHoveredAmazonId}
+                      onClose={() => setActiveDropdown(null)}
+                      defaultViewAllHref="/services/amazon-ebay"
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
 
-            {/* 3. Business Objectives (hover dropdown) */}
+            {/* 3. Business Objectives (hover dropdown matching 2-panel style) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('objectives')}
@@ -957,70 +1143,25 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className={styles.servicesDropdownContainer}
+                    className={`${styles.servicesDropdownContainer} ${styles.objectivesDropdownContainer}`}
                     data-lenis-prevent="true"
                     onWheel={(e) => e.stopPropagation()}
                     onMouseEnter={() => handleMouseEnter('objectives')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className={styles.dropdownPointer} />
-                    <div className={styles.objectivesMenuCard}>
-                      <div className={styles.subServicesCard}>
-                        <div className={styles.subServicesHeader}>
-                          <span className={styles.subServicesTitle}>Business Objectives</span>
-                          <span className={styles.subServicesSubtitle}>
-                            Strategic growth goals tailored for your scale:
-                          </span>
-                        </div>
-                        <div className={styles.subServicesList}>
-                          {BUSINESS_OBJECTIVES.map((obj) => (
-                            <Link
-                              key={obj.title}
-                              href={obj.href}
-                              className={styles.subServiceItem}
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <span className={styles.subServiceDot} />
-                              <span className={styles.subServiceText}>{obj.title}</span>
-                              <svg
-                                className={styles.subServiceArrow}
-                                viewBox="0 0 16 16"
-                                width="12"
-                                height="12"
-                                fill="none"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  d="M6 3L11 8L6 13"
-                                  stroke="currentColor"
-                                  strokeWidth="1.8"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </Link>
-                          ))}
-                        </div>
-                        <div className={styles.subServicesFooter}>
-                          <Link
-                            href="/services"
-                            className={styles.viewAllServicesLink}
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            <span>Explore All Services</span>
-                            <span className={styles.footerArrow} aria-hidden="true">
-                              →
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+                    <TwoColumnDropdown
+                      items={OBJECTIVES_MENU_ITEMS}
+                      activeId={hoveredObjectivesId}
+                      setActiveId={setHoveredObjectivesId}
+                      onClose={() => setActiveDropdown(null)}
+                      defaultViewAllHref="/services"
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
 
-            {/* 3. Industries (hover dropdown with 3 columns) */}
+            {/* 4. Industries (hover dropdown matching 2-panel style) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('industries')}
@@ -1069,55 +1210,79 @@ export default function Navbar() {
                     onMouseEnter={() => handleMouseEnter('industries')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className={styles.dropdownPointer} />
-                    <div className={styles.industriesMenuCard}>
-                      {INDUSTRIES_COLUMNS.map((col, colIdx) => (
-                        <div key={colIdx} className={styles.subServicesCard}>
-                          <div className={styles.subServicesList}>
-                            {col.map((item) => (
-                              <Link
-                                key={item.title}
-                                href={item.href}
-                                className={styles.subServiceItem}
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                <span className={styles.subServiceDot} />
-                                <span className={styles.subServiceText}>{item.title}</span>
-                                <svg
-                                  className={styles.subServiceArrow}
-                                  viewBox="0 0 16 16"
-                                  width="12"
-                                  height="12"
-                                  fill="none"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    d="M6 3L11 8L6 13"
-                                    stroke="currentColor"
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <TwoColumnDropdown
+                      items={INDUSTRIES_MENU_ITEMS}
+                      activeId={hoveredIndustriesId}
+                      setActiveId={setHoveredIndustriesId}
+                      onClose={() => setActiveDropdown(null)}
+                      defaultViewAllHref="/work"
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
 
-            {/* 3. Direct Link: Work */}
-            <li className={styles.navItem}>
+            {/* 5. Results (hover dropdown matching 2-panel style) */}
+            <li
+              className={styles.navItem}
+              onMouseEnter={() => handleMouseEnter('results')}
+              onMouseLeave={handleMouseLeave}
+            >
               <Link
                 href="/work"
-                className={`${styles.navLink} ${pathname.startsWith('/work') ? styles.activeNav : ''}`}
+                onClick={() => setActiveDropdown(null)}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${
+                  activeDropdown === 'results' || pathname.startsWith('/work')
+                    ? styles.activeNav
+                    : ''
+                }`}
+                aria-expanded={activeDropdown === 'results'}
+                aria-haspopup="true"
               >
-                Work
+                <span>Results</span>
+                <svg
+                  className={`${styles.navChevron} ${
+                    activeDropdown === 'results' ? styles.chevronRotated : ''
+                  }`}
+                  viewBox="0 0 10 6"
+                  width="10"
+                  height="6"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1L5 5L9 1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
+
+              <AnimatePresence>
+                {activeDropdown === 'results' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className={`${styles.servicesDropdownContainer} ${styles.resultsDropdownContainer}`}
+                    data-lenis-prevent="true"
+                    onWheel={(e) => e.stopPropagation()}
+                    onMouseEnter={() => handleMouseEnter('results')}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <TwoColumnDropdown
+                      items={RESULTS_MENU_ITEMS}
+                      activeId={hoveredResultsId}
+                      setActiveId={setHoveredResultsId}
+                      onClose={() => setActiveDropdown(null)}
+                      defaultViewAllHref="/work"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </li>
 
             {/* 4. Direct Link: About */}
@@ -1131,14 +1296,22 @@ export default function Navbar() {
             </li>
 
 
-
-            {/* 6. Direct Link: Contact */}
+            {/* 7. Free Audit (Red Highlight) */}
             <li className={styles.navItem}>
               <Link
                 href="/contact"
-                className={`${styles.navLink} ${pathname === '/contact' ? styles.activeNav : ''}`}
+                className={`${styles.navLink} ${styles.freeAuditLink}`}
+                onClick={(e) => {
+                  if (pathname === '/') {
+                    const contactEl = document.getElementById('contact')
+                    if (contactEl) {
+                      e.preventDefault()
+                      contactEl.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }
+                }}
               >
-                Contact
+                Free Audit
               </Link>
             </li>
           </ul>
@@ -1382,15 +1555,61 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Direct Links matching inspiration */}
-                <Link
-                  href="/work"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={styles.drawerDirectLink}
-                >
-                  Work
-                </Link>
+                {/* 4. Results Accordion */}
+                <div className={styles.drawerAccordion}>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion('results')}
+                    className={styles.accordionHeader}
+                  >
+                    <span className={styles.drawerHeaderLabel}>
+                      Results
+                    </span>
+                    <span
+                      className={`${styles.accordionIcon} ${
+                        mobileAccordion === 'results' ? styles.accordionIconOpen : ''
+                      }`}
+                    >
+                      ▾
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {mobileAccordion === 'results' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                        className={styles.accordionContent}
+                      >
+                        <Link
+                          href="/work"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={styles.mobileSubLink}
+                        >
+                          <span className={styles.mobileMainTitle}>Case Studies</span>
+                          <span className={styles.mobileMainTagline}>Real growth stories & metrics</span>
+                        </Link>
+                        <Link
+                          href="/#testimonials"
+                          onClick={() => {
+                            setMobileMenuOpen(false)
+                            if (pathname === '/') {
+                              const el = document.getElementById('testimonials')
+                              if (el) el.scrollIntoView({ behavior: 'smooth' })
+                            }
+                          }}
+                          className={styles.mobileSubLink}
+                        >
+                          <span className={styles.mobileMainTitle}>Testimonials</span>
+                          <span className={styles.mobileMainTagline}>Client reviews & Google 5.0 ratings</span>
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
+                {/* Direct Links matching inspiration */}
                 <Link
                   href="/about"
                   onClick={() => setMobileMenuOpen(false)}
@@ -1400,13 +1619,18 @@ export default function Navbar() {
                 </Link>
 
 
-
                 <Link
                   href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={styles.drawerDirectLink}
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    if (pathname === '/') {
+                      const contactEl = document.getElementById('contact')
+                      if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
+                  className={`${styles.drawerDirectLink} ${styles.drawerFreeAudit}`}
                 >
-                  Contact
+                  Free Audit
                 </Link>
               </div>
 

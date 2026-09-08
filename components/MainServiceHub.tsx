@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
@@ -15,6 +16,7 @@ import StructuredData from './StructuredData'
 import styles from './MainServiceHub.module.css'
 import type { ServiceRecord, ServiceCapability } from '@/lib/cms-types'
 import WorkTogetherMarquee from './WorkTogetherMarquee'
+import ScrollFillText from './ScrollFillText'
 
 const DEFAULT_BANNER = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
 const DEFAULT_VISION_IMAGE = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop'
@@ -167,9 +169,9 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
             <div className={styles.heroGrid}>
               {/* Left: Main Heading */}
               <div className={styles.heroLeft}>
-                <h1 className={styles.heroTitle}>
+                <AnimatedHeading as="h1" className={styles.heroTitle}>
                   {renderHeroHeading(srv.heroHeading, srv.name)}
-                </h1>
+                </AnimatedHeading>
               </div>
 
               {/* Right: Multi-paragraph overview */}
@@ -182,16 +184,16 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
                         idx === 0 ? styles.heroParagraph : styles.heroParagraph
                       }
                     >
-                      {para}
+                      <ScrollFillText text={para} />
                     </p>
                   ))
                 ) : (
                   <>
                     <p className={styles.heroParagraph}>
-                      Here At KR Tasker Digital, We Offer Honest Advice, Industry Experience, And A Great Portfolio Of Work.
+                      <ScrollFillText text="Here At KR Tasker Digital, We Offer Honest Advice, Industry Experience, And A Great Portfolio Of Work." />
                     </p>
                     <p className={styles.heroParagraph}>
-                      UI/UX, Wireframes, Research And Development — We Understand All Areas Of Web Design. We Can Take A Start-Up Business With Nothing To A Fully Functioning Brand Online And Offline. We Can Revamp An Existing Website Or Take A Successful Brand To The Next Level. Our Talented And Creative In-House Web Design Team In Manchester Will Work Alongside You In Collaboration To Create A Site That Reflects Your Brand, Talks To Your Audience With Meaning And Personality, And Has Great Functionality Across The Latest Devices.
+                      <ScrollFillText text="UI/UX, Wireframes, Research And Development — We Understand All Areas Of Web Design. We Can Take A Start-Up Business With Nothing To A Fully Functioning Brand Online And Offline. We Can Revamp An Existing Website Or Take A Successful Brand To The Next Level. Our Talented And Creative In-House Web Design Team In Manchester Will Work Alongside You In Collaboration To Create A Site That Reflects Your Brand, Talks To Your Audience With Meaning And Personality, And Has Great Functionality Across The Latest Devices." />
                     </p>
                   </>
                 )}
@@ -248,9 +250,9 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               <span className={styles.sectionTag}>
                 {srv.capabilitiesEyebrow || srv.eyebrow || srv.name}
               </span>
-              <h2 className={styles.capabilitiesHeading}>
+              <AnimatedHeading as="h2" className={styles.capabilitiesHeading}>
                 {renderCapabilitiesHeading(srv.capabilitiesHeading)}
-              </h2>
+              </AnimatedHeading>
               <Link
                 href={srv.capabilitiesCtaLink || '/about'}
                 className={styles.btnSecondary}
@@ -267,9 +269,9 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               transition={{ duration: 0.6, delay: 0.1 }}
               className={styles.capabilitiesRight}
             >
-              <h3 className={styles.capabilitiesTitle}>
+              <AnimatedHeading as="h3" className={styles.capabilitiesTitle}>
                 {srv.capabilitiesTitle || 'Our Company Capabilities'}
-              </h3>
+              </AnimatedHeading>
               <nav className={styles.capabilitiesList} aria-label={`${srv.name} capabilities`}>
                 {capabilitiesList.map((cap, idx) => {
                   const targetSlug = cap.slug.startsWith('/')
@@ -318,12 +320,16 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               <span className={styles.sectionTag}>
                 {srv.visionEyebrow || 'We Approach Every Project With A Clear Vision.'}
               </span>
-              <h2 className={styles.visionHeading}>
+              <AnimatedHeading as="h2" className={styles.visionHeading}>
                 {renderVisionHeading(srv.visionHeading)}
-              </h2>
+              </AnimatedHeading>
               <p className={styles.visionDesc}>
-                {srv.visionDescription ||
-                  "We Don't Just Build Pretty Websites. Here At KR Tasker Digital, We Understand All Aspects Of A Successful Site, From Design Through Web Development And Testing, To SEO And Hosting. We Tailor Our Service To The Client And The Project Requirements."}
+                <ScrollFillText
+                  text={
+                    srv.visionDescription ||
+                    "We Don't Just Build Pretty Websites. Here At KR Tasker Digital, We Understand All Aspects Of A Successful Site, From Design Through Web Development And Testing, To SEO And Hosting. We Tailor Our Service To The Client And The Project Requirements."
+                  }
+                />
               </p>
               <Link
                 href={srv.visionCtaLink || '/contact'}

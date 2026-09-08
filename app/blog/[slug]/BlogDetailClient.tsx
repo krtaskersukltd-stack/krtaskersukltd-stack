@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
@@ -43,7 +44,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
                 <span className={styles.tag}>{post.category}</span>
               </div>
               
-              <h1 className={styles.heroTitle}>{post.title}</h1>
+              <AnimatedHeading as="h1" className={styles.heroTitle}>{post.title}</AnimatedHeading>
               
               <div className={styles.authorCard}>
                 <img src={post.authorImage} alt={post.authorName} className={styles.authorAvatar} />
@@ -111,9 +112,9 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
                       )
                     case 'heading':
                       return (
-                        <h2 key={idx} className={styles.heading}>
+                        <AnimatedHeading as="h2" key={idx} className={styles.heading}>
                           {block.text}
-                        </h2>
+                        </AnimatedHeading>
                       )
                     case 'quote':
                       return (

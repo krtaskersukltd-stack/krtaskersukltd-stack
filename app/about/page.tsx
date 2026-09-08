@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
@@ -131,7 +132,7 @@ export default function AboutPage() {
       {/* Hero section */}
       <section className={styles.hero}>
         <div className={styles.container}>
-          <motion.h1
+          <AnimatedHeading as="h1"
             initial={{
               opacity: 0,
               y: 30,
@@ -150,7 +151,7 @@ export default function AboutPage() {
               Marketing
             </span>{' '}
             Makes Brand Better.
-          </motion.h1>
+          </AnimatedHeading>
 
           <div className={styles.arcWrapper}>
             <motion.div
@@ -204,12 +205,12 @@ export default function AboutPage() {
               About Us
               </div>
 
-              <h2 className={styles.introHeading}>
+              <AnimatedHeading as="h2" className={styles.introHeading}>
                 Expert Web Designers And Web Developers
                 Trained In The Digital Industry Who Offer A
                 Bespoke, Professional And Trustworthy
                 Service.
-              </h2>
+              </AnimatedHeading>
             </motion.div>
 
             <motion.div
@@ -350,11 +351,11 @@ We work with ambitious start-up businesses through to large global organisations
               }}
               className={styles.leftCol}
             >
-              <h2 className={styles.introHeading}>
+              <AnimatedHeading as="h2" className={styles.introHeading}>
                 We Were Born Out Of Frustration, Not With
                 Marketing Itself, But With How It Was Being
                 Delivered.
-              </h2>
+              </AnimatedHeading>
             </motion.div>
 
             <motion.div
@@ -409,9 +410,9 @@ We work with ambitious start-up businesses through to large global organisations
       >
         <div className={styles.container}>
           <div className={styles.esgHeader}>
-            <h2 className={styles.esgTitle}>
+            <AnimatedHeading as="h2" className={styles.esgTitle}>
               ESG At KR Tasker Digital
-            </h2>
+            </AnimatedHeading>
 
             <p className={styles.esgDesc}>
               At KR Tasker, we see doing the right thing as
@@ -472,9 +473,9 @@ We work with ambitious start-up businesses through to large global organisations
                       : styles.esgCardInactive
                   }`}
                 >
-                  <h3 className={styles.esgCardTitle}>
+                  <AnimatedHeading as="h3" className={styles.esgCardTitle}>
                     {item.title}
-                  </h3>
+                  </AnimatedHeading>
 
                   <p className={styles.esgCardText}>
                     {item.text}

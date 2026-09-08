@@ -1,8 +1,11 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 import styles from './Contact.module.css'
+import CustomSelect from './CustomSelect'
+import ScrollFillText from './ScrollFillText'
 
 function AnimatedCounter({ to, suffix = '', duration = 2 }: { to: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0)
@@ -53,12 +56,12 @@ const servicesOptions = [
 ]
 
 const budgetOptions = [
-  '2000$',
-  'Under $1,000',
-  '$1,000 - $3,000',
-  '$3,000 - $5,000',
-  '$5,000 - $10,000',
-  '$10,000+',
+  '2000£',
+  'Under £1,000',
+  '£1,000 - £3,000',
+  '£3,000 - £5,000',
+  '£5,000 - £10,000',
+  '£10,000+',
 ]
 
 export default function Contact() {
@@ -66,7 +69,7 @@ export default function Contact() {
     name: '',
     email: '',
     service: 'Digital 360',
-    budget: '2000$',
+    budget: '2000£',
     message: '',
   })
 
@@ -128,15 +131,13 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.headerTitle}>
+          <AnimatedHeading as="h2" className={styles.headerTitle}>
             Let&apos;s Build A Smarter
             <br />
             Growth Strategy Together
-          </h2>
+          </AnimatedHeading>
           <p className={styles.headerSub}>
-            Have a question or want to discuss your growth goals?
-            <br />
-            Our team is ready to help and usually responds within one business day.
+            <ScrollFillText text="Have a question or want to discuss your growth goals? Our team is ready to help and usually responds within one business day." />
           </p>
         </motion.div>
 
@@ -156,9 +157,9 @@ export default function Contact() {
                 <span>Available For New Projects</span>
               </div>
 
-              <h2 className={styles.mainHeading}>
+              <AnimatedHeading as="h2" className={styles.mainHeading}>
                 Let&apos;s Connect
-              </h2>
+              </AnimatedHeading>
 
               <p className={styles.description}>
                 Feel Free To Contact Me If Having Any Questions. I&apos;m Available For New Projects Or
@@ -197,7 +198,7 @@ export default function Contact() {
               {isSubmitted ? (
                 <div className={styles.successWrapper}>
                   <div className={styles.successIcon}>✓</div>
-                  <h3 className={styles.successTitle}>Request Sent!</h3>
+                  <AnimatedHeading as="h3" className={styles.successTitle}>Request Sent!</AnimatedHeading>
                   <p className={styles.successDesc}>
                     Thank you, <strong>{formData.name}</strong>. We&apos;ve received your message and will
                     be in touch within 1 business day.
@@ -210,7 +211,7 @@ export default function Contact() {
                         name: '',
                         email: '',
                         service: 'Digital 360',
-                        budget: '2000$',
+                        budget: '2000£',
                         message: '',
                       })
                     }}
@@ -261,66 +262,26 @@ export default function Contact() {
                       <label className={styles.inputLabel} htmlFor="contact-service">
                         Services
                       </label>
-                      <div className={styles.selectWrapper}>
-                        <select
-                          id="contact-service"
-                          value={formData.service}
-                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className={styles.pillSelect}
-                        >
-                          {servicesOptions.map((srv) => (
-                            <option key={srv} value={srv}>
-                              {srv}
-                            </option>
-                          ))}
-                        </select>
-                        <svg
-                          className={styles.selectChevron}
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
-                      </div>
+                      <CustomSelect
+                        id="contact-service"
+                        name="service"
+                        value={formData.service}
+                        options={servicesOptions}
+                        onChange={(val) => setFormData({ ...formData, service: val })}
+                      />
                     </div>
 
                     <div className={styles.formGroup}>
                       <label className={styles.inputLabel} htmlFor="contact-budget">
                         Budget
                       </label>
-                      <div className={styles.selectWrapper}>
-                        <select
-                          id="contact-budget"
-                          value={formData.budget}
-                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className={styles.pillSelect}
-                        >
-                          {budgetOptions.map((bgt) => (
-                            <option key={bgt} value={bgt}>
-                              {bgt}
-                            </option>
-                          ))}
-                        </select>
-                        <svg
-                          className={styles.selectChevron}
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
-                      </div>
+                      <CustomSelect
+                        id="contact-budget"
+                        name="budget"
+                        value={formData.budget}
+                        options={budgetOptions}
+                        onChange={(val) => setFormData({ ...formData, budget: val })}
+                      />
                     </div>
                   </div>
 

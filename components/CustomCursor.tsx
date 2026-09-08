@@ -43,7 +43,7 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      const interactiveEl = target.closest('a, button, [role="button"], [data-cursor], input, textarea')
+      const interactiveEl = target.closest('a, button, [role="button"], input, textarea, select, [data-cursor], [tabindex]')
       if (interactiveEl) {
         setHovered(true)
         const text = interactiveEl.getAttribute('data-cursor')
@@ -55,7 +55,7 @@ export default function CustomCursor() {
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      const interactiveEl = target.closest('a, button, [role="button"], [data-cursor], input, textarea')
+      const interactiveEl = target.closest('a, button, [role="button"], input, textarea, select, [data-cursor], [tabindex]')
       if (interactiveEl) {
         setHovered(false)
         setCursorText('')
@@ -113,18 +113,15 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          scale: isClicked ? 0.8 : hovered ? 1.6 : 1,
+          opacity: hovered ? 0 : 1,
+          scale: hovered ? 0 : isClicked ? 0.8 : 1,
           borderColor: '#0c4651',
           borderWidth: isClicked ? '2px' : '1.5px',
           backgroundColor: isClicked
             ? 'rgba(230, 255, 42, 0.45)'
-            : hovered
-            ? 'rgba(230, 255, 42, 0.25)'
             : 'rgba(230, 255, 42, 0.08)',
           boxShadow: isClicked
             ? '0 0 0 2.5px #e6ff2a, 0 4px 18px rgba(230, 255, 42, 0.5)'
-            : hovered
-            ? '0 0 0 2px #e6ff2a, 0 4px 16px rgba(230, 255, 42, 0.35)'
             : '0 0 0 1.5px #e6ff2a, 0 2px 8px rgba(12, 70, 81, 0.15)',
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 25 }}
@@ -146,7 +143,8 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          scale: isClicked ? 1.4 : hovered ? 0 : 1,
+          opacity: hovered ? 0 : 1,
+          scale: hovered ? 0 : isClicked ? 1.4 : 1,
           backgroundColor: '#e6ff2a',
           borderColor: '#0c4651',
         }}

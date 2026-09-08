@@ -1,2 +1,22 @@
-.text { color: var(--teal, #0c4651); }
-.word { display: inline-block; }
+/* components/ScrollFillText.module.css */
+
+.text {
+  display: inline;
+  color: var(--teal, #0c4651);
+}
+
+p.text,
+div.text {
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letter {
+  display: inline-block;
+  color: #a3a8a9;
+  will-change: color;
+}

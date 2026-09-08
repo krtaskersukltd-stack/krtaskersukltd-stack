@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -31,10 +32,10 @@ export default function TeamPage() {
         
         {/* Header Section */}
         <section className={styles.headerSection}>
-          <h1 className={styles.title}>
+          <AnimatedHeading as="h1" className={styles.title}>
             We bring a wealth of <span className={styles.tealText}>skills and experience</span><br/>
             from a wide range of backgrounds.
-          </h1>
+          </AnimatedHeading>
           <p className={styles.subtitle}>
             Our philosophy is simple. Hire great people and give them<br/>
             the resources and support to do their best work.
@@ -54,7 +55,7 @@ export default function TeamPage() {
                   sizes="(max-width: 768px) 75vw, 25vw"
                 />
                 <div className={styles.infoBox}>
-                  <h3 className={styles.memberName}>{member.name}</h3>
+                  <AnimatedHeading as="h3" className={styles.memberName}>{member.name}</AnimatedHeading>
                   <p className={styles.memberRole}>{member.role}</p>
                 </div>
               </div>
@@ -65,9 +66,9 @@ export default function TeamPage() {
         {/* Hiring Section */}
         <section className={styles.hiringSection}>
           <div className={styles.hiringLeft}>
-            <h2 className={styles.hiringTitle}>
+            <AnimatedHeading as="h2" className={styles.hiringTitle}>
               We are looking for <span className={styles.tealText}>great</span> people
-            </h2>
+            </AnimatedHeading>
             <p className={styles.hiringDesc}>
               Interested in working with a world-class team on problems
               that really matter? We are growing fast and hiring access

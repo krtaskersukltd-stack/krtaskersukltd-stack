@@ -145,6 +145,26 @@
   text-decoration-color: #0b0f12;
 }
 
+/* Free Audit Highlight Link (Red) */
+.navLink.freeAuditLink {
+  color: #ef4444;
+  font-weight: 700;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navLink.freeAuditLink:hover {
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.darkTheme .navLink.freeAuditLink {
+  color: #ff5e5e;
+}
+
+.darkTheme .navLink.freeAuditLink:hover {
+  color: #ff8080;
+}
+
 /* ================= DARK THEME (WHEN ON DARK HERO / SECTIONS) ================= */
 .darkTheme .navLinkBtn,
 .darkTheme .navLink {
@@ -209,11 +229,11 @@
 }
 
 .contactBtn:hover {
-  background: #ffffff;
-  color: #0b0f12;
-  border-color: #ffffff;
+  background: var(--teal, #0c4651);
+  color: #ffffff;
+  border-color: var(--teal, #0c4651);
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 22px rgba(12, 70, 81, 0.28);
 }
 
 /* Down Angle / Chevron for Nav items with subpages */
@@ -249,136 +269,107 @@
   height: 28px;
 }
 
-.dropdownPointer {
-  position: absolute;
-  top: -6px;
-  left: 42px;
-  width: 14px;
-  height: 14px;
-  background: #ffffff;
-  transform: rotate(45deg);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-  z-index: 2;
-}
-
 .servicesDropdownCard {
   display: grid;
-  grid-template-columns: 290px 320px;
-  gap: 20px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 22px;
+  grid-template-columns: 260px 320px;
+  gap: 16px;
+  background: #f8f7f2;
+  border-radius: 28px;
+  padding: 20px;
+  border: 1.5px solid #0c4651;
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.12),
-    0 4px 14px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+    0 24px 60px -10px rgba(0, 0, 0, 0.18),
+    0 8px 24px -4px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  box-sizing: border-box;
 }
 
-/* Left Column: Main Services */
+/* Left Column: Main Services List */
 .mainServicesList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  overscroll-behavior: contain;
+  gap: 10px;
 }
 
 .mainServiceItem {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 10px;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-  position: relative;
-}
-
-.mainServiceItem:hover,
-.activeServiceItem {
-  background-color: #f5f5f7;
-  transform: translateX(3px);
-}
-
-.mainServiceRow {
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  height: 46px;
+  padding: 0 8px 0 20px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
 .mainServiceTitle {
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
-  color: #0b0f12;
+  color: #111827;
   transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.circleBadge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #dfe4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  flex-shrink: 0;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circleChevron {
+  display: block;
+}
+
+/* Active / Hovered State */
+.activeServiceItem,
+.mainServiceItem:hover {
+  background-color: #0c4651;
 }
 
 .activeServiceItem .mainServiceTitle,
 .mainServiceItem:hover .mainServiceTitle {
-  color: var(--teal, #0c4651);
+  color: #ffffff;
 }
 
-.serviceItemBadge {
+.activeServiceItem .circleBadge,
+.mainServiceItem:hover .circleBadge {
   background: var(--lime, #e6ff2a);
-  color: #0b0f12;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 9999px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  color: #0c4651;
+  transform: scale(1.04);
 }
 
-.activeServiceIndicator {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--teal, #0c4651);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s ease;
-  margin-left: auto;
-}
-
-.indicatorVisible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.mainServiceTagline {
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 12.5px;
-  font-weight: 400;
-  color: #64748b;
-  line-height: 1.35;
-}
-
-/* Right Column: Sub-Services Display Box */
+/* Right Column: Solid Dark Teal Sub-Services Card */
 .subServicesCard {
-  background: #f5f5f7;
-  border-radius: 14px;
-  padding: 18px 16px;
+  background: #0c4651;
+  border-radius: 22px;
+  padding: 22px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  color: #ffffff;
+  box-sizing: border-box;
+  min-height: 380px;
 }
 
 .subServicesHeader {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 4px;
+  border-bottom: none;
 }
 
 .subServicesHeaderTop {
@@ -390,9 +381,9 @@
 
 .subServicesTitle {
   font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
-  color: #0b0f12;
+  color: #ffffff;
 }
 
 .subServicesBadge {
@@ -409,15 +400,15 @@
   font-family: var(--font-body, "Inter", sans-serif);
   font-size: 12px;
   font-weight: 400;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.35;
 }
 
 .subServicesList {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  max-height: 380px;
+  gap: 6px;
+  max-height: 240px;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 4px;
@@ -428,7 +419,7 @@
 }
 
 .subServicesList::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
@@ -436,210 +427,66 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 10px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 9999px;
   text-decoration: none;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .subServiceItem:hover {
-  background: #0c4651;
-  color: #ffffff;
+  background: rgba(230, 255, 42, 0.18);
+  border-color: rgba(230, 255, 42, 0.4);
+  color: var(--lime, #e6ff2a);
   transform: translateX(3px);
-  border-color: #0c4651;
 }
 
 .subServiceDot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: var(--teal, #0c4651);
-  flex-shrink: 0;
-  transition: background-color 0.2s ease;
-}
-
-.subServiceItem:hover .subServiceDot {
   background-color: var(--lime, #e6ff2a);
+  flex-shrink: 0;
+  margin-right: 2px;
 }
 
 .subServiceText {
   font-family: var(--font-body, "Inter", sans-serif);
   font-size: 13px;
   font-weight: 500;
-  color: #1e293b;
-  flex: 1;
-  transition: color 0.2s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.subServiceItem:hover .subServiceText {
   color: #ffffff;
-  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
 }
 
-.subServiceArrow {
-  color: #94a3b8;
-  flex-shrink: 0;
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease;
+/* Dropdown Position Alignments */
+.amazonDropdownContainer {
+  left: clamp(-100px, -6vw, -30px);
 }
 
-.subServiceItem:hover .subServiceArrow {
-  color: var(--lime, #e6ff2a);
-  transform: translateX(2px);
-}
-
-.subServicesFooter {
-  padding-top: 8px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.viewAllServicesLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--teal, #0c4651);
-  text-decoration: none;
-  transition:
-    gap 0.2s ease,
-    color 0.2s ease;
-}
-
-.viewAllServicesLink:hover {
-  color: #0b0f12;
-  gap: 10px;
-}
-
-.footerArrow {
-  transition: transform 0.2s ease;
-}
-
-.viewAllServicesLink:hover .footerArrow {
-  transform: translateX(3px);
-}
-
-/* Right Column: Featured View All Services Card (Fallback / Industries) */
-.viewAllCard {
-  background: #f5f5f7;
-  border-radius: 14px;
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.viewAllCard:hover {
-  transform: translateY(-2px);
-  background: #ededf0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.viewAllHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.viewAllTitle {
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 16px;
-  font-weight: 700;
-  color: #0b0f12;
-}
-
-.viewAllSubtitle {
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 12.5px;
-  font-weight: 400;
-  color: #64748b;
-  line-height: 1.4;
-}
-
-.viewAllImageWrapper {
-  width: 100%;
-  height: 110px;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.viewAllImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.viewAllCard:hover .viewAllImage {
-  transform: scale(1.04);
-}
-
-/* ================= OBJECTIVES & INDUSTRIES DROPDOWN CARDS ================= */
-.objectivesMenuCard {
-  width: 320px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.12),
-    0 4px 14px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+.objectivesDropdownContainer {
+  left: clamp(-120px, -8vw, -40px);
 }
 
 .industriesDropdownContainer {
-  left: auto;
-  right: -50px;
+  left: clamp(-160px, -10vw, -50px);
 }
 
-.industriesDropdownContainer .dropdownPointer {
-  left: auto;
-  right: 92px;
+.resultsDropdownContainer {
+  left: clamp(-200px, -14vw, -80px);
 }
 
-.industriesMenuCard {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(190px, 220px));
-  gap: 12px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.12),
-    0 4px 14px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.servicesDropdownCard::-webkit-scrollbar,
-.industriesMenuCard::-webkit-scrollbar,
-.objectivesMenuCard::-webkit-scrollbar {
+.servicesDropdownCard::-webkit-scrollbar {
   width: 4px;
 }
 
-.servicesDropdownCard::-webkit-scrollbar-thumb,
-.industriesMenuCard::-webkit-scrollbar-thumb,
-.objectivesMenuCard::-webkit-scrollbar-thumb {
+.servicesDropdownCard::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
@@ -877,6 +724,15 @@
   color: var(--teal, #0c4651);
 }
 
+.drawerDirectLink.drawerFreeAudit {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.drawerDirectLink.drawerFreeAudit:hover {
+  color: #dc2626;
+}
+
 .drawerFooter {
   padding: 20px 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
@@ -946,46 +802,123 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
   width: 270px;
   height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   padding-bottom: 5px;
-  background: var(--teal, #0c4651);
+  background: transparent;
   color: white;
   font-size: 11px;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    97% 3%,
-    94% 12%,
-    92% 28%,
-    91% 55%,
-    89% 76%,
-    86% 91%,
-    82% 100%,
-    18% 100%,
-    14% 91%,
-    11% 76%,
-    9% 55%,
-    8% 28%,
-    6% 12%,
-    3% 3%
-  );
-  transition: opacity 0.2s;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.28s ease;
+  z-index: 100;
+  will-change: transform, opacity;
 }
-.availabilityNotch span {
+
+.notchSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: visible;
+}
+
+.notchPath {
+  fill: var(--teal, #0c4651);
+  transition: fill 0.25s ease;
+}
+
+.availabilityNotch:hover {
+  transform: translateX(-50%) translateY(1px);
+}
+
+.availabilityNotch:hover .notchPath {
+  fill: #08373f;
+}
+
+.availabilityNotch:hover .notchText {
+  color: var(--lime, #e6ff2a);
+}
+
+.notchText {
+  transition: color 0.2s ease;
+}
+
+/* Pulsing Status Dot */
+.pulseDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pulseCore {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--lime, #e6ff2a);
+  box-shadow: 0 0 8px rgba(230, 255, 42, 0.95);
+  animation: coreBlink 1.8s ease-in-out infinite;
 }
+
+.pulseRing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid var(--lime, #e6ff2a);
+  animation: radarPulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.95;
+  }
+  70% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes coreBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(230, 255, 42, 0.95);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+    box-shadow: 0 0 3px rgba(230, 255, 42, 0.3);
+  }
+}
+
 .scrolled .availabilityNotch {
   opacity: 0;
+  transform: translateX(-50%) translateY(-140%);
+  pointer-events: none;
 }
+
 @media (max-width: 640px) {
   .homeHeader:not(.scrolled) {
     padding-top: 40px;

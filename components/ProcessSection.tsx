@@ -1,8 +1,10 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ScrollFillText from './ScrollFillText'
 import styles from './ProcessSection.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -26,11 +28,11 @@ const logos = [
 
 function StepIcon({ index }: { index: number }) {
   const paths = [
-    <><path d="M20 11a8 8 0 1 1-2.34-5.66" /><path d="M20 4v7h-7" /></>,
+    <><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></>,
     <><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" /><path d="m13.5 7.5 3 3" /></>,
     <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="m7 12 3 3 7-7" /></>,
     <><path d="M5 20V8" /><path d="m2 11 3-3 3 3" /><path d="M11 20h10" /><path d="M11 15h7" /><path d="M11 10h4" /></>,
-    <><circle cx="10" cy="10" r="7" /><path d="m15 15 6 6" /></>,
+    <><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></>,
     <><path d="M4 20V10" /><path d="M10 20V6" /><path d="M16 20v-7" /><path d="m3 8 6-5 6 5 6-5" /></>,
   ]
   return <svg className={styles.stepIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round">{paths[index]}</svg>
@@ -77,8 +79,10 @@ export default function ProcessSection() {
       <div ref={trackRef} className={styles.horizontalTrack}>
         <div className={styles.introBlock}>
           <span className={styles.eyebrow}>How we make growth happen</span>
-          <h2 className={styles.tag}>Our <b>Process</b></h2>
-          <p className={styles.introText}>A clear, collaborative process that takes your project from insight to measurable, scalable growth.</p>
+          <AnimatedHeading as="h2" className={styles.tag}>Our <b>Process</b></AnimatedHeading>
+          <p className={styles.introText}>
+            <ScrollFillText text="A clear, collaborative process that takes your project from insight to measurable, scalable growth." />
+          </p>
           <div className={styles.logoGrid}>
             {logos.map(([brand, src]) => <div key={brand} className={styles.logoCard}><img src={src} alt={brand} /></div>)}
           </div>
@@ -93,7 +97,7 @@ export default function ProcessSection() {
               <StepIcon index={index} />
             </div>
             <div>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <AnimatedHeading as="h3" className={styles.stepTitle}>{step.title}</AnimatedHeading>
               <p className={styles.stepDesc}>{step.desc}</p>
             </div>
           </article>

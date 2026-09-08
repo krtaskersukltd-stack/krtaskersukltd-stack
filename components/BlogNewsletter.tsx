@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import IconsOrbit from './IconsOrbit'
@@ -53,9 +54,9 @@ export default function BlogNewsletter({ className = '' }: BlogNewsletterProps) 
       <div className={styles.newsletterContent}>
         <div className={styles.leftNews}>
           <span className={styles.newsTag}>Spam Free Newsletter</span>
-          <h2 className={styles.newsTitle}>
+          <AnimatedHeading as="h2" className={styles.newsTitle}>
             Receive The Most Up To Date <span className={styles.yellowText}>Insights & Strategies</span>
-          </h2>
+          </AnimatedHeading>
         </div>
 
         <div className={styles.rightNews}>

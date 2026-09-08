@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
@@ -63,14 +64,14 @@ export default function TermsPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.container}>
-          <motion.h1 
+          <AnimatedHeading as="h1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className={styles.heroTitle}
           >
             Terms & Conditions
-          </motion.h1>
+          </AnimatedHeading>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -87,7 +88,7 @@ export default function TermsPage() {
         <div className={styles.contentLayout}>
           {/* Sidebar */}
           <aside className={styles.sidebar}>
-            <h3 className={styles.sidebarTitle}>Table of Contents</h3>
+            <AnimatedHeading as="h3" className={styles.sidebarTitle}>Table of Contents</AnimatedHeading>
             <ul className={styles.tocList}>
               {sections.map((sec) => (
                 <li key={sec.id}>
@@ -105,7 +106,7 @@ export default function TermsPage() {
           {/* Detailed Policy Text */}
           <article className={styles.content}>
             <section id="introduction" className={styles.section}>
-              <h2 className={styles.sectionHeading}>1. Introduction & Acceptance</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>1. Introduction & Acceptance</AnimatedHeading>
               <p className={styles.paragraph}>
                 Welcome to KR Tasker Digital. These Terms & Conditions govern your access to and use of the services provided by <span className={styles.highlightText}>KR Tasker Digital Ltd</span> (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), including our website and any other digital marketing, web design, SEO, social media, or AI services we perform.
               </p>
@@ -115,7 +116,7 @@ export default function TermsPage() {
             </section>
 
             <section id="services" className={styles.section}>
-              <h2 className={styles.sectionHeading}>2. Scope of Services</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>2. Scope of Services</AnimatedHeading>
               <p className={styles.paragraph}>
                 KR Tasker Digital provides a wide range of performance-driven digital growth services including, but not limited to:
               </p>
@@ -132,7 +133,7 @@ export default function TermsPage() {
             </section>
 
             <section id="obligations" className={styles.section}>
-              <h2 className={styles.sectionHeading}>3. Client Obligations</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Client Obligations</AnimatedHeading>
               <p className={styles.paragraph}>
                 To ensure successful delivery of our services, you agree to:
               </p>
@@ -147,7 +148,7 @@ export default function TermsPage() {
             </section>
 
             <section id="ip" className={styles.section}>
-              <h2 className={styles.sectionHeading}>4. Intellectual Property Rights</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Intellectual Property Rights</AnimatedHeading>
               <p className={styles.paragraph}>
                 Unless otherwise specified in a signed SOW:
               </p>
@@ -165,7 +166,7 @@ export default function TermsPage() {
             </section>
 
             <section id="payments" className={styles.section}>
-              <h2 className={styles.sectionHeading}>5. Fees & Payments</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Fees & Payments</AnimatedHeading>
               <p className={styles.paragraph}>
                 In consideration of the services, you agree to pay the fees specified in the SOW or invoice. 
               </p>
@@ -178,7 +179,7 @@ export default function TermsPage() {
             </section>
 
             <section id="liability" className={styles.section}>
-              <h2 className={styles.sectionHeading}>6. Limitation of Liability</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Limitation of Liability</AnimatedHeading>
               <p className={styles.paragraph}>
                 To the maximum extent permitted by applicable law:
               </p>
@@ -189,7 +190,7 @@ export default function TermsPage() {
             </section>
 
             <section id="termination" className={styles.section}>
-              <h2 className={styles.sectionHeading}>7. Term & Termination</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>7. Term & Termination</AnimatedHeading>
               <p className={styles.paragraph}>
                 Either party may terminate the service agreement under the following conditions:
               </p>
@@ -204,7 +205,7 @@ export default function TermsPage() {
             </section>
 
             <section id="governing-law" className={styles.section}>
-              <h2 className={styles.sectionHeading}>8. Governing Law</h2>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>8. Governing Law</AnimatedHeading>
               <p className={styles.paragraph}>
                 These Terms & Conditions, and any dispute or claim arising out of or in connection with them or their subject matter, shall be governed by and construed in accordance with the laws of <span className={styles.highlightText}>England & Wales</span>. 
               </p>

@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import styles from './not-found.module.css'
@@ -16,22 +17,22 @@ export default function NotFound() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <motion.h1 
+        <AnimatedHeading as="h1"
           className={styles.title}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
         >
           404
-        </motion.h1>
-        <motion.h2 
+        </AnimatedHeading>
+        <AnimatedHeading as="h2"
           className={styles.subtitle}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           Page Not Found
-        </motion.h2>
+        </AnimatedHeading>
         <motion.p 
           className={styles.description}
           initial={{ opacity: 0 }}

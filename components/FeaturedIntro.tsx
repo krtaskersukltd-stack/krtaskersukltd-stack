@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -24,13 +25,11 @@ export default function FeaturedIntro() {
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className={styles.heading}>
-            <ScrollFillText text="For Bold Ideas For Real World Results, See How We Bring Digital To Life." />
-          </h2>
+          <AnimatedHeading as="h2" className={styles.heading}>
+            For Bold Ideas For Real World Results, See How We Bring Digital To Life.
+          </AnimatedHeading>
           <p className={styles.description}>
-            From visionary startups to established industry leaders, we help brands grow with bold
-            creative, full-funnel strategy and specialist-level execution, building digital experiences
-            that drive real traffic, leads, and long-term growth.
+            <ScrollFillText text="From visionary startups to established industry leaders, we help brands grow with bold creative, full-funnel strategy and specialist-level execution, building digital experiences that drive real traffic, leads, and long-term growth." />
           </p>
           <Link href="/work" className={styles.button}>View All Projects</Link>
         </motion.div>

@@ -1,5 +1,6 @@
 'use client'
 
+import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -62,7 +63,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
               <span className={styles.eyebrowMeta}>
                 {cs.year || '2023'} • {cs.client || 'Gary Neville'}
               </span>
-              <h1 className={styles.mainTitle}>{cs.title}</h1>
+              <AnimatedHeading as="h1" className={styles.mainTitle}>{cs.title}</AnimatedHeading>
             </div>
           </div>
 
@@ -112,9 +113,9 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
         <div className={styles.container}>
           <div className={styles.introGrid}>
             <div className={styles.introLeft}>
-              <h2 className={styles.introHeading}>
+              <AnimatedHeading as="h2" className={styles.introHeading}>
                 A new personal brand identity, bespoke site and build
-              </h2>
+              </AnimatedHeading>
               
               <div className={styles.teamSquad}>
                 <div className={styles.squircleAvatarRow}>
@@ -260,7 +261,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
                 className={styles.browserImage}
               />
               <div className={styles.browserOverlayHeadline}>
-                <h2>NO EXCUSES, NO SHORTCUTS, NO REGRETS.</h2>
+                <AnimatedHeading as="h2">NO EXCUSES, NO SHORTCUTS, NO REGRETS.</AnimatedHeading>
               </div>
             </div>
           </div>
@@ -273,7 +274,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
           <div className={styles.storySplitHeader}>
             <div className={styles.storyLeft}>
               <span className={styles.storyStepBadge}>• 01 / Strategy</span>
-              <h2 className={styles.storyTitle}>Exclusive yet progressive</h2>
+              <AnimatedHeading as="h2" className={styles.storyTitle}>Exclusive yet progressive</AnimatedHeading>
             </div>
             <div className={styles.storyRight}>
               <p className={styles.storyParagraph}>
@@ -328,7 +329,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
           <div className={styles.storySplitHeader}>
             <div className={styles.storyLeft}>
               <span className={styles.storyStepBadge}>• 02 / Identity</span>
-              <h2 className={styles.storyTitle}>The heart of the brand</h2>
+              <AnimatedHeading as="h2" className={styles.storyTitle}>The heart of the brand</AnimatedHeading>
             </div>
             <div className={styles.storyRight}>
               <p className={styles.storyParagraph}>
@@ -368,7 +369,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
           <div className={styles.moodboardGrid}>
             <div className={styles.tileDark}>
               <span className={styles.tileEyebrow}>CORE VALUES</span>
-              <h3 className={styles.tileHeading}>INSIGHT. INTEGRITY & PURPOSE.</h3>
+              <AnimatedHeading as="h3" className={styles.tileHeading}>INSIGHT. INTEGRITY & PURPOSE.</AnimatedHeading>
             </div>
             <div className={styles.tileImg}>
               <img
@@ -381,7 +382,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
               <span className={styles.tileMonoLarge}>UA92</span>
             </div>
             <div className={styles.tileDark}>
-              <h3 className={styles.tileHeading}>ATTACK THE DAY</h3>
+              <AnimatedHeading as="h3" className={styles.tileHeading}>ATTACK THE DAY</AnimatedHeading>
             </div>
             <div className={styles.tileLight}>
               <span className={styles.tileSayHello}>SAY HELLO</span>
@@ -413,7 +414,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
           <div className={styles.storySplitHeader}>
             <div className={styles.storyLeft}>
               <span className={styles.storyStepBadge}>• 03 / Impact</span>
-              <h2 className={styles.storyTitle}>Carefully Curated Media</h2>
+              <AnimatedHeading as="h2" className={styles.storyTitle}>Carefully Curated Media</AnimatedHeading>
             </div>
             <div className={styles.storyRight}>
               <p className={styles.storyParagraph}>
@@ -464,7 +465,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
           <div className={styles.whatNextHeader}>
             <div>
               <span className={styles.whatNextEyebrow}>• More good stuff</span>
-              <h2 className={styles.whatNextTitle}>What next?</h2>
+              <AnimatedHeading as="h2" className={styles.whatNextTitle}>What next?</AnimatedHeading>
             </div>
             <Link href="/work" className={styles.browseAllBtn}>
               Browse all Work ↗
@@ -482,7 +483,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
                   <span className={styles.relatedMeta}>
                     {item.year || '2024'} • {item.category}
                   </span>
-                  <h3 className={styles.relatedTitle}>{item.title}</h3>
+                  <AnimatedHeading as="h3" className={styles.relatedTitle}>{item.title}</AnimatedHeading>
                 </Link>
               )
             })}

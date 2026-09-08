@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef, type CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,6 +10,7 @@ import CrossedMarquee from './CrossedMarquee'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
+  const reducedMotion = useReducedMotion()
 
   // Scroll parallax for header
   const { scrollYProgress } = useScroll({
@@ -23,7 +24,7 @@ export default function Hero() {
     <section ref={heroRef} className={styles.heroSection}>
       <div className={styles.container}>
         <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
+          style={reducedMotion ? undefined : { opacity: heroOpacity, y: heroY }}
           className={styles.headerContent}
         >
           {/* Main Headline */}
@@ -99,9 +100,9 @@ export default function Hero() {
 
       {/* Full-width Image Showcase Wrapper (5px spacing from left and right) */}
       <motion.div
-        initial={{ opacity: 0, y: 40, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        initial={reducedMotion ? false : { opacity: 0, y: 100, scale: 0.9, clipPath: 'inset(8% 4% 0% round 32px)' }}
+        animate={{ opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% round 32px)' }}
+        transition={{ duration: 1.3, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={styles.imageWrapper}
       >
         <Image
