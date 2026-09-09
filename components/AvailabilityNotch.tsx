@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import styles from './Navbar.module.css'
 
 interface AvailabilityNotchProps {
@@ -13,35 +12,22 @@ export default function AvailabilityNotch({
   text = 'Available For New Projects',
   href = '/contact',
 }: AvailabilityNotchProps) {
-  const pathname = usePathname()
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === '/') {
-      const contactEl = document.getElementById('contact')
-      if (contactEl) {
-        e.preventDefault()
-        contactEl.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
-  }
-
   return (
     <Link
       href={href}
       className={styles.availabilityNotch}
-      onClick={handleClick}
       aria-label={`${text} - Contact Us`}
     >
       <svg
         className={styles.notchSvg}
-        viewBox="0 0 270 34"
+        viewBox="0 0 270 42"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
         <path
-          d="M0 0 C8 1 16 4 22 10 C24 19 30 26 38 31 C42 33 45 34 49 34 H221 C225 34 228 33 232 31 C240 26 246 19 248 10 C254 4 262 1 270 0 Z"
+          d="M0 0 H270 C252 0 242 11 242 24 C242 36 232 42 220 42 H50 C38 42 28 36 28 24 C28 11 18 0 0 0 Z"
           className={styles.notchPath}
         />
       </svg>

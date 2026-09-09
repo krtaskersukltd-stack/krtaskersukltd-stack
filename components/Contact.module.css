@@ -5,9 +5,9 @@
 
 .container {
   width: 100%;
-  max-width: 1666px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 clamp(16px, 3vw, 40px);
+  padding-inline: var(--container-pad);
   box-sizing: border-box;
 }
 
@@ -526,21 +526,72 @@
 }
 
 @media (max-width: 640px) {
+  .sectionHeader {
+    margin-bottom: 28px;
+  }
+
+  .headerTitle {
+    margin-bottom: 8px;
+  }
+
+  .headerSub {
+    font-size: 0.95rem;
+  }
+
   .card {
-    padding-top: 32px;
+    padding: 24px 18px 28px;
+    border-radius: 24px;
+  }
+
+  .grid {
+    gap: 28px;
   }
 
   .formRow {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .formElement {
+    gap: 16px;
+  }
+
+  .formGroup {
+    gap: 8px;
+  }
+
+  .inputLabel {
+    font-size: 0.9rem;
+  }
+
+  .pillInput,
+  .pillSelect {
+    height: 50px;
+    padding-left: 20px;
+    font-size: 0.95rem;
+  }
+
+  .pillSelect {
+    padding-right: 44px;
   }
 
   .mainHeading {
     font-size: clamp(2.2rem, 9vw, 3rem);
-    margin-top: 30px;
+    margin: 22px 0 16px;
+  }
+
+  .description {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  .directContactInfo {
+    margin-top: 18px;
   }
 
   .statsRow {
     gap: clamp(16px, 4vw, 24px);
+    margin-top: 24px;
     flex-wrap: nowrap;
   }
 
@@ -556,6 +607,14 @@
 
 
   .pillTextarea {
-    min-height: 180px;
+    min-height: 130px;
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+
+  .btnSubmit {
+    height: 50px;
+    margin-top: 0;
+    font-size: 1rem;
   }
 }

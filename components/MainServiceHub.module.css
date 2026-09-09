@@ -6,9 +6,11 @@
 }
 
 .container {
-  max-width: 1440px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 48px;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
 }
 
 .tealAccent {

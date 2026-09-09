@@ -8,10 +8,13 @@
 }
 
 .container {
-  max-width: 1440px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
 }
+
 
 .heroSection {
   padding: 145px 0 28px;
@@ -275,7 +278,7 @@
 
 @media (max-width: 1440px) {
   .container {
-    padding: 0 80px;
+    padding-inline: var(--container-pad);
   }
 
   .title {
@@ -285,7 +288,7 @@
 
 @media (max-width: 1200px) {
   .container {
-    padding: 0 60px;
+    padding-inline: var(--container-pad);
   }
 
   .blogGrid {
@@ -323,7 +326,7 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 24px;
+    padding-inline: var(--container-pad);
   }
 
   .title {
@@ -363,7 +366,7 @@
 
 @media (max-width: 576px) {
   .container {
-    padding: 0 16px;
+    padding-inline: var(--container-pad);
   }
 
   .blogGrid {

@@ -84,8 +84,12 @@ export default function BlogNewsletter({ className = '' }: BlogNewsletterProps) 
         </div>
       </div>
 
-      {/* Orbit Design Component */}
-      <IconsOrbit variant="newsletter" showCenterVector={true} />
+      <IconsOrbit
+        variant="newsletter"
+        showCenterVector
+        rotating
+        speedSeconds={22}
+      />
     </motion.section>
   )
 }

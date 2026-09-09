@@ -6,10 +6,13 @@
 }
 
 .container {
-  max-width: 1440px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
 }
+
 
 /* Hero Section */
 .hero {
@@ -154,7 +157,7 @@
 /* Media Queries */
 @media (max-width: 1200px) {
   .container {
-    padding: 0 60px;
+    padding-inline: var(--container-pad);
   }
 
   .contentLayout {
@@ -184,7 +187,7 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 24px;
+    padding-inline: var(--container-pad);
   }
 
   .hero {

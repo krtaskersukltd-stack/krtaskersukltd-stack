@@ -12,9 +12,11 @@
 }
 
 .heroContainer {
-  max-width: 1440px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 40px;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
 }
 
 .heroGrid {
@@ -137,9 +139,11 @@
 }
 
 .bodyContainer {
-  max-width: 1440px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 40px;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
 }
 
 .bodyGrid {
@@ -359,7 +363,7 @@
 
   .heroContainer,
   .bodyContainer {
-    padding: 0 24px;
+    padding-inline: var(--container-pad);
   }
 
   .rightHero {
