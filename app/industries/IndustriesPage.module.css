@@ -1,0 +1,782 @@
+/* app/industries/IndustriesPage.module.css */
+
+.page {
+  background: var(--cream, #f8f7f2);
+  min-height: 100vh;
+  color: var(--black, #000000);
+  overflow-x: clip;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max, 1440px);
+  margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. HERO SECTION (MATCHES IMAGE 4)
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding-top: clamp(120px, 9vw, 145px);
+  padding-bottom: 38px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(560px, 660px);
+  gap: clamp(42px, 6vw, 92px);
+  align-items: center;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroTitle {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 4.1vw, 3.75rem);
+  line-height: 1.32;
+  color: #0b1517;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.highlightTeal {
+  color: var(--teal, #0c4651);
+  position: relative;
+  display: inline-block;
+}
+
+.heroSubtitle {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 1rem;
+  line-height: 1.18;
+  color: rgba(15, 23, 42, 0.76);
+  margin-bottom: 36px;
+  max-width: 700px;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Hero Right: Visual & Floating Badges */
+.heroRight {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visualWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  height: 382px;
+}
+
+.imageFrame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 57.3%;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(12, 70, 81, 0.16),
+              0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(12, 70, 81, 0.12);
+  background: #eae9e4;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visualWrapper:hover .heroImg {
+  transform: scale(1.03);
+}
+
+/* Floating Badge 1: ROI Card (Top Left) */
+.badgeRoi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 255px;
+  min-height: 84px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 24px;
+  box-shadow: 0 16px 36px rgba(12, 70, 81, 0.18),
+              0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(12, 70, 81, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  z-index: 4;
+  backdrop-filter: blur(10px);
+  animation: floatTop 4.5s ease-in-out infinite alternate;
+}
+
+.roiLabel {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--teal, #0c4651);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.liveTag {
+  position: absolute;
+  top: 100px;
+  left: 109px;
+  background: var(--lime, #e6ff2a);
+  color: #0b1517;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  min-width: 137px;
+  min-height: 37px;
+  padding: 8px 14px;
+  justify-content: center;
+  z-index: 5;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.liveDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #059669;
+}
+
+.roiNumber {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--teal, #0c4651);
+  line-height: 1;
+}
+
+.roiPeriod {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+/* Floating Badge 2: Preview Now (Middle Left) */
+.badgePreview {
+  position: absolute;
+  top: 166px;
+  left: 10px;
+  transform: none;
+  background: var(--teal, #0c4651);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 24px rgba(12, 70, 81, 0.35);
+  border: 1.5px solid rgba(230, 255, 42, 0.4);
+  z-index: 5;
+  animation: floatMid 5s ease-in-out infinite alternate;
+}
+
+.playIcon {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--lime, #e6ff2a);
+}
+
+/* Floating Badge 3: Freedom Quote (Bottom) */
+.badgeFreedom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 255px;
+  min-height: 139px;
+  background: var(--teal, #0c4651);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 24px 18px;
+  box-shadow: 0 18px 40px rgba(12, 70, 81, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: none;
+  z-index: 4;
+  animation: floatBottom 4s ease-in-out infinite alternate;
+}
+
+.freedomIconWrap {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(230, 255, 42, 0.2);
+  border: 1.5px solid var(--lime, #e6ff2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime, #e6ff2a);
+  font-size: 1.1rem;
+}
+
+.freedomText {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+@keyframes floatTop {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes floatMid {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-6px); }
+}
+
+@keyframes floatBottom {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(6px); }
+}
+
+/* ==========================================================================
+   2. MARQUEE TICKER BANNER (IMAGE 2)
+   ========================================================================== */
+.marqueeSection {
+  background: #0c4651;
+  color: #e6ff2a;
+  height: 72px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+.marqueeList {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 14px;
+  list-style: none;
+  margin: 0;
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(1.1rem, 1.45vw, 1.4rem);
+  font-weight: 600;
+  color: #e6ff2a;
+  text-transform: capitalize;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.marqueeBullet {
+  color: #e6ff2a;
+  font-size: 0.9rem;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   3. "ONE DIGITAL STRATEGY DOESN'T FIT EVERY BUSINESS" (IMAGE 3)
+   ========================================================================== */
+.overviewSection {
+  padding-block: clamp(64px, 6vw, 88px);
+  background: #ffffff;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto clamp(44px, 4vw, 56px);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4.2vw, 4rem);
+  line-height: 1.02;
+  color: #0b1517;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.sectionDescription {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  line-height: 1.25;
+  color: rgba(15, 23, 42, 0.72);
+  margin: 0 auto;
+}
+
+/* 4-Column x 2-Row Grid */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cardsGrid > div {
+  height: 100%;
+}
+
+.industryCard {
+  background: var(--cream, #f8f7f2);
+  border-radius: 14px;
+  padding: clamp(24px, 2.5vw, 40px);
+  border: 1px solid var(--teal, #0c4651);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  position: relative;
+  text-decoration: none;
+  min-height: 248px;
+  height: 100%;
+}
+
+.industryCard:hover,
+.industryCard:focus-visible {
+  background: var(--teal, #0c4651);
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(12, 70, 81, 0.22);
+  border-color: var(--teal, #0c4651);
+  outline: none;
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.cardTitle {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-weight: 700;
+  font-size: 1.3125rem;
+  line-height: 1.25;
+  color: #0b1517;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardArrow {
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  color: var(--teal, #0c4651);
+}
+
+.industryCard:hover .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cardDesc {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 1rem;
+  line-height: 1.2;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cardBottom {
+  border-top: 1px dashed rgba(12, 70, 81, 0.15);
+  padding-top: 16px;
+}
+
+.servicesHeading {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--teal, #0c4651);
+  margin-bottom: 6px;
+}
+
+.servicesText {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.industryCard:hover .cardTitle,
+.industryCard:focus-visible .cardTitle {
+  color: var(--lime, #e6ff2a);
+}
+
+.industryCard:hover .cardDesc,
+.industryCard:hover .servicesText,
+.industryCard:focus-visible .cardDesc,
+.industryCard:focus-visible .servicesText {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.industryCard:hover .servicesHeading,
+.industryCard:focus-visible .servicesHeading {
+  color: var(--lime, #e6ff2a);
+}
+
+.industryCard:hover .cardBottom,
+.industryCard:focus-visible .cardBottom {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ==========================================================================
+   4. "SERVICES BY INDUSTRY" (LATEST USER IMAGE)
+   ========================================================================== */
+.servicesByIndustrySec {
+  padding-block: clamp(56px, 6vw, 88px);
+  background: #ffffff;
+  border-top: 1px solid rgba(12, 70, 81, 0.08);
+  border-bottom: 1px solid rgba(12, 70, 81, 0.08);
+}
+
+.servicesByIndustryLayout {
+  display: grid;
+  grid-template-columns: minmax(260px, 325px) minmax(0, 1fr);
+  gap: clamp(64px, 9.5vw, 142px);
+  align-items: start;
+}
+
+.servicesLeftCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicesMainTitle {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0b1517;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+
+.tabsVerticalList {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.tabVerticalBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: var(--cream, #f8f7f2);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--teal, #0c4651);
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.tabVerticalBtn:hover {
+  background: #ffffff;
+  border-color: var(--teal, #0c4651);
+  color: var(--teal, #0c4651);
+  transform: translateX(4px);
+}
+
+.tabVerticalActive {
+  background: #ffffff;
+  border-bottom-color: var(--teal, #0c4651);
+  color: var(--teal, #0c4651);
+  box-shadow: 0 6px 20px rgba(12, 70, 81, 0.12);
+  transform: translateX(4px);
+}
+
+.tabVerticalArrow {
+  font-size: 1.1rem;
+  color: var(--teal, #0c4651);
+}
+
+/* Right Showcase Box */
+.serviceShowcaseCard {
+  background: #f8f7f2;
+  border-radius: 20px;
+  padding: 44px clamp(40px, 5.1vw, 76px);
+  border: 0;
+  box-shadow: none;
+}
+
+.serviceTopIcon {
+  width: 88px;
+  height: 88px;
+  border-radius: 10px;
+  background: var(--teal, #0c4651);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 2.25rem;
+  margin-bottom: 26px;
+  box-shadow: 0 8px 20px rgba(12, 70, 81, 0.25);
+}
+
+.serviceTopIcon svg {
+  width: 54px;
+  height: 54px;
+}
+
+.serviceCardHeading {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-size: clamp(1.6rem, 2.1vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0b1517;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.serviceCardDesc {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  color: rgba(15, 23, 42, 0.72);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+
+/* 2x2 Sub-Cards Grid */
+.subCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 50px;
+}
+
+.subCard {
+  background: var(--cream, #f8f7f2);
+  border-radius: 10px;
+  padding: 28px 24px;
+  border: 2px solid var(--teal, #0c4651);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  min-height: 155px;
+}
+
+.subCard:hover,
+.subCard:focus-within {
+  background: var(--teal, #0c4651);
+  border-color: var(--teal, #0c4651);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(12, 70, 81, 0.22);
+  transform: translateY(-3px);
+}
+
+.subCardTitle {
+  font-family: var(--font-heading, "Cabinet Grotesk", sans-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--teal, #0c4651);
+  margin-bottom: 8px;
+}
+
+.subCard:hover .subCardTitle,
+.subCard:focus-within .subCardTitle {
+  color: var(--lime, #e6ff2a);
+}
+
+.subCardText {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 1rem;
+  line-height: 1.2;
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.subCard:hover .subCardText,
+.subCard:focus-within .subCardText {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+
+
+
+/* ==========================================================================
+   7. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1489px) {
+  .container {
+    padding-inline: clamp(12px, 2vw, 24px);
+  }
+}
+
+@media (max-width: 992px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .heroRight {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .servicesByIndustryLayout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 48px;
+  }
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .subCardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .badgeRoi {
+    top: -16px;
+    left: -12px;
+    padding: 10px 14px;
+  }
+  .roiNumber {
+    font-size: 1.5rem;
+  }
+  .badgeFreedom {
+    bottom: -16px;
+    left: 12px;
+    padding: 10px 14px;
+    max-width: 260px;
+  }
+  .badgePreview {
+    left: -10px;
+  }
+}
+@media (max-width: 480px) {
+  .ctaGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .visualWrapper {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .imageFrame {
+    position: relative;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .badgeRoi {
+    position: relative;
+    inset: auto;
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
+    animation: none;
+  }
+  .liveTag {
+    position: relative;
+    inset: auto;
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    align-self: center;
+  }
+  .badgeFreedom {
+    position: relative;
+    inset: auto;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    max-width: none;
+    animation: none;
+  }
+  .badgePreview {
+    display: none;
+  }
+}

@@ -310,7 +310,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     id: 'corporate-professional',
     title: 'Professional & B2B',
     tagline: 'Enterprise positioning & client acquisition',
-    href: '/work',
+    href: '/industries',
     subServices: [
       { title: 'Law Firms', href: '/industries/law-firms' },
       { title: 'Accountants', href: '/industries/accountants' },
@@ -324,7 +324,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     id: 'health-medical',
     title: 'Health & Wellness',
     tagline: 'Patient bookings & trusted local authority',
-    href: '/work',
+    href: '/industries',
     subServices: [
       { title: 'Dental', href: '/industries/dental' },
       { title: 'Healthcare', href: '/industries/healthcare' },
@@ -338,7 +338,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     id: 'tech-ecommerce',
     title: 'Tech & E-Commerce',
     tagline: 'Scale web apps & retail checkout conversion',
-    href: '/work',
+    href: '/industries',
     subServices: [
       { title: 'SaaS', href: '/industries/saas' },
       { title: 'eCommerce', href: '/industries/ecommerce' },
@@ -351,7 +351,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     id: 'hospitality-local',
     title: 'Hospitality & Local',
     tagline: 'Direct reservations & neighborhood reach',
-    href: '/work',
+    href: '/industries',
     subServices: [
       { title: 'Hotels & Hospitality', href: '/industries/hotels-hospitality' },
       { title: 'Restaurants', href: '/industries/restaurants' },
@@ -537,22 +537,22 @@ const MAIN_INDUSTRIES: MainIndustryItem[] = [
   {
     title: 'B2B & Enterprise',
     tagline: 'High-intent lead pipelines & corporate positioning',
-    href: '/work',
+    href: '/industries/b2b',
   },
   {
     title: 'B2C & Consumer',
     tagline: 'Direct-to-consumer reach & brand loyalty',
-    href: '/work',
+    href: '/industries',
   },
   {
     title: 'E-Commerce & Retail',
     tagline: 'Scalable Shopify Plus stores & checkout growth',
-    href: '/services/shopify-development',
+    href: '/industries/ecommerce',
   },
   {
     title: 'SaaS & Technology',
     tagline: 'Custom web apps, internal tools & client portals',
-    href: '/services/websites-apps',
+    href: '/industries/saas',
   },
 ]
 
@@ -625,9 +625,9 @@ export default function Navbar() {
     image: '/images/services/web-app-design.png',
   })
   const [industriesCard, setIndustriesCard] = useState({
-    title: 'Explore Case Studies',
-    subtitle: 'See how we deliver measurable organic scale and revenue across every sector',
-    href: '/work',
+    title: 'Explore Industries',
+    subtitle: 'See the digital strategies and services tailored to every sector',
+    href: '/industries',
     image: '/images/services/digital-marketing.png',
   })
 
@@ -669,7 +669,7 @@ export default function Navbar() {
           }
 
           const indNav = navItems.find(
-            (n) => (n.label || '').toLowerCase() === 'industries' || n.href === '/work'
+            (n) => (n.label || '').toLowerCase() === 'industries' || n.href === '/industries'
           )
           if (indNav && Array.isArray(indNav.dropdownItems) && indNav.dropdownItems.length > 0) {
             setIndustriesMenu(indNav.dropdownItems)
@@ -678,7 +678,9 @@ export default function Navbar() {
             setIndustriesCard({
               title: indNav.featuredCard.title,
               subtitle: indNav.featuredCard.subtitle || '',
-              href: indNav.featuredCard.href || '/work',
+              href: indNav.featuredCard.href === '/work'
+                ? '/industries'
+                : indNav.featuredCard.href || '/industries',
               image: indNav.featuredCard.image || '/images/services/digital-marketing.png',
             })
           }
@@ -1148,7 +1150,7 @@ export default function Navbar() {
               onMouseLeave={handleMouseLeave}
             >
               <Link
-                href="/work"
+                href="/industries"
                 onClick={() => setActiveDropdown(null)}
                 className={`${styles.navLink} ${styles.navLinkBtn} ${
                   activeDropdown === 'industries' ? styles.activeNav : ''
@@ -1195,7 +1197,7 @@ export default function Navbar() {
                       activeId={hoveredIndustriesId}
                       setActiveId={setHoveredIndustriesId}
                       onClose={() => setActiveDropdown(null)}
-                      defaultViewAllHref="/work"
+                      defaultViewAllHref="/industries"
                     />
                   </motion.div>
                 )}
@@ -1529,11 +1531,11 @@ export default function Navbar() {
                           </Link>
                         ))}
                         <Link
-                          href="/work"
+                          href="/industries"
                           onClick={() => setMobileMenuOpen(false)}
                           className={styles.mobileViewAllLink}
                         >
-                          Explore all Case Studies →
+                          Explore all Industries →
                         </Link>
                       </motion.div>
                     )}
