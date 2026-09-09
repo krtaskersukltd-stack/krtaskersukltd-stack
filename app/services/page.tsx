@@ -10,6 +10,7 @@ import Approach from '@/components/Approach'
 import Testimonials from '@/components/Testimonials'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import Button from '@/components/Button'
 import styles from './ServicesPage.module.css'
 
 interface SubService {
@@ -128,12 +129,8 @@ export default function ServicesPage() {
 
             {/* Action CTA Buttons */}
             <div className={styles.ctaGroup}>
-              <Link href="/about" className={styles.btnPrimary}>
-                About KR Tasker
-              </Link>
-              <Link href="/work" className={styles.btnSecondary}>
-                <span>View Our Work</span>
-              </Link>
+              <Button href="/about">About KR Tasker</Button>
+              <Button href="/work" variant="secondary">View Our Work</Button>
             </div>
           </motion.div>
         </div>

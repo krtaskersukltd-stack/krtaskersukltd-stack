@@ -236,6 +236,12 @@
   box-shadow: 0 8px 22px rgba(12, 70, 81, 0.28);
 }
 
+.contactBtnHidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 /* Down Angle / Chevron for Nav items with subpages */
 .navChevron {
   display: inline-block;
@@ -908,12 +914,26 @@
   }
 
   .contactBtn {
-    padding: 8px 18px;
-    font-size: 13.5px;
+    min-height: 38px;
+    padding: 0 16px;
+    font-size: 13px;
+    line-height: 1;
   }
 
   .mobileDrawer {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .actionWrapper {
+    gap: 8px;
+  }
+
+  .contactBtn {
+    min-height: 35px;
+    padding: 0 12px;
+    font-size: 12px;
   }
 }
 .homeHeader:not(.scrolled) {

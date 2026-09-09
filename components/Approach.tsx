@@ -3,7 +3,7 @@
 import AnimatedHeading from '@/components/AnimatedHeading'
 import { useRef, useState, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import Button from './Button'
 import Image from 'next/image'
 import gsap from 'gsap'
 import ScrollFillText from '@/components/ScrollFillText'
@@ -160,15 +160,7 @@ export default function Approach() {
           <p className={styles.desc}>
             <ScrollFillText text="The Approach is how we turn vision into measurable growth. It's a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success." />
           </p>
-          <Link href="/about" className={styles.cta}>
-            <motion.span 
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(12, 70, 81, 0.3)' }}
-              whileTap={{ scale: 0.98 }}
-              className={styles.ctaInner}
-            >
-              Learn About Us
-            </motion.span>
-          </Link>
+          <Button href="/about">Learn About Us</Button>
         </motion.div>
 
         {/* Desktop Interactive Fan-Out Cards */}

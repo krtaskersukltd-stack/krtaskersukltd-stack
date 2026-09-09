@@ -3,11 +3,11 @@
 import AnimatedHeading from '@/components/AnimatedHeading'
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import styles from './TeamPage.module.css'
 import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
+import Button from '@/components/Button'
 
 const teamMembers = [
   { name: 'John Doe', role: 'Sales Manager', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop' },
@@ -75,8 +75,8 @@ export default function TeamPage() {
               all departments. Join our 100% remote team
             </p>
             <div className={styles.hiringButtons}>
-              <Link href="#" className={styles.btnTeal}>Our Benefits</Link>
-              <Link href="#" className={styles.btnLime}>View Open Roles (45)</Link>
+              <Button href="#">Our Benefits</Button>
+              <Button href="#" variant="secondary">View Open Roles (45)</Button>
             </div>
           </div>
           

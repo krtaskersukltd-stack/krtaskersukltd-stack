@@ -2,10 +2,10 @@
 
 import AnimatedHeading from '@/components/AnimatedHeading'
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import styles from './FeaturedIntro.module.css'
 import ScrollFillText from './ScrollFillText'
+import Button from './Button'
 
 const orbitItems = [
   { icon: '▦', className: styles.iconLeftTop },
@@ -32,7 +32,7 @@ export default function FeaturedIntro() {
           <p className={styles.description}>
             <ScrollFillText text="From visionary startups to established industry leaders, we help brands grow with bold creative, full-funnel strategy and specialist-level execution, building digital experiences that drive real traffic, leads, and long-term growth." />
           </p>
-          <Link href="/work" className={styles.button}>View All Projects</Link>
+          <Button href="/work">View All Projects</Button>
         </motion.div>
 
         <motion.div
@@ -73,7 +73,17 @@ export default function FeaturedIntro() {
           />
 
           <motion.div className={styles.projectBadge} whileHover={{ scale: 1.04 }}>
-            <span className={styles.avatars}><i /><i /><i /><i/></span>
+            <span className={styles.avatars}>
+              {[1, 2, 3, 1].map((avatar, index) => (
+                <Image
+                  key={`${avatar}-${index}`}
+                  src={`/images/avatars/avatar-${avatar}.jpg`}
+                  alt=""
+                  width={34}
+                  height={34}
+                />
+              ))}
+            </span>
             <strong>1.5k+</strong>
             <small>Projects</small>
           </motion.div>

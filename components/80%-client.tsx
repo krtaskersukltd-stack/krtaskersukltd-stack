@@ -2,7 +2,7 @@
 
 import AnimatedHeading from '@/components/AnimatedHeading'
 import React from 'react'
-import Link from 'next/link'
+import Button from './Button'
 import IconsOrbit from './IconsOrbit'
 import ScrollFillText from './ScrollFillText'
 import styles from './80%-client.module.css'
@@ -55,9 +55,7 @@ export default function ClientSatisfaction() {
             <p className={styles.bespokeText}>
               <ScrollFillText text="We love our clients, and they love us! Our end-to-end marketing packages bring together SEO, PPC, social media, content, and email marketing into one integrated strategy managed by a dedicated team. No more juggling multiple agencies — get everything you need under one roof." />
             </p>
-            <Link href="/contact" className={styles.btnBespoke}>
-              Get In Touch
-            </Link>
+            <Button href="/contact">Get In Touch</Button>
           </div>
           
           <div className={styles.bespokeRight}>

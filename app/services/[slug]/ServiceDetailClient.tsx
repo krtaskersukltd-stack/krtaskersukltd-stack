@@ -14,6 +14,7 @@ import FaqSection from '@/components/FaqSection'
 import ClientSatisfaction from '@/components/80%-client'
 import StructuredData from '@/components/StructuredData'
 import MainServiceHub from '@/components/MainServiceHub'
+import Button from '@/components/Button'
 import styles from '../ServicePage.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
@@ -131,12 +132,8 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
                 {srv.heroDescription}
               </p>
               <div className={styles.actions}>
-                <Link href="/contact" className={styles.btnPrimary}>
-                  {srv.heroCtaText || 'Start a Project'}
-                </Link>
-                <Link href="/work" className={styles.btnSecondary}>
-                  View Case Studies
-                </Link>
+                <Button href="/contact">{srv.heroCtaText || 'Start a Project'}</Button>
+                <Button href="/work" variant="secondary">View Case Studies</Button>
               </div>
             </div>
 

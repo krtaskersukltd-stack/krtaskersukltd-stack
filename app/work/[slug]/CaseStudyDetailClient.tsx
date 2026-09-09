@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
+import Button from '@/components/Button'
 import type { CaseStudyRecord } from '@/lib/cms-types'
 import fallbackWorkData from '@/data/cms/work.json'
 import styles from './CaseStudyDetail.module.css'
@@ -467,9 +468,7 @@ export default function CaseStudyDetailClient({ cs }: CaseStudyDetailClientProps
               <span className={styles.whatNextEyebrow}>• More good stuff</span>
               <AnimatedHeading as="h2" className={styles.whatNextTitle}>What next?</AnimatedHeading>
             </div>
-            <Link href="/work" className={styles.browseAllBtn}>
-              Browse all Work ↗
-            </Link>
+            <Button href="/work" variant="secondary">Browse all Work</Button>
           </div>
 
           <div className={styles.relatedGrid}>

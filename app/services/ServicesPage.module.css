@@ -120,56 +120,6 @@
   flex-wrap: wrap;
 }
 
-.btnPrimary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--teal, #0c4651);
-  color: #ffffff;
-  padding: 12px 28px;
-  border-radius: 9999px;
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  text-decoration: none;
-  border: 1px solid #0b0f12;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btnPrimary:hover {
-  background: #1f2937;
-  border-color: #1f2937;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-}
-
-.btnSecondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--lime, #e6ff2a);
-  color: #0b0f12;
-  padding: 12px 28px;
-  border-radius: 9999px;
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-weight: 700;
-  font-size: 0.9375rem;
-  text-decoration: none;
-  border: 1px solid var(--lime, #e6ff2a);
-  box-shadow: 0 4px 16px rgba(230, 255, 42, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btnSecondary:hover {
-  background: #ffffff;
-  color: #0b0f12;
-  border-color: #0b0f12;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
 /* ================= 2. WHAT WE DO SECTION ================= */
 .whatWeDoSec {
   padding-top: clamp(40px, 5vw, 70px);
@@ -454,8 +404,7 @@
     gap: 10px;
   }
 
-  .btnPrimary,
-  .btnSecondary {
+  .ctaGroup > * {
     width: 100%;
   }
 

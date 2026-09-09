@@ -14,6 +14,7 @@ import WorkTogetherMarquee from '@/components/WorkTogetherMarquee'
 import fallbackWorkData from '@/data/cms/work.json'
 import type { CaseStudyRecord } from '@/lib/cms-types'
 import ScrollFillText from '@/components/ScrollFillText'
+import Button from '@/components/Button'
 
 // Categories for Work page
 const filterCategories = [
@@ -212,9 +213,7 @@ export default function WorkPage() {
         >
           <AnimatedHeading as="h3" className={styles.ctaTitle}>You&apos;re Still Here?!</AnimatedHeading>
           <p className={styles.ctaDesc}>You must really like us...</p>
-          <button onClick={scrollToContact} className={styles.ctaButton}>
-            Contact Us
-          </button>
+          <Button onClick={scrollToContact}>Contact Us</Button>
         </motion.div>
       )
     }
@@ -247,12 +246,8 @@ export default function WorkPage() {
                 text="See how we translate ideas into results. Real clients, real metrics, straight to the point. From tripling organic traffic to doubling conversion rates and driving six-figure growth, our case studies show what happens when strategy, creativity, and data collide — turning ambition into measurable impact."
               />
               <div className={styles.heroActions}>
-                <Link href="/contact" className={styles.primaryBtn}>
-                  Start a Project
-                </Link>
-                <Link href="/team" className={styles.secondaryBtn}>
-                  Learn More About Our Team
-                </Link>
+                <Button href="/contact">Start a Project</Button>
+                <Button href="/team" variant="secondary">Learn More About Our Team</Button>
               </div>
             </div>
           </motion.div>

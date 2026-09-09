@@ -1,9 +1,9 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import Link from 'next/link'
 import styles from './About.module.css'
 import ScrollFillText from './ScrollFillText'
+import Button from './Button'
 
 export default function About() {
   const ref = useRef(null)
@@ -26,12 +26,8 @@ export default function About() {
             </p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }}
               className={styles.buttons}>
-              <Link href="/about" className={styles.btnPrimary}>
-                About Kr Tasker
-              </Link>
-              <Link href="/team" className={styles.btnSecondary}>
-                Meet Our Team
-              </Link>
+              <Button href="/about">About Kr Tasker</Button>
+              <Button href="/team" variant="secondary">Meet Our Team</Button>
             </motion.div>
           </div>
         </div>

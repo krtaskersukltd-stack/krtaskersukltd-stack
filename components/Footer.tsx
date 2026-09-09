@@ -4,6 +4,7 @@ import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
 import { type FormEvent, useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
+import Button from './Button'
 import styles from './Footer.module.css'
 
 const links = {
@@ -309,8 +310,8 @@ export default function Footer() {
             className={styles.bigTextWrapper}
           >
             <AnimatedHeading as="h2" className={styles.bigText}>
-              <span className={styles.textLime}>Marketing</span>
-              <span className={styles.textCream}> Since 2026</span>
+              <span className={styles.textLime}>Digital Growth,</span>
+              <span className={styles.textCream}> Delivered.</span>
             </AnimatedHeading>
           </motion.div>
 
@@ -349,9 +350,7 @@ export default function Footer() {
 
             <div className={styles.copyrightBlock}>
               <p className={styles.copyright}>© 2026 KR Tasker Digital. All Rights Reserved.</p>
-              <Link href="/contact" className={styles.btnCta}>
-                Start A Project
-              </Link>
+              <Button href="/contact" variant="secondary" size="compact" className={styles.footerCta}>Start A Project</Button>
             </div>
           </div>
         </div>

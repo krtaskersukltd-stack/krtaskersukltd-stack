@@ -86,50 +86,6 @@
   gap: 12px;
 }
 
-.primaryBtn {
-  background: var(--teal);
-  color: var(--cream);
-  border: none;
-  border-radius: 6px;
-  padding: 11px 17px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: none;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.primaryBtn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(12, 70, 81, 0.2);
-}
-
-.secondaryBtn {
-  background: var(--lime);
-  color: var(--black);
-  border: 1px solid var(--teal);
-  border-radius: 6px;
-  padding: 10px 17px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--teal);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.secondaryBtn:hover {
-  background: #d9ff00;
-  transform: translateY(-1px);
-}
-
 /* 2. Filters / Category Switcher */
 .filterSection {
   padding: 34px 0 22px;
@@ -446,25 +402,6 @@
   font-size: var(--fs-body);
   color: var(--black);
   margin: 6px 0 12px;
-}
-
-.ctaButton {
-  background: var(--teal);
-  color: var(--cream);
-  border: none;
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 14.5px;
-  cursor: pointer;
-  box-shadow: none;
-  transition: all 0.3s ease;
-}
-
-.ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(12, 70, 81, 0.35);
 }
 
 /* 5. Client Results & Reviews Section */

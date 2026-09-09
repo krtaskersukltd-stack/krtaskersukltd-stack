@@ -56,49 +56,6 @@
   gap: 16px;
 }
 
-.btnPrimary {
-  background: var(--teal);
-  color: var(--cream);
-  padding: 14px 28px;
-  border-radius: var(--radius-button);
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-weight: 600;
-  font-size: var(--fs-button);
-  line-height: 1;
-  text-decoration: none;
-  display: inline-block;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.btnPrimary:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-.btnSecondary {
-  background: var(--lime);
-  border: 1px solid var(--teal);
-  color: var(--black);
-  padding: 14px 28px;
-  border-radius: var(--radius-button);
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-weight: 600;
-  font-size: var(--fs-button);
-  line-height: 1;
-  text-decoration: none;
-  display: inline-block;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.btnSecondary:hover {
-  background: #d8f51b;
-  transform: translateY(-1px);
-}
-
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -115,8 +72,7 @@
     width: 100%;
   }
 
-  .btnPrimary,
-  .btnSecondary {
+  .buttons > * {
     width: 100%;
     text-align: center;
   }

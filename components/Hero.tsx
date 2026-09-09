@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import { useRef, type CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Button from './Button'
 import styles from './Hero.module.css'
 import About from './About'
 import CrossedMarquee from './CrossedMarquee'
@@ -73,27 +74,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className={styles.ctaGroup}
           >
-            <Link href="/contact" className={styles.btnStartProject}>
-              <span>Start A Project</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={styles.btnArrow}
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
-
-            <Link href="/work" className={styles.btnViewWork}>
-              <span>View Our Work</span>
-            </Link>
+            <Button href="/contact" arrow>Start A Project</Button>
+            <Button href="/work" variant="secondary">View Our Work</Button>
           </motion.div>
         </motion.div>
       </div>

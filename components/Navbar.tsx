@@ -6,6 +6,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
+import Button from './Button'
+import AvailabilityNotch from './AvailabilityNotch'
 import styles from './Navbar.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
@@ -936,46 +938,12 @@ export default function Navbar() {
   return (
     <header
       ref={navRef}
-      className={`${styles.header} ${pathname === '/' ? styles.homeHeader : ''} ${scrolled ? styles.scrolled : ''} ${
+      className={`${styles.header} ${styles.homeHeader} ${scrolled ? styles.scrolled : ''} ${
         isHidden ? styles.hidden : ''
       } ${isDarkSection ? styles.darkTheme : ''}`}
       onMouseLeave={handleMouseLeave}
     >
-      {pathname === '/' && (
-        <Link
-          href="/contact"
-          className={styles.availabilityNotch}
-          onClick={(e) => {
-            if (pathname === '/') {
-              const contactEl = document.getElementById('contact')
-              if (contactEl) {
-                e.preventDefault()
-                contactEl.scrollIntoView({ behavior: 'smooth' })
-              }
-            }
-          }}
-          aria-label="Available For New Projects - Contact Us"
-        >
-          <svg
-            className={styles.notchSvg}
-            viewBox="0 0 270 34"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M0 0 C8 1 16 4 22 10 C24 19 30 26 38 31 C42 33 45 34 49 34 H221 C225 34 228 33 232 31 C240 26 246 19 248 10 C254 4 262 1 270 0 Z"
-              className={styles.notchPath}
-            />
-          </svg>
-          <span className={styles.pulseDot} aria-hidden="true">
-            <span className={styles.pulseRing} />
-            <span className={styles.pulseCore} />
-          </span>
-          <span className={styles.notchText}>Available For New Projects</span>
-        </Link>
-      )}
+      <AvailabilityNotch />
       <div className={styles.container}>
         {/* Left: Brand Logo */}
         <div className={styles.logoWrapper}>
@@ -1329,11 +1297,16 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right: Contact Us CTA Button */}
+        {/* Right: Contact Us CTA Button & Mobile Hamburger */}
         <div className={styles.actionWrapper}>
-          <Link href="/contact" className={styles.contactBtn}>
+          <Button
+            href="/contact"
+            variant="secondary"
+            size="compact"
+            className={`${styles.contactBtn} ${mobileMenuOpen ? styles.contactBtnHidden : ''}`}
+          >
             Contact Us
-          </Link>
+          </Button>
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -1647,13 +1620,9 @@ export default function Navbar() {
               </div>
 
               <div className={styles.drawerFooter}>
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={styles.drawerCtaBtn}
-                >
+                <Button href="/contact" variant="secondary" onClick={() => setMobileMenuOpen(false)}>
                   Contact Us
-                </Link>
+                </Button>
               </div>
             </motion.aside>
           </>

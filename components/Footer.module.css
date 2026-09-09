@@ -246,8 +246,7 @@
   box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.24);
 }
 
-.btnSubscribe,
-.btnCta {
+.btnSubscribe {
   border: 0;
   border-radius: 8px;
   background: var(--lime, #e6ff2a);
@@ -265,8 +264,7 @@
   padding: 0 14px;
 }
 
-.btnSubscribe:focus-visible,
-.btnCta:focus-visible {
+.btnSubscribe:focus-visible {
   outline: 3px solid var(--cream, #f8f7f2);
   outline-offset: 3px;
 }
@@ -360,22 +358,6 @@
 :global(.page-digital-360) .copyright {
   font-family: var(--font-body, "Inter", sans-serif);
   font-weight: 400;
-}
-
-.btnCta {
-  display: inline-flex;
-  min-height: 40px;
-  padding: 0 15px;
-  align-items: center;
-  justify-content: center;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.btnCta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.15);
 }
 
 .srOnly {
@@ -617,7 +599,6 @@
 
   .colTitle,
   .newsletterTitle {
-    margin-bottom: 18px;
     font-size: 20px;
   }
 
@@ -705,6 +686,7 @@
 
   .linksArea {
     grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .bigText {
@@ -715,8 +697,7 @@
 @media (prefers-reduced-motion: reduce) {
   .arrowCircle,
   .socialIcon,
-  .link span,
-  .btnCta {
+  .link span {
     transition: none;
   }
 }

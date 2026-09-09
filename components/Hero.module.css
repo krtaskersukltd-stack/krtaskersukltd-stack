@@ -190,63 +190,6 @@
   width: 100%;
 }
 
-.btnStartProject {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: var(--teal);
-  color: #ffffff;
-  padding: 13px 28px;
-  border-radius: 9999px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid var(--teal);
-  box-shadow: 0 6px 20px rgba(12, 70, 81, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.btnStartProject:hover {
-  background-color: #08333c;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(12, 70, 81, 0.35);
-}
-
-.btnArrow {
-  transition: transform 0.2s ease;
-}
-
-.btnStartProject:hover .btnArrow {
-  transform: translateX(3px);
-}
-
-.btnViewWork {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--lime);
-  color: #0b0f12;
-  padding: 13px 28px;
-  border-radius: 9999px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 16px rgba(230, 255, 42, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btnViewWork:hover {
-  background-color: #f1ff52;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(230, 255, 42, 0.45);
-}
-
 /* ================= SHOWCASE IMAGE WRAPPER ================= */
 .imageWrapper {
   width: calc(100% - 10px);
@@ -303,8 +246,17 @@
   }
 
   .ctaGroup {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .ctaGroup > * {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
   }
 
   .videoHeaderTag {
@@ -335,11 +287,6 @@
     flex-direction: column;
     width: 100%;
     gap: 12px;
-  }
-
-  .btnStartProject,
-  .btnViewWork {
-    width: 100%;
   }
 
   .showcaseCard {

@@ -17,6 +17,7 @@ import styles from './MainServiceHub.module.css'
 import type { ServiceRecord, ServiceCapability } from '@/lib/cms-types'
 import WorkTogetherMarquee from './WorkTogetherMarquee'
 import ScrollFillText from './ScrollFillText'
+import Button from './Button'
 
 const DEFAULT_BANNER = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
 const DEFAULT_VISION_IMAGE = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop'
@@ -253,12 +254,9 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               <AnimatedHeading as="h2" className={styles.capabilitiesHeading}>
                 {renderCapabilitiesHeading(srv.capabilitiesHeading)}
               </AnimatedHeading>
-              <Link
-                href={srv.capabilitiesCtaLink || '/about'}
-                className={styles.btnSecondary}
-              >
+              <Button href={srv.capabilitiesCtaLink || '/about'} variant="secondary">
                 {srv.capabilitiesCtaText || 'About KR Tasker'}
-              </Link>
+              </Button>
             </motion.div>
 
             {/* Right: Capabilities Sub-Pages List */}
@@ -331,12 +329,9 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
                   }
                 />
               </p>
-              <Link
-                href={srv.visionCtaLink || '/contact'}
-                className={styles.btnVision}
-              >
+              <Button href={srv.visionCtaLink || '/contact'}>
                 {srv.visionCtaText || 'Start A Project Today'}
-              </Link>
+              </Button>
             </motion.div>
 
             {/* Right: Mockup / Image Showcase */}

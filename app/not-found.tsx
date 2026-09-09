@@ -1,7 +1,7 @@
 'use client'
 
 import AnimatedHeading from '@/components/AnimatedHeading'
-import Link from 'next/link'
+import Button from '@/components/Button'
 import { motion } from 'framer-motion'
 import styles from './not-found.module.css'
 
@@ -46,9 +46,7 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <Link href="/" className={styles.homeBtn}>
-            Return Home
-          </Link>
+          <Button href="/" className={styles.homeAction}>Return Home</Button>
         </motion.div>
       </motion.div>
     </main>

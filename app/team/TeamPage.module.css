@@ -129,38 +129,6 @@
   flex-wrap: wrap;
 }
 
-.btnTeal {
-  background-color: var(--teal);
-  color: var(--white);
-  padding: 14px 28px;
-  border-radius: var(--radius-tag);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-body-sm);
-  transition: opacity 0.2s;
-}
-
-.btnTeal:hover {
-  opacity: 0.9;
-}
-
-.btnLime {
-  background-color: var(--lime);
-  color: var(--teal);
-  padding: 14px 28px;
-  border-radius: var(--radius-tag);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-body-sm);
-  transition: opacity 0.2s;
-}
-
-.btnLime:hover {
-  opacity: 0.9;
-}
-
 /* Asymmetrical Collage */
 .hiringCollage {
   display: grid;
@@ -256,7 +224,7 @@
     width: 100%;
   }
   
-  .btnTeal, .btnLime {
+  .hiringButtons > * {
     text-align: center;
     width: 100%;
   }

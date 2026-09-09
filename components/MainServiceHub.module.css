@@ -199,30 +199,6 @@
   margin: 0 0 28px;
 }
 
-.btnSecondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #0c4651;
-  color: #ffffff;
-  padding: 10px 22px;
-  border-radius: 4px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 13.5px;
-  letter-spacing: 0.1px;
-  text-decoration: none;
-  width: fit-content;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 8px rgba(12, 70, 81, 0.15);
-}
-
-.btnSecondary:hover {
-  background: #08343c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(12, 70, 81, 0.25);
-}
-
 .capabilitiesRight {
   display: flex;
   flex-direction: column;
@@ -360,30 +336,6 @@
   max-width: 620px;
 }
 
-.btnVision {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #0c4651;
-  color: #ffffff;
-  padding: 10px 22px;
-  border-radius: 4px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 13.5px;
-  letter-spacing: 0.1px;
-  text-decoration: none;
-  width: fit-content;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 8px rgba(12, 70, 81, 0.15);
-}
-
-.btnVision:hover {
-  background: #08343c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(12, 70, 81, 0.25);
-}
-
 .visionRight {
   display: flex;
   justify-content: center;
@@ -460,8 +412,8 @@
   }
 
   .heroBtnPrimary,
-  .btnSecondary,
-  .btnVision {
+  .capabilitiesLeft > a,
+  .visionLeft > a {
     width: 100%;
     text-align: center;
   }

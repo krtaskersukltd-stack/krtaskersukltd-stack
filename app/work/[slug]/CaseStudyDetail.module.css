@@ -881,19 +881,6 @@
   color: var(--black);
 }
 
-.browseAllBtn {
-  color: var(--teal);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  transition: color 0.2s ease;
-}
-
-.browseAllBtn:hover {
-  color: #032b32;
-}
-
 .relatedGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

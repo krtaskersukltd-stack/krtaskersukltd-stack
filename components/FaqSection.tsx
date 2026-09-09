@@ -2,7 +2,7 @@
 
 import AnimatedHeading from '@/components/AnimatedHeading'
 import { useState } from 'react'
-import Link from 'next/link'
+import Button from './Button'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './FaqSection.module.css'
 
@@ -73,9 +73,7 @@ export default function FaqSection() {
           <div className={styles.headerArea}>
             <span className={styles.tag}>FAQ’s</span>
             <AnimatedHeading as="h2" className={styles.title}>The Answers To Your Questions.</AnimatedHeading>
-            <Link href="/contact" className={styles.btnTouch}>
-              Get In Touch
-            </Link>
+            <Button href="/contact">Get In Touch</Button>
           </div>
 
           {/* Right Column (Accordion) */}
