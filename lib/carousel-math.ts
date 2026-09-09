@@ -113,13 +113,4 @@ export const CAROUSEL_ITEMS: CarouselItem[] = [
   },
 ]
 
-export const DEG2RAD = Math.PI / 180
 
-export function round(value: number): number {
-  return Math.round(value * 10000) / 10000
-}
-
-export function getShortestDirection(fromAngle: number, toAngle: number): number {
-  const diff = (toAngle - fromAngle) % 360
-  return diff > 180 ? diff - 360 : diff < -180 ? diff + 360 : diff
-}

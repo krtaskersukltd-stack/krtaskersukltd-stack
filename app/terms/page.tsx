@@ -105,7 +105,7 @@ export default function TermsPage() {
 
           {/* Detailed Policy Text */}
           <article className={styles.content}>
-            <section id="introduction" className={styles.section}>
+            <div id="introduction" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>1. Introduction & Acceptance</AnimatedHeading>
               <p className={styles.paragraph}>
                 Welcome to KR Tasker Digital. These Terms & Conditions govern your access to and use of the services provided by <span className={styles.highlightText}>KR Tasker Digital Ltd</span> (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), including our website and any other digital marketing, web design, SEO, social media, or AI services we perform.
@@ -113,9 +113,9 @@ export default function TermsPage() {
               <p className={styles.paragraph}>
                 By contracting our services, executing an agreement with us, or using our website, you agree to be bound by these Terms. If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms. If you do not agree to these Terms, you must not access or use our services.
               </p>
-            </section>
+            </div>
 
-            <section id="services" className={styles.section}>
+            <div id="services" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>2. Scope of Services</AnimatedHeading>
               <p className={styles.paragraph}>
                 KR Tasker Digital provides a wide range of performance-driven digital growth services including, but not limited to:
@@ -130,66 +130,62 @@ export default function TermsPage() {
               <p className={styles.paragraph}>
                 Each project&apos;s specific deliverables, timelines, milestones, and fees will be detailed in a separate Statement of Work (SOW) or Service Level Agreement (SLA) mutually agreed upon and signed by both parties.
               </p>
-            </section>
+            </div>
 
-            <section id="obligations" className={styles.section}>
+            <div id="obligations" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Client Obligations</AnimatedHeading>
               <p className={styles.paragraph}>
                 To ensure successful delivery of our services, you agree to:
               </p>
               <ol className={styles.list}>
-                <li className={styles.listItem}>Provide timely access to all necessary business information, brand guidelines, credentials, copy, media assets, and materials required for us to perform the services.</li>
-                <li className={styles.listItem}>Designate a primary point of contact authorized to make decisions, approve deliverables, and facilitate communications in a timely manner.</li>
-                <li className={styles.listItem}>Ensure that all materials provided to us do not infringe upon the intellectual property rights of any third party.</li>
+                <li className={styles.listItem}>Provide timely access to necessary assets, logins, branding materials, content, and approvals required for project completion.</li>
+                <li className={styles.listItem}>Designate a primary contact authorized to make binding decisions on behalf of your business.</li>
+                <li className={styles.listItem}>Ensure that any materials or content provided to us do not infringe upon any third-party intellectual property or privacy rights.</li>
+                <li className={styles.listItem}>Review deliverables in a timely manner within the agreed review windows specified in the SOW.</li>
               </ol>
-              <p className={styles.paragraph}>
-                We are not responsible for delays, defects, or project stalls resulting from a client&apos;s failure to provide required information, assets, or feedback in a timely manner.
-              </p>
-            </section>
+            </div>
 
-            <section id="ip" className={styles.section}>
-              <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Intellectual Property Rights</AnimatedHeading>
+            <div id="ip" className={styles.section}>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Intellectual Property</AnimatedHeading>
               <p className={styles.paragraph}>
-                Unless otherwise specified in a signed SOW:
+                Unless explicitly stated otherwise in a signed Statement of Work:
               </p>
               <ul className={styles.bulletList}>
                 <li className={styles.listItem}>
-                  <span className={styles.highlightText}>Deliverables:</span> Upon final payment of all outstanding invoices, you shall own all right, title, and interest in the custom deliverables created specifically for you (e.g., custom website layouts, graphics, branding guides).
+                  <span className={styles.highlightText}>Deliverables:</span> Upon receipt of full and final payment, you will own all rights, title, and interest in the custom final deliverables created specifically for your project (e.g., custom website designs, logos, authored copy).
                 </li>
                 <li className={styles.listItem}>
-                  <span className={styles.highlightText}>Retained Rights:</span> We retain all rights, titles, and interests in our pre-existing code libraries, developer tools, algorithms, proprietary templates, and methodologies used during the development of your deliverables.
+                  <span className={styles.highlightText}>Pre-Existing IP & Tools:</span> KR Tasker Digital retains all ownership rights to proprietary code, boilerplates, internal design systems, workflow tools, and general knowledge developed prior to or independently of your project.
                 </li>
                 <li className={styles.listItem}>
-                  <span className={styles.highlightText}>Portfolio Rights:</span> We reserve the right to display, describe, or reference your project (including links, screenshots, and logos) in our portfolio, marketing materials, and case studies, unless explicitly prohibited in writing.
+                  <span className={styles.highlightText}>Portfolio Rights:</span> We reserve the right to display the completed work in our professional portfolio, case studies, and marketing collateral unless subject to a strict Non-Disclosure Agreement (NDA).
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="payments" className={styles.section}>
-              <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Fees & Payments</AnimatedHeading>
+            <div id="payments" className={styles.section}>
+              <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Payment Terms & Invoicing</AnimatedHeading>
               <p className={styles.paragraph}>
-                In consideration of the services, you agree to pay the fees specified in the SOW or invoice. 
+                Payment terms are established in each specific client agreement:
               </p>
               <ul className={styles.bulletList}>
-                <li className={styles.listItem}>Invoices are issued according to the payment schedule outlined in the SOW (e.g., upfront deposit, milestone completions, or monthly retainer).</li>
-                <li className={styles.listItem}>All invoices are payable within 14 days of the invoice date unless otherwise specified in writing.</li>
-                <li className={styles.listItem}>We reserve the right to suspend all services, hosting, or campaign management if any invoice remains unpaid after the due date.</li>
-                <li className={styles.listItem}>Unless otherwise stated, all fees are exclusive of applicable taxes (e.g., VAT).</li>
+                <li className={styles.listItem}>Invoices are typically issued on milestone completion or monthly retainers, payable within 14 calendar days of the invoice date unless agreed otherwise.</li>
+                <li className={styles.listItem}>We accept payments via bank transfer (BACS) and authorized online merchant gateways.</li>
+                <li className={styles.listItem}>We reserve the right to pause ongoing work or withhold final deliverables if undisputed invoices remain overdue beyond 30 days.</li>
               </ul>
-            </section>
+            </div>
 
-            <section id="liability" className={styles.section}>
+            <div id="liability" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Limitation of Liability</AnimatedHeading>
               <p className={styles.paragraph}>
-                To the maximum extent permitted by applicable law:
+                To the maximum extent permitted by applicable law, KR Tasker Digital shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, revenue, data, or business opportunities arising out of or related to our services.
               </p>
-              <ul className={styles.bulletList}>
-                <li className={styles.listItem}>KR Tasker Digital will not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, revenue, data, or business opportunities, whether incurred directly or indirectly.</li>
-                <li className={styles.listItem}>Our maximum aggregate liability for any claim arising out of or relating to these Terms or our services, whether in contract, tort, or otherwise, shall not exceed the total fees paid by you to us during the three (3) months preceding the event giving rise to the claim.</li>
-              </ul>
-            </section>
+              <p className={styles.paragraph}>
+                Our total cumulative liability arising out of or relating to any agreement shall in no event exceed the total amount actually paid by you to KR Tasker Digital under the applicable Statement of Work during the six (6) months immediately preceding the event giving rise to liability.
+              </p>
+            </div>
 
-            <section id="termination" className={styles.section}>
+            <div id="termination" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>7. Term & Termination</AnimatedHeading>
               <p className={styles.paragraph}>
                 Either party may terminate the service agreement under the following conditions:
@@ -202,9 +198,9 @@ export default function TermsPage() {
               <p className={styles.paragraph}>
                 Upon termination, you will remain liable to pay all fees for services rendered and expenses incurred up to the date of termination.
               </p>
-            </section>
+            </div>
 
-            <section id="governing-law" className={styles.section}>
+            <div id="governing-law" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>8. Governing Law</AnimatedHeading>
               <p className={styles.paragraph}>
                 These Terms & Conditions, and any dispute or claim arising out of or in connection with them or their subject matter, shall be governed by and construed in accordance with the laws of <span className={styles.highlightText}>England & Wales</span>. 
@@ -212,7 +208,7 @@ export default function TermsPage() {
               <p className={styles.paragraph}>
                 Each party irrevocably agrees that the courts of England and Wales shall have exclusive jurisdiction to settle any dispute or claim arising out of or in connection with these Terms or the services we perform.
               </p>
-            </section>
+            </div>
           </article>
         </div>
       </div>

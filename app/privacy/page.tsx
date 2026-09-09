@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Detailed Policy Text */}
           <article className={styles.content}>
-            <section id="info-collect" className={styles.section}>
+            <div id="info-collect" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>1. Information We Collect</AnimatedHeading>
               <p className={styles.paragraph}>
                 At KR Tasker Digital, we value your privacy and are committed to safeguarding your personal data. We collect information in two main ways when you interact with our website or hire us for digital services:
@@ -117,9 +117,9 @@ export default function PrivacyPolicyPage() {
                   <span className={styles.highlightText}>Automatically Collected Information:</span> When you browse our site, we automatically log usage details. This includes your IP address, browser type, device information, operating system, pages viewed, time spent, and referral sources, collected via cookies and tracking tools like Google Analytics.
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="how-use" className={styles.section}>
+            <div id="how-use" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>2. How We Use Information</AnimatedHeading>
               <p className={styles.paragraph}>
                 We process your personal information to achieve business and operational objectives, including:
@@ -131,9 +131,9 @@ export default function PrivacyPolicyPage() {
                 <li className={styles.listItem}>Analyzing website traffic, patterns, and usage to optimize user experience, speed, and overall site performance.</li>
                 <li className={styles.listItem}>Complying with statutory and legal obligations, preventing fraud, and resolving potential disputes.</li>
               </ol>
-            </section>
+            </div>
 
-            <section id="legal-basis" className={styles.section}>
+            <div id="legal-basis" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Legal Basis for Processing</AnimatedHeading>
               <p className={styles.paragraph}>
                 Under the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018, we only process your personal data under valid legal bases:
@@ -152,9 +152,9 @@ export default function PrivacyPolicyPage() {
                   <span className={styles.highlightText}>Legal Obligation:</span> To comply with tax, corporate, or financial regulations in the UK.
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="sharing" className={styles.section}>
+            <div id="sharing" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Sharing & Disclosure</AnimatedHeading>
               <p className={styles.paragraph}>
                 We do not sell, rent, or lease your personal information to third parties. We may share your information in the following limited situations:
@@ -170,9 +170,9 @@ export default function PrivacyPolicyPage() {
                   <span className={styles.highlightText}>Business Transfers:</span> In the event of a merger, acquisition, restructuring, or asset sale, your information may be transferred to the successor entity.
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="security" className={styles.section}>
+            <div id="security" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Data Security & Retention</AnimatedHeading>
               <p className={styles.paragraph}>
                 We take industry-standard technical and organizational security measures to protect your personal data from unauthorized access, alteration, loss, disclosure, or destruction.
@@ -180,9 +180,9 @@ export default function PrivacyPolicyPage() {
               <p className={styles.paragraph}>
                 We retain your personal data only for as long as is necessary to fulfill the purposes for which it was collected, including satisfying any accounting, legal, or reporting requirements. When data is no longer needed, we securely delete or anonymize it.
               </p>
-            </section>
+            </div>
 
-            <section id="rights" className={styles.section}>
+            <div id="rights" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Your GDPR Rights</AnimatedHeading>
               <p className={styles.paragraph}>
                 If you are located in the UK or the European Economic Area (EEA), you possess key privacy rights under the GDPR:
@@ -207,14 +207,14 @@ export default function PrivacyPolicyPage() {
               <p className={styles.paragraph}>
                 To exercise any of these rights, please contact us at <a href="mailto:info@krtaskerdigital.com" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.com</a>. We will respond to your request within 30 days. You also have the right to lodge a complaint with the UK Information Commissioner&apos;s Office (ICO).
               </p>
-            </section>
+            </div>
 
-            <section id="changes" className={styles.section}>
+            <div id="changes" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>7. Policy Changes</AnimatedHeading>
               <p className={styles.paragraph}>
                 We may update this Privacy Policy from time to time to reflect operational, technological, or regulatory changes. Any modifications will be posted directly on this page, with the updated date clearly indicated at the top. We encourage you to review this page periodically to stay informed about how we protect your information.
               </p>
-            </section>
+            </div>
           </article>
         </div>
       </div>

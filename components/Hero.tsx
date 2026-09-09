@@ -31,7 +31,8 @@ export default function Hero() {
           {/* Main Headline */}
           <h1 className={styles.headline} aria-label="Effortless Design for Design Startups based in London, UK">
             {[
-              [{ text: 'Effortless', teal: false }, { text: 'Design for', teal: true }, { text: 'Design Startups', teal: false }],
+              [{ text: 'Effortless', teal: false }, { text: 'Design for', teal: true }],
+              [{ text: 'Design Startups', teal: false }],
               [{ text: 'based in London,', teal: true }, { text: 'UK', teal: false }],
             ].map((line, lineIndex) => (
               <span className={styles.line} key={lineIndex} aria-hidden="true">

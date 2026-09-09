@@ -9,14 +9,13 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import styles from './AboutPage.module.css'
 
-const HeroCarousel = dynamic(() => import('@/components/HeroCarousel'), {
-  ssr: false,
-  loading: () => (
-    <div style={{ width: '100%', height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: '40px', height: '40px', border: '3px solid var(--teal)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-    </div>
-  ),
-})
+import { CoverflowCarousel } from '@/components/ui/coverflow-carousel'
+import { CAROUSEL_ITEMS } from '@/lib/carousel-math'
+
+const aboutSlides = CAROUSEL_ITEMS.map((item) => ({
+  src: item.imageUrl.replace('w=400&h=500', 'w=640&h=640'),
+  alt: item.label,
+}))
 
 const teamMembers = [
   {
@@ -170,7 +169,13 @@ export default function AboutPage() {
               }}
               className={styles.arcArtwork}
             >
-              <HeroCarousel />
+              <CoverflowCarousel
+                slides={aboutSlides}
+                showCaption={false}
+                showNavigation
+                showPagination
+                cardWidth="clamp(220px, 22vw, 300px)"
+              />
             </motion.div>
           </div>
         </div>

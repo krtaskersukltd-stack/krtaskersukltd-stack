@@ -103,7 +103,7 @@ export default function CookiesPolicyPage() {
 
           {/* Detailed Policy Text */}
           <article className={styles.content}>
-            <section id="what-are-cookies" className={styles.section}>
+            <div id="what-are-cookies" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>1. What Are Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 Cookies are small text files that are stored on your computer, mobile device, or tablet when you visit a website. They are widely used by website owners to make websites work more efficiently, improve user experience, and provide analytical reporting information.
@@ -111,9 +111,9 @@ export default function CookiesPolicyPage() {
               <p className={styles.paragraph}>
                 Cookies can be &ldquo;persistent&rdquo; or &ldquo;session&rdquo; cookies. A persistent cookie remains on your device for a set period or until you delete it, allowing the website to recognize your browser on subsequent visits. Session cookies are temporary and are automatically deleted when you close your web browser.
               </p>
-            </section>
+            </div>
 
-            <section id="how-use-cookies" className={styles.section}>
+            <div id="how-use-cookies" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>2. How We Use Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 At KR Tasker Digital, we use cookies to improve your browsing experience, analyze site performance, and support our marketing efforts. Specifically, we use cookies to:
@@ -124,9 +124,9 @@ export default function CookiesPolicyPage() {
                 <li className={styles.listItem}>Track aggregate visitor statistics, traffic paths, and engagement rates to refine our website content and layout.</li>
                 <li className={styles.listItem}>Assess the efficacy of our advertising campaigns and deliver relevant marketing messages on other web platforms.</li>
               </ul>
-            </section>
+            </div>
 
-            <section id="types-cookies" className={styles.section}>
+            <div id="types-cookies" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>3. Types of Cookies We Use</AnimatedHeading>
               <p className={styles.paragraph}>
                 We categorize the cookies on our site into the following groups:
@@ -145,9 +145,9 @@ export default function CookiesPolicyPage() {
                   <span className={styles.highlightText}>Targeting & Advertising Cookies:</span> These cookies track your browsing habits to enable us to display relevant marketing ads on other platforms (e.g. Google Ads, LinkedIn, Meta). They also limit the number of times you see an advertisement and help measure the success of marketing campaigns.
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="third-party-cookies" className={styles.section}>
+            <div id="third-party-cookies" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>4. Third-Party Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 In addition to our first-party cookies, we may also work with third-party partners who set cookies on our website to help us analyze usage or serve targeted ads:
@@ -160,9 +160,9 @@ export default function CookiesPolicyPage() {
                   <span className={styles.highlightText}>Advertising & Social Networks:</span> Companies like Meta (Facebook Pixel), LinkedIn, and Google Ads may set cookies on our site to track your visits and customize marketing campaigns shown to you when you visit social networks or other websites.
                 </li>
               </ul>
-            </section>
+            </div>
 
-            <section id="managing-cookies" className={styles.section}>
+            <div id="managing-cookies" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>5. Managing Cookies</AnimatedHeading>
               <p className={styles.paragraph}>
                 You have the right to choose whether to accept or refuse cookies. Most web browsers are configured to accept cookies by default, but you can usually adjust your settings to decline or delete cookies:
@@ -184,9 +184,9 @@ export default function CookiesPolicyPage() {
               <p className={styles.paragraph}>
                 Please note that if you choose to disable, decline, or delete cookies, certain portions of our website may not function correctly, and some interactive features or layouts may become unavailable.
               </p>
-            </section>
+            </div>
 
-            <section id="updates-policy" className={styles.section}>
+            <div id="updates-policy" className={styles.section}>
               <AnimatedHeading as="h2" className={styles.sectionHeading}>6. Updates & Inquiries</AnimatedHeading>
               <p className={styles.paragraph}>
                 We may update this Cookies Policy from time to time in response to shifting operational, legal, or regulatory requirements. We encourage you to review this policy periodically to stay informed about our use of cookies.
@@ -194,7 +194,7 @@ export default function CookiesPolicyPage() {
               <p className={styles.paragraph}>
                 If you have any questions or concerns about our use of cookies or this policy, please email us at <a href="mailto:info@krtaskerdigital.com" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.com</a> or write to us at our registered business address listed in the footer of this website.
               </p>
-            </section>
+            </div>
           </article>
         </div>
       </div>
