@@ -6,7 +6,7 @@ import fallbackServices from '@/data/cms/services.json'
 import type { ServiceRecord } from '@/lib/cms-types'
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string[] | string }>
 }
 
 export const dynamic = 'force-dynamic'
@@ -19,6 +19,7 @@ function slugToTitle(slug: string): string {
     geo: 'GEO',
     ppc: 'PPC',
     crm: 'CRM',
+    cms: 'CMS',
     ui: 'UI',
     ux: 'UX',
     b2b: 'B2B',
@@ -30,6 +31,10 @@ function slugToTitle(slug: string): string {
     ctr: 'CTR',
     upc: 'UPC',
     gs1: 'GS1',
+    uk: 'UK',
+    wordpress: 'WordPress',
+    shopify: 'Shopify',
+    youtube: 'YouTube',
   }
 
   return slug
@@ -39,46 +44,76 @@ function slugToTitle(slug: string): string {
     .join(' ')
 }
 
-async function resolveService(rawSlug: string): Promise<ServiceRecord | null> {
-  const cleanSlug = (rawSlug || '').replace(/^\/services\//, '').replace(/^\//, '')
+const CATEGORY_NAMES: Record<string, string> = {
+  seo: 'SEO Services',
+  'web-development': 'Web Development',
+  marketing: 'Marketing & Google Ads',
+  'graphic-design': 'Graphic Designing',
+  'social-media': 'Social Media',
+  'ai-automation': 'AI Automation',
+  'email-marketing': 'Email Marketing',
+}
+
+async function resolveService(rawSlug: string | string[]): Promise<ServiceRecord | null> {
+  const slugPath = Array.isArray(rawSlug) ? rawSlug.join('/') : rawSlug || ''
+  const cleanSlug = slugPath.replace(/^\/services\//, '').replace(/^\//, '').replace(/\/$/, '')
+  const slugParts = cleanSlug.split('/').filter(Boolean)
+  const leafSlug = slugParts[slugParts.length - 1] || cleanSlug
+  const parentCategory = slugParts.length > 1 ? slugParts[0] : null
   
   try {
     const srv = await getCmsServiceBySlug(cleanSlug)
     if (srv) return srv
+    if (leafSlug !== cleanSlug) {
+      const leafSrv = await getCmsServiceBySlug(leafSlug)
+      if (leafSrv) return { ...leafSrv, slug: cleanSlug }
+    }
   } catch (e) {
     console.error('getCmsServiceBySlug error:', e)
   }
 
   // Guaranteed fallback to bundled services data so live Vercel production never crashes
   const fallback = (fallbackServices as ServiceRecord[]).find(
-    (s) => s.slug === cleanSlug || s.slug === `/services/${cleanSlug}` || s.id === cleanSlug
+    (s) =>
+      s.slug === cleanSlug ||
+      s.slug === `/services/${cleanSlug}` ||
+      s.id === cleanSlug ||
+      s.slug === leafSlug ||
+      s.id === `srv-${leafSlug}`
   )
-  if (fallback) return fallback
+  if (fallback) {
+    return {
+      ...fallback,
+      slug: cleanSlug,
+    }
+  }
 
   // Automatic title-first placeholder for newly linked sub-services
-  const formattedTitle = slugToTitle(cleanSlug)
+  const formattedTitle = slugToTitle(leafSlug)
+  const categoryEyebrow = (parentCategory && CATEGORY_NAMES[parentCategory]) || 'Our Services'
+
   return {
-    id: `srv-${cleanSlug}`,
+    id: `srv-${cleanSlug.replace(/\//g, '-')}`,
     name: formattedTitle,
     slug: cleanSlug,
     status: 'published',
     sortOrder: 99,
-    eyebrow: 'Our Services',
+    eyebrow: categoryEyebrow,
     heroHeading: formattedTitle,
-    heroDescription: `Comprehensive, data-driven ${formattedTitle} solutions engineered by KR Tasker Digital to accelerate your business performance and market visibility.`,
+    heroDescription: `Comprehensive, data-driven ${formattedTitle} solutions engineered by KR Tasker Digital to accelerate your business performance, market visibility, and sustained conversion growth.`,
     heroCtaText: 'Start A Project',
     featuredImage: '/images/services/web-app-design.png',
     features: [
       {
-        id: `f-${cleanSlug}-1`,
-        title: `${formattedTitle} Strategy & Execution`,
-        description: `Bespoke strategy, implementation, and ongoing management for ${formattedTitle} tailored to drive measurable ROI.`,
+        id: `f-${cleanSlug.replace(/\//g, '-')}-1`,
+        title: `${formattedTitle} Strategy & Architecture`,
+        description: `Bespoke strategy, precision planning, and tactical execution for ${formattedTitle} tailored to drive measurable ROI.`,
         sortOrder: 1,
       },
       {
-        id: `f-${cleanSlug}-2`,
-        title: 'Performance & Optimization',
-        description: `Continuous monitoring, conversion tracking, and iterative optimization to maximize long-term digital growth.`,
+        id: `f-${cleanSlug.replace(/\//g, '-')}-2`,
+        title: 'Performance, Tracking & Scaling',
+        description: `Continuous tracking, audience refinement, and data-backed iterative optimisation to maximize long-term digital growth.`,
         sortOrder: 2,
       },
     ],
@@ -88,9 +123,9 @@ async function resolveService(rawSlug: string): Promise<ServiceRecord | null> {
     ],
     seo: {
       metaTitle: `${formattedTitle} | KR Tasker Digital`,
-      metaDescription: `Discover high-performance ${formattedTitle} services by KR Tasker Digital.`,
+      metaDescription: `Discover premier ${formattedTitle} services by KR Tasker Digital. High-impact solutions tailored to scale your brand.`,
       h1: formattedTitle,
-      focusKeyword: cleanSlug,
+      focusKeyword: leafSlug.replace(/-/g, ' '),
       indexStatus: 'index',
       followStatus: 'follow',
     },
@@ -104,14 +139,16 @@ export async function generateStaticParams() {
     if (services && services.length > 0) {
       return services
         .filter((s) => s.status === 'published')
-        .map((s) => ({ slug: s.slug.replace(/^\/services\//, '').replace(/^\//, '') }))
+        .map((s) => ({
+          slug: s.slug.replace(/^\/services\//, '').replace(/^\//, '').split('/'),
+        }))
     }
   } catch {
     // ignore
   }
 
   return (fallbackServices as ServiceRecord[]).map((s) => ({
-    slug: s.slug.replace(/^\/services\//, '').replace(/^\//, ''),
+    slug: s.slug.replace(/^\/services\//, '').replace(/^\//, '').split('/'),
   }))
 }
 

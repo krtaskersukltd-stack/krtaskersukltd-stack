@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getCmsServiceBySlug } from '@/lib/cms-store'
-import ServiceDetailClient from '@/app/services/[slug]/ServiceDetailClient'
+import ServiceDetailClient from '@/app/services/[...slug]/ServiceDetailClient'
 import fallbackServices from '@/data/cms/services.json'
 import type { ServiceRecord } from '@/lib/cms-types'
 
