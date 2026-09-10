@@ -46,11 +46,12 @@ const DEFAULT_NAV: NavItemRecord[] = [
     sortOrder: 1,
     isVisible: true,
     dropdownItems: [
-      { title: 'Web Design', tagline: 'Deliver your business to a wider audience', href: '/services/web-development' },
-      { title: 'AI & Automation', tagline: 'Smart workflows and intelligent solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
-      { title: 'Branding', tagline: "Creating brands you're proud of", href: '/services/branding' },
+      { title: 'Web Development', tagline: 'Deliver your business to a wider audience', href: '/services/web-development' },
+      { title: 'AI Automation', tagline: 'Smart workflows and intelligent solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
+      { title: 'Designing', tagline: "Creating brands you're proud of", href: '/services/branding' },
+      { title: 'Digital Marketing', tagline: 'Full-funnel performance and growth', href: '/services/digital-marketing' },
       { title: 'SEO', tagline: 'Get your brand seen online', href: '/services/seo' },
-      { title: 'Shopify', tagline: 'Custom Shopify store in 4 weeks', href: '/services/shopify-development' },
+      { title: 'Email Marketing', tagline: 'Automated campaigns that convert', href: '/services/email-marketing' },
     ],
     featuredCard: {
       title: 'View all Services',

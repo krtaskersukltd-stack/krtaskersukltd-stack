@@ -33,10 +33,10 @@
 /* Base Navbar Container */
 .container {
   pointer-events: auto;
-  width: 100%;
+  width: min(var(--site-max-width, 1440px), calc(100% - (2 * var(--container-pad))));
   max-width: var(--site-max-width, 1440px);
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -425,7 +425,7 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  max-height: 150px;
+  max-height: 172px;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 4px;
@@ -714,6 +714,7 @@
 }
 
 .drawerBody {
+  position: relative;
   flex: 1;
   padding: 20px 24px;
   overflow-y: auto;
@@ -770,12 +771,41 @@
 }
 
 .accordionContent {
-  padding-left: 12px;
-  padding-bottom: 12px;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  padding: 16px 24px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+  overflow-y: auto;
+  background: #ffffff;
+  box-shadow: -12px 0 30px rgba(12, 70, 81, 0.08);
+}
+
+.mobileLayerBack {
+  position: sticky;
+  top: -16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 15px 0 13px;
+  margin-bottom: 2px;
+  border: 0;
+  border-bottom: 1px solid rgba(12, 70, 81, 0.12);
+  background: #ffffff;
+  color: var(--teal, #0c4651);
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobileLayerBack span {
+  font-size: 19px;
 }
 
 .mobileSubLink {
@@ -795,6 +825,55 @@
 
 .mobileSubLink:hover .mobileMainTitle {
   color: var(--teal, #0c4651);
+}
+
+.mobileLinkGroup {
+  padding: 8px 0 10px;
+  border-bottom: 1px solid rgba(12, 70, 81, 0.09);
+}
+
+.mobileGroupLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.mobileGroupTitle {
+  color: var(--teal, #0c4651);
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.mobileNestedLinks {
+  display: grid;
+  gap: 3px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(12, 70, 81, 0.14);
+}
+
+.mobileNestedLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 4px 7px 10px;
+  color: #334155;
+  font-size: 13.5px;
+  line-height: 1.25;
+  text-decoration: none;
+  border-radius: 7px;
+}
+
+.mobileNestedLink:hover {
+  color: var(--teal, #0c4651);
+  background: rgba(12, 70, 81, 0.06);
+}
+
+.mobileNestedLink span {
+  color: var(--teal, #0c4651);
+  flex: 0 0 auto;
 }
 
 .mobileMainTagline {
@@ -900,6 +979,7 @@
 
 @media (max-width: 768px) {
   .container {
+    width: 100%;
     padding: 0 var(--container-pad);
   }
 

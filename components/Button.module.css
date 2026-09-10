@@ -118,6 +118,10 @@
     min-height: 44px;
     padding: 12px 24px;
   }
+
+  :global(main > section:first-of-type) .button {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

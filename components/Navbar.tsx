@@ -11,6 +11,7 @@ import AvailabilityNotch from './AvailabilityNotch'
 import styles from './Navbar.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
+
 export interface SubServiceLink {
   title: string
   href: string
@@ -28,20 +29,8 @@ export interface MainServiceItem {
 
 const MAIN_SERVICES: MainServiceItem[] = [
   {
-    id: 'digital-marketing',
-    title: 'Digital Marketing',
-    tagline: 'Full-funnel performance and growth',
-    href: '/services/digital-marketing',
-    image: '/images/services/digital-marketing.png',
-    subServices: [
-      { title: 'Digital 360', href: '/services/digital-360' },
-      { title: 'Social Media Marketing', href: '/services/social-media' },
-      { title: 'PPC', href: '/services/ppc' },
-    ],
-  },
-  {
-    id: 'website-development',
-    title: 'Website Development',
+    id: 'web-development',
+    title: 'Web Development',
     tagline: 'Deliver your business to a wider audience',
     href: '/services/web-development',
     image: '/images/services/web-app-design.png',
@@ -54,8 +43,22 @@ const MAIN_SERVICES: MainServiceItem[] = [
     ],
   },
   {
-    id: 'graphics-design',
-    title: 'Graphics Design',
+    id: 'ai-automation',
+    title: 'AI Automation',
+    tagline: 'Smart workflows and intelligent solutions',
+    href: '/services/ai-solutions',
+    badge: 'POPULAR',
+    image: '/images/services/ai-automation.jpg',
+    subServices: [
+      { title: 'AI Chatbot', href: '/services/ai-chatbot' },
+      { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
+      { title: 'CRM Automation', href: '/services/crm-automation' },
+      { title: 'AI Integration', href: '/services/ai-integration' },
+    ],
+  },
+  {
+    id: 'designing',
+    title: 'Designing',
     tagline: "Creating brands and visual experiences you're proud of",
     href: '/services/branding',
     image: '/images/services/graphic-branding.jpg',
@@ -68,31 +71,15 @@ const MAIN_SERVICES: MainServiceItem[] = [
     ],
   },
   {
-    id: 'ai-automation',
-    title: 'Ai Automation',
-    tagline: 'Smart workflows and intelligent solutions',
-    href: '/services/ai-solutions',
-    image: '/images/services/ai-automation.jpg',
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    tagline: 'Full-funnel performance and growth',
+    href: '/services/digital-marketing',
+    image: '/images/services/digital-marketing.png',
     subServices: [
-      { title: 'AI Chatbot', href: '/services/ai-chatbot' },
-      { title: 'AI Voice Agent', href: '/services/ai-voice-agent' },
-      { title: 'CRM Automation', href: '/services/crm-automation' },
-      { title: 'AI Integration', href: '/services/ai-integration' },
-    ],
-  },
-  {
-    id: 'amazon-ebay',
-    title: 'Amazon / eBay',
-    tagline: 'Marketplace growth, PPC & optimization',
-    href: '/services/amazon-ebay',
-    image: '/images/services/amazon-ebay.jpg',
-    subServices: [
-      { title: 'Full Service Management', href: '/services/full-service-management' },
-      { title: 'Advertising (PPC) Management', href: '/services/advertising-ppc-management' },
-      { title: 'Amazon SEO', href: '/services/amazon-seo' },
-      { title: 'Amazon Account Audit', href: '/services/amazon-account-audit' },
-      { title: 'Listing Optimization', href: '/services/listing-optimization' },
-      { title: 'Account Suspension', href: '/services/account-suspension' },
+      { title: 'Digital 360', href: '/services/digital-360' },
+      { title: 'Social Media Marketing', href: '/services/social-media' },
+      { title: 'PPC', href: '/services/ppc' },
     ],
   },
   {
@@ -460,7 +447,7 @@ function TwoColumnDropdown({
         <div className={styles.subServicesHeader}>
           <div className={styles.subServicesHeaderTop}>
             <span className={styles.subServicesTitle}>
-              {activeItem.subServices?.[0]?.title || activeItem.title}
+              {activeItem.title}
             </span>
             {activeItem.badge && (
               <span className={styles.subServicesBadge}>{activeItem.badge}</span>
@@ -474,7 +461,7 @@ function TwoColumnDropdown({
         {/* Sub-Services Interactive Links List */}
         <div className={styles.subServicesList}>
           {activeItem.subServices && activeItem.subServices.length > 0 ? (
-            activeItem.subServices.slice(1).map((sub) => (
+            activeItem.subServices.map((sub) => (
               <Link
                 key={sub.title}
                 href={sub.href}
@@ -613,7 +600,7 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
   const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
-  const [hoveredServiceId, setHoveredServiceId] = useState<string>('digital-marketing')
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>('web-development')
   const [hoveredAmazonId, setHoveredAmazonId] = useState<string>('full-service')
   const [hoveredObjectivesId, setHoveredObjectivesId] = useState<string>('traffic-visibility')
   const [hoveredIndustriesId, setHoveredIndustriesId] = useState<string>('corporate-professional')
@@ -1380,22 +1367,29 @@ export default function Navbar() {
                   <AnimatePresence>
                     {mobileAccordion === 'services' && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
+                        <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
+                          <span aria-hidden="true">←</span> Back
+                        </button>
                         {servicesMenu.map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={styles.mobileSubLink}
-                          >
-                            <span className={styles.mobileMainTitle}>{item.title}</span>
-                            <span className={styles.mobileMainTagline}>{item.tagline}</span>
-                          </Link>
+                          <div key={item.title} className={styles.mobileLinkGroup}>
+                            <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileGroupLink}>
+                              <span className={styles.mobileMainTitle}>{item.title}</span>
+                              <span className={styles.mobileMainTagline}>{item.tagline}</span>
+                            </Link>
+                            <div className={styles.mobileNestedLinks}>
+                              {item.subServices.map((sub) => (
+                                <Link key={sub.href} href={sub.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileNestedLink}>
+                                  {sub.title}<span aria-hidden="true">→</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                         <Link
                           href="/services"
@@ -1430,21 +1424,26 @@ export default function Navbar() {
                   <AnimatePresence>
                     {mobileAccordion === 'amazon' && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
-                        {AMAZON_COLUMNS.flatMap(col => col.items).map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={styles.mobileSubLink}
-                          >
-                            <span className={styles.mobileMainTitle}>{item.title}</span>
-                          </Link>
+                        <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
+                          <span aria-hidden="true">←</span> Back
+                        </button>
+                        {AMAZON_COLUMNS.map((column) => (
+                          <div key={column.header} className={styles.mobileLinkGroup}>
+                            <div className={styles.mobileGroupTitle}>{column.header}</div>
+                            <div className={styles.mobileNestedLinks}>
+                              {column.items.map((item) => (
+                                <Link key={`${column.header}-${item.title}`} href={item.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileNestedLink}>
+                                  {item.title}<span aria-hidden="true">→</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                       </motion.div>
                     )}
@@ -1472,12 +1471,15 @@ export default function Navbar() {
                   <AnimatePresence>
                     {mobileAccordion === 'objectives' && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
+                        <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
+                          <span aria-hidden="true">←</span> Back
+                        </button>
                         {BUSINESS_OBJECTIVES.map((item) => (
                           <Link
                             key={item.title}
@@ -1514,21 +1516,29 @@ export default function Navbar() {
                   <AnimatePresence>
                     {mobileAccordion === 'industries' && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
-                        {INDUSTRIES_COLUMNS.flat().map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={styles.mobileSubLink}
-                          >
-                            <span className={styles.mobileMainTitle}>{item.title}</span>
-                          </Link>
+                        <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
+                          <span aria-hidden="true">←</span> Back
+                        </button>
+                        {INDUSTRIES_MENU_ITEMS.map((item) => (
+                          <div key={item.id} className={styles.mobileLinkGroup}>
+                            <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileGroupLink}>
+                              <span className={styles.mobileMainTitle}>{item.title}</span>
+                              <span className={styles.mobileMainTagline}>{item.tagline}</span>
+                            </Link>
+                            <div className={styles.mobileNestedLinks}>
+                              {item.subServices.map((sub) => (
+                                <Link key={sub.href} href={sub.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileNestedLink}>
+                                  {sub.title}<span aria-hidden="true">→</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                         <Link
                           href="/industries"
@@ -1563,34 +1573,30 @@ export default function Navbar() {
                   <AnimatePresence>
                     {mobileAccordion === 'results' && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ x: '100%', opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: '100%', opacity: 0 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={styles.accordionContent}
                       >
-                        <Link
-                          href="/work"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={styles.mobileSubLink}
-                        >
-                          <span className={styles.mobileMainTitle}>Case Studies</span>
-                          <span className={styles.mobileMainTagline}>Real growth stories & metrics</span>
-                        </Link>
-                        <Link
-                          href="/#testimonials"
-                          onClick={() => {
-                            setMobileMenuOpen(false)
-                            if (pathname === '/') {
-                              const el = document.getElementById('testimonials')
-                              if (el) el.scrollIntoView({ behavior: 'smooth' })
-                            }
-                          }}
-                          className={styles.mobileSubLink}
-                        >
-                          <span className={styles.mobileMainTitle}>Testimonials</span>
-                          <span className={styles.mobileMainTagline}>Client reviews & Google 5.0 ratings</span>
-                        </Link>
+                        <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
+                          <span aria-hidden="true">←</span> Back
+                        </button>
+                        {RESULTS_MENU_ITEMS.map((item) => (
+                          <div key={item.id} className={styles.mobileLinkGroup}>
+                            <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileGroupLink}>
+                              <span className={styles.mobileMainTitle}>{item.title}</span>
+                              <span className={styles.mobileMainTagline}>{item.tagline}</span>
+                            </Link>
+                            <div className={styles.mobileNestedLinks}>
+                              {item.subServices.map((sub) => (
+                                <Link key={`${item.id}-${sub.title}`} href={sub.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileNestedLink}>
+                                  {sub.title}<span aria-hidden="true">→</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
                       </motion.div>
                     )}
                   </AnimatePresence>

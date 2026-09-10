@@ -4,6 +4,7 @@ import './globals.css'
 import ScrollProgressBar from '@/components/ScrollProgressBar'
 import SmoothScroll from '@/components/SmoothScroll'
 import CustomCursor from '@/components/CustomCursor'
+import SitewideTextEffects from '@/components/SitewideTextEffects'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ScrollProgressBar />
         <CustomCursor />
+        <SitewideTextEffects />
         <SmoothScroll>
           {children}
         </SmoothScroll>

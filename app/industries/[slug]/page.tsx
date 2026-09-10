@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getCmsServiceBySlug, getCmsServices } from '@/lib/cms-store'
-import ServiceDetailClient from '@/app/services/[slug]/ServiceDetailClient'
+import IndustryDetailClient from './IndustryDetailClient'
 import fallbackServices from '@/data/cms/services.json'
 import type { ServiceRecord } from '@/lib/cms-types'
 
@@ -130,5 +130,5 @@ export default async function DynamicIndustryPage({ params }: PageProps) {
     notFound()
   }
 
-  return <ServiceDetailClient srv={srv} />
+  return <IndustryDetailClient srv={srv} />
 }

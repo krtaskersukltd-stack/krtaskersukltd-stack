@@ -8,20 +8,8 @@
     "isVisible": true,
     "dropdownItems": [
       {
-        "id": "digital-marketing",
-        "title": "Digital Marketing",
-        "tagline": "Full-funnel performance and growth",
-        "href": "/services/digital-marketing",
-        "image": "/images/services/digital-marketing.png",
-        "subServices": [
-          { "title": "Digital 360", "href": "/services/digital-360" },
-          { "title": "Social Media Marketing", "href": "/services/social-media" },
-          { "title": "PPC", "href": "/services/ppc" }
-        ]
-      },
-      {
-        "id": "website-development",
-        "title": "Website Development",
+        "id": "web-development",
+        "title": "Web Development",
         "tagline": "Deliver your business to a wider audience",
         "href": "/services/web-development",
         "image": "/images/services/web-app-design.png",
@@ -34,22 +22,8 @@
         ]
       },
       {
-        "id": "graphics-design",
-        "title": "Graphics Design",
-        "tagline": "Creating brands you're proud of",
-        "href": "/services/branding",
-        "image": "/images/services/graphic-branding.jpg",
-        "subServices": [
-          { "title": "UI/UX Design", "href": "/services/ui-ux-design" },
-          { "title": "3D Design & Automation", "href": "/services/3d-design-automation" },
-          { "title": "Graphic Design", "href": "/services/graphic-design" },
-          { "title": "Branding", "href": "/services/branding" },
-          { "title": "Logo Making", "href": "/services/logo-making" }
-        ]
-      },
-      {
         "id": "ai-automation",
-        "title": "Ai Automation",
+        "title": "AI Automation",
         "tagline": "Smart workflows and intelligent solutions",
         "href": "/services/ai-solutions",
         "badge": "POPULAR",
@@ -62,18 +36,29 @@
         ]
       },
       {
-        "id": "amazon-ebay",
-        "title": "Amazon / eBay",
-        "tagline": "Marketplace growth, PPC & optimization",
-        "href": "/services/amazon-ebay",
-        "image": "/images/services/amazon-ebay.jpg",
+        "id": "designing",
+        "title": "Designing",
+        "tagline": "Creating brands you're proud of",
+        "href": "/services/branding",
+        "image": "/images/services/graphic-branding.jpg",
         "subServices": [
-          { "title": "Full Service Management", "href": "/services/full-service-management" },
-          { "title": "Advertising (PPC) Management", "href": "/services/advertising-ppc-management" },
-          { "title": "Amazon SEO", "href": "/services/amazon-seo" },
-          { "title": "Amazon Account Audit", "href": "/services/amazon-account-audit" },
-          { "title": "Listing Optimization", "href": "/services/listing-optimization" },
-          { "title": "Account Suspension", "href": "/services/account-suspension" }
+          { "title": "UI/UX Design", "href": "/services/ui-ux-design" },
+          { "title": "3D Design & Automation", "href": "/services/3d-design-automation" },
+          { "title": "Graphic Design", "href": "/services/graphic-design" },
+          { "title": "Branding", "href": "/services/branding" },
+          { "title": "Logo Making", "href": "/services/logo-making" }
+        ]
+      },
+      {
+        "id": "digital-marketing",
+        "title": "Digital Marketing",
+        "tagline": "Full-funnel performance and growth",
+        "href": "/services/digital-marketing",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Digital 360", "href": "/services/digital-360" },
+          { "title": "Social Media Marketing", "href": "/services/social-media" },
+          { "title": "PPC", "href": "/services/ppc" }
         ]
       },
       {

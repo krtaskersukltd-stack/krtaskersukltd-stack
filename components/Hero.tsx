@@ -29,7 +29,7 @@ export default function Hero() {
           className={styles.headerContent}
         >
           {/* Main Headline */}
-          <h1 className={styles.headline} aria-label="Effortless Design for Design Startups based in London, UK">
+          <h1 data-animated-heading className={styles.headline} aria-label="Effortless Design for Design Startups based in London, UK">
             {[
               [{ text: 'Effortless', teal: false }, { text: 'Design for', teal: true }],
               [{ text: 'Design Startups', teal: false }],

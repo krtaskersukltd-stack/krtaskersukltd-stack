@@ -1,6 +1,7 @@
 'use client'
 
 import AnimatedHeading from '@/components/AnimatedHeading'
+import ScrollFillText from '@/components/ScrollFillText'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
@@ -238,19 +239,17 @@ export default function AboutPage() {
               className={styles.rightCol}
             >
               <div className={styles.introText}>
-                <p className={styles.introParagraph}>
-                  We are an Award-Winning Branding and Web Design Agency based in Manchester, UK specialising in Web Design, Web Development, eCommerce and Organic SEO.
-With over a decade of experience, Shape is an energetic, fresh and vibrant team offering creative talent, industry knowledge and extremely high standards.
-We work with ambitious start-up businesses through to large global organisations such as Blackberry, NHS and L'Occitane so we can tailor our services to suit your needs. Our preferred content management system of choice is Craft CMS.
-                </p>
+                <ScrollFillText
+                  as="p"
+                  className={styles.introParagraph}
+                  text="We are an Award-Winning Branding and Web Design Agency based in Manchester, UK specialising in Web Design, Web Development, eCommerce and Organic SEO. With over a decade of experience, Shape is an energetic, fresh and vibrant team offering creative talent, industry knowledge and extremely high standards. We work with ambitious start-up businesses through to large global organisations such as Blackberry, NHS and L'Occitane so we can tailor our services to suit your needs. Our preferred content management system of choice is Craft CMS."
+                />
 
-                <p className={styles.introParagraph}>
-                  Our team consists of passionate developers,
-                  creative designers, and strategic marketers
-                  who work collaboratively to help businesses
-                  grow, expand, and succeed in the online
-                  marketplace.
-                </p>
+                <ScrollFillText
+                  as="p"
+                  className={styles.introParagraph}
+                  text="Our team consists of passionate developers, creative designers, and strategic marketers who work collaboratively to help businesses grow, expand, and succeed in the online marketplace."
+                />
               </div>
             </motion.div>
           </div>
@@ -383,24 +382,17 @@ We work with ambitious start-up businesses through to large global organisations
               className={styles.rightCol}
             >
               <div className={styles.introText}>
-                <p className={styles.introParagraph}>
-                  We started because we noticed a gap in how
-                  digital agencies interact with clients.
-                  Too often, agencies deliver generic
-                  templates, hands-off automated reports, and
-                  standard services instead of true
-                  collaborative partnerships and
-                  business-oriented growth.
-                </p>
+                <ScrollFillText
+                  as="p"
+                  className={styles.introParagraph}
+                  text="We started because we noticed a gap in how digital agencies interact with clients. Too often, agencies deliver generic templates, hands-off automated reports, and standard services instead of true collaborative partnerships and business-oriented growth."
+                />
 
-                <p className={styles.introParagraph}>
-                  We decided to be different. We focus on
-                  relationship-building, custom strategies,
-                  and measurable results. Our approach
-                  combines technology with close human
-                  collaboration to ensure your business
-                  thrives.
-                </p>
+                <ScrollFillText
+                  as="p"
+                  className={styles.introParagraph}
+                  text="We decided to be different. We focus on relationship-building, custom strategies, and measurable results. Our approach combines technology with close human collaboration to ensure your business thrives."
+                />
               </div>
             </motion.div>
           </div>
@@ -419,14 +411,11 @@ We work with ambitious start-up businesses through to large global organisations
               ESG At KR Tasker Digital
             </AnimatedHeading>
 
-            <p className={styles.esgDesc}>
-              At KR Tasker, we see doing the right thing as
-              part of doing great work. For us,
-              Environmental, Social, and Governance ESG
-              principles aren&apos;t add-ons, they&apos;re
-              built into how we operate, grow, and partner
-              with ambitious brands.
-            </p>
+            <ScrollFillText
+              as="p"
+              className={styles.esgDesc}
+              text="At KR Tasker, we see doing the right thing as part of doing great work. For us, Environmental, Social, and Governance ESG principles aren't add-ons, they're built into how we operate, grow, and partner with ambitious brands."
+            />
           </div>
 
           <div className={styles.esgGrid}>

@@ -42,5 +42,5 @@ export default function AnimatedHeading({ as = 'h2', children, ...props }: Props
   }
 
   const Heading = motion[as]
-  return <Heading {...props} initial={reducedMotion ? false : props.initial} ref={ref} data-heading-revealed={visible || undefined}>{split(children as ReactNode)}</Heading>
+  return <Heading {...props} initial={reducedMotion ? false : props.initial} ref={ref} data-animated-heading data-heading-revealed={visible || undefined}>{split(children as ReactNode)}</Heading>
 }
