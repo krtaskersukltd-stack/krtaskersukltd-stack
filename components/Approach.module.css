@@ -45,17 +45,6 @@
   text-decoration: none;
 }
 
-.desktopView {
-  display: none;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .desktopView {
-    display: block;
-  }
-}
-
 /* Desktop Grid and Fan-Out Cards */
 .gridDesktop {
   display: none;
@@ -186,16 +175,21 @@
   color: var(--black);
 }
 
-/* Mobile Horizontal Pinned Scroll Track */
-.mobileTrack {
+/* Mobile Dedicated Section */
+.mobileSection {
   display: none;
 }
 
 @media (max-width: 767px) {
   .approach {
+    display: none;
+  }
+
+  .mobileSection {
+    position: relative;
     height: 100svh;
     min-height: 580px;
-    padding-block: 0;
+    background: var(--white);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -216,17 +210,25 @@
     text-align: left;
   }
 
-  .mobileIntroBlock .title {
-    margin-bottom: 12px;
+  .mobileTitle {
+    font-family: var(--font-display);
     font-size: clamp(32px, 8vw, 44px);
-    text-align: left;
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-heading);
+    color: var(--black);
+    margin-bottom: 12px;
   }
 
-  .mobileIntroBlock .desc {
-    margin: 0 0 20px;
+  .mobileTitleSpan {
+    color: var(--teal);
+  }
+
+  .mobileDesc {
+    font-family: var(--font-body);
     font-size: 15px;
     line-height: 1.45;
-    text-align: left;
+    color: var(--black);
+    margin: 0 0 20px;
   }
 
   .mobileCardWrapper {

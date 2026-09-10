@@ -68,52 +68,57 @@ const cardsData: CardData[] = [
 
 export default function Approach() {
   const sectionRef = useRef<HTMLElement>(null)
+  const mobileSectionRef = useRef<HTMLElement>(null)
   const mobileTrackRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   useEffect(() => {
-    const media = gsap.matchMedia()
-    media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
-      const section = sectionRef.current
-      const track = mobileTrackRef.current
-      if (!section || !track) return
+    // Strictly mobile only (< 768px)
+    if (typeof window === 'undefined' || window.innerWidth >= 768) return
 
-      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * 0.08)
-      const tween = gsap.to(track, {
-        x: () => -distance(),
+    const section = mobileSectionRef.current
+    const track = mobileTrackRef.current
+    if (!section || !track) return
+
+    const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * 0.08)
+
+    const tween = gsap.to(track, {
+      x: () => -distance(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${distance()}`,
+        scrub: 0.8,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    })
+
+    const cardsAnim = gsap.fromTo(
+      track.querySelectorAll(`.${styles.mobileCard}`),
+      { y: 35, opacity: 0.6 },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.08,
         ease: 'none',
         scrollTrigger: {
           trigger: section,
-          start: 'top top',
-          end: () => `+=${distance()}`,
-          scrub: 0.8,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
+          start: 'top 70%',
+          end: 'top top',
+          scrub: true,
         },
-      })
+      }
+    )
 
-      gsap.fromTo(
-        track.querySelectorAll(`.${styles.mobileCard}`),
-        { y: 35, opacity: 0.6 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.08,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 70%',
-            end: 'top top',
-            scrub: true,
-          },
-        }
-      )
-
-      return () => tween.kill()
-    })
-
-    return () => media.revert()
+    return () => {
+      tween.scrollTrigger?.kill()
+      tween.kill()
+      cardsAnim.scrollTrigger?.kill()
+      cardsAnim.kill()
+    }
   }, [])
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -192,10 +197,12 @@ export default function Approach() {
   }
 
   return (
-    <section ref={sectionRef} className={styles.approach}>
-      {/* Desktop View: Header + Interactive Fan-Out Cards (Untouched) */}
-      <div className={styles.desktopView}>
+    <>
+      {/* Desktop Section: 100% UNTOUCHED, EXACTLY AS IT WAS ORIGINALLY */}
+      <section ref={sectionRef} className={styles.approach}>
         <div className={styles.container}>
+          
+          {/* Header Section */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -212,6 +219,7 @@ export default function Approach() {
             <Button href="/about">Learn About Us</Button>
           </motion.div>
 
+          {/* Desktop Interactive Fan-Out Cards */}
           <div className={styles.gridDesktop}>
             <div className={styles.cardsRow}>
               {cardsData.map((card, index) => {
@@ -270,47 +278,50 @@ export default function Approach() {
               })}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Horizontal Pinned Scroll Track (Follows ProcessSection animation) */}
-      <div ref={mobileTrackRef} className={styles.mobileTrack}>
-        <div className={styles.mobileIntroBlock}>
-          <AnimatedHeading as="h2" className={styles.title}>
-            Our <span className={styles.titleSpan}>Approach</span>
-          </AnimatedHeading>
-          <p className={styles.desc}>
-            <ScrollFillText text="The Approach is how we turn vision into measurable growth. It's a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success." />
-          </p>
-          <Button href="/about">Learn About Us</Button>
         </div>
+      </section>
 
-        {cardsData.map((card) => (
-          <div key={card.id} className={styles.mobileCardWrapper}>
-            <div className={`${styles.mobileCard} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}>
-              <div className={styles.cardHeader}>
-                <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
-                  {card.title}
-                </AnimatedHeading>
-              </div>
-              <div className={styles.mobileIconWrap}>
-                <Image
-                  src={card.icon}
-                  alt={card.title}
-                  width={72}
-                  height={72}
-                  className={styles.iconImg}
-                />
-              </div>
-              <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
-                {card.desc}
-              </p>
-            </div>
+      {/* Mobile Section: Horizontal Pinned Scroll Animation (ProcessSection style) */}
+      <section ref={mobileSectionRef} className={styles.mobileSection}>
+        <div ref={mobileTrackRef} className={styles.mobileTrack}>
+          <div className={styles.mobileIntroBlock}>
+            <h2 className={styles.mobileTitle}>
+              Our <span className={styles.mobileTitleSpan}>Approach</span>
+            </h2>
+            <p className={styles.mobileDesc}>
+              The Approach is how we turn vision into measurable growth. It&apos;s a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success.
+            </p>
+            <Button href="/about">Learn About Us</Button>
           </div>
-        ))}
 
-        <div className={styles.endSpace} aria-hidden="true" />
-      </div>
-    </section>
+          {cardsData.map((card) => (
+            <div key={card.id} className={styles.mobileCardWrapper}>
+              <div className={`${styles.mobileCard} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}>
+                <div className={styles.cardHeader}>
+                  <h3 className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
+                    {card.title}
+                  </h3>
+                </div>
+                <div className={styles.mobileIconWrap}>
+                  <Image
+                    src={card.icon}
+                    alt={card.title}
+                    width={72}
+                    height={72}
+                    className={styles.iconImg}
+                  />
+                </div>
+                <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
+                  {card.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <div className={styles.endSpace} aria-hidden="true" />
+        </div>
+      </section>
+    </>
   )
 }
