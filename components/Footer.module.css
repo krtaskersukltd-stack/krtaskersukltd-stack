@@ -343,6 +343,14 @@
   gap: 22px;
 }
 
+.footerCta {
+  display: inline-flex;
+}
+
+.mobileSocials {
+  display: none;
+}
+
 .copyright {
   margin: 0;
   font-family: var(--font-body, Inter, sans-serif);
@@ -658,6 +666,17 @@
 
   .copyrightBlock {
     padding-top: 4px;
+    gap: 16px;
+  }
+
+  .footerCta {
+    display: none;
+  }
+
+  .mobileSocials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 }
 
