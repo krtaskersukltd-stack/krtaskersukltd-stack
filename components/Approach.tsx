@@ -1,13 +1,16 @@
 'use client'
 
 import AnimatedHeading from '@/components/AnimatedHeading'
-import { useRef, useState, type MouseEvent } from 'react'
+import { useRef, useState, useEffect, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import Button from './Button'
 import Image from 'next/image'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ScrollFillText from '@/components/ScrollFillText'
 import styles from './Approach.module.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface CardData {
   id: string
@@ -65,7 +68,53 @@ const cardsData: CardData[] = [
 
 export default function Approach() {
   const sectionRef = useRef<HTMLElement>(null)
+  const mobileTrackRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    const media = gsap.matchMedia()
+    media.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
+      const section = sectionRef.current
+      const track = mobileTrackRef.current
+      if (!section || !track) return
+
+      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + window.innerWidth * 0.08)
+      const tween = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${distance()}`,
+          scrub: 0.8,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+
+      gsap.fromTo(
+        track.querySelectorAll(`.${styles.mobileCard}`),
+        { y: 35, opacity: 0.6 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            end: 'top top',
+            scrub: true,
+          },
+        }
+      )
+
+      return () => tween.kill()
+    })
+
+    return () => media.revert()
+  }, [])
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) return
@@ -144,16 +193,89 @@ export default function Approach() {
 
   return (
     <section ref={sectionRef} className={styles.approach}>
-      <div className={styles.container}>
-        
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-          className={styles.header}
-        >
+      {/* Desktop View: Header + Interactive Fan-Out Cards (Untouched) */}
+      <div className={styles.desktopView}>
+        <div className={styles.container}>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+            className={styles.header}
+          >
+            <AnimatedHeading as="h2" className={styles.title}>
+              Our <span className={styles.titleSpan}>Approach</span>
+            </AnimatedHeading>
+            <p className={styles.desc}>
+              <ScrollFillText text="The Approach is how we turn vision into measurable growth. It's a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success." />
+            </p>
+            <Button href="/about">Learn About Us</Button>
+          </motion.div>
+
+          <div className={styles.gridDesktop}>
+            <div className={styles.cardsRow}>
+              {cardsData.map((card, index) => {
+                const currentRotate = getDynamicRotation(index, card)
+
+                return (
+                  <motion.div
+                    key={card.id}
+                    initial={{ opacity: 0, y: 80, rotate: 0 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      y: card.baseY, 
+                      rotate: currentRotate 
+                    }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: index * 0.12, 
+                      ease: [0.25, 1, 0.5, 1] 
+                    }}
+                    animate={{
+                      rotate: currentRotate,
+                      transition: { duration: 0.4, ease: 'easeOut' }
+                    }}
+                    className={styles.cardWrapper}
+                    style={{ zIndex: hoveredIndex === index ? 50 : card.zIndex }}
+                  >
+                    <div
+                      className={`${styles.card} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}
+                      onMouseMove={handleMouseMove}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={(e) => handleMouseLeave(e, card)}
+                    >
+                      <div className={styles.cardHeader}>
+                        <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
+                          {card.title}
+                        </AnimatedHeading>
+                      </div>
+
+                      <div className={styles.cardIcon}>
+                        <Image
+                          src={card.icon}
+                          alt={card.title}
+                          width={80}
+                          height={80}
+                          className={styles.iconImg}
+                        />
+                      </div>
+
+                      <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
+                        {card.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Horizontal Pinned Scroll Track (Follows ProcessSection animation) */}
+      <div ref={mobileTrackRef} className={styles.mobileTrack}>
+        <div className={styles.mobileIntroBlock}>
           <AnimatedHeading as="h2" className={styles.title}>
             Our <span className={styles.titleSpan}>Approach</span>
           </AnimatedHeading>
@@ -161,93 +283,33 @@ export default function Approach() {
             <ScrollFillText text="The Approach is how we turn vision into measurable growth. It's a proven process that blends insight, creativity, and continuous optimisation, ensuring every move we make is intentional, impactful, and built for long-term success." />
           </p>
           <Button href="/about">Learn About Us</Button>
-        </motion.div>
-
-        {/* Desktop Interactive Fan-Out Cards */}
-        <div className={styles.gridDesktop}>
-          <div className={styles.cardsRow}>
-            {cardsData.map((card, index) => {
-              const currentRotate = getDynamicRotation(index, card)
-
-              return (
-                <motion.div
-                  key={card.id}
-                  initial={{ opacity: 0, y: 80, rotate: 0 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    y: card.baseY, 
-                    rotate: currentRotate 
-                  }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.12, 
-                    ease: [0.25, 1, 0.5, 1] 
-                  }}
-                  animate={{
-                    rotate: currentRotate,
-                    transition: { duration: 0.4, ease: 'easeOut' }
-                  }}
-                  className={styles.cardWrapper}
-                  style={{ zIndex: hoveredIndex === index ? 50 : card.zIndex }}
-                >
-                  <div
-                    className={`${styles.card} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}
-                    onMouseMove={handleMouseMove}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={(e) => handleMouseLeave(e, card)}
-                  >
-                    <div className={styles.cardHeader}>
-                      <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
-                        {card.title}
-                      </AnimatedHeading>
-                    </div>
-
-                    <div className={styles.cardIcon}>
-                      <Image
-                        src={card.icon}
-                        alt={card.title}
-                        width={80}
-                        height={80}
-                        className={styles.iconImg}
-                      />
-                    </div>
-
-                    <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
-                      {card.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
         </div>
 
-        {/* Mobile Horizontal Snap-Scroll Carousel */}
-        <div className={styles.mobileCarousel}>
-          {cardsData.map((card) => (
-            <div key={card.id} className={styles.mobileCardWrapper}>
-              <div className={`${styles.mobileCard} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}>
+        {cardsData.map((card) => (
+          <div key={card.id} className={styles.mobileCardWrapper}>
+            <div className={`${styles.mobileCard} ${card.isTeal ? styles.cardTeal : styles.cardCream}`}>
+              <div className={styles.cardHeader}>
                 <AnimatedHeading as="h3" className={`${styles.cardTitle} ${card.isTeal ? styles.titleLime : styles.titleTeal}`}>
                   {card.title}
                 </AnimatedHeading>
-                <div className={styles.mobileIconWrap}>
-                  <Image
-                    src={card.icon}
-                    alt={card.title}
-                    width={72}
-                    height={72}
-                    className={styles.iconImg}
-                  />
-                </div>
-                <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
-                  {card.desc}
-                </p>
               </div>
+              <div className={styles.mobileIconWrap}>
+                <Image
+                  src={card.icon}
+                  alt={card.title}
+                  width={72}
+                  height={72}
+                  className={styles.iconImg}
+                />
+              </div>
+              <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
+                {card.desc}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
+        <div className={styles.endSpace} aria-hidden="true" />
       </div>
     </section>
   )

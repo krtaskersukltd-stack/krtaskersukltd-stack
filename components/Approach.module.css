@@ -45,6 +45,17 @@
   text-decoration: none;
 }
 
+.desktopView {
+  display: none;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .desktopView {
+    display: block;
+  }
+}
+
 /* Desktop Grid and Fan-Out Cards */
 .gridDesktop {
   display: none;
@@ -175,52 +186,79 @@
   color: var(--black);
 }
 
-/* Mobile Snap Carousel */
-.mobileCarousel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-@media (min-width: 768px) {
-  .mobileCarousel {
-    display: none;
-  }
-}
-
-.mobileCarousel::-webkit-scrollbar {
+/* Mobile Horizontal Pinned Scroll Track */
+.mobileTrack {
   display: none;
 }
 
-.mobileCarousel {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@media (max-width: 767px) {
+  .approach {
+    height: 100svh;
+    min-height: 580px;
+    padding-block: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobileTrack {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: max-content;
+    padding: 24px 20px;
+    will-change: transform;
+  }
+
+  .mobileIntroBlock {
+    flex: 0 0 min(86vw, 360px);
+    padding: 16px 8px;
+    text-align: left;
+  }
+
+  .mobileIntroBlock .title {
+    margin-bottom: 12px;
+    font-size: clamp(32px, 8vw, 44px);
+    text-align: left;
+  }
+
+  .mobileIntroBlock .desc {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .mobileCardWrapper {
+    flex: 0 0 min(82vw, 330px);
+  }
+
+  .mobileCard {
+    width: 100%;
+    height: min(420px, 64svh);
+    border-radius: var(--radius-card);
+    padding: 26px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(12, 70, 81, 0.08);
+  }
+
+  .mobileIconWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+  }
+
+  .endSpace {
+    flex: 0 0 10vw;
+  }
 }
 
-.mobileCardWrapper {
-  width: 100%;
-  max-width: 100%;
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-}
-
-.mobileCard {
-  width: 100%;
-  min-height: 380px;
-  border-radius: var(--radius-card);
-  padding: 28px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-.mobileIconWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
+@media (prefers-reduced-motion: reduce) {
+  .mobileTrack {
+    transform: none;
+  }
 }
