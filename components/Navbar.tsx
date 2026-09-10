@@ -628,23 +628,28 @@ export default function Navbar() {
             (n) => (n.label || '').toLowerCase() === 'services' || n.href === '/services'
           )
           if (srvNav && Array.isArray(srvNav.dropdownItems) && srvNav.dropdownItems.length > 0) {
-            const merged = srvNav.dropdownItems.map((cmsItem: any) => {
-              const matched = MAIN_SERVICES.find(
-                (m) =>
-                  (m.title || '').toLowerCase() === (cmsItem.title || '').toLowerCase() ||
-                  m.id === cmsItem.id
-              )
-              return {
-                ...cmsItem,
-                id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
-                subServices:
-                  cmsItem.subServices && cmsItem.subServices.length > 0
-                    ? cmsItem.subServices
-                    : matched?.subServices || [],
-                image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
-              }
-            })
-            setServicesMenu(merged)
+            const hasSubServices = srvNav.dropdownItems.some(
+              (item: any) => Array.isArray(item.subServices) && item.subServices.length > 0
+            )
+            if (hasSubServices && srvNav.dropdownItems.length >= 5) {
+              const merged = srvNav.dropdownItems.map((cmsItem: any) => {
+                const matched = MAIN_SERVICES.find(
+                  (m) =>
+                    (m.title || '').toLowerCase() === (cmsItem.title || '').toLowerCase() ||
+                    m.id === cmsItem.id
+                )
+                return {
+                  ...cmsItem,
+                  id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
+                  subServices:
+                    cmsItem.subServices && cmsItem.subServices.length > 0
+                      ? cmsItem.subServices
+                      : matched?.subServices || [],
+                  image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
+                }
+              })
+              setServicesMenu(merged)
+            }
           }
           if (srvNav && srvNav.featuredCard?.title) {
             setServicesCard({

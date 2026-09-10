@@ -1125,24 +1125,50 @@ export async function saveCmsSeo(seoData: SEOSettingsRecord): Promise<void> {
 
 // 11. NAVIGATION MENU
 export async function getCmsNavigation(): Promise<NavItemRecord[]> {
+  let bundledNav: NavItemRecord[] = []
+  try {
+    bundledNav = ((await import('@/data/cms/navigation.json')).default as NavItemRecord[]) || []
+  } catch {
+    // fallback
+  }
+
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
       const { client } = await import('@/sanity/lib/client')
       const { NAVIGATION_QUERY } = await import('@/sanity/lib/queries')
       const sanityData = await client.fetch(NAVIGATION_QUERY)
       if (Array.isArray(sanityData) && sanityData.length > 0) {
-        return sanityData.map((n: any) => ({
-          id: n._id || n.id || `nav-${n.label.toLowerCase()}`,
-          label: n.label,
-          href: n.href,
-          menuType: n.menuType || (n.dropdownItems?.length ? 'dropdown' : 'link'),
-          dropdownItems: n.dropdownItems || [],
-          featuredCard: n.featuredCard || undefined,
-          isExternal: n.href.startsWith('http'),
-          isOpenInNewTab: false,
-          sortOrder: n.sortOrder || 1,
-          isVisible: n.isVisible !== false,
-        }))
+        return sanityData.map((n: any) => {
+          const id = n._id || n.id || `nav-${n.label.toLowerCase()}`
+          const isServices = id === 'nav-services' || (n.label || '').toLowerCase() === 'services'
+          const bundledItem = bundledNav.find(
+            (b) => b.id === id || (b.label || '').toLowerCase() === (n.label || '').toLowerCase()
+          )
+
+          // If Services in Sanity cloud dataset only has legacy stub items without sub-services,
+          // prioritize the rich 6-service dropdown with sub-services from bundled navigation.json.
+          const hasRichSubServices =
+            Array.isArray(n.dropdownItems) &&
+            n.dropdownItems.some((item: any) => Array.isArray(item.subServices) && item.subServices.length > 0)
+
+          const dropdownItems =
+            isServices && (!hasRichSubServices || n.dropdownItems.length < 6)
+              ? (bundledItem?.dropdownItems || n.dropdownItems || [])
+              : (n.dropdownItems || bundledItem?.dropdownItems || [])
+
+          return {
+            id,
+            label: n.label,
+            href: n.href,
+            menuType: n.menuType || (dropdownItems.length ? 'dropdown' : 'link'),
+            dropdownItems,
+            featuredCard: n.featuredCard || bundledItem?.featuredCard || undefined,
+            isExternal: n.href?.startsWith('http') || false,
+            isOpenInNewTab: false,
+            sortOrder: n.sortOrder || 1,
+            isVisible: n.isVisible !== false,
+          }
+        })
       }
     }
   } catch (err) {

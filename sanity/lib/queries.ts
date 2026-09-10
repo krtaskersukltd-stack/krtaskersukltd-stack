@@ -322,7 +322,11 @@ export const NAVIGATION_QUERY = groq`
       title,
       tagline,
       href,
-      badge
+      badge,
+      subServices[] {
+        title,
+        href
+      }
     },
     featuredCard {
       title,

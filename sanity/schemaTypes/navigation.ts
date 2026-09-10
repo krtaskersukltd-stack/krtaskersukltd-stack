@@ -43,6 +43,20 @@ export const navigationType = defineType({
             { name: 'tagline', title: 'Tagline / Subtext (e.g. Deliver your business to a wider audience)', type: 'string' },
             { name: 'href', title: 'Link URL (e.g. /services/web-development)', type: 'string', validation: (r) => r.required() },
             { name: 'badge', title: 'Badge (e.g. POPULAR, NEW)', type: 'string' },
+            {
+              name: 'subServices',
+              title: 'Sub-Services (Right Column Items)',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    { name: 'title', title: 'Sub-Service Title', type: 'string', validation: (r) => r.required() },
+                    { name: 'href', title: 'Link URL', type: 'string', validation: (r) => r.required() },
+                  ],
+                },
+              ],
+            },
           ],
           preview: {
             select: {
