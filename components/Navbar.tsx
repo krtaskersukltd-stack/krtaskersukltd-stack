@@ -672,9 +672,9 @@ export default function Navbar() {
                   ...cmsItem,
                   id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
                   subServices:
-                    cmsItem.subServices && cmsItem.subServices.length > 0
-                      ? cmsItem.subServices
-                      : matched?.subServices || [],
+                    matched?.subServices && matched.subServices.length > 0
+                      ? matched.subServices
+                      : cmsItem.subServices || [],
                   image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
                 }
               })
