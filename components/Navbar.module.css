@@ -537,17 +537,48 @@
   color: #0c4651;
 }
 
+/* Multi-column direct links dropdown (Business Objectives & Industries) */
+.columnDropdownCard {
+  background: #f8f7f2;
+  border-radius: 20px;
+  padding: 12px;
+  border: 1px solid #0c4651;
+  box-shadow:
+    0 24px 60px -10px rgba(0, 0, 0, 0.18),
+    0 8px 24px -4px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.columnDropdownGrid {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.columnItemColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: clamp(195px, 11.5vw, 215px);
+}
+
+.objectivesDropdownContainer .columnItemColumn {
+  width: clamp(245px, 15vw, 275px);
+}
+
 /* Dropdown Position Alignments */
 .amazonDropdownContainer {
   left: clamp(-100px, -6vw, -30px);
 }
 
 .objectivesDropdownContainer {
-  left: clamp(-120px, -8vw, -40px);
+  left: clamp(-100px, -6vw, -30px);
 }
 
 .industriesDropdownContainer {
-  left: clamp(-160px, -10vw, -50px);
+  left: clamp(-380px, -24vw, -280px);
 }
 
 .resultsDropdownContainer {

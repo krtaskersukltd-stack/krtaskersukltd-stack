@@ -29,74 +29,76 @@ export interface MainServiceItem {
 
 const MAIN_SERVICES: MainServiceItem[] = [
   {
-    id: 'seo',
-    title: 'SEO Services',
-    tagline: 'Dominate organic search and accelerate rankings',
-    href: '/services/seo',
-    badge: 'TOP RATED',
-    image: '/images/services/seo-brand-strategy.png',
-    subServices: [
-      { title: 'Local SEO', href: '/services/seo/local-seo' },
-      { title: 'E-Commerce SEO', href: '/services/seo/ecommerce-seo' },
-      { title: 'Technical SEO', href: '/services/seo/technical-seo' },
-      { title: 'On-Page SEO', href: '/services/seo/on-page-seo' },
-      { title: 'Off-Page SEO', href: '/services/seo/off-page-seo' },
-      { title: 'National SEO', href: '/services/seo/national-seo' },
-      { title: 'International SEO', href: '/services/seo/international-seo' },
-      { title: 'SEO Audit', href: '/services/seo/seo-audit' },
-      { title: 'Content Marketing', href: '/services/seo/content-marketing' },
-      { title: 'Google Penalty Recovery', href: '/services/seo/google-penalty-recovery' },
-      { title: 'AI SEO', href: '/services/seo/ai-seo' },
-    ],
-  },
-  {
-    id: 'web-development',
-    title: 'Web Services',
-    tagline: 'Bespoke web architecture, modern design & fast performance',
-    href: '/services/web-development',
-    image: '/images/services/web-app-design.png',
-    subServices: [
-      { title: 'Web Design', href: '/services/web-development/web-design' },
-      { title: 'Custom Web Development', href: '/services/web-development/custom-web-development' },
-      { title: 'E-Commerce Development', href: '/services/web-development/ecommerce-development' },
-      { title: 'WordPress Development', href: '/services/web-development/wordpress-development' },
-      { title: 'Shopify Development', href: '/services/web-development/shopify-development' },
-      { title: 'UI/UX Design', href: '/services/web-development/ui-ux-design' },
-      { title: 'CMS Development', href: '/services/web-development/cms-development' },
-    ],
-  },
-  {
     id: 'marketing',
-    title: 'Marketing',
-    tagline: 'High-converting Google Ads and performance campaigns',
+    title: 'Digital Marketing',
+    tagline: 'Full-funnel digital growth, high-converting PPC & performance campaigns',
     href: '/services/marketing',
     image: '/images/services/digital-marketing.png',
     subServices: [
+      { title: 'Digital 360', href: '/services/digital-360' },
+      { title: 'Social Media Marketing', href: '/services/social-media/social-media-marketing' },
+      { title: 'PPC / PPC Management', href: '/services/marketing/google-ads/ppc-management' },
       { title: 'Google Ads', href: '/services/marketing/google-ads' },
       { title: 'Google Search Ads', href: '/services/marketing/google-ads/google-search-ads' },
       { title: 'Google Shopping Ads', href: '/services/marketing/google-ads/google-shopping-ads' },
       { title: 'Google Display Ads', href: '/services/marketing/google-ads/google-display-ads' },
       { title: 'YouTube Ads', href: '/services/marketing/google-ads/youtube-ads' },
-      { title: 'PPC Management', href: '/services/marketing/google-ads/ppc-management' },
+    ],
+  },
+  {
+    id: 'web-development',
+    title: 'Web Development',
+    tagline: 'Bespoke web architecture, modern design & fast performance',
+    href: '/services/web-development',
+    image: '/images/services/web-app-design.png',
+    subServices: [
+      { title: 'Website Design & Development', href: '/services/web-development' },
+      { title: 'Web Design', href: '/services/web-development/web-design' },
+      { title: 'Custom Web Development', href: '/services/web-development/custom-web-development' },
+      { title: 'E-Commerce Web Development', href: '/services/web-development/ecommerce-development' },
+      { title: 'WordPress Development', href: '/services/web-development/wordpress-development' },
+      { title: 'Shopify Development', href: '/services/web-development/shopify-development' },
+      { title: 'UI/UX Design', href: '/services/web-development/ui-ux-design' },
+      { title: 'CMS Development', href: '/services/web-development/cms-development' },
+      { title: 'B2B', href: '/services/b2b-enterprise' },
+      { title: 'SaaS', href: '/services/saas-technology' },
     ],
   },
   {
     id: 'graphic-design',
-    title: 'Graphic Designing',
+    title: 'Designing',
     tagline: 'Distinctive visual identities and engaging creative assets',
     href: '/services/graphic-design',
     image: '/images/services/graphic-branding.jpg',
     subServices: [
-      { title: 'Logo Design', href: '/services/graphic-design/logo-design' },
-      { title: 'Brand Identity Design', href: '/services/graphic-design/brand-identity-design' },
+      { title: 'Graphic Design', href: '/services/graphic-design' },
+      { title: 'Logo Design / Logo Making', href: '/services/graphic-design/logo-design' },
+      { title: 'Brand Identity Design / Branding', href: '/services/graphic-design/brand-identity-design' },
+      { title: '3D Design & Automation', href: '/services/graphic-design/3d-design-automation' },
       { title: 'Poster Design', href: '/services/graphic-design/poster-design' },
       { title: 'Banner Design', href: '/services/graphic-design/banner-design' },
       { title: 'Social Media Graphics', href: '/services/graphic-design/social-media-graphics' },
     ],
   },
   {
+    id: 'email-marketing',
+    title: 'Email Marketing',
+    tagline: 'Automated lifecycle sequences and high-ROI campaigns',
+    href: '/services/email-marketing',
+    image: '/images/services/email-marketing.jpg',
+    subServices: [
+      { title: 'Email Automation', href: '/services/email-marketing/email-automation' },
+      { title: 'Email Campaign Management', href: '/services/email-marketing/email-campaign-management' },
+      { title: 'Email Marketing Strategy', href: '/services/email-marketing/email-marketing-strategy' },
+      { title: 'Email Design', href: '/services/email-marketing/email-design' },
+      { title: 'Email List Building', href: '/services/email-marketing/email-list-building' },
+      { title: 'Email Copywriting', href: '/services/email-marketing/email-copywriting' },
+      { title: 'Email Marketing Audit', href: '/services/email-marketing/email-marketing-audit' },
+    ],
+  },
+  {
     id: 'social-media',
-    title: 'Social Media',
+    title: 'Social Media Marketing',
     tagline: 'Grow, engage, and convert your audience across social channels',
     href: '/services/social-media',
     image: '/images/services/digital-marketing.png',
@@ -119,27 +121,36 @@ const MAIN_SERVICES: MainServiceItem[] = [
     badge: 'POPULAR',
     image: '/images/services/ai-automation.jpg',
     subServices: [
-      { title: 'AI Consulting UK', href: '/services/ai-automation/ai-consulting-uk' },
+      { title: 'AI Chatbot / AI Chatbot Development', href: '/services/ai-automation/ai-chatbot-development' },
+      { title: 'AI Voice Agent / AI Voice Agents', href: '/services/ai-automation/ai-voice-agents' },
+      { title: 'CRM Automation', href: '/services/ai-automation/crm-automation' },
+      { title: 'AI Integration', href: '/services/ai-automation/ai-integration' },
+      { title: 'AI Consulting', href: '/services/ai-automation/ai-consulting-uk' },
       { title: 'AI Workflow Automation', href: '/services/ai-automation/ai-workflow-automation' },
-      { title: 'AI Chatbot Development', href: '/services/ai-automation/ai-chatbot-development' },
-      { title: 'AI Voice Agents', href: '/services/ai-automation/ai-voice-agents' },
       { title: 'Marketing Automation', href: '/services/ai-automation/marketing-automation' },
     ],
   },
   {
-    id: 'email-marketing',
-    title: 'Email Marketing',
-    tagline: 'Automated lifecycle sequences and high-ROI campaigns',
-    href: '/services/email-marketing',
-    image: '/images/services/email-marketing.jpg',
+    id: 'seo',
+    title: 'SEO',
+    tagline: 'Dominate organic search and accelerate rankings',
+    href: '/services/seo',
+    badge: 'TOP RATED',
+    image: '/images/services/seo-brand-strategy.png',
     subServices: [
-      { title: 'Email Marketing Strategy', href: '/services/email-marketing/email-marketing-strategy' },
-      { title: 'Email Campaign Management', href: '/services/email-marketing/email-campaign-management' },
-      { title: 'Email Automation', href: '/services/email-marketing/email-automation' },
-      { title: 'Email List Building', href: '/services/email-marketing/email-list-building' },
-      { title: 'Email Design', href: '/services/email-marketing/email-design' },
-      { title: 'Email Copywriting', href: '/services/email-marketing/email-copywriting' },
-      { title: 'Email Marketing Audit', href: '/services/email-marketing/email-marketing-audit' },
+      { title: 'Local SEO', href: '/services/seo/local-seo' },
+      { title: 'International SEO', href: '/services/seo/international-seo' },
+      { title: 'National SEO', href: '/services/seo/national-seo' },
+      { title: 'E-Commerce SEO', href: '/services/seo/ecommerce-seo' },
+      { title: 'Technical SEO', href: '/services/seo/technical-seo' },
+      { title: 'On-Page SEO', href: '/services/seo/on-page-seo' },
+      { title: 'Off-Page SEO', href: '/services/seo/off-page-seo' },
+      { title: 'SEO Audit (Free)', href: '/services/seo/seo-audit' },
+      { title: 'Content Marketing', href: '/services/seo/content-marketing' },
+      { title: 'Google Penalty Recovery', href: '/services/seo/google-penalty-recovery' },
+      { title: 'AI SEO', href: '/services/seo/ai-seo' },
+      { title: 'Link Building', href: '/services/seo/link-building' },
+      { title: 'Lead Generation SEO', href: '/services/seo/lead-generation-seo' },
     ],
   },
 ]
@@ -159,6 +170,8 @@ export const BUSINESS_OBJECTIVES: NavLinkItem[] = [
   { title: 'Customer Retention', href: '/business-objectives/customer-retention' },
 ]
 
+export const BUSINESS_OBJECTIVES_COLUMNS: NavLinkItem[][] = [BUSINESS_OBJECTIVES]
+
 export const INDUSTRIES_COLUMNS: NavLinkItem[][] = [
   [
     { title: 'Dental', href: '/industries/dental' },
@@ -168,27 +181,33 @@ export const INDUSTRIES_COLUMNS: NavLinkItem[][] = [
     { title: 'SaaS', href: '/industries/saas' },
     { title: 'B2B', href: '/industries/b2b' },
     { title: 'eCommerce', href: '/industries/ecommerce' },
-    { title: 'Construction', href: '/industries/construction' },
   ],
   [
+    { title: 'Construction', href: '/industries/construction' },
     { title: 'Hotels & Hospitality', href: '/industries/hotels-hospitality' },
     { title: 'Restaurants', href: '/industries/restaurants' },
     { title: 'Beauty', href: '/industries/beauty' },
     { title: 'Hair Salons', href: '/industries/hair-salons' },
     { title: 'Accountants', href: '/industries/accountants' },
     { title: 'Insurance', href: '/industries/insurance' },
-    { title: 'Higher Education', href: '/industries/higher-education' },
-    { title: 'Startups & Scale-ups', href: '/industries/startups-scale-ups' },
   ],
   [
+    { title: 'Higher Education', href: '/industries/higher-education' },
+    { title: 'Startups & Scale-ups', href: '/industries/startups-scale-ups' },
     { title: 'CBD', href: '/industries/cbd' },
     { title: 'Chiropractors', href: '/industries/chiropractors' },
     { title: 'Pest Control', href: '/industries/pest-control' },
     { title: 'Airbnb', href: '/industries/airbnb' },
     { title: 'Solar', href: '/industries/solar' },
+  ],
+  [
     { title: 'Retail', href: '/industries/retail' },
     { title: 'AI Marketing', href: '/industries/ai-marketing' },
     { title: 'White Label', href: '/industries/white-label' },
+    { title: 'Manufacturing', href: '/industries/manufacturing' },
+    { title: 'Hospitals', href: '/industries/hospitals' },
+    { title: 'Cleaners', href: '/industries/cleaners' },
+    { title: 'HVAC', href: '/industries/hvac' },
   ],
 ]
 
@@ -544,6 +563,51 @@ function TwoColumnDropdown({
   )
 }
 
+function ColumnLinksDropdown({
+  columns,
+  onClose,
+}: {
+  columns: NavLinkItem[][]
+  onClose: () => void
+}) {
+  return (
+    <div className={styles.columnDropdownCard}>
+      <div className={styles.columnDropdownGrid}>
+        {columns.map((col, colIdx) => (
+          <div key={colIdx} className={styles.columnItemColumn}>
+            {col.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className={styles.mainServiceItem}
+                onClick={onClose}
+              >
+                <span className={styles.mainServiceTitle}>{item.title}</span>
+                <div className={styles.circleBadge}>
+                  <svg
+                    className={styles.circleChevron}
+                    viewBox="0 0 24 24"
+                    width="13"
+                    height="13"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 interface MainIndustryItem {
   title: string
   tagline: string
@@ -630,7 +694,7 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
   const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
-  const [hoveredServiceId, setHoveredServiceId] = useState<string>('seo')
+  const [hoveredServiceId, setHoveredServiceId] = useState<string>('marketing')
   const [hoveredAmazonId, setHoveredAmazonId] = useState<string>('full-service')
   const [hoveredObjectivesId, setHoveredObjectivesId] = useState<string>('traffic-visibility')
   const [hoveredIndustriesId, setHoveredIndustriesId] = useState<string>('corporate-professional')
@@ -675,9 +739,9 @@ export default function Navbar() {
                   ...cmsItem,
                   id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
                   subServices:
-                    matched?.subServices && matched.subServices.length > 0
-                      ? matched.subServices
-                      : cmsItem.subServices || [],
+                    cmsItem.subServices && cmsItem.subServices.length > 0
+                      ? cmsItem.subServices
+                      : matched?.subServices || [],
                   image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
                 }
               })
@@ -1156,19 +1220,16 @@ export default function Navbar() {
                     onMouseEnter={() => handleMouseEnter('objectives')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <TwoColumnDropdown
-                      items={OBJECTIVES_MENU_ITEMS}
-                      activeId={hoveredObjectivesId}
-                      setActiveId={setHoveredObjectivesId}
+                    <ColumnLinksDropdown
+                      columns={BUSINESS_OBJECTIVES_COLUMNS}
                       onClose={() => setActiveDropdown(null)}
-                      defaultViewAllHref="/services"
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
 
-            {/* 4. Industries (hover dropdown matching 2-panel style) */}
+            {/* 4. Industries (direct 7-by-7 columns dropdown) */}
             <li
               className={styles.navItem}
               onMouseEnter={() => handleMouseEnter('industries')}
@@ -1217,12 +1278,9 @@ export default function Navbar() {
                     onMouseEnter={() => handleMouseEnter('industries')}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <TwoColumnDropdown
-                      items={INDUSTRIES_MENU_ITEMS}
-                      activeId={hoveredIndustriesId}
-                      setActiveId={setHoveredIndustriesId}
+                    <ColumnLinksDropdown
+                      columns={INDUSTRIES_COLUMNS}
                       onClose={() => setActiveDropdown(null)}
-                      defaultViewAllHref="/industries"
                     />
                   </motion.div>
                 )}
@@ -1563,20 +1621,15 @@ export default function Navbar() {
                         <button type="button" className={styles.mobileLayerBack} onClick={() => setMobileAccordion(null)}>
                           <span aria-hidden="true">←</span> Back
                         </button>
-                        {INDUSTRIES_MENU_ITEMS.map((item) => (
-                          <div key={item.id} className={styles.mobileLinkGroup}>
-                            <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileGroupLink}>
-                              <span className={styles.mobileMainTitle}>{item.title}</span>
-                              <span className={styles.mobileMainTagline}>{item.tagline}</span>
-                            </Link>
-                            <div className={styles.mobileNestedLinks}>
-                              {item.subServices.map((sub) => (
-                                <Link key={sub.href} href={sub.href} onClick={() => setMobileMenuOpen(false)} className={styles.mobileNestedLink}>
-                                  {sub.title}<span aria-hidden="true">→</span>
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
+                        {INDUSTRIES_COLUMNS.flat().map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.mobileSubLink}
+                          >
+                            <span className={styles.mobileMainTitle}>{item.title}</span>
+                          </Link>
                         ))}
                         <Link
                           href="/industries"
