@@ -231,11 +231,20 @@ export interface SEOSettingsRecord {
   sitemapEnabled: boolean
 }
 
+export interface NavSubService {
+  title: string
+  href: string
+  badge?: string
+}
+
 export interface NavDropdownItem {
+  id?: string
   title: string
   tagline?: string
   href: string
   badge?: string
+  image?: string
+  subServices?: NavSubService[]
 }
 
 export interface NavFeaturedCard {

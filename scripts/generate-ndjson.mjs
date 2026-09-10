@@ -46,6 +46,11 @@ try {
         tagline: item.tagline || '',
         href: item.href,
         badge: item.badge || undefined,
+        subServices: item.subServices ? item.subServices.map((sub, j) => ({
+          _key: `sub_${j}`,
+          title: sub.title,
+          href: sub.href,
+        })) : undefined,
       })),
       featuredCard: nav.featuredCard ? {
         title: nav.featuredCard.title,

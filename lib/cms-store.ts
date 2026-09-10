@@ -46,12 +46,120 @@ const DEFAULT_NAV: NavItemRecord[] = [
     sortOrder: 1,
     isVisible: true,
     dropdownItems: [
-      { title: 'Web Development', tagline: 'Deliver your business to a wider audience', href: '/services/web-development' },
-      { title: 'AI Automation', tagline: 'Smart workflows and intelligent solutions', href: '/services/ai-solutions', badge: 'POPULAR' },
-      { title: 'Designing', tagline: "Creating brands you're proud of", href: '/services/branding' },
-      { title: 'Digital Marketing', tagline: 'Full-funnel performance and growth', href: '/services/digital-marketing' },
-      { title: 'SEO', tagline: 'Get your brand seen online', href: '/services/seo' },
-      { title: 'Email Marketing', tagline: 'Automated campaigns that convert', href: '/services/email-marketing' },
+      {
+        id: 'seo',
+        title: 'SEO Services',
+        tagline: 'Dominate organic search and accelerate rankings',
+        href: '/services/seo',
+        badge: 'TOP RATED',
+        image: '/images/services/seo-brand-strategy.png',
+        subServices: [
+          { title: 'Local SEO', href: '/services/seo/local-seo' },
+          { title: 'E-Commerce SEO', href: '/services/seo/ecommerce-seo' },
+          { title: 'Technical SEO', href: '/services/seo/technical-seo' },
+          { title: 'On-Page SEO', href: '/services/seo/on-page-seo' },
+          { title: 'Off-Page SEO', href: '/services/seo/off-page-seo' },
+          { title: 'National SEO', href: '/services/seo/national-seo' },
+          { title: 'International SEO', href: '/services/seo/international-seo' },
+          { title: 'SEO Audit', href: '/services/seo/seo-audit' },
+          { title: 'Content Marketing', href: '/services/seo/content-marketing' },
+          { title: 'Google Penalty Recovery', href: '/services/seo/google-penalty-recovery' },
+          { title: 'AI SEO', href: '/services/seo/ai-seo' },
+        ],
+      },
+      {
+        id: 'web-development',
+        title: 'Web Services',
+        tagline: 'Bespoke web architecture, modern design & fast performance',
+        href: '/services/web-development',
+        image: '/images/services/web-app-design.png',
+        subServices: [
+          { title: 'Web Design', href: '/services/web-development/web-design' },
+          { title: 'Custom Web Development', href: '/services/web-development/custom-web-development' },
+          { title: 'E-Commerce Development', href: '/services/web-development/ecommerce-development' },
+          { title: 'WordPress Development', href: '/services/web-development/wordpress-development' },
+          { title: 'Shopify Development', href: '/services/web-development/shopify-development' },
+          { title: 'UI/UX Design', href: '/services/web-development/ui-ux-design' },
+          { title: 'CMS Development', href: '/services/web-development/cms-development' },
+        ],
+      },
+      {
+        id: 'marketing',
+        title: 'Marketing',
+        tagline: 'High-converting Google Ads and performance campaigns',
+        href: '/services/marketing',
+        image: '/images/services/digital-marketing.png',
+        subServices: [
+          { title: 'Google Ads', href: '/services/marketing/google-ads' },
+          { title: 'Google Search Ads', href: '/services/marketing/google-ads/google-search-ads' },
+          { title: 'Google Shopping Ads', href: '/services/marketing/google-ads/google-shopping-ads' },
+          { title: 'Google Display Ads', href: '/services/marketing/google-ads/google-display-ads' },
+          { title: 'YouTube Ads', href: '/services/marketing/google-ads/youtube-ads' },
+          { title: 'PPC Management', href: '/services/marketing/google-ads/ppc-management' },
+        ],
+      },
+      {
+        id: 'graphic-design',
+        title: 'Graphic Designing',
+        tagline: 'Distinctive visual identities and engaging creative assets',
+        href: '/services/graphic-design',
+        image: '/images/services/graphic-branding.jpg',
+        subServices: [
+          { title: 'Logo Design', href: '/services/graphic-design/logo-design' },
+          { title: 'Brand Identity Design', href: '/services/graphic-design/brand-identity-design' },
+          { title: 'Poster Design', href: '/services/graphic-design/poster-design' },
+          { title: 'Banner Design', href: '/services/graphic-design/banner-design' },
+          { title: 'Social Media Graphics', href: '/services/graphic-design/social-media-graphics' },
+        ],
+      },
+      {
+        id: 'social-media',
+        title: 'Social Media',
+        tagline: 'Grow, engage, and convert your audience across social channels',
+        href: '/services/social-media',
+        image: '/images/services/digital-marketing.png',
+        subServices: [
+          { title: 'Social Media Management', href: '/services/social-media/social-media-management' },
+          { title: 'Social Media Marketing', href: '/services/social-media/social-media-marketing' },
+          { title: 'Social Media Strategy', href: '/services/social-media/social-media-strategy' },
+          { title: 'Social Media Content Creation', href: '/services/social-media/social-media-content-creation' },
+          { title: 'Community Management', href: '/services/social-media/community-management' },
+          { title: 'Social Media Audit', href: '/services/social-media/social-media-audit' },
+          { title: 'Influencer Marketing', href: '/services/social-media/influencer-marketing' },
+          { title: 'Social Media Consulting', href: '/services/social-media/social-media-consulting' },
+        ],
+      },
+      {
+        id: 'ai-automation',
+        title: 'AI Automation',
+        tagline: 'Automate business workflows with intelligent AI agents',
+        href: '/services/ai-automation',
+        badge: 'POPULAR',
+        image: '/images/services/ai-automation.jpg',
+        subServices: [
+          { title: 'AI Consulting UK', href: '/services/ai-automation/ai-consulting-uk' },
+          { title: 'AI Workflow Automation', href: '/services/ai-automation/ai-workflow-automation' },
+          { title: 'AI Chatbot Development', href: '/services/ai-automation/ai-chatbot-development' },
+          { title: 'AI Voice Agents', href: '/services/ai-automation/ai-voice-agents' },
+          { title: 'Marketing Automation', href: '/services/ai-automation/marketing-automation' },
+        ],
+      },
+      {
+        id: 'email-marketing',
+        title: 'Email Marketing',
+        tagline: 'Automated lifecycle sequences and high-ROI campaigns',
+        href: '/services/email-marketing',
+        image: '/images/services/email-marketing.jpg',
+        subServices: [
+          { title: 'Email Marketing Strategy', href: '/services/email-marketing/email-marketing-strategy' },
+          { title: 'Email Campaign Management', href: '/services/email-marketing/email-campaign-management' },
+          { title: 'Email Automation', href: '/services/email-marketing/email-automation' },
+          { title: 'Email List Building', href: '/services/email-marketing/email-list-building' },
+          { title: 'Email Design', href: '/services/email-marketing/email-design' },
+          { title: 'Email Copywriting', href: '/services/email-marketing/email-copywriting' },
+          { title: 'Email Marketing Audit', href: '/services/email-marketing/email-marketing-audit' },
+        ],
+      },
     ],
     featuredCard: {
       title: 'View all Services',
@@ -1145,14 +1253,16 @@ export async function getCmsNavigation(): Promise<NavItemRecord[]> {
             (b) => b.id === id || (b.label || '').toLowerCase() === (n.label || '').toLowerCase()
           )
 
-          // If Services in Sanity cloud dataset only has legacy stub items without sub-services,
-          // prioritize the rich 6-service dropdown with sub-services from bundled navigation.json.
+          // If Services in Sanity cloud dataset only has legacy items or fewer than 7 categories,
+          // prioritize the complete 7-service dropdown with sub-services from bundled navigation.json.
           const hasRichSubServices =
             Array.isArray(n.dropdownItems) &&
+            n.dropdownItems.length >= 7 &&
+            n.dropdownItems.some((item: any) => (item.id === 'marketing' || (item.title || '').toLowerCase().includes('marketing'))) &&
             n.dropdownItems.some((item: any) => Array.isArray(item.subServices) && item.subServices.length > 0)
 
           const dropdownItems =
-            isServices && (!hasRichSubServices || n.dropdownItems.length < 6)
+            isServices && !hasRichSubServices
               ? (bundledItem?.dropdownItems || n.dropdownItems || [])
               : (n.dropdownItems || bundledItem?.dropdownItems || [])
 

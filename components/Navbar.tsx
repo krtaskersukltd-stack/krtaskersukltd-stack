@@ -661,7 +661,10 @@ export default function Navbar() {
             const hasSubServices = srvNav.dropdownItems.some(
               (item: any) => Array.isArray(item.subServices) && item.subServices.length > 0
             )
-            if (hasSubServices && srvNav.dropdownItems.length >= 5) {
+            const hasMarketing = srvNav.dropdownItems.some(
+              (item: any) => item.id === 'marketing' || (item.title || '').toLowerCase().includes('marketing')
+            )
+            if (hasSubServices && srvNav.dropdownItems.length >= 7 && hasMarketing) {
               const merged = srvNav.dropdownItems.map((cmsItem: any) => {
                 const matched = MAIN_SERVICES.find(
                   (m) =>
