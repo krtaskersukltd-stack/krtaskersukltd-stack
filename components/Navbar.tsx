@@ -531,7 +531,7 @@ function TwoColumnDropdown({
           <div className={styles.dropdownPreviewCopy}>
             <p>{activeItem.tagline}</p>
             <Link
-              href={activeItem.href || defaultViewAllHref}
+              href={defaultViewAllHref}
               className={styles.viewAllServicesLink}
               onClick={onClose}
             >
@@ -638,7 +638,7 @@ export default function Navbar() {
   const [servicesCard, setServicesCard] = useState({
     title: 'View all Services',
     subtitle: "We don't stop there, check out all the services we offer here at KR Tasker",
-    href: '/services',
+    href: '/all-services',
     image: '/images/services/web-app-design.png',
   })
   const [industriesCard, setIndustriesCard] = useState({
@@ -688,7 +688,7 @@ export default function Navbar() {
             setServicesCard({
               title: srvNav.featuredCard.title,
               subtitle: srvNav.featuredCard.subtitle || '',
-              href: srvNav.featuredCard.href || '/services',
+              href: '/all-services',
               image: srvNav.featuredCard.image || '/images/services/web-app-design.png',
             })
           }
@@ -993,7 +993,7 @@ export default function Navbar() {
                 href="/services"
                 onClick={() => setActiveDropdown(null)}
                 className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'services' || pathname.startsWith('/services')
+                  activeDropdown === 'services' || pathname.startsWith('/services') || pathname === '/all-services'
                     ? styles.activeNav
                     : ''
                 }`}
@@ -1039,7 +1039,7 @@ export default function Navbar() {
                       activeId={hoveredServiceId}
                       setActiveId={setHoveredServiceId}
                       onClose={() => setActiveDropdown(null)}
-                      defaultViewAllHref="/services"
+                      defaultViewAllHref="/all-services"
                     />
                   </motion.div>
                 )}
@@ -1430,7 +1430,7 @@ export default function Navbar() {
                           </div>
                         ))}
                         <Link
-                          href="/services"
+                          href="/all-services"
                           onClick={() => setMobileMenuOpen(false)}
                           className={styles.mobileViewAllLink}
                         >

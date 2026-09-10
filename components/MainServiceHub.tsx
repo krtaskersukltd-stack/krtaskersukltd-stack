@@ -1,7 +1,7 @@
 'use client'
 
 import AnimatedHeading from '@/components/AnimatedHeading'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -126,6 +126,8 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
     srv.capabilities && srv.capabilities.length > 0
       ? srv.capabilities
       : DEFAULT_CAPABILITIES
+  const [activeCapabilityIndex, setActiveCapabilityIndex] = useState(0)
+  const activeCapability = capabilitiesList[activeCapabilityIndex] || capabilitiesList[0]
 
   // Parse hero description into clean paragraphs
   const heroParagraphs = (srv.heroDescription || '')
@@ -239,62 +241,37 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
       {/* 3. Are You A Startup Brand + Our Company Capabilities Section */}
       <section className={styles.capabilitiesSection}>
         <div className={styles.container}>
-          <div className={styles.capabilitiesGrid}>
-            {/* Left: Heading + About CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className={styles.capabilitiesLeft}
-            >
-              <span className={styles.sectionTag}>
-                {srv.capabilitiesEyebrow || srv.eyebrow || srv.name}
-              </span>
-              <AnimatedHeading as="h2" className={styles.capabilitiesHeading}>
-                {renderCapabilitiesHeading(srv.capabilitiesHeading)}
-              </AnimatedHeading>
-              <Button href={srv.capabilitiesCtaLink || '/about'} variant="secondary">
-                {srv.capabilitiesCtaText || 'About KR Tasker'}
-              </Button>
-            </motion.div>
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={styles.capabilitiesIntro}>
+            <AnimatedHeading as="h2" className={styles.capabilitiesHeading}>
+              <span className={styles.sectionTag}>{srv.capabilitiesEyebrow || srv.eyebrow || srv.name}</span>{' '}
+              {renderCapabilitiesHeading(srv.capabilitiesHeading)}
+            </AnimatedHeading>
+          </motion.div>
 
-            {/* Right: Capabilities Sub-Pages List */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className={styles.capabilitiesRight}
-            >
+          <div className={styles.capabilitiesGrid}>
+            <div className={styles.capabilitiesLeft}>
               <AnimatedHeading as="h3" className={styles.capabilitiesTitle}>
-                {srv.capabilitiesTitle || 'Our Company Capabilities'}
+                Our <span className={styles.tealAccent}>{srv.name}</span> Services
               </AnimatedHeading>
-              <nav className={styles.capabilitiesList} aria-label={`${srv.name} capabilities`}>
-                {capabilitiesList.map((cap, idx) => {
-                  const targetSlug = cap.slug.startsWith('/')
-                    ? cap.slug
-                    : `/services/${cap.slug}`
-                  const isFeatured = idx === 0 || cap.badge === 'POPULAR'
-                  return (
-                    <Link
-                      key={idx}
-                      href={targetSlug}
-                      className={styles.capabilityItem}
-                    >
-                      <span className={isFeatured ? styles.capabilityNameFeatured : styles.capabilityName}>
-                        {cap.name}
-                      </span>
-                      <span
-                        className={isFeatured ? styles.capabilityCircleFeatured : styles.capabilityCircle}
-                        aria-hidden="true"
-                      >
-                        ↗
-                      </span>
-                    </Link>
-                  )
-                })}
-              </nav>
+              <div className={styles.capabilitiesList} role="tablist" aria-label={`${srv.name} capabilities`}>
+                {capabilitiesList.map((cap, idx) => (
+                  <button key={`${cap.name}-${idx}`} type="button" role="tab" aria-selected={idx === activeCapabilityIndex} onClick={() => setActiveCapabilityIndex(idx)} className={`${styles.capabilityItem} ${idx === activeCapabilityIndex ? styles.capabilityItemActive : ''}`}>
+                    <span>{cap.name}</span><span className={idx === activeCapabilityIndex ? styles.capabilityCircleFeatured : styles.capabilityCircle} aria-hidden="true">→</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <motion.div key={activeCapabilityIndex} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .3 }} className={styles.capabilitiesRight}>
+              <div className={styles.capabilityImages}>
+                <div className={styles.capabilityImage}><Image src="/images/services/digital-marketing.png" alt="Digital marketing campaign strategy" fill sizes="(max-width: 768px) 50vw, 320px" /></div>
+                <div className={styles.capabilityImage}><Image src="/images/services/seo-brand-strategy.png" alt="Digital marketing technology" fill sizes="(max-width: 768px) 50vw, 320px" /></div>
+              </div>
+              <div className={styles.capabilityDetail}>
+                <h4><span aria-hidden="true">•</span> {activeCapability.name}</h4>
+                <p>{activeCapability.description || `A leading full-service ${activeCapability.name} solution built to outthink, outcreate and outperform—combining strategy, creative execution and measurable growth.`}</p>
+                <Link href={activeCapability.slug.startsWith('/') ? activeCapability.slug : `/services/${activeCapability.slug}`} className={styles.capabilityExplore}>Explore More</Link>
+              </div>
             </motion.div>
           </div>
         </div>

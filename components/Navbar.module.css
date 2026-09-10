@@ -52,7 +52,7 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 8px clamp(16px, 4vw, 40px);
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;

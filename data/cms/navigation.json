@@ -125,7 +125,7 @@
     "featuredCard": {
       "title": "View all Services",
       "subtitle": "We don't stop there, check out all the services we offer here at KR Tasker",
-      "href": "/services",
+      "href": "/all-services",
       "image": "/images/services/web-app-design.png"
     }
   },

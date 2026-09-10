@@ -527,6 +527,19 @@
   overflow: hidden;
 }
 
+@media (min-width: 993px) {
+  .featuresGrid {
+    align-items: start;
+  }
+
+  .featuresLeft {
+    position: sticky;
+    top: 104px;
+    width: 100%;
+    aspect-ratio: 1.35 / 1;
+  }
+}
+
 .featureActiveImage {
   position: absolute;
   inset: 0;

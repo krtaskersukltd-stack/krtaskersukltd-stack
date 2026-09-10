@@ -29,7 +29,7 @@ const linkDestinations: Record<string, string> = {
   'Our Blogs': '/blog',
   'Contact Us': '/contact',
   'Meet The Team': '/team',
-  'Digital Marketing': '/services/digital-marketing',
+  'Digital Marketing': '/services',
   'Websites & Apps': '/services/websites-apps',
   'Ai Solutions': '/services/ai-solutions',
   PPC: '/services/ppc',
