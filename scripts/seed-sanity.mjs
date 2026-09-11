@@ -22,7 +22,7 @@ if (fs.existsSync(envLocalPath)) {
   }
 }
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '8fy8ish4'
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'kvnrngt9'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const token =
   process.env.SANITY_API_TOKEN ||
