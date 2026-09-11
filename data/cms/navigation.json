@@ -10,126 +10,133 @@
       {
         "id": "marketing",
         "title": "Digital Marketing",
+        "parentService": "Growth & Marketing",
         "tagline": "Full-funnel digital growth, high-converting PPC & performance campaigns",
         "href": "/services/marketing",
         "image": "/images/services/digital-marketing.png",
         "subServices": [
-          { "title": "Digital 360", "href": "/services/digital-360" },
-          { "title": "Social Media Marketing", "href": "/services/social-media/social-media-marketing" },
-          { "title": "PPC / PPC Management", "href": "/services/marketing/google-ads/ppc-management" },
-          { "title": "Google Ads", "href": "/services/marketing/google-ads" },
-          { "title": "Google Search Ads", "href": "/services/marketing/google-ads/google-search-ads" },
-          { "title": "Google Shopping Ads", "href": "/services/marketing/google-ads/google-shopping-ads" },
-          { "title": "Google Display Ads", "href": "/services/marketing/google-ads/google-display-ads" },
-          { "title": "YouTube Ads", "href": "/services/marketing/google-ads/youtube-ads" }
+          { "title": "Digital 360", "parentService": "Digital Marketing", "href": "/services/digital-360" },
+          { "title": "Social Media Marketing", "parentService": "Digital Marketing", "href": "/services/social-media/social-media-marketing" },
+          { "title": "PPC / PPC Management", "parentService": "Digital Marketing", "href": "/services/marketing/google-ads/ppc-management" },
+          { "title": "Google Ads", "parentService": "Digital Marketing", "href": "/services/marketing/google-ads" },
+          { "title": "Google Search Ads", "parentService": "Google Ads", "href": "/services/marketing/google-ads/google-search-ads" },
+          { "title": "Google Shopping Ads", "parentService": "Google Ads", "href": "/services/marketing/google-ads/google-shopping-ads" },
+          { "title": "Google Display Ads", "parentService": "Google Ads", "href": "/services/marketing/google-ads/google-display-ads" },
+          { "title": "YouTube Ads", "parentService": "Google Ads", "href": "/services/marketing/google-ads/youtube-ads" }
         ]
       },
       {
         "id": "web-development",
         "title": "Web Development",
+        "parentService": "Websites & Apps",
         "tagline": "Bespoke web architecture, modern design & fast performance",
         "href": "/services/web-development",
         "image": "/images/services/web-app-design.png",
         "subServices": [
-          { "title": "Website Design & Development", "href": "/services/web-development" },
-          { "title": "Web Design", "href": "/services/web-development/web-design" },
-          { "title": "Custom Web Development", "href": "/services/web-development/custom-web-development" },
-          { "title": "E-Commerce Web Development", "href": "/services/web-development/ecommerce-development" },
-          { "title": "WordPress Development", "href": "/services/web-development/wordpress-development" },
-          { "title": "Shopify Development", "href": "/services/web-development/shopify-development" },
-          { "title": "UI/UX Design", "href": "/services/web-development/ui-ux-design" },
-          { "title": "CMS Development", "href": "/services/web-development/cms-development" },
-          { "title": "B2B", "href": "/services/b2b-enterprise" },
-          { "title": "SaaS", "href": "/services/saas-technology" }
+          { "title": "Website Design & Development", "parentService": "Web Development", "href": "/services/web-development" },
+          { "title": "Web Design", "parentService": "Web Development", "href": "/services/web-development/web-design" },
+          { "title": "Custom Web Development", "parentService": "Web Development", "href": "/services/web-development/custom-web-development" },
+          { "title": "E-Commerce Web Development", "parentService": "Web Development", "href": "/services/web-development/ecommerce-development" },
+          { "title": "WordPress Development", "parentService": "Web Development", "href": "/services/web-development/wordpress-development" },
+          { "title": "Shopify Development", "parentService": "Web Development", "href": "/services/web-development/shopify-development" },
+          { "title": "UI/UX Design", "parentService": "Web Development", "href": "/services/web-development/ui-ux-design" },
+          { "title": "CMS Development", "parentService": "Web Development", "href": "/services/web-development/cms-development" },
+          { "title": "B2B", "parentService": "Web Development", "href": "/services/b2b-enterprise" },
+          { "title": "SaaS", "parentService": "Web Development", "href": "/services/saas-technology" }
         ]
       },
       {
         "id": "graphic-design",
         "title": "Designing",
+        "parentService": "Creative & Identity",
         "tagline": "Distinctive visual identities and engaging creative assets",
         "href": "/services/graphic-design",
         "image": "/images/services/graphic-branding.jpg",
         "subServices": [
-          { "title": "Graphic Design", "href": "/services/graphic-design" },
-          { "title": "Logo Design / Logo Making", "href": "/services/graphic-design/logo-design" },
-          { "title": "Brand Identity Design / Branding", "href": "/services/graphic-design/brand-identity-design" },
-          { "title": "3D Design & Automation", "href": "/services/graphic-design/3d-design-automation" },
-          { "title": "Poster Design", "href": "/services/graphic-design/poster-design" },
-          { "title": "Banner Design", "href": "/services/graphic-design/banner-design" },
-          { "title": "Social Media Graphics", "href": "/services/graphic-design/social-media-graphics" }
+          { "title": "Graphic Design", "parentService": "Designing", "href": "/services/graphic-design" },
+          { "title": "Logo Design / Logo Making", "parentService": "Designing", "href": "/services/graphic-design/logo-design" },
+          { "title": "Brand Identity Design / Branding", "parentService": "Designing", "href": "/services/graphic-design/brand-identity-design" },
+          { "title": "3D Design & Automation", "parentService": "Designing", "href": "/services/graphic-design/3d-design-automation" },
+          { "title": "Poster Design", "parentService": "Designing", "href": "/services/graphic-design/poster-design" },
+          { "title": "Banner Design", "parentService": "Designing", "href": "/services/graphic-design/banner-design" },
+          { "title": "Social Media Graphics", "parentService": "Designing", "href": "/services/graphic-design/social-media-graphics" }
         ]
       },
       {
         "id": "email-marketing",
         "title": "Email Marketing",
+        "parentService": "Lifecycle & Retention",
         "tagline": "Automated lifecycle sequences and high-ROI campaigns",
         "href": "/services/email-marketing",
         "image": "/images/services/email-marketing.jpg",
         "subServices": [
-          { "title": "Email Automation", "href": "/services/email-marketing/email-automation" },
-          { "title": "Email Campaign Management", "href": "/services/email-marketing/email-campaign-management" },
-          { "title": "Email Marketing Strategy", "href": "/services/email-marketing/email-marketing-strategy" },
-          { "title": "Email Design", "href": "/services/email-marketing/email-design" },
-          { "title": "Email List Building", "href": "/services/email-marketing/email-list-building" },
-          { "title": "Email Copywriting", "href": "/services/email-marketing/email-copywriting" },
-          { "title": "Email Marketing Audit", "href": "/services/email-marketing/email-marketing-audit" }
+          { "title": "Email Automation", "parentService": "Email Marketing", "href": "/services/email-marketing/email-automation" },
+          { "title": "Email Campaign Management", "parentService": "Email Marketing", "href": "/services/email-marketing/email-campaign-management" },
+          { "title": "Email Marketing Strategy", "parentService": "Email Marketing", "href": "/services/email-marketing/email-marketing-strategy" },
+          { "title": "Email Design", "parentService": "Email Marketing", "href": "/services/email-marketing/email-design" },
+          { "title": "Email List Building", "parentService": "Email Marketing", "href": "/services/email-marketing/email-list-building" },
+          { "title": "Email Copywriting", "parentService": "Email Marketing", "href": "/services/email-marketing/email-copywriting" },
+          { "title": "Email Marketing Audit", "parentService": "Email Marketing", "href": "/services/email-marketing/email-marketing-audit" }
         ]
       },
       {
         "id": "social-media",
         "title": "Social Media Marketing",
+        "parentService": "Audience & Reach",
         "tagline": "Grow, engage, and convert your audience across social channels",
         "href": "/services/social-media",
         "image": "/images/services/digital-marketing.png",
         "subServices": [
-          { "title": "Social Media Management", "href": "/services/social-media/social-media-management" },
-          { "title": "Social Media Marketing", "href": "/services/social-media/social-media-marketing" },
-          { "title": "Social Media Strategy", "href": "/services/social-media/social-media-strategy" },
-          { "title": "Social Media Content Creation", "href": "/services/social-media/social-media-content-creation" },
-          { "title": "Community Management", "href": "/services/social-media/community-management" },
-          { "title": "Social Media Audit", "href": "/services/social-media/social-media-audit" },
-          { "title": "Influencer Marketing", "href": "/services/social-media/influencer-marketing" },
-          { "title": "Social Media Consulting", "href": "/services/social-media/social-media-consulting" }
+          { "title": "Social Media Management", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-management" },
+          { "title": "Social Media Marketing", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-marketing" },
+          { "title": "Social Media Strategy", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-strategy" },
+          { "title": "Social Media Content Creation", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-content-creation" },
+          { "title": "Community Management", "parentService": "Social Media Marketing", "href": "/services/social-media/community-management" },
+          { "title": "Social Media Audit", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-audit" },
+          { "title": "Influencer Marketing", "parentService": "Social Media Marketing", "href": "/services/social-media/influencer-marketing" },
+          { "title": "Social Media Consulting", "parentService": "Social Media Marketing", "href": "/services/social-media/social-media-consulting" }
         ]
       },
       {
         "id": "ai-automation",
         "title": "AI Automation",
+        "parentService": "Smart Systems & Agents",
         "tagline": "Automate business workflows with intelligent AI agents",
         "href": "/services/ai-automation",
         "badge": "POPULAR",
         "image": "/images/services/ai-automation.jpg",
         "subServices": [
-          { "title": "AI Chatbot / AI Chatbot Development", "href": "/services/ai-automation/ai-chatbot-development" },
-          { "title": "AI Voice Agent / AI Voice Agents", "href": "/services/ai-automation/ai-voice-agents" },
-          { "title": "CRM Automation", "href": "/services/ai-automation/crm-automation" },
-          { "title": "AI Integration", "href": "/services/ai-automation/ai-integration" },
-          { "title": "AI Consulting", "href": "/services/ai-automation/ai-consulting-uk" },
-          { "title": "AI Workflow Automation", "href": "/services/ai-automation/ai-workflow-automation" },
-          { "title": "Marketing Automation", "href": "/services/ai-automation/marketing-automation" }
+          { "title": "AI Chatbot / AI Chatbot Development", "parentService": "AI Automation", "href": "/services/ai-automation/ai-chatbot-development" },
+          { "title": "AI Voice Agent / AI Voice Agents", "parentService": "AI Automation", "href": "/services/ai-automation/ai-voice-agents" },
+          { "title": "CRM Automation", "parentService": "AI Automation", "href": "/services/ai-automation/crm-automation" },
+          { "title": "AI Integration", "parentService": "AI Automation", "href": "/services/ai-automation/ai-integration" },
+          { "title": "AI Consulting", "parentService": "AI Automation", "href": "/services/ai-automation/ai-consulting-uk" },
+          { "title": "AI Workflow Automation", "parentService": "AI Automation", "href": "/services/ai-automation/ai-workflow-automation" },
+          { "title": "Marketing Automation", "parentService": "AI Automation", "href": "/services/ai-automation/marketing-automation" }
         ]
       },
       {
         "id": "seo",
         "title": "SEO",
+        "parentService": "Search & Visibility",
         "tagline": "Dominate organic search and accelerate rankings",
         "href": "/services/seo",
         "badge": "TOP RATED",
         "image": "/images/services/seo-brand-strategy.png",
         "subServices": [
-          { "title": "Local SEO", "href": "/services/seo/local-seo" },
-          { "title": "International SEO", "href": "/services/seo/international-seo" },
-          { "title": "National SEO", "href": "/services/seo/national-seo" },
-          { "title": "E-Commerce SEO", "href": "/services/seo/ecommerce-seo" },
-          { "title": "Technical SEO", "href": "/services/seo/technical-seo" },
-          { "title": "On-Page SEO", "href": "/services/seo/on-page-seo" },
-          { "title": "Off-Page SEO", "href": "/services/seo/off-page-seo" },
-          { "title": "SEO Audit (Free)", "href": "/services/seo/seo-audit" },
-          { "title": "Content Marketing", "href": "/services/seo/content-marketing" },
-          { "title": "Google Penalty Recovery", "href": "/services/seo/google-penalty-recovery" },
-          { "title": "AI SEO", "href": "/services/seo/ai-seo" },
-          { "title": "Link Building", "href": "/services/seo/link-building" },
-          { "title": "Lead Generation SEO", "href": "/services/seo/lead-generation-seo" }
+          { "title": "Local SEO", "parentService": "SEO", "href": "/services/seo/local-seo" },
+          { "title": "International SEO", "parentService": "SEO", "href": "/services/seo/international-seo" },
+          { "title": "National SEO", "parentService": "SEO", "href": "/services/seo/national-seo" },
+          { "title": "E-Commerce SEO", "parentService": "SEO", "href": "/services/seo/ecommerce-seo" },
+          { "title": "Technical SEO", "parentService": "SEO", "href": "/services/seo/technical-seo" },
+          { "title": "On-Page SEO", "parentService": "SEO", "href": "/services/seo/on-page-seo" },
+          { "title": "Off-Page SEO", "parentService": "SEO", "href": "/services/seo/off-page-seo" },
+          { "title": "SEO Audit (Free)", "parentService": "SEO", "href": "/services/seo/seo-audit" },
+          { "title": "Content Marketing", "parentService": "SEO", "href": "/services/seo/content-marketing" },
+          { "title": "Google Penalty Recovery", "parentService": "SEO", "href": "/services/seo/google-penalty-recovery" },
+          { "title": "AI SEO", "parentService": "SEO", "href": "/services/seo/ai-seo" },
+          { "title": "Link Building", "parentService": "SEO", "href": "/services/seo/link-building" },
+          { "title": "Lead Generation SEO", "parentService": "SEO", "href": "/services/seo/lead-generation-seo" }
         ]
       }
     ],
@@ -141,55 +148,274 @@
     }
   },
   {
-    "id": "nav-industries",
-    "label": "Industries",
-    "href": "/work",
+    "id": "nav-amazon",
+    "label": "Amazon",
+    "href": "/services/amazon-ebay",
     "menuType": "dropdown",
     "sortOrder": 2,
     "isVisible": true,
     "dropdownItems": [
       {
-        "title": "B2B & Enterprise",
-        "tagline": "High-intent lead pipelines & corporate positioning",
-        "href": "/industries/b2b-enterprise"
+        "id": "full-service",
+        "title": "Full Service",
+        "parentService": "Marketplace Operations",
+        "tagline": "End-to-end marketplace management & scaling",
+        "href": "/services/amazon-ebay",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Full service management", "parentService": "Amazon & Marketplace", "href": "/services/full-service-management" },
+          { "title": "Advertising (PPC) management", "parentService": "Amazon & Marketplace", "href": "/services/advertising-ppc-management" },
+          { "title": "Amazon SEO", "parentService": "Amazon & Marketplace", "href": "/services/amazon-seo" },
+          { "title": "Amazon account audit", "parentService": "Amazon & Marketplace", "href": "/services/amazon-account-audit" },
+          { "title": "SOPs", "parentService": "Amazon & Marketplace", "href": "/services/sops" },
+          { "title": "All services", "parentService": "Amazon & Marketplace", "href": "/services/amazon-ebay" },
+          { "title": "Consulting", "parentService": "Amazon & Marketplace", "href": "/services/amazon-consulting" },
+          { "title": "Book a coaching call", "parentService": "Amazon & Marketplace", "href": "/services/book-a-coaching-call" }
+        ]
       },
       {
-        "title": "B2C & Consumer",
-        "tagline": "Direct-to-consumer reach & brand loyalty",
-        "href": "/industries/b2c-consumer"
+        "id": "amazon-design",
+        "title": "Design",
+        "parentService": "Creative & Storefronts",
+        "tagline": "High-converting creative & brand storefronts",
+        "href": "/services/amazon-ebay",
+        "image": "/images/services/graphic-branding.jpg",
+        "subServices": [
+          { "title": "Brand guidelines", "parentService": "Amazon Design", "href": "/services/brand-guidelines" },
+          { "title": "Brand story", "parentService": "Amazon Design", "href": "/services/brand-story" },
+          { "title": "Brand store", "parentService": "Amazon Design", "href": "/services/brand-store" },
+          { "title": "Listing images", "parentService": "Amazon Design", "href": "/services/listing-images" },
+          { "title": "Enhanced brand content A+", "parentService": "Amazon Design", "href": "/services/enhanced-brand-content-a-plus" },
+          { "title": "Main image CTR hack", "parentService": "Amazon Design", "href": "/services/main-image-ctr-hack" },
+          { "title": "Listing optimization", "parentService": "Amazon Design", "href": "/services/listing-optimization" },
+          { "title": "Full listing optimization", "parentService": "Amazon Design", "href": "/services/full-listing-optimization" }
+        ]
       },
       {
-        "title": "E-Commerce & Retail",
-        "tagline": "Scalable Shopify Plus stores & checkout growth",
-        "href": "/industries/ecommerce-retail"
-      },
-      {
-        "title": "SaaS & Technology",
-        "tagline": "Custom web apps, internal tools & client portals",
-        "href": "/industries/saas-technology"
+        "id": "amazon-troubleshooting",
+        "title": "Troubleshooting",
+        "parentService": "Account Health & Reinstatements",
+        "tagline": "Reinstatements, audit & technical account fixes",
+        "href": "/services/amazon-ebay",
+        "image": "/images/services/ai-automation.jpg",
+        "subServices": [
+          { "title": "Listing reinstatement", "parentService": "Amazon Technical", "href": "/services/listing-reinstatement" },
+          { "title": "Account suspension", "parentService": "Amazon Technical", "href": "/services/account-suspension" },
+          { "title": "PPC Advertising audit", "parentService": "Amazon Technical", "href": "/services/ppc-advertising-audit" },
+          { "title": "Brand name change", "parentService": "Amazon Technical", "href": "/services/brand-name-change" },
+          { "title": "Troubleshooting hours", "parentService": "Amazon Technical", "href": "/services/troubleshooting-hours" },
+          { "title": "UPC to GS1 change", "parentService": "Amazon Technical", "href": "/services/upc-to-gs1-change" },
+          { "title": "Remote fulfillment with FBA setup", "parentService": "Amazon Technical", "href": "/services/remote-fulfillment-fba-setup" }
+        ]
       }
     ],
     "featuredCard": {
-      "title": "Explore Case Studies",
-      "subtitle": "See how we deliver measurable organic scale and revenue across every sector",
-      "href": "/work",
+      "title": "Amazon & Marketplace Solutions",
+      "subtitle": "Scale your brand across Amazon, eBay, and international channels",
+      "href": "/services/amazon-ebay",
       "image": "/images/services/digital-marketing.png"
     }
   },
   {
-    "id": "nav-work",
-    "label": "Work",
-    "href": "/work",
-    "menuType": "link",
+    "id": "nav-objectives",
+    "label": "Business Objectives",
+    "href": "/services",
+    "menuType": "dropdown",
     "sortOrder": 3,
-    "isVisible": true
+    "isVisible": true,
+    "dropdownItems": [
+      {
+        "id": "traffic-visibility",
+        "title": "Traffic & Visibility",
+        "parentService": "Search & Reach",
+        "tagline": "Scale brand reach & organic search dominance",
+        "href": "/services",
+        "image": "/images/services/seo-brand-strategy.png",
+        "subServices": [
+          { "title": "Increase Brand Awareness", "parentService": "Traffic & Visibility", "href": "/business-objectives/increase-brand-awareness" },
+          { "title": "Improve Search Engine Rankings", "parentService": "Traffic & Visibility", "href": "/business-objectives/improve-search-engine-rankings" },
+          { "title": "Increase Website Traffic", "parentService": "Traffic & Visibility", "href": "/business-objectives/increase-website-traffic" }
+        ]
+      },
+      {
+        "id": "leads-conversions",
+        "title": "Leads & Conversions",
+        "parentService": "Growth & ROI",
+        "tagline": "High-intent pipelines & ROI acceleration",
+        "href": "/services",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Lead Generation", "parentService": "Leads & Conversions", "href": "/business-objectives/lead-generation" },
+          { "title": "Increase Conversions", "parentService": "Leads & Conversions", "href": "/business-objectives/increase-conversions" }
+        ]
+      },
+      {
+        "id": "engagement-retention",
+        "title": "Engagement & Retention",
+        "parentService": "Loyalty & Brand",
+        "tagline": "Long-term community & customer loyalty",
+        "href": "/services",
+        "image": "/images/services/email-marketing.jpg",
+        "subServices": [
+          { "title": "Social Media Engagement", "parentService": "Engagement & Retention", "href": "/business-objectives/social-media-engagement" },
+          { "title": "Customer Retention", "parentService": "Engagement & Retention", "href": "/business-objectives/customer-retention" }
+        ]
+      }
+    ],
+    "featuredCard": {
+      "title": "Targeted Business Goals",
+      "subtitle": "Discover strategy roadmaps aligned directly with your KPIs and growth targets",
+      "href": "/services",
+      "image": "/images/services/digital-marketing.png"
+    }
+  },
+  {
+    "id": "nav-industries",
+    "label": "Industries",
+    "href": "/industries",
+    "menuType": "dropdown",
+    "sortOrder": 4,
+    "isVisible": true,
+    "dropdownItems": [
+      {
+        "id": "corporate-professional",
+        "title": "Professional & B2B",
+        "parentService": "Corporate Sector",
+        "tagline": "Enterprise positioning & client acquisition",
+        "href": "/industries",
+        "image": "/images/services/web-app-design.png",
+        "subServices": [
+          { "title": "Law Firms", "parentService": "Professional & B2B", "href": "/industries/law-firms" },
+          { "title": "Accountants", "parentService": "Professional & B2B", "href": "/industries/accountants" },
+          { "title": "Insurance", "parentService": "Professional & B2B", "href": "/industries/insurance" },
+          { "title": "Real Estate", "parentService": "Professional & B2B", "href": "/industries/real-estate" },
+          { "title": "Construction", "parentService": "Professional & B2B", "href": "/industries/construction" },
+          { "title": "B2B", "parentService": "Professional & B2B", "href": "/industries/b2b" }
+        ]
+      },
+      {
+        "id": "health-medical",
+        "title": "Health & Wellness",
+        "parentService": "Medical & Care",
+        "tagline": "Patient bookings & trusted local authority",
+        "href": "/industries",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Dental", "parentService": "Health & Wellness", "href": "/industries/dental" },
+          { "title": "Healthcare", "parentService": "Health & Wellness", "href": "/industries/healthcare" },
+          { "title": "Chiropractors", "parentService": "Health & Wellness", "href": "/industries/chiropractors" },
+          { "title": "Beauty", "parentService": "Health & Wellness", "href": "/industries/beauty" },
+          { "title": "Hair Salons", "parentService": "Health & Wellness", "href": "/industries/hair-salons" },
+          { "title": "CBD", "parentService": "Health & Wellness", "href": "/industries/cbd" }
+        ]
+      },
+      {
+        "id": "tech-ecommerce",
+        "title": "Tech & E-Commerce",
+        "parentService": "Scale & Digital",
+        "tagline": "Scale web apps & retail checkout conversion",
+        "href": "/industries",
+        "image": "/images/services/web-app-design.png",
+        "subServices": [
+          { "title": "SaaS", "parentService": "Tech & E-Commerce", "href": "/industries/saas" },
+          { "title": "eCommerce", "parentService": "Tech & E-Commerce", "href": "/industries/ecommerce" },
+          { "title": "AI Marketing", "parentService": "Tech & E-Commerce", "href": "/industries/ai-marketing" },
+          { "title": "Startups & Scale-ups", "parentService": "Tech & E-Commerce", "href": "/industries/startups-scale-ups" },
+          { "title": "White Label", "parentService": "Tech & E-Commerce", "href": "/industries/white-label" }
+        ]
+      },
+      {
+        "id": "hospitality-local",
+        "title": "Hospitality & Local",
+        "parentService": "Local & Booking",
+        "tagline": "Direct reservations & neighborhood reach",
+        "href": "/industries",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Hotels & Hospitality", "parentService": "Hospitality & Local", "href": "/industries/hotels-hospitality" },
+          { "title": "Restaurants", "parentService": "Hospitality & Local", "href": "/industries/restaurants" },
+          { "title": "Airbnb", "parentService": "Hospitality & Local", "href": "/industries/airbnb" },
+          { "title": "Pest Control", "parentService": "Hospitality & Local", "href": "/industries/pest-control" },
+          { "title": "Solar", "parentService": "Hospitality & Local", "href": "/industries/solar" },
+          { "title": "Retail", "parentService": "Hospitality & Local", "href": "/industries/retail" },
+          { "title": "Higher Education", "parentService": "Hospitality & Local", "href": "/industries/higher-education" }
+        ]
+      }
+    ],
+    "featuredCard": {
+      "title": "Explore Industries",
+      "subtitle": "See how we deliver measurable organic scale and revenue across every sector",
+      "href": "/industries",
+      "image": "/images/services/digital-marketing.png"
+    }
+  },
+  {
+    "id": "nav-results",
+    "label": "Results",
+    "href": "/work",
+    "menuType": "dropdown",
+    "sortOrder": 5,
+    "isVisible": true,
+    "dropdownItems": [
+      {
+        "id": "case-studies",
+        "title": "Case Studies",
+        "parentService": "Client Transformations",
+        "tagline": "Real growth stories, verified metrics & client ROI",
+        "href": "/work",
+        "image": "/images/services/web-app-design.png",
+        "subServices": [
+          { "title": "All Case Studies", "parentService": "Case Studies", "href": "/work" },
+          { "title": "E-Commerce & Amazon Growth", "parentService": "Case Studies", "href": "/work" },
+          { "title": "Websites & Apps Development", "parentService": "Case Studies", "href": "/work" },
+          { "title": "SEO & Organic Scale", "parentService": "Case Studies", "href": "/work" },
+          { "title": "Paid Advertising & PPC", "parentService": "Case Studies", "href": "/work" }
+        ]
+      },
+      {
+        "id": "testimonials",
+        "title": "Testimonials",
+        "parentService": "5-Star Reviews & Proof",
+        "tagline": "5-star client reviews & verified transformations",
+        "href": "/#testimonials",
+        "image": "/images/services/digital-marketing.png",
+        "subServices": [
+          { "title": "Client Reviews & Feedback", "parentService": "Client Feedback", "href": "/#testimonials" },
+          { "title": "Google 5.0 Star Ratings", "parentService": "Client Feedback", "href": "/#testimonials" },
+          { "title": "Video & Written Testimonials", "parentService": "Client Feedback", "href": "/#testimonials" },
+          { "title": "Brand Founder Stories", "parentService": "Client Feedback", "href": "/#testimonials" }
+        ]
+      }
+    ],
+    "featuredCard": {
+      "title": "Explore Results & Case Studies",
+      "subtitle": "Real metrics and verified growth transformations for high-growth brands",
+      "href": "/work",
+      "image": "/images/services/web-app-design.png"
+    }
   },
   {
     "id": "nav-about",
     "label": "About",
     "href": "/about",
     "menuType": "link",
-    "sortOrder": 4,
+    "sortOrder": 6,
+    "isVisible": true
+  },
+  {
+    "id": "nav-contact",
+    "label": "Free Audit",
+    "href": "/contact",
+    "menuType": "link",
+    "sortOrder": 7,
+    "isVisible": true
+  },
+  {
+    "id": "nav-work",
+    "label": "Work",
+    "href": "/work",
+    "menuType": "link",
+    "sortOrder": 8,
     "isVisible": true
   },
   {
@@ -197,15 +423,7 @@
     "label": "Blog",
     "href": "/blog",
     "menuType": "link",
-    "sortOrder": 5,
-    "isVisible": true
-  },
-  {
-    "id": "nav-contact",
-    "label": "Contact",
-    "href": "/contact",
-    "menuType": "link",
-    "sortOrder": 6,
+    "sortOrder": 9,
     "isVisible": true
   }
 ]

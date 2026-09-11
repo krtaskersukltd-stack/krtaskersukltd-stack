@@ -11,6 +11,7 @@ export const SERVICES_QUERY = groq`
     sortOrder,
     template,
     eyebrow,
+    parentService,
     heroHeading,
     heroDescription,
     heroCtaText,
@@ -71,6 +72,7 @@ export const SERVICE_BY_SLUG_QUERY = groq`
     sortOrder,
     template,
     eyebrow,
+    parentService,
     heroHeading,
     heroDescription,
     heroCtaText,
@@ -320,11 +322,13 @@ export const NAVIGATION_QUERY = groq`
     menuType,
     dropdownItems[] {
       title,
+      parentService,
       tagline,
       href,
       badge,
       subServices[] {
         title,
+        parentService,
         href
       }
     },

@@ -39,10 +39,11 @@ export const navigationType = defineType({
         {
           type: 'object',
           fields: [
-            { name: 'title', title: 'Item Title (e.g. Web Design, B2B & Enterprise)', type: 'string', validation: (r) => r.required() },
+            { name: 'title', title: 'Item Title / Service Name (e.g. SEO, Web Development, Designing)', type: 'string', validation: (r) => r.required() },
+            { name: 'parentService', title: 'Parent Service (Small subtitle shown below service name, e.g. Digital Marketing, Websites & Apps)', type: 'string' },
             { name: 'tagline', title: 'Tagline / Subtext (e.g. Deliver your business to a wider audience)', type: 'string' },
             { name: 'href', title: 'Link URL (e.g. /services/web-development)', type: 'string', validation: (r) => r.required() },
-            { name: 'badge', title: 'Badge (e.g. POPULAR, NEW)', type: 'string' },
+            { name: 'badge', title: 'Badge (e.g. POPULAR, NEW, TOP RATED)', type: 'string' },
             {
               name: 'subServices',
               title: 'Sub-Services (Right Column Items)',
@@ -52,6 +53,7 @@ export const navigationType = defineType({
                   type: 'object',
                   fields: [
                     { name: 'title', title: 'Sub-Service Title', type: 'string', validation: (r) => r.required() },
+                    { name: 'parentService', title: 'Parent Service (Small subtitle, e.g. SEO, Web Development)', type: 'string' },
                     { name: 'href', title: 'Link URL', type: 'string', validation: (r) => r.required() },
                   ],
                 },

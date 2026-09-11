@@ -86,6 +86,7 @@ export interface ServiceRecord {
   sortOrder: number
   template?: 'category' | 'subservice' | 'standard'
   eyebrow?: string
+  parentService?: string
   heroHeading: string
   heroDescription: string
   heroCtaText?: string
@@ -234,12 +235,14 @@ export interface SEOSettingsRecord {
 export interface NavSubService {
   title: string
   href: string
+  parentService?: string
   badge?: string
 }
 
 export interface NavDropdownItem {
   id?: string
   title: string
+  parentService?: string
   tagline?: string
   href: string
   badge?: string

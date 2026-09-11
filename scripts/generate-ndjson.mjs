@@ -32,9 +32,10 @@ documents.push({
 try {
   const navData = JSON.parse(fs.readFileSync(path.join(cmsDir, 'navigation.json'), 'utf-8'))
   navData.forEach((nav) => {
+    const navId = nav.id || `nav-${nav.label.toLowerCase().replace(/\s+/g, '-')}`
     documents.push({
       _type: 'navigation',
-      _id: `nav-${nav.label.toLowerCase()}`,
+      _id: navId,
       label: nav.label,
       href: nav.href,
       menuType: nav.menuType || (nav.dropdownItems?.length ? 'dropdown' : 'link'),
@@ -43,12 +44,14 @@ try {
       dropdownItems: (nav.dropdownItems || []).map((item, i) => ({
         _key: `drop_${i}`,
         title: item.title,
+        parentService: item.parentService || '',
         tagline: item.tagline || '',
         href: item.href,
         badge: item.badge || undefined,
         subServices: item.subServices ? item.subServices.map((sub, j) => ({
           _key: `sub_${j}`,
           title: sub.title,
+          parentService: sub.parentService || item.title || '',
           href: sub.href,
         })) : undefined,
       })),
@@ -74,6 +77,7 @@ try {
       slug: { _type: 'slug', current: s.slug },
       template: s.template || (s.capabilities?.length ? 'category' : 'subservice'),
       eyebrow: s.eyebrow || 'Websites & Apps',
+      parentService: s.parentService || s.eyebrow || 'Digital Marketing',
       status: s.status || 'published',
       sortOrder: s.sortOrder || 1,
       heroHeading: s.heroHeading || s.name,

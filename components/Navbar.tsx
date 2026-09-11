@@ -693,7 +693,10 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [servicesMenu, setServicesMenu] = useState<MainServiceItem[]>(MAIN_SERVICES)
-  const [industriesMenu, setIndustriesMenu] = useState<MainIndustryItem[]>(MAIN_INDUSTRIES)
+  const [amazonMenu, setAmazonMenu] = useState<MainServiceItem[]>(AMAZON_MENU_ITEMS)
+  const [objectivesMenu, setObjectivesMenu] = useState<MainServiceItem[]>(OBJECTIVES_MENU_ITEMS)
+  const [industriesMenu, setIndustriesMenu] = useState<MainServiceItem[]>(INDUSTRIES_MENU_ITEMS)
+  const [resultsMenu, setResultsMenu] = useState<MainServiceItem[]>(RESULTS_MENU_ITEMS)
   const [hoveredServiceId, setHoveredServiceId] = useState<string>('marketing')
   const [hoveredAmazonId, setHoveredAmazonId] = useState<string>('full-service')
   const [hoveredObjectivesId, setHoveredObjectivesId] = useState<string>('traffic-visibility')
@@ -718,35 +721,12 @@ export default function Navbar() {
       .then((res) => (res.ok ? res.json() : []))
       .then((navItems: any[]) => {
         if (Array.isArray(navItems) && navItems.length > 0) {
+          // 1. Services
           const srvNav = navItems.find(
-            (n) => (n.label || '').toLowerCase() === 'services' || n.href === '/services'
+            (n) => (n.label || '').toLowerCase() === 'services' || n.id === 'nav-services'
           )
           if (srvNav && Array.isArray(srvNav.dropdownItems) && srvNav.dropdownItems.length > 0) {
-            const hasSubServices = srvNav.dropdownItems.some(
-              (item: any) => Array.isArray(item.subServices) && item.subServices.length > 0
-            )
-            const hasMarketing = srvNav.dropdownItems.some(
-              (item: any) => item.id === 'marketing' || (item.title || '').toLowerCase().includes('marketing')
-            )
-            if (hasSubServices && srvNav.dropdownItems.length >= 7 && hasMarketing) {
-              const merged = srvNav.dropdownItems.map((cmsItem: any) => {
-                const matched = MAIN_SERVICES.find(
-                  (m) =>
-                    (m.title || '').toLowerCase() === (cmsItem.title || '').toLowerCase() ||
-                    m.id === cmsItem.id
-                )
-                return {
-                  ...cmsItem,
-                  id: cmsItem.id || matched?.id || (cmsItem.title || '').toLowerCase().replace(/\s+/g, '-'),
-                  subServices:
-                    cmsItem.subServices && cmsItem.subServices.length > 0
-                      ? cmsItem.subServices
-                      : matched?.subServices || [],
-                  image: cmsItem.image || matched?.image || '/images/services/web-app-design.png',
-                }
-              })
-              setServicesMenu(merged)
-            }
+            setServicesMenu(srvNav.dropdownItems)
           }
           if (srvNav && srvNav.featuredCard?.title) {
             setServicesCard({
@@ -757,8 +737,25 @@ export default function Navbar() {
             })
           }
 
+          // 2. Amazon
+          const amzNav = navItems.find(
+            (n) => (n.label || '').toLowerCase() === 'amazon' || n.id === 'nav-amazon'
+          )
+          if (amzNav && Array.isArray(amzNav.dropdownItems) && amzNav.dropdownItems.length > 0) {
+            setAmazonMenu(amzNav.dropdownItems)
+          }
+
+          // 3. Business Objectives
+          const objNav = navItems.find(
+            (n) => (n.label || '').toLowerCase().includes('objective') || n.id === 'nav-objectives'
+          )
+          if (objNav && Array.isArray(objNav.dropdownItems) && objNav.dropdownItems.length > 0) {
+            setObjectivesMenu(objNav.dropdownItems)
+          }
+
+          // 4. Industries
           const indNav = navItems.find(
-            (n) => (n.label || '').toLowerCase() === 'industries' || n.href === '/industries'
+            (n) => (n.label || '').toLowerCase() === 'industries' || n.id === 'nav-industries'
           )
           if (indNav && Array.isArray(indNav.dropdownItems) && indNav.dropdownItems.length > 0) {
             setIndustriesMenu(indNav.dropdownItems)
@@ -767,11 +764,17 @@ export default function Navbar() {
             setIndustriesCard({
               title: indNav.featuredCard.title,
               subtitle: indNav.featuredCard.subtitle || '',
-              href: indNav.featuredCard.href === '/work'
-                ? '/industries'
-                : indNav.featuredCard.href || '/industries',
+              href: indNav.featuredCard.href || '/industries',
               image: indNav.featuredCard.image || '/images/services/digital-marketing.png',
             })
+          }
+
+          // 5. Results
+          const resNav = navItems.find(
+            (n) => (n.label || '').toLowerCase() === 'results' || n.id === 'nav-results'
+          )
+          if (resNav && Array.isArray(resNav.dropdownItems) && resNav.dropdownItems.length > 0) {
+            setResultsMenu(resNav.dropdownItems)
           }
         }
       })
@@ -1160,7 +1163,7 @@ export default function Navbar() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <TwoColumnDropdown
-                      items={AMAZON_MENU_ITEMS}
+                      items={amazonMenu}
                       activeId={hoveredAmazonId}
                       setActiveId={setHoveredAmazonId}
                       onClose={() => setActiveDropdown(null)}
@@ -1339,7 +1342,7 @@ export default function Navbar() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <TwoColumnDropdown
-                      items={RESULTS_MENU_ITEMS}
+                      items={resultsMenu}
                       activeId={hoveredResultsId}
                       setActiveId={setHoveredResultsId}
                       onClose={() => setActiveDropdown(null)}

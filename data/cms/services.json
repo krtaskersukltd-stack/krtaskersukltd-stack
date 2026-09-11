@@ -54,7 +54,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.482Z"
+    "updatedAt": "2026-08-29T10:51:27.482Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-seo",
@@ -123,7 +124,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.483Z"
+    "updatedAt": "2026-08-29T10:51:27.483Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-ppc",
@@ -192,7 +194,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.483Z"
+    "updatedAt": "2026-08-29T10:51:27.483Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-social-media",
@@ -261,7 +264,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.483Z"
+    "updatedAt": "2026-08-29T10:51:27.483Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-email-marketing",
@@ -330,7 +334,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-marketing",
@@ -399,7 +404,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Digital Marketing"
   },
   {
     "id": "srv-web-development",
@@ -468,7 +474,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Websites & Apps"
   },
   {
     "id": "srv-shopify-development",
@@ -537,7 +544,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Websites & Apps"
   },
   {
     "id": "srv-websites-apps",
@@ -606,7 +614,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Websites & Apps"
   },
   {
     "id": "srv-branding",
@@ -675,7 +684,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Designing"
   },
   {
     "id": "srv-graphic-design",
@@ -744,7 +754,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Designing"
   },
   {
     "id": "srv-amazon-ebay",
@@ -813,7 +824,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "Marketplace & Amazon"
   },
   {
     "id": "srv-ai-solutions",
@@ -882,7 +894,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "AI & Automation"
   },
   {
     "id": "srv-ai-automation",
@@ -951,7 +964,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.484Z"
+    "updatedAt": "2026-08-29T10:51:27.484Z",
+    "parentService": "AI & Automation"
   },
   {
     "id": "srv-business-consultancy",
@@ -1020,7 +1034,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Business Consultancy"
   },
   {
     "id": "srv-digital-marketing",
@@ -1142,7 +1157,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Growth & Marketing"
   },
   {
     "id": "srv-b2b-enterprise",
@@ -1213,7 +1229,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Industries"
   },
   {
     "id": "srv-b2c-consumer",
@@ -1284,7 +1301,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Industries"
   },
   {
     "id": "srv-ecommerce-retail",
@@ -1355,7 +1373,8 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Industries"
   },
   {
     "id": "srv-saas-technology",
@@ -1426,6 +1445,7 @@
       "indexStatus": "index",
       "followStatus": "follow"
     },
-    "updatedAt": "2026-08-29T10:51:27.485Z"
+    "updatedAt": "2026-08-29T10:51:27.485Z",
+    "parentService": "Industries"
   }
 ]

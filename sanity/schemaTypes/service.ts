@@ -36,6 +36,26 @@ export const serviceType = defineType({
       initialValue: 'Websites & Apps',
     }),
     defineField({
+      name: 'parentService',
+      title: 'Parent Service / Category',
+      type: 'string',
+      description: 'The parent service or category displayed as small text under the service name in menus (e.g. Digital Marketing, Websites & Apps, Designing, AI & Automation).',
+      options: {
+        list: [
+          { title: 'Digital Marketing', value: 'Digital Marketing' },
+          { title: 'Websites & Apps', value: 'Websites & Apps' },
+          { title: 'Designing', value: 'Designing' },
+          { title: 'AI & Automation', value: 'AI & Automation' },
+          { title: 'Email Marketing', value: 'Email Marketing' },
+          { title: 'Social Media', value: 'Social Media' },
+          { title: 'Marketplace & Amazon', value: 'Marketplace & Amazon' },
+          { title: 'SEO & Growth', value: 'SEO & Growth' },
+          { title: 'Business Consultancy', value: 'Business Consultancy' },
+          { title: 'Industries', value: 'Industries' },
+        ],
+      },
+    }),
+    defineField({
       name: 'status',
       title: 'Publish Status',
       type: 'string',
@@ -289,7 +309,17 @@ export const serviceType = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'eyebrow',
+      parentService: 'parentService',
+      eyebrow: 'eyebrow',
+      template: 'template',
+    },
+    prepare({ title, parentService, eyebrow, template }) {
+      const typeLabel = template === 'category' ? 'Hub Category' : 'Sub-Service'
+      const parentLabel = parentService ? `Parent: ${parentService}` : (eyebrow ? `Category: ${eyebrow}` : typeLabel)
+      return {
+        title: title || 'Untitled Service',
+        subtitle: parentLabel,
+      }
     },
   },
 })
