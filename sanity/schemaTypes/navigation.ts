@@ -39,10 +39,12 @@ export const navigationType = defineType({
         {
           type: 'object',
           fields: [
+            { name: 'id', title: 'Item ID (e.g. marketing, web-development)', type: 'string' },
             { name: 'title', title: 'Item Title / Service Name (e.g. SEO, Web Development, Designing)', type: 'string', validation: (r) => r.required() },
             { name: 'parentService', title: 'Parent Service (Small subtitle shown below service name, e.g. Digital Marketing, Websites & Apps)', type: 'string' },
             { name: 'tagline', title: 'Tagline / Subtext (e.g. Deliver your business to a wider audience)', type: 'string' },
             { name: 'href', title: 'Link URL (e.g. /services/web-development)', type: 'string', validation: (r) => r.required() },
+            { name: 'image', title: 'Preview Image', type: 'image', options: { hotspot: true } },
             { name: 'badge', title: 'Badge (e.g. POPULAR, NEW, TOP RATED)', type: 'string' },
             {
               name: 'subServices',

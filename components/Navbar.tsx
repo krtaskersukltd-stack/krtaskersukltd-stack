@@ -263,6 +263,7 @@ export const AMAZON_MENU_ITEMS: MainServiceItem[] = [
     title: 'Full Service',
     tagline: 'End-to-end marketplace management & scaling',
     href: '/services/amazon-ebay',
+    image: '/images/services/amazon-ebay.jpg',
     subServices: [
       { title: 'Full service management', href: '/services/full-service-management' },
       { title: 'Advertising (PPC) management', href: '/services/advertising-ppc-management' },
@@ -279,6 +280,7 @@ export const AMAZON_MENU_ITEMS: MainServiceItem[] = [
     title: 'Design',
     tagline: 'High-converting creative & brand storefronts',
     href: '/services/amazon-ebay',
+    image: '/images/services/graphic-branding.jpg',
     subServices: [
       { title: 'Brand guidelines', href: '/services/brand-guidelines' },
       { title: 'Brand story', href: '/services/brand-story' },
@@ -295,6 +297,7 @@ export const AMAZON_MENU_ITEMS: MainServiceItem[] = [
     title: 'Troubleshooting',
     tagline: 'Reinstatements, audit & technical account fixes',
     href: '/services/amazon-ebay',
+    image: '/images/services/ai-automation.jpg',
     subServices: [
       { title: 'Listing reinstatement', href: '/services/listing-reinstatement' },
       { title: 'Account suspension', href: '/services/account-suspension' },
@@ -313,6 +316,7 @@ export const OBJECTIVES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Traffic & Visibility',
     tagline: 'Scale brand reach & organic search dominance',
     href: '/services',
+    image: '/images/services/seo-brand-strategy.png',
     subServices: [
       { title: 'Increase Brand Awareness', href: '/business-objectives/increase-brand-awareness' },
       { title: 'Improve Search Engine Rankings', href: '/business-objectives/improve-search-engine-rankings' },
@@ -324,6 +328,7 @@ export const OBJECTIVES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Leads & Conversions',
     tagline: 'High-intent pipelines & ROI acceleration',
     href: '/services',
+    image: '/images/services/digital-marketing.png',
     subServices: [
       { title: 'Lead Generation', href: '/business-objectives/lead-generation' },
       { title: 'Increase Conversions', href: '/business-objectives/increase-conversions' },
@@ -334,6 +339,7 @@ export const OBJECTIVES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Engagement & Retention',
     tagline: 'Long-term community & customer loyalty',
     href: '/services',
+    image: '/images/services/email-marketing.jpg',
     subServices: [
       { title: 'Social Media Engagement', href: '/business-objectives/social-media-engagement' },
       { title: 'Customer Retention', href: '/business-objectives/customer-retention' },
@@ -347,6 +353,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Professional & B2B',
     tagline: 'Enterprise positioning & client acquisition',
     href: '/industries',
+    image: '/images/services/web-app-design.png',
     subServices: [
       { title: 'Law Firms', href: '/industries/law-firms' },
       { title: 'Accountants', href: '/industries/accountants' },
@@ -361,6 +368,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Health & Wellness',
     tagline: 'Patient bookings & trusted local authority',
     href: '/industries',
+    image: '/images/services/digital-marketing.png',
     subServices: [
       { title: 'Dental', href: '/industries/dental' },
       { title: 'Healthcare', href: '/industries/healthcare' },
@@ -375,6 +383,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Tech & E-Commerce',
     tagline: 'Scale web apps & retail checkout conversion',
     href: '/industries',
+    image: '/images/services/web-app-design.png',
     subServices: [
       { title: 'SaaS', href: '/industries/saas' },
       { title: 'eCommerce', href: '/industries/ecommerce' },
@@ -388,6 +397,7 @@ export const INDUSTRIES_MENU_ITEMS: MainServiceItem[] = [
     title: 'Hospitality & Local',
     tagline: 'Direct reservations & neighborhood reach',
     href: '/industries',
+    image: '/images/services/digital-marketing.png',
     subServices: [
       { title: 'Hotels & Hospitality', href: '/industries/hotels-hospitality' },
       { title: 'Restaurants', href: '/industries/restaurants' },
@@ -406,6 +416,7 @@ export const RESULTS_MENU_ITEMS: MainServiceItem[] = [
     title: 'Case Studies',
     tagline: 'Real growth stories, verified metrics & client ROI',
     href: '/work',
+    image: '/images/services/web-app-design.png',
     subServices: [
       { title: 'All Case Studies', href: '/work' },
       { title: 'E-Commerce & Amazon Growth', href: '/work' },
@@ -419,6 +430,7 @@ export const RESULTS_MENU_ITEMS: MainServiceItem[] = [
     title: 'Testimonials',
     tagline: '5-star client reviews & verified transformations',
     href: '/#testimonials',
+    image: '/images/services/digital-marketing.png',
     subServices: [
       { title: 'Client Reviews & Feedback', href: '/#testimonials' },
       { title: 'Google 5.0 Star Ratings', href: '/#testimonials' },
@@ -427,6 +439,68 @@ export const RESULTS_MENU_ITEMS: MainServiceItem[] = [
     ],
   },
 ]
+
+export const SERVICE_IMAGE_FALLBACKS: Record<string, string> = {
+  marketing: '/images/services/digital-marketing.png',
+  'digital-marketing': '/images/services/digital-marketing.png',
+  'growth-marketing': '/images/services/digital-marketing.png',
+  'web-development': '/images/services/web-app-design.png',
+  'websites-apps': '/images/services/web-app-design.png',
+  'graphic-design': '/images/services/graphic-branding.jpg',
+  designing: '/images/services/graphic-branding.jpg',
+  'creative-identity': '/images/services/graphic-branding.jpg',
+  'email-marketing': '/images/services/email-marketing.jpg',
+  'lifecycle-retention': '/images/services/email-marketing.jpg',
+  'social-media': '/images/services/digital-marketing.png',
+  'social-media-marketing': '/images/services/digital-marketing.png',
+  'audience-reach': '/images/services/digital-marketing.png',
+  'ai-automation': '/images/services/ai-automation.jpg',
+  'smart-systems-agents': '/images/services/ai-automation.jpg',
+  seo: '/images/services/seo-brand-strategy.png',
+  'seo-services': '/images/services/seo-brand-strategy.png',
+  'search-visibility': '/images/services/seo-brand-strategy.png',
+  'full-service': '/images/services/amazon-ebay.jpg',
+  'amazon-design': '/images/services/graphic-branding.jpg',
+  'amazon-troubleshooting': '/images/services/ai-automation.jpg',
+  'traffic-visibility': '/images/services/seo-brand-strategy.png',
+  'leads-conversions': '/images/services/digital-marketing.png',
+  'engagement-retention': '/images/services/email-marketing.jpg',
+  'corporate-professional': '/images/services/web-app-design.png',
+  'health-medical': '/images/services/digital-marketing.png',
+  'tech-ecommerce': '/images/services/web-app-design.png',
+  'hospitality-local': '/images/services/digital-marketing.png',
+  'case-studies': '/images/services/web-app-design.png',
+  testimonials: '/images/services/digital-marketing.png',
+}
+
+function getServiceImage(item?: MainServiceItem): string {
+  if (!item) return '/images/services/digital-marketing.png'
+  if (item.image) return item.image
+  const idKey = (item.id || '').toLowerCase()
+  const titleKey = (item.title || '').toLowerCase()
+  if (SERVICE_IMAGE_FALLBACKS[idKey]) return SERVICE_IMAGE_FALLBACKS[idKey]
+  if (SERVICE_IMAGE_FALLBACKS[titleKey]) return SERVICE_IMAGE_FALLBACKS[titleKey]
+
+  if (titleKey.includes('web') || titleKey.includes('app') || titleKey.includes('saas') || titleKey.includes('case')) {
+    return '/images/services/web-app-design.png'
+  }
+  if (titleKey.includes('design') || titleKey.includes('brand') || titleKey.includes('logo')) {
+    return '/images/services/graphic-branding.jpg'
+  }
+  if (titleKey.includes('email')) {
+    return '/images/services/email-marketing.jpg'
+  }
+  if (titleKey.includes('ai') || titleKey.includes('auto') || titleKey.includes('troubleshoot')) {
+    return '/images/services/ai-automation.jpg'
+  }
+  if (titleKey.includes('seo') || titleKey.includes('traffic') || titleKey.includes('search')) {
+    return '/images/services/seo-brand-strategy.png'
+  }
+  if (titleKey.includes('amazon') || titleKey.includes('ebay')) {
+    return '/images/services/amazon-ebay.jpg'
+  }
+  return '/images/services/digital-marketing.png'
+}
 
 function TwoColumnDropdown({
   items,
@@ -447,6 +521,7 @@ function TwoColumnDropdown({
         (s.id && s.id === activeId) ||
         (s.title || '').toLowerCase() === (activeId || '').toLowerCase()
     ) || items[0]
+  const previewImage = getServiceImage(activeItem)
 
   return (
     <div className={styles.servicesDropdownCard}>
@@ -536,25 +611,40 @@ function TwoColumnDropdown({
         </div>
 
         <div className={styles.subServicesFooter}>
-          {activeItem.image && (
+          {previewImage && (
             <div className={styles.dropdownPreviewImage}>
               <Image
-                src={activeItem.image}
-                alt=""
+                src={previewImage}
+                alt={activeItem.title || 'Service preview'}
                 fill
-                sizes="110px"
+                sizes="(max-width: 768px) 100vw, 320px"
                 className={styles.dropdownPreviewImg}
               />
             </div>
           )}
           <div className={styles.dropdownPreviewCopy}>
-            <p>{activeItem.tagline}</p>
+            {activeItem.tagline && (
+              <p className={styles.dropdownPreviewTagline}>{activeItem.tagline}</p>
+            )}
             <Link
-              href={defaultViewAllHref}
+              href={activeItem.href || defaultViewAllHref}
               className={styles.viewAllServicesLink}
               onClick={onClose}
             >
-              View all services
+              <span>View all services</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
             </Link>
           </div>
         </div>

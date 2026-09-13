@@ -37,6 +37,39 @@ const DEFAULT_SEO: SEOSettingsRecord = {
   sitemapEnabled: true,
 }
 
+const SERVICE_IMAGE_FALLBACKS: Record<string, string> = {
+  marketing: '/images/services/digital-marketing.png',
+  'digital-marketing': '/images/services/digital-marketing.png',
+  'growth-marketing': '/images/services/digital-marketing.png',
+  'web-development': '/images/services/web-app-design.png',
+  'websites-apps': '/images/services/web-app-design.png',
+  'graphic-design': '/images/services/graphic-branding.jpg',
+  designing: '/images/services/graphic-branding.jpg',
+  'creative-identity': '/images/services/graphic-branding.jpg',
+  'email-marketing': '/images/services/email-marketing.jpg',
+  'lifecycle-retention': '/images/services/email-marketing.jpg',
+  'social-media': '/images/services/digital-marketing.png',
+  'social-media-marketing': '/images/services/digital-marketing.png',
+  'audience-reach': '/images/services/digital-marketing.png',
+  'ai-automation': '/images/services/ai-automation.jpg',
+  'smart-systems-agents': '/images/services/ai-automation.jpg',
+  seo: '/images/services/seo-brand-strategy.png',
+  'seo-services': '/images/services/seo-brand-strategy.png',
+  'search-visibility': '/images/services/seo-brand-strategy.png',
+  'full-service': '/images/services/amazon-ebay.jpg',
+  'amazon-design': '/images/services/graphic-branding.jpg',
+  'amazon-troubleshooting': '/images/services/ai-automation.jpg',
+  'traffic-visibility': '/images/services/seo-brand-strategy.png',
+  'leads-conversions': '/images/services/digital-marketing.png',
+  'engagement-retention': '/images/services/email-marketing.jpg',
+  'corporate-professional': '/images/services/web-app-design.png',
+  'health-medical': '/images/services/digital-marketing.png',
+  'tech-ecommerce': '/images/services/web-app-design.png',
+  'hospitality-local': '/images/services/digital-marketing.png',
+  'case-studies': '/images/services/web-app-design.png',
+  testimonials: '/images/services/digital-marketing.png',
+}
+
 const DEFAULT_NAV: NavItemRecord[] = [
   {
     id: 'nav-services',
@@ -1263,10 +1296,37 @@ export async function getCmsNavigation(): Promise<NavItemRecord[]> {
             n.dropdownItems.some((item: any) => (item.id === 'marketing' || (item.title || '').toLowerCase().includes('marketing'))) &&
             n.dropdownItems.some((item: any) => Array.isArray(item.subServices) && item.subServices.length > 0)
 
-          const dropdownItems =
+          const rawDropdownItems =
             isServices && !hasRichSubServices
               ? (bundledItem?.dropdownItems || n.dropdownItems || [])
               : (n.dropdownItems || bundledItem?.dropdownItems || [])
+
+          const dropdownItems = (Array.isArray(rawDropdownItems) ? rawDropdownItems : []).map(
+            (item: any) => {
+              const bundledDropdownItem = bundledItem?.dropdownItems?.find(
+                (b: any) =>
+                  (b.id && b.id === item.id) ||
+                  (b.title && (b.title || '').toLowerCase() === (item.title || '').toLowerCase())
+              )
+              const resolvedId =
+                item.id ||
+                bundledDropdownItem?.id ||
+                (item.title ? item.title.toLowerCase().replace(/\s+/g, '-') : undefined)
+              const resolvedImage =
+                item.image ||
+                bundledDropdownItem?.image ||
+                SERVICE_IMAGE_FALLBACKS[resolvedId || ''] ||
+                SERVICE_IMAGE_FALLBACKS[(item.title || '').toLowerCase()] ||
+                '/images/services/digital-marketing.png'
+
+              return {
+                ...item,
+                id: resolvedId,
+                image: resolvedImage,
+                tagline: item.tagline || bundledDropdownItem?.tagline || item.tagline,
+              }
+            }
+          )
 
           return {
             id,

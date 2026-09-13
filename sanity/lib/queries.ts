@@ -321,11 +321,13 @@ export const NAVIGATION_QUERY = groq`
     href,
     menuType,
     dropdownItems[] {
+      "id": coalesce(id, _key),
       title,
       parentService,
       tagline,
       href,
       badge,
+      "image": coalesce(image.asset->url, image),
       subServices[] {
         title,
         parentService,

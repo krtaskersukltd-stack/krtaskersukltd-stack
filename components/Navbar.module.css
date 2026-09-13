@@ -277,7 +277,7 @@
 
 .servicesDropdownCard {
   display: grid;
-  grid-template-columns: clamp(210px, 12vw, 230px) clamp(250px, 14.5vw, 280px);
+  grid-template-columns: clamp(210px, 12vw, 230px) clamp(265px, 16vw, 305px);
   gap: 10px;
   background: #f8f7f2;
   border-radius: 20px;
@@ -482,59 +482,78 @@
 }
 
 .subServicesFooter {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 9px;
-  align-items: stretch;
-  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  margin-top: auto;
+  box-sizing: border-box;
 }
 
 .dropdownPreviewImage {
   position: relative;
-  min-height: 56px;
+  width: 100%;
+  height: 80px;
   overflow: hidden;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
 .dropdownPreviewImg {
   object-fit: cover;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subServicesCard:hover .dropdownPreviewImg {
+  transform: scale(1.03);
 }
 
 .dropdownPreviewCopy {
   display: flex;
-  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 6px;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.dropdownPreviewCopy p {
+.dropdownPreviewTagline {
   margin: 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: clamp(10px, 0.62vw, 12px);
-  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(11px, 0.66vw, 12.5px);
+  line-height: 1.42;
+  width: 100%;
+  word-wrap: break-word;
+  font-family: var(--font-body, "Inter", sans-serif);
 }
 
 .viewAllServicesLink {
   display: inline-flex;
   align-items: center;
-  min-height: 23px;
-  padding: 0 9px;
+  gap: 6px;
+  min-height: 25px;
+  padding: 3px 12px;
   border-radius: 999px;
-  background: #fff;
+  background: #ffffff;
   color: #0c4651;
-  font-size: clamp(10px, 0.62vw, 12px);
+  font-size: clamp(10.5px, 0.64vw, 12px);
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 180ms ease, color 180ms ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .viewAllServicesLink:hover {
   background: var(--lime, #e6ff2a);
   color: #0c4651;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }
 
 /* Multi-column direct links dropdown (Business Objectives & Industries) */

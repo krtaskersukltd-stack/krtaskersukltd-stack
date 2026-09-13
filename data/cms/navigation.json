@@ -161,7 +161,7 @@
         "parentService": "Marketplace Operations",
         "tagline": "End-to-end marketplace management & scaling",
         "href": "/services/amazon-ebay",
-        "image": "/images/services/digital-marketing.png",
+        "image": "/images/services/amazon-ebay.jpg",
         "subServices": [
           { "title": "Full service management", "parentService": "Amazon & Marketplace", "href": "/services/full-service-management" },
           { "title": "Advertising (PPC) management", "parentService": "Amazon & Marketplace", "href": "/services/advertising-ppc-management" },
