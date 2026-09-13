@@ -363,11 +363,11 @@
   padding: 12px 14px 11px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 8px;
   color: #ffffff;
   box-sizing: border-box;
   min-height: 240px;
+  height: 100%;
 }
 
 .subServicesHeader {
@@ -424,8 +424,9 @@
 .subServicesList {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  max-height: 165px;
+  gap: 2px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 4px;
