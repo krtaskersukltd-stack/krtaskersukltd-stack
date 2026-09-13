@@ -483,8 +483,9 @@
 
 .subServicesFooter {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   width: 100%;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
@@ -494,12 +495,12 @@
 
 .dropdownPreviewImage {
   position: relative;
-  width: 100%;
-  height: 80px;
+  width: 92px;
+  height: 64px;
   overflow: hidden;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
   flex-shrink: 0;
 }
 
@@ -509,15 +510,16 @@
 }
 
 .subServicesCard:hover .dropdownPreviewImg {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .dropdownPreviewCopy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
-  width: 100%;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
   min-width: 0;
   box-sizing: border-box;
 }
@@ -525,8 +527,8 @@
 .dropdownPreviewTagline {
   margin: 0;
   color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(11px, 0.66vw, 12.5px);
-  line-height: 1.42;
+  font-size: clamp(10.5px, 0.65vw, 12px);
+  line-height: 1.36;
   width: 100%;
   word-wrap: break-word;
   font-family: var(--font-body, "Inter", sans-serif);
@@ -535,13 +537,13 @@
 .viewAllServicesLink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  min-height: 25px;
-  padding: 3px 12px;
+  gap: 5px;
+  min-height: 23px;
+  padding: 2px 10px;
   border-radius: 999px;
   background: #ffffff;
   color: #0c4651;
-  font-size: clamp(10.5px, 0.64vw, 12px);
+  font-size: clamp(10px, 0.62vw, 11.5px);
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;

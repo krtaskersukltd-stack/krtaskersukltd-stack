@@ -617,7 +617,7 @@ function TwoColumnDropdown({
                 src={previewImage}
                 alt={activeItem.title || 'Service preview'}
                 fill
-                sizes="(max-width: 768px) 100vw, 320px"
+                sizes="120px"
                 className={styles.dropdownPreviewImg}
               />
             </div>
