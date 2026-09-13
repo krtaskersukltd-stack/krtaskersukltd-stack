@@ -208,19 +208,37 @@ export interface RedirectRecord {
   updatedAt: string
 }
 
+export interface FooterLinkItem {
+  label: string
+  href: string
+}
+
+export interface FooterColumn {
+  title: string
+  links: FooterLinkItem[]
+}
+
 export interface GlobalSectionsRecord {
   ctaHeading: string
   ctaDescription: string
   ctaButtonText: string
   ctaButtonLink: string
+  footerHeading?: string
+  footerHeadingHighlight?: string
   footerPhone: string
   footerEmail: string
   footerAddress: string
+  footerHours?: string
   footerCopyright: string
+  footerCtaText?: string
+  footerCtaLink?: string
+  newsletterTitle?: string
+  newsletterDesc?: string
   socialLinkedin?: string
   socialTwitter?: string
   socialInstagram?: string
   socialFacebook?: string
+  footerColumns?: FooterColumn[]
 }
 
 export interface SEOSettingsRecord {

@@ -264,13 +264,28 @@ export const SETTINGS_QUERY = groq`
     ctaDescription,
     ctaButtonText,
     ctaButtonLink,
+    footerHeading,
+    footerHeadingHighlight,
     footerPhone,
     footerEmail,
     footerAddress,
+    footerHours,
     footerCopyright,
+    footerCtaText,
+    footerCtaLink,
+    newsletterTitle,
+    newsletterDesc,
+    socialFacebook,
     socialLinkedin,
     socialTwitter,
-    socialInstagram
+    socialInstagram,
+    footerColumns[] {
+      title,
+      links[] {
+        label,
+        href
+      }
+    }
   }
 `
 

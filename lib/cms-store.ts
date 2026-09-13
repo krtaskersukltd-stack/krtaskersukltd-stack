@@ -19,13 +19,55 @@ const DEFAULT_GLOBAL: GlobalSectionsRecord = {
   ctaDescription: 'Partner with KR Tasker Digital for bespoke web engineering, CMS solutions, and search growth.',
   ctaButtonText: 'Get Started Today',
   ctaButtonLink: '/contact',
-  footerPhone: '+44 (0) 20 8123 4567',
+  footerHeading: 'Digital Growth,',
+  footerHeadingHighlight: 'Delivered.',
+  footerPhone: '+44 191 348 3900',
   footerEmail: 'info@krtaskerdigital.com',
-  footerAddress: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
-  footerCopyright: '© 2026 KR Tasker UK Ltd. All rights reserved.',
+  footerAddress: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
+  footerHours: '24/7 Service\nMonday - Sunday',
+  footerCopyright: '© 2026 KR Tasker Digital. All Rights Reserved.',
+  footerCtaText: 'Start A Project',
+  footerCtaLink: '/contact',
+  newsletterTitle: 'Newsletter',
+  newsletterDesc: 'Stay up to date with the latest digital marketing insights, tips, and news.',
   socialLinkedin: 'https://www.linkedin.com/company/kr-tasker-digital/',
   socialInstagram: 'https://www.instagram.com/krtaskerdigital/',
   socialFacebook: 'https://www.facebook.com/profile.php?id=61571387696002',
+  socialTwitter: '',
+  footerColumns: [
+    {
+      title: 'Services',
+      links: [
+        { label: 'Digital Marketing', href: '/services' },
+        { label: 'Websites & Apps', href: '/services/websites-apps' },
+        { label: 'Ai Solutions', href: '/services/ai-solutions' },
+        { label: 'PPC', href: '/services/ppc' },
+        { label: 'SMM', href: '/services/social-media' },
+        { label: 'SEO', href: '/services/seo' },
+        { label: 'Branding', href: '/services/branding' },
+        { label: 'Graphics', href: '/services/graphic-design' },
+        { label: 'Amazon', href: '/services/amazon-ebay' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Our Work', href: '/work' },
+        { label: 'Our Blogs', href: '/blog' },
+        { label: 'Contact Us', href: '/contact' },
+        { label: 'Meet The Team', href: '/team' },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        { label: 'Terms & Conditions', href: '/terms' },
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Cookies Policy', href: '/cookies' },
+      ],
+    },
+  ],
 }
 
 const DEFAULT_SEO: SEOSettingsRecord = {
@@ -1189,6 +1231,16 @@ export async function saveCmsRedirects(redirects: RedirectRecord[]): Promise<voi
 
 // 9. GLOBAL SECTIONS
 export async function getCmsGlobal(): Promise<GlobalSectionsRecord> {
+  let bundledGlobal: GlobalSectionsRecord = DEFAULT_GLOBAL
+  try {
+    const bg = (await import('@/data/cms/global.json')).default as GlobalSectionsRecord
+    if (bg && typeof bg === 'object') {
+      bundledGlobal = { ...DEFAULT_GLOBAL, ...bg }
+    }
+  } catch {
+    // fallback
+  }
+
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
       const { client } = await import('@/sanity/lib/client')
@@ -1196,17 +1248,28 @@ export async function getCmsGlobal(): Promise<GlobalSectionsRecord> {
       const s = await client.fetch(SETTINGS_QUERY)
       if (s) {
         return {
-          ctaHeading: s.ctaHeading || DEFAULT_GLOBAL.ctaHeading,
-          ctaDescription: s.ctaDescription || DEFAULT_GLOBAL.ctaDescription,
-          ctaButtonText: s.ctaButtonText || DEFAULT_GLOBAL.ctaButtonText,
-          ctaButtonLink: s.ctaButtonLink || DEFAULT_GLOBAL.ctaButtonLink,
-          footerPhone: s.footerPhone || DEFAULT_GLOBAL.footerPhone,
-          footerEmail: s.footerEmail || DEFAULT_GLOBAL.footerEmail,
-          footerAddress: s.footerAddress || DEFAULT_GLOBAL.footerAddress,
-          footerCopyright: s.footerCopyright || DEFAULT_GLOBAL.footerCopyright,
-          socialLinkedin: s.socialLinkedin || DEFAULT_GLOBAL.socialLinkedin,
-          socialInstagram: s.socialInstagram || DEFAULT_GLOBAL.socialInstagram,
-          socialFacebook: DEFAULT_GLOBAL.socialFacebook,
+          ctaHeading: s.ctaHeading || bundledGlobal.ctaHeading,
+          ctaDescription: s.ctaDescription || bundledGlobal.ctaDescription,
+          ctaButtonText: s.ctaButtonText || bundledGlobal.ctaButtonText,
+          ctaButtonLink: s.ctaButtonLink || bundledGlobal.ctaButtonLink,
+          footerHeading: s.footerHeading || bundledGlobal.footerHeading,
+          footerHeadingHighlight: s.footerHeadingHighlight || bundledGlobal.footerHeadingHighlight,
+          footerPhone: s.footerPhone || bundledGlobal.footerPhone,
+          footerEmail: s.footerEmail || bundledGlobal.footerEmail,
+          footerAddress: s.footerAddress || bundledGlobal.footerAddress,
+          footerHours: s.footerHours || bundledGlobal.footerHours,
+          footerCopyright: s.footerCopyright || bundledGlobal.footerCopyright,
+          footerCtaText: s.footerCtaText || bundledGlobal.footerCtaText,
+          footerCtaLink: s.footerCtaLink || bundledGlobal.footerCtaLink,
+          newsletterTitle: s.newsletterTitle || bundledGlobal.newsletterTitle,
+          newsletterDesc: s.newsletterDesc || bundledGlobal.newsletterDesc,
+          socialLinkedin: s.socialLinkedin || bundledGlobal.socialLinkedin,
+          socialInstagram: s.socialInstagram || bundledGlobal.socialInstagram,
+          socialFacebook: s.socialFacebook || bundledGlobal.socialFacebook,
+          socialTwitter: s.socialTwitter || bundledGlobal.socialTwitter,
+          footerColumns: Array.isArray(s.footerColumns) && s.footerColumns.length > 0
+            ? s.footerColumns
+            : bundledGlobal.footerColumns,
         }
       }
     }
@@ -1217,11 +1280,14 @@ export async function getCmsGlobal(): Promise<GlobalSectionsRecord> {
   try {
     const stmt = db.prepare('SELECT data FROM global_sections WHERE id = "main"')
     const row = stmt.get() as any
-    if (row && row.data) return JSON.parse(row.data)
+    if (row && row.data) {
+      const parsed = JSON.parse(row.data)
+      return { ...bundledGlobal, ...parsed }
+    }
   } catch (err) {
     console.error('getCmsGlobal DB error', err)
   }
-  return DEFAULT_GLOBAL
+  return bundledGlobal
 }
 
 export async function saveCmsGlobal(globalData: GlobalSectionsRecord): Promise<void> {

@@ -6,67 +6,91 @@ import { type FormEvent, useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Button from './Button'
 import styles from './Footer.module.css'
+import type { GlobalSectionsRecord, FooterColumn } from '@/lib/cms-types'
 
-const links = {
-  Services: [
-    'Digital Marketing',
-    'Websites & Apps',
-    'Ai Solutions',
-    'PPC',
-    'SMM',
-    'SEO',
-    'Branding',
-    'Graphics',
-    'Amazon',
-  ],
-  Company: ['About Us', 'Our Work', 'Our Blogs', 'Contact Us', 'Meet The Team'],
-  Legal: ['Terms & Conditions', 'Privacy Policy', 'Cookies Policy'],
-}
-
-const linkDestinations: Record<string, string> = {
-  'About Us': '/about',
-  'Our Work': '/work',
-  'Our Blogs': '/blog',
-  'Contact Us': '/contact',
-  'Meet The Team': '/team',
-  'Digital Marketing': '/services',
-  'Websites & Apps': '/services/websites-apps',
-  'Ai Solutions': '/services/ai-solutions',
-  PPC: '/services/ppc',
-  SMM: '/services/social-media',
-  SEO: '/services/seo',
-  Branding: '/services/branding',
-  Graphics: '/services/graphic-design',
-  Amazon: '/services/amazon-ebay',
-  'Terms & Conditions': '/terms',
-  'Privacy Policy': '/privacy',
-  'Cookies Policy': '/cookies',
-}
-
-const socialLinks = [
+const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/profile.php?id=61571387696002',
-    icon: 'facebook',
+    title: 'Services',
+    links: [
+      { label: 'Digital Marketing', href: '/services' },
+      { label: 'Websites & Apps', href: '/services/websites-apps' },
+      { label: 'Ai Solutions', href: '/services/ai-solutions' },
+      { label: 'PPC', href: '/services/ppc' },
+      { label: 'SMM', href: '/services/social-media' },
+      { label: 'SEO', href: '/services/seo' },
+      { label: 'Branding', href: '/services/branding' },
+      { label: 'Graphics', href: '/services/graphic-design' },
+      { label: 'Amazon', href: '/services/amazon-ebay' },
+    ],
   },
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/kr-tasker-digital/',
-    icon: 'linkedin',
+    title: 'Company',
+    links: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Our Work', href: '/work' },
+      { label: 'Our Blogs', href: '/blog' },
+      { label: 'Contact Us', href: '/contact' },
+      { label: 'Meet The Team', href: '/team' },
+    ],
   },
   {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/krtaskerdigital/',
-    icon: 'instagram',
+    title: 'Legal',
+    links: [
+      { label: 'Terms & Conditions', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Cookies Policy', href: '/cookies' },
+    ],
   },
-] as const
+]
 
-export default function Footer() {
+export default function Footer({ initialData }: { initialData?: Partial<GlobalSectionsRecord> }) {
   const ref = useRef<HTMLElement | null>(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   const [isMobile, setIsMobile] = useState(false)
   const [openFooterColumn, setOpenFooterColumn] = useState<string | null>(null)
+
+  const [footerData, setFooterData] = useState<GlobalSectionsRecord>({
+    ctaHeading: 'Ready to elevate your digital presence?',
+    ctaDescription: 'Partner with KR Tasker Digital for bespoke web engineering, CMS solutions, and search growth.',
+    ctaButtonText: 'Get Started Today',
+    ctaButtonLink: '/contact',
+    footerHeading: 'Digital Growth,',
+    footerHeadingHighlight: 'Delivered.',
+    footerPhone: '+44 191 348 3900',
+    footerEmail: 'info@krtaskerdigital.com',
+    footerAddress: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
+    footerHours: '24/7 Service\nMonday - Sunday',
+    footerCopyright: '© 2026 KR Tasker Digital. All Rights Reserved.',
+    footerCtaText: 'Start A Project',
+    footerCtaLink: '/contact',
+    newsletterTitle: 'Newsletter',
+    newsletterDesc: 'Stay up to date with the latest digital marketing insights, tips, and news.',
+    socialFacebook: 'https://www.facebook.com/profile.php?id=61571387696002',
+    socialLinkedin: 'https://www.linkedin.com/company/kr-tasker-digital/',
+    socialInstagram: 'https://www.instagram.com/krtaskerdigital/',
+    socialTwitter: '',
+    footerColumns: DEFAULT_FOOTER_COLUMNS,
+    ...initialData,
+  })
+
+  useEffect(() => {
+    fetch('/api/cms/global')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && typeof data === 'object') {
+          setFooterData((prev) => ({
+            ...prev,
+            ...data,
+            footerColumns:
+              Array.isArray(data.footerColumns) && data.footerColumns.length > 0
+                ? data.footerColumns
+                : prev.footerColumns || DEFAULT_FOOTER_COLUMNS,
+          }))
+        }
+      })
+      .catch((err) => console.error('Error loading footer CMS data:', err))
+  }, [])
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 720)
@@ -110,9 +134,40 @@ export default function Footer() {
     }
   }
 
+  const activeSocialLinks = [
+    {
+      name: 'Facebook',
+      href: footerData.socialFacebook || 'https://www.facebook.com/profile.php?id=61571387696002',
+      icon: 'facebook',
+      show: Boolean(footerData.socialFacebook !== undefined ? footerData.socialFacebook : true),
+    },
+    {
+      name: 'LinkedIn',
+      href: footerData.socialLinkedin || 'https://www.linkedin.com/company/kr-tasker-digital/',
+      icon: 'linkedin',
+      show: Boolean(footerData.socialLinkedin !== undefined ? footerData.socialLinkedin : true),
+    },
+    {
+      name: 'Instagram',
+      href: footerData.socialInstagram || 'https://www.instagram.com/krtaskerdigital/',
+      icon: 'instagram',
+      show: Boolean(footerData.socialInstagram !== undefined ? footerData.socialInstagram : true),
+    },
+    ...(footerData.socialTwitter
+      ? [
+          {
+            name: 'Twitter',
+            href: footerData.socialTwitter,
+            icon: 'twitter',
+            show: true,
+          },
+        ]
+      : []),
+  ].filter((s) => s.show && s.href)
+
   const renderSocialIcons = (animated = true) => (
     <>
-      {socialLinks.map(({ name, href, icon }, index) => (
+      {activeSocialLinks.map(({ name, href, icon }, index) => (
         <motion.a
           key={name}
           href={href}
@@ -161,6 +216,18 @@ export default function Footer() {
               <rect x="3" y="3" width="18" height="18" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none" />
+            </svg>
+          )}
+
+          {icon === 'twitter' && (
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           )}
         </motion.a>
@@ -231,30 +298,33 @@ export default function Footer() {
         <div className={styles.content}>
           <div className={styles.mainRow}>
             <div className={styles.linksArea}>
-              {Object.entries(links).map(([column, items], columnIndex) => (
+              {(footerData.footerColumns && footerData.footerColumns.length > 0
+                ? footerData.footerColumns
+                : DEFAULT_FOOTER_COLUMNS
+              ).map((column, columnIndex) => (
                 <div
-                  key={column}
-                  className={`${styles.linkColumn} ${openFooterColumn === column ? styles.linkColumnOpen : ''}`}
+                  key={column.title}
+                  className={`${styles.linkColumn} ${openFooterColumn === column.title ? styles.linkColumnOpen : ''}`}
                 >
                   <button
                     type="button"
                     className={styles.colTitle}
-                    aria-expanded={!isMobile || openFooterColumn === column}
-                    aria-controls={`footer-${column.toLowerCase()}-links`}
+                    aria-expanded={!isMobile || openFooterColumn === column.title}
+                    aria-controls={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`}
                     onClick={() => {
                       if (isMobile) {
-                        setOpenFooterColumn(current => current === column ? null : column)
+                        setOpenFooterColumn(current => current === column.title ? null : column.title)
                       }
                     }}
                   >
-                    <span>{column}</span>
+                    <span>{column.title}</span>
                     <span className={styles.accordionIcon} aria-hidden="true">+</span>
                   </button>
-                  <div id={`footer-${column.toLowerCase()}-links`} className={styles.linksList}>
-                    {items.map((link, linkIndex) => (
+                  <div id={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`} className={styles.linksList}>
+                    {column.links.map((linkItem, linkIndex) => (
                       <Link
-                        key={link}
-                        href={linkDestinations[link] || '#'}
+                        key={linkItem.label}
+                        href={linkItem.href || '#'}
                         className={styles.link}
                       >
                         <motion.span
@@ -265,7 +335,7 @@ export default function Footer() {
                             duration: 0.38,
                           }}
                         >
-                          {link}
+                          {linkItem.label}
                         </motion.span>
                       </Link>
                     ))}
@@ -275,9 +345,9 @@ export default function Footer() {
             </div>
 
             <div className={styles.newsletter}>
-              <p className={styles.newsletterTitle}>Newsletter</p>
+              <p className={styles.newsletterTitle}>{footerData.newsletterTitle || 'Newsletter'}</p>
               <p className={styles.newsletterDesc}>
-                Stay up to date with the latest digital marketing insights, tips, and news.
+                {footerData.newsletterDesc || 'Stay up to date with the latest digital marketing insights, tips, and news.'}
               </p>
 
               {newsletterSuccess ? (
@@ -321,8 +391,8 @@ export default function Footer() {
             className={styles.bigTextWrapper}
           >
             <AnimatedHeading as="h2" className={styles.bigText}>
-              <span className={styles.textLime}>Digital Growth,</span>
-              <span className={styles.textCream}> Delivered.</span>
+              <span className={styles.textLime}>{footerData.footerHeading || 'Digital Growth,'}</span>
+              <span className={styles.textCream}> {footerData.footerHeadingHighlight || 'Delivered.'}</span>
             </AnimatedHeading>
           </motion.div>
 
@@ -330,8 +400,7 @@ export default function Footer() {
             <div className={styles.infoBlock}>
               <p className={styles.infoTitle}>Address</p>
               <div className={styles.infoDesc}>
-                Unit 304 3rd Floor Aidan House, Sunderland Rd,
-                Tynegate Precinct, Gateshead NE8 3HU
+                {footerData.footerAddress || 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU'}
               </div>
             </div>
 
@@ -339,29 +408,29 @@ export default function Footer() {
               <p className={styles.infoTitle}>Contact</p>
               <div className={styles.infoDesc}>
                 Phone:{' '}
-                <a href="tel:+441913483900" className={styles.infoLink}>
-                  +44 191 348 3900
+                <a href={`tel:${(footerData.footerPhone || '+44 191 348 3900').replace(/\s+/g, '')}`} className={styles.infoLink}>
+                  {footerData.footerPhone || '+44 191 348 3900'}
                 </a>
                 <br />
                 Email:{' '}
-                <a href="mailto:info@krtaskerdigital.com" className={styles.infoLink}>
-                  info@krtaskerdigital.com
+                <a href={`mailto:${footerData.footerEmail || 'info@krtaskerdigital.com'}`} className={styles.infoLink}>
+                  {footerData.footerEmail || 'info@krtaskerdigital.com'}
                 </a>
               </div>
             </div>
 
             <div className={styles.infoBlock}>
               <p className={styles.infoTitle}>Time</p>
-              <div className={styles.infoDesc}>
-                24/7 Service
-                <br />
-                Monday - Sunday
+              <div className={styles.infoDesc} style={{ whiteSpace: 'pre-line' }}>
+                {footerData.footerHours || '24/7 Service\nMonday - Sunday'}
               </div>
             </div>
 
             <div className={styles.copyrightBlock}>
-              <p className={styles.copyright}>© 2026 KR Tasker Digital. All Rights Reserved.</p>
-              <Button href="/contact" variant="secondary" size="compact" className={styles.footerCta}>Start A Project</Button>
+              <p className={styles.copyright}>{footerData.footerCopyright || '© 2026 KR Tasker Digital. All Rights Reserved.'}</p>
+              <Button href={footerData.footerCtaLink || '/contact'} variant="secondary" size="compact" className={styles.footerCta}>
+                {footerData.footerCtaText || 'Start A Project'}
+              </Button>
               <nav className={styles.mobileSocials} aria-label="Social media links">
                 {renderSocialIcons(false)}
               </nav>
