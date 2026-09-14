@@ -55,13 +55,12 @@ const FEATURE_IMAGES_BY_SLUG: Record<string, string[]> = {
 }
 
 export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
-  // If template is category / hub, or has capabilities defined, render Figma Category Hub layout
-  const isCategoryHub =
-    srv.template === 'category' ||
-    (srv.capabilities && srv.capabilities.length > 0) ||
-    ['digital-marketing', 'b2b-enterprise', 'b2c-consumer', 'ecommerce-retail', 'saas-technology'].includes(srv.slug)
+  const cleanSlug = srv.slug.replace(/^\/services\//, '').replace(/^\//, '').replace(/\/$/, '').toLowerCase()
+  const isSubPage = cleanSlug.includes('/')
 
-  if (isCategoryHub) {
+  // Level-1 category pages (e.g. /services/ppc, /services/web-development, /services/seo, etc.)
+  // render the MainServiceHub which contains the "View All Our Services" section with tabs for hover items
+  if (!isSubPage) {
     return <MainServiceHub srv={srv} />
   }
 
@@ -74,9 +73,9 @@ export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
   const featuresList = srv.features && srv.features.length > 0
     ? srv.features
     : [
-        { id: '1', title: `${srv.name} Strategy & Execution`, description: `Professional, end-to-end strategy, execution, and optimization for ${srv.name} to maximize conversions, build brand authority, and accelerate customer growth.`, sortOrder: 1 },
-        { id: '2', title: 'Performance & Growth Tuning', description: 'Continuous data analytics, keyword ranking management, and audience acquisition tuning.', sortOrder: 2 },
-      ]
+      { id: '1', title: `${srv.name} Strategy & Execution`, description: `Professional, end-to-end strategy, execution, and optimization for ${srv.name} to maximize conversions, build brand authority, and accelerate customer growth.`, sortOrder: 1 },
+      { id: '2', title: 'Performance & Growth Tuning', description: 'Continuous data analytics, keyword ranking management, and audience acquisition tuning.', sortOrder: 2 },
+    ]
 
   const featureBgImage = srv.featuredImage || DEFAULT_IMAGE
 

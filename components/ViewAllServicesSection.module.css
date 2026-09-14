@@ -1,0 +1,371 @@
+/* components/ViewAllServicesSection.module.css */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding: clamp(60px, 6vw, 100px) 0 clamp(50px, 5vw, 80px);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max, 1440px);
+  margin: 0 auto;
+  padding-inline: var(--container-pad, 24px);
+  box-sizing: border-box;
+}
+
+/* Header Area */
+.headerWrapper {
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+  text-align: left;
+}
+
+.sectionBadge {
+  display: inline-block;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0c4651;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.sectionTitle {
+  font-family: "Cabinet Grotesk", var(--font-body, "Inter", sans-serif);
+  font-size: clamp(32px, 3.8vw, 56px);
+  font-weight: 800;
+  line-height: 1.12;
+  color: #0c4651;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.accentTitle {
+  color: #0c4651;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(14px, 1.1vw, 17px);
+  color: #4b5563;
+  max-width: 680px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Horizontal Tabs Bar (Matches Screenshot) */
+.tabsContainer {
+  position: relative;
+  margin-bottom: clamp(24px, 3vw, 36px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabsList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  min-width: max-content;
+  padding: 4px 2px;
+}
+
+.tabPill {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(13px, 0.85vw, 14.5px);
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1.5px solid #d1d5db;
+  background: #ffffff;
+  color: #1f2937;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  user-select: none;
+}
+
+.tabPill:hover {
+  border-color: #0c4651;
+  color: #0c4651;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(12, 70, 81, 0.12);
+}
+
+.tabPillActive {
+  background: #0c4651 !important;
+  color: #ffffff !important;
+  border-color: #0c4651 !important;
+  box-shadow: 0 4px 14px rgba(12, 70, 81, 0.3) !important;
+}
+
+/* Bento Layout Container */
+.bentoLayout {
+  display: grid;
+  grid-template-columns: minmax(320px, 38%) 1fr;
+  gap: clamp(16px, 1.8vw, 24px);
+  align-items: stretch;
+}
+
+/* Left Card: Solid Teal Bento Box matching KR Tasker Brand */
+.leftCard {
+  background: #0c4651;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  box-shadow:
+    0 20px 40px -12px rgba(12, 70, 81, 0.35),
+    0 8px 16px -4px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background accent glow in left card */
+.leftCard::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.leftCardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.leftCardBadge {
+  display: inline-block;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.leftCardTitle {
+  font-family: "Cabinet Grotesk", var(--font-body, "Inter", sans-serif);
+  font-size: clamp(26px, 2.3vw, 36px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.leftCardDesc {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: clamp(14px, 0.95vw, 15.5px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 22px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.featureCheck {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leftCardBottom {
+  position: relative;
+  z-index: 1;
+}
+
+.findOutMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0c4651;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.findOutMoreBtn:hover {
+  background: #0b0f12;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.findOutMoreBtn span:last-child {
+  transition: transform 0.2s ease;
+}
+
+.findOutMoreBtn:hover span:last-child {
+  transform: translateX(3px);
+}
+
+/* Right Bento Grid: 4 Device & Showcase Mockups */
+.rightBentoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(210px, 1fr));
+  gap: clamp(14px, 1.5vw, 20px);
+}
+
+.mockupCard {
+  position: relative;
+  background: #f3f4f6;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.mockupCard:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 32px -8px rgba(12, 70, 81, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  border-color: rgba(12, 70, 81, 0.3);
+}
+
+.mockupImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+}
+
+.mockupImage {
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mockupCard:hover .mockupImage {
+  transform: scale(1.04);
+}
+
+/* Glassmorphic Overlay Pill on Mockups */
+.mockupPill {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(12, 70, 81, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mockupPillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.mockupBadgeTop {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0c4651;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .bentoLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .rightBentoGrid {
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .rightBentoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mockupImageWrapper {
+    min-height: 200px;
+  }
+
+  .leftCard {
+    padding: 24px 20px;
+  }
+}

@@ -27,7 +27,7 @@ export interface MainServiceItem {
   subServices: SubServiceLink[]
 }
 
-const MAIN_SERVICES: MainServiceItem[] = [
+export const MAIN_SERVICES: MainServiceItem[] = [
   {
     id: 'marketing',
     title: 'Digital Marketing',
