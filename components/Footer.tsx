@@ -58,7 +58,7 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
     footerHeadingHighlight: 'Delivered.',
     footerPhone: '+44 191 348 3900',
     footerEmail: 'info@krtaskerdigital.co.uk',
-    footerAddress: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
+    footerAddress: 'office # 7, Tynegate Precinct, Gateshead NE8 3HU',
     footerHours: '24/7 Service\nMonday - Sunday',
     footerCopyright: '© 2026 KR Tasker Digital. All Rights Reserved.',
     footerCtaText: 'Start A Project',
@@ -348,10 +348,9 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
                       </svg>
                     </span>
                     <div className={styles.getInTouchAddress}>
-                      <p className={styles.companyName}>KR Tasker Digital</p>
-                      <p>Unit 304 3rd Floor Aidan House</p>
-                      <p>Sunderland Rd, Tynegate Precinct</p>
-                      <p>Gateshead NE8 3HU</p>
+                      <p className={styles.companyName}>Office # 7, Tynegate Precinct, Gateshead NE8 3HU</p>
+                      
+                      
                     </div>
                   </div>
                 </div>

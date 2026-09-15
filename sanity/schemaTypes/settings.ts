@@ -88,7 +88,7 @@ export const settingsType = defineType({
       title: 'Footer Office Address',
       type: 'text',
       rows: 2,
-      initialValue: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
+      initialValue: 'Office # 7, Tynegate Precinct, Gateshead NE8 3HU',
     }),
     defineField({
       name: 'footerHours',
