@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 import Button from './Button'
 import AvailabilityNotch from './AvailabilityNotch'
-import ThemeToggle from './ThemeToggle'
 import { useTheme } from './ThemeProvider'
 import styles from './Navbar.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
@@ -1471,10 +1470,8 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right: Contact Us CTA Button, Theme Toggle & Mobile Hamburger */}
+        {/* Right: Contact Us CTA Button & Mobile Hamburger */}
         <div className={styles.actionWrapper}>
-          <ThemeToggle isDarkSection={isEffectiveDark} />
-
           <Button
             href="/contact"
             variant="secondary"
@@ -1523,7 +1520,6 @@ export default function Navbar() {
               <div className={styles.drawerHeader}>
                 <Logo />
                 <div className={styles.drawerHeaderActions}>
-                  <ThemeToggle isDarkSection={isEffectiveDark} compact />
                   <button
                     type="button"
                     onClick={() => setMobileMenuOpen(false)}
