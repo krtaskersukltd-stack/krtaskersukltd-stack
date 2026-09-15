@@ -5,6 +5,7 @@ import ScrollProgressBar from '@/components/ScrollProgressBar'
 import SmoothScroll from '@/components/SmoothScroll'
 import CustomCursor from '@/components/CustomCursor'
 import SitewideTextEffects from '@/components/SitewideTextEffects'
+import { ThemeProvider } from '@/components/ThemeProvider'
 import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({
@@ -48,13 +49,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <ScrollProgressBar />
-        <CustomCursor />
-        <SitewideTextEffects />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
-        <Analytics />
+        <ThemeProvider>
+          <ScrollProgressBar />
+          <CustomCursor />
+          <SitewideTextEffects />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )
