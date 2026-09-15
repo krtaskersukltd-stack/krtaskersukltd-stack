@@ -2,7 +2,7 @@
 
 import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
-import { type FormEvent, useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Button from './Button'
 import styles from './Footer.module.css'
@@ -98,40 +98,7 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const [newsletterEmail, setNewsletterEmail] = useState('')
-  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false)
-  const [newsletterSuccess, setNewsletterSuccess] = useState(false)
-  const [newsletterError, setNewsletterError] = useState<string | null>(null)
 
-  const handleNewsletter = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (!newsletterEmail) return
-    setNewsletterSubmitting(true)
-    setNewsletterError(null)
-
-    try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletterEmail }),
-      })
-
-      const data = await res.json().catch(() => ({}))
-
-      if (res.ok) {
-        setNewsletterSuccess(true)
-        setNewsletterEmail('')
-      } else {
-        setNewsletterError(data.error || 'Failed to subscribe. Please try again.')
-      }
-    } catch (err) {
-      console.error('Newsletter submission error', err)
-
-      setNewsletterError('Connection error. Please try again.')
-    } finally {
-      setNewsletterSubmitting(false)
-    }
-  }
 
   const activeSocialLinks = [
     {
@@ -343,43 +310,51 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
                 ))}
               </div>
 
-              <div className={styles.newsletter}>
-                <p className={styles.newsletterTitle}>{footerData.newsletterTitle || 'Newsletter'}</p>
-                <p className={styles.newsletterDesc}>
-                  {footerData.newsletterDesc || 'Stay up to date with the latest digital marketing insights, tips, and news.'}
-                </p>
-
-                {newsletterSuccess ? (
-                  <div style={{ color: '#E6FF2A', fontWeight: 'bold', fontSize: '14px', paddingTop: '8px' }}>
-                    ✓ Thank you for subscribing!
-                  </div>
-                ) : (
-                  <form className={styles.form} onSubmit={handleNewsletter}>
-                    <label htmlFor="footer-email" className={styles.srOnly}>
-                      Email address
-                    </label>
-                    <input
-                      id="footer-email"
-                      name="email"
-                      type="email"
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
-                      autoComplete="email"
-                      placeholder="Enter Your Email"
-                      className={styles.input}
-                      required
-                    />
-                    <motion.button
-                      type="submit"
-                      disabled={newsletterSubmitting}
-                      whileHover={{ scale: 1.035, boxShadow: '0 0 20px rgba(230,255,42,.32)' }}
-                      whileTap={{ scale: 0.98 }}
-                      className={styles.btnSubscribe}
+              <div className={styles.getInTouch}>
+                <p className={styles.getInTouchTitle}>Get in touch</p>
+                <div className={styles.getInTouchList}>
+                  <div className={styles.getInTouchItem}>
+                    <span className={styles.getInTouchIcon} aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z" />
+                      </svg>
+                    </span>
+                    <a
+                      href={`tel:${(footerData.footerPhone || '+44 191 348 3900').replace(/\s+/g, '')}`}
+                      className={styles.getInTouchLink}
                     >
-                      {newsletterSubmitting ? 'Subscribing...' : 'Subscribe Now'}
-                    </motion.button>
-                  </form>
-                )}
+                      {footerData.footerPhone || '+44 191 348 3900'}
+                    </a>
+                  </div>
+
+                  <div className={styles.getInTouchItem}>
+                    <span className={styles.getInTouchIcon} aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                      </svg>
+                    </span>
+                    <a
+                      href={`mailto:${footerData.footerEmail || 'info@krtaskerdigital.co.uk'}`}
+                      className={styles.getInTouchLink}
+                    >
+                      {footerData.footerEmail || 'info@krtaskerdigital.co.uk'}
+                    </a>
+                  </div>
+
+                  <div className={styles.getInTouchItem}>
+                    <span className={styles.getInTouchIcon} aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                      </svg>
+                    </span>
+                    <div className={styles.getInTouchAddress}>
+                      <p className={styles.companyName}>KR Tasker Digital</p>
+                      <p>Unit 304 3rd Floor Aidan House</p>
+                      <p>Sunderland Rd, Tynegate Precinct</p>
+                      <p>Gateshead NE8 3HU</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -394,47 +369,6 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
                 <span className={styles.textCream}> {footerData.footerHeadingHighlight || 'Delivered.'}</span>
               </AnimatedHeading>
             </motion.div>
-
-            <div className={styles.bottomBar}>
-              <div className={styles.infoBlock}>
-                <p className={styles.infoTitle}>Address</p>
-                <div className={styles.infoDesc}>
-                  {footerData.footerAddress || 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU'}
-                </div>
-              </div>
-
-              <div className={styles.infoBlock}>
-                <p className={styles.infoTitle}>Contact</p>
-                <div className={styles.infoDesc}>
-                  Phone:{' '}
-                  <a href={`tel:${(footerData.footerPhone || '+44 191 348 3900').replace(/\s+/g, '')}`} className={styles.infoLink}>
-                    {footerData.footerPhone || '+44 191 348 3900'}
-                  </a>
-                  <br />
-                  Email:{' '}
-                  <a href={`mailto:${footerData.footerEmail || 'info@krtaskerdigital.co.uk'}`} className={styles.infoLink}>
-                    {footerData.footerEmail || 'info@krtaskerdigital.co.uk'}
-                  </a>
-                </div>
-              </div>
-
-              <div className={styles.infoBlock}>
-                <p className={styles.infoTitle}>Time</p>
-                <div className={styles.infoDesc} style={{ whiteSpace: 'pre-line' }}>
-                  {footerData.footerHours || '24/7 Service\nMonday - Sunday'}
-                </div>
-              </div>
-
-              <div className={styles.copyrightBlock}>
-                <p className={styles.copyright}>{footerData.footerCopyright || '© 2026 KR Tasker Digital. All Rights Reserved.'}</p>
-                <Button href={footerData.footerCtaLink || '/contact'} variant="secondary" size="compact" className={styles.footerCta}>
-                  {footerData.footerCtaText || 'Start A Project'}
-                </Button>
-                <nav className={styles.mobileSocials} aria-label="Social media links">
-                  {renderSocialIcons(false)}
-                </nav>
-              </div>
-            </div>
           </div>
         </div>
       </div>

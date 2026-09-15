@@ -27,7 +27,7 @@
 .footerCard {
   position: relative;
   width: 100%;
-  min-height: clamp(560px, 44vw, 650px);
+  min-height: clamp(420px, 34vw, 510px);
   isolation: isolate;
 }
 
@@ -49,7 +49,7 @@
 .content {
   position: relative;
   z-index: 2;
-  padding: 42px clamp(78px, 8.82vw, 127px) 36px;
+  padding: 42px clamp(78px, 8.82vw, 127px) clamp(44px, 4.5vw, 64px);
 }
 
 .sendMeBackTab {
@@ -257,97 +257,88 @@
   border-radius: 2px;
 }
 
-.newsletter {
+.getInTouch {
   width: 100%;
-  padding-top: 34px;
 }
 
-.newsletterDesc {
-  max-width: 350px;
-  margin: 0 0 22px;
-  font-family: var(--font-body, Inter, sans-serif);
-  font-size: clamp(13px, 1.12vw, 16px);
-  font-weight: 400;
-  line-height: 1.35;
+.getInTouchTitle {
+  margin: 0 0 24px;
+  font-family: var(--font-display, "Cabinet Grotesk", sans-serif);
+  font-size: clamp(18px, 1.67vw, 24px);
+  font-weight: 700;
+  line-height: 1.1;
   color: #f8f7f2 !important;
 }
 
-:global(html.dark) .newsletterDesc,
-:global([data-theme="dark"]) .newsletterDesc {
+:global(html.dark) .getInTouchTitle,
+:global([data-theme="dark"]) .getInTouchTitle {
   color: #f8f7f2 !important;
 }
 
-.form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
+.getInTouchList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.input {
-  width: 100%;
-  min-width: 0;
-  height: 40px;
-  padding: 0 17px;
-  border: 1px solid #f8f7f2 !important;
-  border-radius: 8px;
-  outline: none;
-  background: #f8f7f2 !important;
-  background-color: #f8f7f2 !important;
-  color: #111111 !important;
+.getInTouchItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.getInTouchIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f8f7f2;
+  margin-top: 3px;
+}
+
+.getInTouchLink {
   font-family: var(--font-body, Inter, sans-serif);
-  font-size: 14px;
-}
-
-:global(html.dark) .input,
-:global([data-theme="dark"]) .input {
-  background: #f8f7f2 !important;
-  background-color: #f8f7f2 !important;
-  color: #111111 !important;
-  border-color: #f8f7f2 !important;
-}
-
-.input::placeholder {
-  color: #898a8e;
-  opacity: 1;
-}
-
-.input:focus {
-  border-color: #e6ff2a !important;
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.24);
-}
-
-.btnSubscribe {
-  border: 0;
-  border-radius: 8px;
-  background: #e6ff2a !important;
-  color: #0c4651 !important;
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 500;
+  color: #f8f7f2 !important;
   text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
+  transition: color 180ms ease, transform 180ms ease;
+  display: inline-block;
 }
 
-:global(html.dark) .btnSubscribe,
-:global([data-theme="dark"]) .btnSubscribe {
-  background: #e6ff2a !important;
-  color: #0c4651 !important;
+.getInTouchLink:hover {
+  color: #e6ff2a !important;
+  transform: translateX(4px);
 }
 
-.btnSubscribe {
-  height: 40px;
-  padding: 0 14px;
+:global(html.dark) .getInTouchLink:hover,
+:global([data-theme="dark"]) .getInTouchLink:hover {
+  color: #e6ff2a !important;
 }
 
-.btnSubscribe:focus-visible {
-  outline: 3px solid #f8f7f2;
-  outline-offset: 3px;
+.getInTouchAddress {
+  font-family: var(--font-body, Inter, sans-serif);
+  font-size: clamp(14px, 1.1vw, 15px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #f8f7f2;
+}
+
+.getInTouchAddress p {
+  margin: 0;
+}
+
+.companyName {
+  font-weight: 600;
+  color: #f8f7f2;
+  margin-bottom: 2px !important;
 }
 
 .bigTextWrapper {
   width: 100%;
-  margin: clamp(28px, 3.8vw, 48px) auto clamp(20px, 2.5vw, 32px);
+  margin: clamp(36px, 4.5vw, 60px) auto 0;
   text-align: center;
 }
 
