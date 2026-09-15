@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 160 // offset for fixed header
-      
+
       for (const section of sections) {
         const el = document.getElementById(section.id)
         if (el) {
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
           >
             Privacy Policy
           </AnimatedHeading>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
             <ul className={styles.tocList}>
               {sections.map((sec) => (
                 <li key={sec.id}>
-                  <button 
+                  <button
                     onClick={() => scrollToSection(sec.id)}
                     className={`${styles.tocLink} ${activeSection === sec.id ? styles.tocActive : ''}`}
                   >
@@ -205,7 +205,7 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
               <p className={styles.paragraph}>
-                To exercise any of these rights, please contact us at <a href="mailto:info@krtaskerdigital.com" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.com</a>. We will respond to your request within 30 days. You also have the right to lodge a complaint with the UK Information Commissioner&apos;s Office (ICO).
+                To exercise any of these rights, please contact us at <a href="mailto:info@krtaskerdigital.co.uk" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.co.uk</a>. We will respond to your request within 30 days. You also have the right to lodge a complaint with the UK Information Commissioner&apos;s Office (ICO).
               </p>
             </div>
 

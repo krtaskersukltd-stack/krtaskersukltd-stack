@@ -204,9 +204,9 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="mailto:info@krtaskerdigital.com"
+                  href="mailto:info@krtaskerdigital.co.uk"
                   className={styles.contactItemLink}
-                  aria-label="Email info@krtaskerdigital.com"
+                  aria-label="Email info@krtaskerdigital.co.uk"
                 >
                   <div className={styles.contactIconCircle}>
                     <svg
@@ -226,7 +226,7 @@ export default function Contact() {
                   </div>
                   <div className={styles.contactItemText}>
                     <span className={styles.contactItemLabel}>Email</span>
-                    <span className={styles.contactItemValue}>info@krtaskerdigital.com</span>
+                    <span className={styles.contactItemValue}>info@krtaskerdigital.co.uk</span>
                   </div>
                 </a>
               </div>
@@ -359,7 +359,7 @@ export default function Contact() {
 
                   {/* Submit Button */}
                   <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-                    <span>{isSubmitting ? 'Sending Request...' : 'Send Request'}</span>
+                    <span>{isSubmitting ? 'Sending Request...' : 'Submit a form'}</span>
                   </button>
 
                   {submitError && <p className={styles.errorText}>{submitError}</p>}

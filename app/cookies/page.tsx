@@ -23,7 +23,7 @@ export default function CookiesPolicyPage() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 160 // offset for fixed header
-      
+
       for (const section of sections) {
         const el = document.getElementById(section.id)
         if (el) {
@@ -70,7 +70,7 @@ export default function CookiesPolicyPage() {
           >
             Cookies Policy
           </AnimatedHeading>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -90,7 +90,7 @@ export default function CookiesPolicyPage() {
             <ul className={styles.tocList}>
               {sections.map((sec) => (
                 <li key={sec.id}>
-                  <button 
+                  <button
                     onClick={() => scrollToSection(sec.id)}
                     className={`${styles.tocLink} ${activeSection === sec.id ? styles.tocActive : ''}`}
                   >
@@ -192,7 +192,7 @@ export default function CookiesPolicyPage() {
                 We may update this Cookies Policy from time to time in response to shifting operational, legal, or regulatory requirements. We encourage you to review this policy periodically to stay informed about our use of cookies.
               </p>
               <p className={styles.paragraph}>
-                If you have any questions or concerns about our use of cookies or this policy, please email us at <a href="mailto:info@krtaskerdigital.com" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.com</a> or write to us at our registered business address listed in the footer of this website.
+                If you have any questions or concerns about our use of cookies or this policy, please email us at <a href="mailto:info@krtaskerdigital.co.uk" className={styles.highlightText} style={{ textDecoration: 'underline' }}>info@krtaskerdigital.co.uk</a> or write to us at our registered business address listed in the footer of this website.
               </p>
             </div>
           </article>

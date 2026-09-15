@@ -22,7 +22,7 @@ export default function AnimatedHeading({ as = 'h2', children, ...props }: Props
           if (!word.trim()) return word
           return <i className={styles.word} key={wordIndex}>
             <i className={styles.accessible}>{word}</i>
-            <i aria-hidden="true" className={styles.visual}>
+            <i aria-hidden="true" className={styles.headingVisual}>
               {Array.from(word).map((letter, letterIndex) => (
                 <i key={letterIndex} className={styles.letter}
                   style={{ '--reveal-delay': `${Math.min(index++ * 0.018, 0.65)}s` } as CSSProperties}>

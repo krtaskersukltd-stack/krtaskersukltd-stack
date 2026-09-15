@@ -21,7 +21,7 @@ documents.push({
   ctaButtonText: 'Get Started Today',
   ctaButtonLink: '/contact',
   footerPhone: '+44 (0) 20 8123 4567',
-  footerEmail: 'info@krtaskerdigital.com',
+  footerEmail: 'info@krtaskerdigital.co.uk',
   footerAddress: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
   socialLinkedin: 'https://linkedin.com',
   socialTwitter: 'https://twitter.com',

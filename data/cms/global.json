@@ -6,7 +6,7 @@
   "footerHeading": "Digital Growth,",
   "footerHeadingHighlight": "Delivered.",
   "footerPhone": "+44 191 348 3900",
-  "footerEmail": "info@krtaskerdigital.com",
+  "footerEmail": "info@krtaskerdigital.co.uk",
   "footerAddress": "Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU",
   "footerHours": "24/7 Service\nMonday - Sunday",
   "footerCopyright": "© 2026 KR Tasker Digital. All Rights Reserved.",
@@ -22,33 +22,84 @@
     {
       "title": "Services",
       "links": [
-        { "label": "Digital Marketing", "href": "/services" },
-        { "label": "Websites & Apps", "href": "/services/websites-apps" },
-        { "label": "Ai Solutions", "href": "/services/ai-solutions" },
-        { "label": "PPC", "href": "/services/ppc" },
-        { "label": "SMM", "href": "/services/social-media" },
-        { "label": "SEO", "href": "/services/seo" },
-        { "label": "Branding", "href": "/services/branding" },
-        { "label": "Graphics", "href": "/services/graphic-design" },
-        { "label": "Amazon", "href": "/services/amazon-ebay" }
+        {
+          "label": "Digital Marketing",
+          "href": "/services"
+        },
+        {
+          "label": "Websites & Apps",
+          "href": "/services/websites-apps"
+        },
+        {
+          "label": "Ai Solutions",
+          "href": "/services/ai-solutions"
+        },
+        {
+          "label": "PPC",
+          "href": "/services/ppc"
+        },
+        {
+          "label": "SMM",
+          "href": "/services/social-media"
+        },
+        {
+          "label": "SEO",
+          "href": "/services/seo"
+        },
+        {
+          "label": "Branding",
+          "href": "/services/branding"
+        },
+        {
+          "label": "Graphics",
+          "href": "/services/graphic-design"
+        },
+        {
+          "label": "Amazon",
+          "href": "/services/amazon-ebay"
+        }
       ]
     },
     {
       "title": "Company",
       "links": [
-        { "label": "About Us", "href": "/about" },
-        { "label": "Our Work", "href": "/work" },
-        { "label": "Our Blogs", "href": "/blog" },
-        { "label": "Contact Us", "href": "/contact" },
-        { "label": "Meet The Team", "href": "/team" }
+        {
+          "label": "About Us",
+          "href": "/about"
+        },
+        {
+          "label": "Our Work",
+          "href": "/work"
+        },
+        {
+          "label": "Our Blogs",
+          "href": "/blog"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet The Team",
+          "href": "/team"
+        }
       ]
     },
     {
       "title": "Legal",
       "links": [
-        { "label": "Terms & Conditions", "href": "/terms" },
-        { "label": "Privacy Policy", "href": "/privacy" },
-        { "label": "Cookies Policy", "href": "/cookies" }
+        {
+          "label": "Terms & Conditions",
+          "href": "/terms"
+        },
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy"
+        },
+        {
+          "label": "Cookies Policy",
+          "href": "/cookies"
+        }
       ]
     }
   ]

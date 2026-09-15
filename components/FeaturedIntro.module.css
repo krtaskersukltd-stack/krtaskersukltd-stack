@@ -52,6 +52,11 @@
   background: #f1f0ea;
 }
 
+:global(html.dark) .visual,
+:global([data-theme="dark"]) .visual {
+  background: #141b22;
+}
+
 .image {
   position: absolute;
   z-index: 2;

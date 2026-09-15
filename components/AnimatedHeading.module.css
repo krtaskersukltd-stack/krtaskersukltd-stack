@@ -1,4 +1,10 @@
-.word, .visual, .letter { font: inherit; color: inherit; letter-spacing: inherit; }
+.word, .headingVisual, .letter {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  background: transparent !important;
+  background-color: transparent !important;
+}
 .word { display: inline-block; position: relative; }
 .letter { display: inline-block; }
 .accessible {

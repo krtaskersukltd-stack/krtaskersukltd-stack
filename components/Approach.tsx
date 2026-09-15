@@ -269,7 +269,7 @@ export default function Approach() {
                         />
                       </div>
 
-                      <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
+                      <p data-no-text-motion className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
                         {card.desc}
                       </p>
                     </div>
@@ -312,7 +312,7 @@ export default function Approach() {
                     className={styles.iconImg}
                   />
                 </div>
-                <p className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
+                <p data-no-text-motion className={`${styles.cardDesc} ${card.isTeal ? styles.descCream : styles.descDark}`}>
                   {card.desc}
                 </p>
               </div>

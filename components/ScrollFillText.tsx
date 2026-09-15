@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode, type ElementType } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTheme } from './ThemeProvider'
 import styles from './ScrollFillText.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,11 +22,20 @@ export default function ScrollFillText({
   children,
   className = '',
   as = 'span',
-  startColor = '#a3a8a9',
-  endColor = '#0c4651',
+  startColor,
+  endColor,
 }: ScrollFillTextProps) {
   const ref = useRef<HTMLElement>(null)
+  const { resolvedTheme } = useTheme()
   const rawText = text || (typeof children === 'string' ? children : '')
+
+  const isDark = resolvedTheme === 'dark'
+
+  // Default colors:
+  // In Dark theme: Text starts as teal (#0c5c68), fills to white (#ffffff) on scroll.
+  // In Light theme: Text starts as light gray (#a3a8a9), fills to dark teal (#0c4651) on scroll.
+  const effectiveStartColor = startColor !== undefined ? startColor : (isDark ? '#0c5c68' : '#a3a8a9')
+  const effectiveEndColor = endColor !== undefined ? endColor : (isDark ? '#ffffff' : '#0c4651')
 
   useEffect(() => {
     if (!rawText || !ref.current) return
@@ -37,9 +47,9 @@ export default function ScrollFillText({
 
       gsap.fromTo(
         letters,
-        { color: startColor },
+        { color: effectiveStartColor },
         {
-          color: endColor,
+          color: effectiveEndColor,
           duration: 1,
           stagger: 0.1,
           ease: 'none',
@@ -54,7 +64,7 @@ export default function ScrollFillText({
     }, ref)
 
     return () => media.revert()
-  }, [rawText, startColor, endColor])
+  }, [rawText, effectiveStartColor, effectiveEndColor, resolvedTheme])
 
   if (!rawText) {
     const Tag = as as ElementType
@@ -71,7 +81,12 @@ export default function ScrollFillText({
           <span key={wordIndex}>
             <span className={styles.word}>
               {Array.from(word).map((char, charIndex) => (
-                <span data-fill-letter className={styles.letter} key={charIndex}>
+                <span
+                  data-fill-letter
+                  className={styles.letter}
+                  key={charIndex}
+                  style={{ color: effectiveStartColor }}
+                >
                   {char}
                 </span>
               ))}

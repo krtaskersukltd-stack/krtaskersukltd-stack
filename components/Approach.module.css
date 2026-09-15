@@ -110,15 +110,29 @@
 
 /* Card Skins */
 .cardTeal {
-  background: var(--teal);
-  color: var(--cream);
-  border: 1px solid var(--teal);
+  background: #0c4651;
+  color: #f8f7f2;
+  border: 1px solid #0c4651;
+}
+
+:global(html.dark) .cardTeal,
+:global([data-theme="dark"]) .cardTeal {
+  background: #093740;
+  color: #f8fafc;
+  border: 1px solid rgba(25, 149, 168, 0.35);
 }
 
 .cardCream {
-  background: var(--cream);
-  color: var(--black);
+  background: #f8f7f2;
+  color: #0b0f12;
   border: 1px solid rgba(12, 70, 81, 0.2);
+}
+
+:global(html.dark) .cardCream,
+:global([data-theme="dark"]) .cardCream {
+  background: #141c22;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .cardHeader {
@@ -135,11 +149,16 @@
 }
 
 .titleLime {
-  color: var(--lime);
+  color: var(--lime, #e6ff2a);
 }
 
 .titleTeal {
-  color: var(--teal);
+  color: #0c4651;
+}
+
+:global(html.dark) .titleTeal,
+:global([data-theme="dark"]) .titleTeal {
+  color: #2dd4bf;
 }
 
 .cardIcon {
@@ -168,11 +187,21 @@
 }
 
 .descCream {
-  color: var(--cream);
+  color: #f8f7f2;
+}
+
+:global(html.dark) .descCream,
+:global([data-theme="dark"]) .descCream {
+  color: #f8fafc;
 }
 
 .descDark {
-  color: var(--black);
+  color: #0b0f12;
+}
+
+:global(html.dark) .descDark,
+:global([data-theme="dark"]) .descDark {
+  color: #cbd5e1;
 }
 
 /* Mobile Dedicated Section */

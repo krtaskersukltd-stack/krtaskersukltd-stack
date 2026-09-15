@@ -86,6 +86,15 @@
   transition: transform 0.2s ease;
 }
 
+.darkTheme .logoWrapper img,
+.darkTheme [class*='logoImage'],
+:global(html.dark) .logoWrapper img,
+:global(html.dark) [class*='logoImage'],
+:global([data-theme='dark']) .logoWrapper img,
+:global([data-theme='dark']) [class*='logoImage'] {
+  filter: brightness(0) invert(1);
+}
+
 /* Center: Navigation Bar */
 .mainNav {
   display: flex;
@@ -742,6 +751,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
+.drawerHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .drawerCloseBtn {
   width: 36px;
   height: 36px;
@@ -1203,4 +1218,165 @@
     height: 34px;
     font-size: 10px;
   }
+}
+
+/* ================= GLOBAL DARK MODE NAVBAR STYLES ================= */
+:global([data-theme='dark']) .scrolled .container,
+:global(html.dark) .scrolled .container,
+.darkTheme.scrolled .container {
+  background: rgba(14, 20, 24, 0.82);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+:global([data-theme='dark']) .navLinkBtn,
+:global([data-theme='dark']) .navLink,
+:global(html.dark) .navLinkBtn,
+:global(html.dark) .navLink {
+  color: #f1f5f9;
+}
+
+:global([data-theme='dark']) .navLinkBtn:hover,
+:global([data-theme='dark']) .navLink:hover,
+:global(html.dark) .navLinkBtn:hover,
+:global(html.dark) .navLink:hover {
+  color: var(--lime, #e6ff2a);
+}
+
+:global([data-theme='dark']) .activeNav,
+:global(html.dark) .activeNav {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+:global([data-theme='dark']) .servicesDropdownCard,
+:global(html.dark) .servicesDropdownCard,
+:global([data-theme='dark']) .columnDropdownCard,
+:global(html.dark) .columnDropdownCard {
+  background: #10161a;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 24px 60px -10px rgba(0, 0, 0, 0.6),
+    0 8px 24px -4px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme='dark']) .mainServiceItem,
+:global(html.dark) .mainServiceItem {
+  background-color: #172026;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:global([data-theme='dark']) .mainServiceTitle,
+:global(html.dark) .mainServiceTitle {
+  color: #f1f5f9;
+}
+
+:global([data-theme='dark']) .mainServiceItem:hover,
+:global(html.dark) .mainServiceItem:hover,
+:global([data-theme='dark']) .activeServiceItem,
+:global(html.dark) .activeServiceItem {
+  background-color: var(--teal, #0c4651);
+  border-color: var(--teal, #0c4651);
+}
+
+:global([data-theme='dark']) .activeServiceItem .mainServiceTitle,
+:global(html.dark) .activeServiceItem .mainServiceTitle,
+:global([data-theme='dark']) .mainServiceItem:hover .mainServiceTitle,
+:global(html.dark) .mainServiceItem:hover .mainServiceTitle {
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .subServiceItem,
+:global(html.dark) .subServiceItem {
+  color: #e2e8f0;
+}
+
+:global([data-theme='dark']) .subServiceItem:hover,
+:global(html.dark) .subServiceItem:hover {
+  background-color: #182228;
+  color: var(--lime, #e6ff2a);
+}
+
+:global([data-theme='dark']) .subServicesPanel,
+:global(html.dark) .subServicesPanel {
+  background: #141c22;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme='dark']) .columnGroupCard,
+:global(html.dark) .columnGroupCard {
+  background: #141c22;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme='dark']) .columnLinkItem,
+:global(html.dark) .columnLinkItem {
+  color: #e2e8f0;
+}
+
+:global([data-theme='dark']) .columnLinkItem:hover,
+:global(html.dark) .columnLinkItem:hover {
+  background-color: #1a252d;
+  color: var(--lime, #e6ff2a);
+}
+
+:global([data-theme='dark']) .mobileDrawer,
+:global(html.dark) .mobileDrawer {
+  background: #0e1418;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+:global([data-theme='dark']) .drawerHeader,
+:global(html.dark) .drawerHeader {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme='dark']) .drawerCloseBtn,
+:global(html.dark) .drawerCloseBtn {
+  background: #172026;
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
+}
+
+:global([data-theme='dark']) .drawerCloseBtn:hover,
+:global(html.dark) .drawerCloseBtn:hover {
+  background: var(--lime);
+  color: #0b0f12;
+}
+
+:global([data-theme='dark']) .drawerDirectLink,
+:global(html.dark) .drawerDirectLink,
+:global([data-theme='dark']) .accordionHeader,
+:global(html.dark) .accordionHeader {
+  color: #f1f5f9;
+}
+
+:global([data-theme='dark']) .drawerDirectLink:hover,
+:global(html.dark) .drawerDirectLink:hover,
+:global([data-theme='dark']) .accordionHeader:hover,
+:global(html.dark) .accordionHeader:hover {
+  background-color: #172026;
+  color: var(--lime);
+}
+
+:global([data-theme='dark']) .mobileSubLink,
+:global(html.dark) .mobileSubLink,
+:global([data-theme='dark']) .mobileNestedLink,
+:global(html.dark) .mobileNestedLink {
+  color: #cbd5e1;
+}
+
+:global([data-theme='dark']) .mobileSubLink:hover,
+:global(html.dark) .mobileSubLink:hover,
+:global([data-theme='dark']) .mobileNestedLink:hover,
+:global(html.dark) .mobileNestedLink:hover {
+  color: var(--lime);
+}
+
+:global([data-theme='dark']) .hamburgerBar,
+:global(html.dark) .hamburgerBar {
+  background-color: #ffffff;
 }

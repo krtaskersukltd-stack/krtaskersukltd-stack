@@ -58,7 +58,7 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
     footerHeading: 'Digital Growth,',
     footerHeadingHighlight: 'Delivered.',
     footerPhone: '+44 191 348 3900',
-    footerEmail: 'info@krtaskerdigital.com',
+    footerEmail: 'info@krtaskerdigital.co.uk',
     footerAddress: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
     footerHours: '24/7 Service\nMonday - Sunday',
     footerCopyright: '© 2026 KR Tasker Digital. All Rights Reserved.',
@@ -155,13 +155,13 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
     },
     ...(footerData.socialTwitter
       ? [
-          {
-            name: 'Twitter',
-            href: footerData.socialTwitter,
-            icon: 'twitter',
-            show: true,
-          },
-        ]
+        {
+          name: 'Twitter',
+          href: footerData.socialTwitter,
+          icon: 'twitter',
+          show: true,
+        },
+      ]
       : []),
   ].filter((s) => s.show && s.href)
 
@@ -177,27 +177,27 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
           rel="noopener noreferrer"
           {...(animated
             ? {
-                animate: { y: [0, -6, 0] },
-                transition: {
-                  duration: 2.4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: index * 0.22,
-                },
-              }
+              animate: { y: [0, -6, 0] },
+              transition: {
+                duration: 2.4,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: index * 0.22,
+              },
+            }
             : {})}
           whileHover={{ scale: 1.12, y: -4 }}
           whileTap={{ scale: 0.95 }}
         >
           {icon === 'facebook' && (
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M28 14.0856C28 6.30631 21.732 0 14 0C6.26801 0 0 6.30631 0 14.0856C0 21.116 5.11957 26.9433 11.8125 28V18.1572H8.25781V14.0856H11.8125V10.9823C11.8125 7.45214 13.9027 5.50217 17.1005 5.50217C18.6318 5.50217 20.2344 5.77728 20.2344 5.77728V9.24365H18.4691C16.73 9.24365 16.1875 10.3295 16.1875 11.4445V14.0856H20.0703L19.4496 18.1572H16.1875V28C22.8804 26.9433 28 21.116 28 14.0856Z" fill="#0C4651"/>
+              <path d="M28 14.0856C28 6.30631 21.732 0 14 0C6.26801 0 0 6.30631 0 14.0856C0 21.116 5.11957 26.9433 11.8125 28V18.1572H8.25781V14.0856H11.8125V10.9823C11.8125 7.45214 13.9027 5.50217 17.1005 5.50217C18.6318 5.50217 20.2344 5.77728 20.2344 5.77728V9.24365H18.4691C16.73 9.24365 16.1875 10.3295 16.1875 11.4445V14.0856H20.0703L19.4496 18.1572H16.1875V28C22.8804 26.9433 28 21.116 28 14.0856Z" fill="#0C4651" />
             </svg>
           )}
 
           {icon === 'linkedin' && (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22.2234 0H1.77187C0.792187 0 0 0.773438 0 1.72969V22.2656C0 23.2219 0.792187 24 1.77187 24H22.2234C23.2031 24 24 23.2219 24 22.2703V1.72969C24 0.773438 23.2031 0 22.2234 0ZM7.12031 20.4516H3.55781V8.99531H7.12031V20.4516ZM5.33906 7.43438C4.19531 7.43438 3.27188 6.51094 3.27188 5.37187C3.27188 4.23281 4.19531 3.30937 5.33906 3.30937C6.47813 3.30937 7.40156 4.23281 7.40156 5.37187C7.40156 6.50625 6.47813 7.43438 5.33906 7.43438ZM20.4516 20.4516H16.8937V14.8828C16.8937 13.5562 16.8703 11.8453 15.0422 11.8453C13.1906 11.8453 12.9094 13.2937 12.9094 14.7891V20.4516H9.35625V8.99531H12.7687V10.5609H12.8156C13.2891 9.66094 14.4516 8.70938 16.1813 8.70938C19.7859 8.70938 20.4516 11.0813 20.4516 14.1656V20.4516Z" fill="#0C4651"/>
+              <path d="M22.2234 0H1.77187C0.792187 0 0 0.773438 0 1.72969V22.2656C0 23.2219 0.792187 24 1.77187 24H22.2234C23.2031 24 24 23.2219 24 22.2703V1.72969C24 0.773438 23.2031 0 22.2234 0ZM7.12031 20.4516H3.55781V8.99531H7.12031V20.4516ZM5.33906 7.43438C4.19531 7.43438 3.27188 6.51094 3.27188 5.37187C3.27188 4.23281 4.19531 3.30937 5.33906 3.30937C6.47813 3.30937 7.40156 4.23281 7.40156 5.37187C7.40156 6.50625 6.47813 7.43438 5.33906 7.43438ZM20.4516 20.4516H16.8937V14.8828C16.8937 13.5562 16.8703 11.8453 15.0422 11.8453C13.1906 11.8453 12.9094 13.2937 12.9094 14.7891V20.4516H9.35625V8.99531H12.7687V10.5609H12.8156C13.2891 9.66094 14.4516 8.70938 16.1813 8.70938C19.7859 8.70938 20.4516 11.0813 20.4516 14.1656V20.4516Z" fill="#0C4651" />
             </svg>
           )}
 
@@ -291,154 +291,154 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
             />
           </svg>
 
-        <nav className={styles.socialsTab} aria-label="Social media links">
-          {renderSocialIcons(true)}
-        </nav>
+          <nav className={styles.socialsTab} aria-label="Social media links">
+            {renderSocialIcons(true)}
+          </nav>
 
-        <div className={styles.content}>
-          <div className={styles.mainRow}>
-            <div className={styles.linksArea}>
-              {(footerData.footerColumns && footerData.footerColumns.length > 0
-                ? footerData.footerColumns
-                : DEFAULT_FOOTER_COLUMNS
-              ).map((column, columnIndex) => (
-                <div
-                  key={column.title}
-                  className={`${styles.linkColumn} ${openFooterColumn === column.title ? styles.linkColumnOpen : ''}`}
-                >
-                  <button
-                    type="button"
-                    className={styles.colTitle}
-                    aria-expanded={!isMobile || openFooterColumn === column.title}
-                    aria-controls={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`}
-                    onClick={() => {
-                      if (isMobile) {
-                        setOpenFooterColumn(current => current === column.title ? null : column.title)
-                      }
-                    }}
+          <div className={styles.content}>
+            <div className={styles.mainRow}>
+              <div className={styles.linksArea}>
+                {(footerData.footerColumns && footerData.footerColumns.length > 0
+                  ? footerData.footerColumns
+                  : DEFAULT_FOOTER_COLUMNS
+                ).map((column, columnIndex) => (
+                  <div
+                    key={column.title}
+                    className={`${styles.linkColumn} ${openFooterColumn === column.title ? styles.linkColumnOpen : ''}`}
                   >
-                    <span>{column.title}</span>
-                    <span className={styles.accordionIcon} aria-hidden="true">+</span>
-                  </button>
-                  <div id={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`} className={styles.linksList}>
-                    {column.links.map((linkItem, linkIndex) => (
-                      <Link
-                        key={linkItem.label}
-                        href={linkItem.href || '#'}
-                        className={styles.link}
-                      >
-                        <motion.span
-                          initial={{ opacity: 0, y: 18 }}
-                          animate={inView ? { opacity: 1, y: 0 } : {}}
-                          transition={{
-                            delay: columnIndex * 0.1 + linkIndex * 0.045,
-                            duration: 0.38,
-                          }}
+                    <button
+                      type="button"
+                      className={styles.colTitle}
+                      aria-expanded={!isMobile || openFooterColumn === column.title}
+                      aria-controls={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`}
+                      onClick={() => {
+                        if (isMobile) {
+                          setOpenFooterColumn(current => current === column.title ? null : column.title)
+                        }
+                      }}
+                    >
+                      <span>{column.title}</span>
+                      <span className={styles.accordionIcon} aria-hidden="true">+</span>
+                    </button>
+                    <div id={`footer-${column.title.toLowerCase().replace(/\s+/g, '-')}-links`} className={styles.linksList}>
+                      {column.links.map((linkItem, linkIndex) => (
+                        <Link
+                          key={linkItem.label}
+                          href={linkItem.href || '#'}
+                          className={styles.link}
                         >
-                          {linkItem.label}
-                        </motion.span>
-                      </Link>
-                    ))}
+                          <motion.span
+                            initial={{ opacity: 0, y: 18 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{
+                              delay: columnIndex * 0.1 + linkIndex * 0.045,
+                              duration: 0.38,
+                            }}
+                          >
+                            {linkItem.label}
+                          </motion.span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
+                ))}
+              </div>
+
+              <div className={styles.newsletter}>
+                <p className={styles.newsletterTitle}>{footerData.newsletterTitle || 'Newsletter'}</p>
+                <p className={styles.newsletterDesc}>
+                  {footerData.newsletterDesc || 'Stay up to date with the latest digital marketing insights, tips, and news.'}
+                </p>
+
+                {newsletterSuccess ? (
+                  <div style={{ color: '#E6FF2A', fontWeight: 'bold', fontSize: '14px', paddingTop: '8px' }}>
+                    ✓ Thank you for subscribing!
+                  </div>
+                ) : (
+                  <form className={styles.form} onSubmit={handleNewsletter}>
+                    <label htmlFor="footer-email" className={styles.srOnly}>
+                      Email address
+                    </label>
+                    <input
+                      id="footer-email"
+                      name="email"
+                      type="email"
+                      value={newsletterEmail}
+                      onChange={(e) => setNewsletterEmail(e.target.value)}
+                      autoComplete="email"
+                      placeholder="Enter Your Email"
+                      className={styles.input}
+                      required
+                    />
+                    <motion.button
+                      type="submit"
+                      disabled={newsletterSubmitting}
+                      whileHover={{ scale: 1.035, boxShadow: '0 0 20px rgba(230,255,42,.32)' }}
+                      whileTap={{ scale: 0.98 }}
+                      className={styles.btnSubscribe}
+                    >
+                      {newsletterSubmitting ? 'Subscribing...' : 'Subscribe Now'}
+                    </motion.button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className={styles.bigTextWrapper}
+            >
+              <AnimatedHeading as="h2" className={styles.bigText}>
+                <span className={styles.textLime}>{footerData.footerHeading || 'Digital Growth,'}</span>
+                <span className={styles.textCream}> {footerData.footerHeadingHighlight || 'Delivered.'}</span>
+              </AnimatedHeading>
+            </motion.div>
+
+            <div className={styles.bottomBar}>
+              <div className={styles.infoBlock}>
+                <p className={styles.infoTitle}>Address</p>
+                <div className={styles.infoDesc}>
+                  {footerData.footerAddress || 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU'}
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <div className={styles.newsletter}>
-              <p className={styles.newsletterTitle}>{footerData.newsletterTitle || 'Newsletter'}</p>
-              <p className={styles.newsletterDesc}>
-                {footerData.newsletterDesc || 'Stay up to date with the latest digital marketing insights, tips, and news.'}
-              </p>
-
-              {newsletterSuccess ? (
-                <div style={{ color: '#E6FF2A', fontWeight: 'bold', fontSize: '14px', paddingTop: '8px' }}>
-                  ✓ Thank you for subscribing!
+              <div className={styles.infoBlock}>
+                <p className={styles.infoTitle}>Contact</p>
+                <div className={styles.infoDesc}>
+                  Phone:{' '}
+                  <a href={`tel:${(footerData.footerPhone || '+44 191 348 3900').replace(/\s+/g, '')}`} className={styles.infoLink}>
+                    {footerData.footerPhone || '+44 191 348 3900'}
+                  </a>
+                  <br />
+                  Email:{' '}
+                  <a href={`mailto:${footerData.footerEmail || 'info@krtaskerdigital.co.uk'}`} className={styles.infoLink}>
+                    {footerData.footerEmail || 'info@krtaskerdigital.co.uk'}
+                  </a>
                 </div>
-              ) : (
-                <form className={styles.form} onSubmit={handleNewsletter}>
-                  <label htmlFor="footer-email" className={styles.srOnly}>
-                    Email address
-                  </label>
-                  <input
-                    id="footer-email"
-                    name="email"
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    autoComplete="email"
-                    placeholder="Enter Your Email"
-                    className={styles.input}
-                    required
-                  />
-                  <motion.button
-                    type="submit"
-                    disabled={newsletterSubmitting}
-                    whileHover={{ scale: 1.035, boxShadow: '0 0 20px rgba(230,255,42,.32)' }}
-                    whileTap={{ scale: 0.98 }}
-                    className={styles.btnSubscribe}
-                  >
-                    {newsletterSubmitting ? 'Subscribing...' : 'Subscribe Now'}
-                  </motion.button>
-                </form>
-              )}
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className={styles.bigTextWrapper}
-          >
-            <AnimatedHeading as="h2" className={styles.bigText}>
-              <span className={styles.textLime}>{footerData.footerHeading || 'Digital Growth,'}</span>
-              <span className={styles.textCream}> {footerData.footerHeadingHighlight || 'Delivered.'}</span>
-            </AnimatedHeading>
-          </motion.div>
-
-          <div className={styles.bottomBar}>
-            <div className={styles.infoBlock}>
-              <p className={styles.infoTitle}>Address</p>
-              <div className={styles.infoDesc}>
-                {footerData.footerAddress || 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU'}
               </div>
-            </div>
 
-            <div className={styles.infoBlock}>
-              <p className={styles.infoTitle}>Contact</p>
-              <div className={styles.infoDesc}>
-                Phone:{' '}
-                <a href={`tel:${(footerData.footerPhone || '+44 191 348 3900').replace(/\s+/g, '')}`} className={styles.infoLink}>
-                  {footerData.footerPhone || '+44 191 348 3900'}
-                </a>
-                <br />
-                Email:{' '}
-                <a href={`mailto:${footerData.footerEmail || 'info@krtaskerdigital.com'}`} className={styles.infoLink}>
-                  {footerData.footerEmail || 'info@krtaskerdigital.com'}
-                </a>
+              <div className={styles.infoBlock}>
+                <p className={styles.infoTitle}>Time</p>
+                <div className={styles.infoDesc} style={{ whiteSpace: 'pre-line' }}>
+                  {footerData.footerHours || '24/7 Service\nMonday - Sunday'}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.infoBlock}>
-              <p className={styles.infoTitle}>Time</p>
-              <div className={styles.infoDesc} style={{ whiteSpace: 'pre-line' }}>
-                {footerData.footerHours || '24/7 Service\nMonday - Sunday'}
+              <div className={styles.copyrightBlock}>
+                <p className={styles.copyright}>{footerData.footerCopyright || '© 2026 KR Tasker Digital. All Rights Reserved.'}</p>
+                <Button href={footerData.footerCtaLink || '/contact'} variant="secondary" size="compact" className={styles.footerCta}>
+                  {footerData.footerCtaText || 'Start A Project'}
+                </Button>
+                <nav className={styles.mobileSocials} aria-label="Social media links">
+                  {renderSocialIcons(false)}
+                </nav>
               </div>
-            </div>
-
-            <div className={styles.copyrightBlock}>
-              <p className={styles.copyright}>{footerData.footerCopyright || '© 2026 KR Tasker Digital. All Rights Reserved.'}</p>
-              <Button href={footerData.footerCtaLink || '/contact'} variant="secondary" size="compact" className={styles.footerCta}>
-                {footerData.footerCtaText || 'Start A Project'}
-              </Button>
-              <nav className={styles.mobileSocials} aria-label="Social media links">
-                {renderSocialIcons(false)}
-              </nav>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   )
 }

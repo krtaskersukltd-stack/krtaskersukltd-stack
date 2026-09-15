@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 import Button from './Button'
 import AvailabilityNotch from './AvailabilityNotch'
+import ThemeToggle from './ThemeToggle'
+import { useTheme } from './ThemeProvider'
 import styles from './Navbar.module.css'
 import type { ServiceRecord } from '@/lib/cms-types'
 
@@ -536,9 +538,8 @@ function TwoColumnDropdown({
             <Link
               key={item.title}
               href={item.href}
-              className={`${styles.mainServiceItem} ${
-                isCurrent ? styles.activeServiceItem : ''
-              }`}
+              className={`${styles.mainServiceItem} ${isCurrent ? styles.activeServiceItem : ''
+                }`}
               onMouseEnter={() =>
                 setActiveId(item.id || item.title.toLowerCase())
               }
@@ -769,6 +770,7 @@ type DropdownKey = 'services' | 'objectives' | 'industries' | 'amazon' | 'result
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { resolvedTheme } = useTheme()
   const [scrolled, setScrolled] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const [isDarkSection, setIsDarkSection] = useState(false)
@@ -960,7 +962,7 @@ export default function Navbar() {
       }
 
       const navMid = navRef.current ? navRef.current.getBoundingClientRect().top + 35 : 35
-      const checkX = window.innerWidth / 2
+      const checkX = window.innerWidth > 600 ? window.innerWidth * 0.25 : window.innerWidth * 0.5
 
       let isDark = false
       let detectedBg = ''
@@ -968,15 +970,20 @@ export default function Navbar() {
       let gVal = 247
       let bVal = 242
 
-      // 1. Query elements at checkpoint under the navbar
-      if (document.elementsFromPoint) {
+      // 1. Query elements at checkpoint under the navbar (only when scrolled down or over actual page sections)
+      if (document.elementsFromPoint && scrollY > 20) {
         const elements = document.elementsFromPoint(checkX, navMid)
         for (const el of elements) {
           if (
             el.closest('header') ||
+            el.closest('nav') ||
+            el.closest('.' + styles.header) ||
+            el.closest('.' + styles.availabilityNotch) ||
             el.tagName.toLowerCase() === 'header' ||
+            el.tagName.toLowerCase() === 'nav' ||
             el.classList.contains(styles.header) ||
-            el.classList.contains(styles.pillNav)
+            el.classList.contains(styles.pillNav) ||
+            el.classList.contains(styles.availabilityNotch)
           ) {
             continue
           }
@@ -984,9 +991,7 @@ export default function Navbar() {
           let curr: HTMLElement | null = el as HTMLElement
           while (curr && curr !== document.body && curr !== document.documentElement) {
             if (
-              curr.getAttribute('data-theme') === 'dark' ||
               curr.classList.contains('darkSection') ||
-              curr.classList.contains('dark') ||
               curr.tagName.toLowerCase() === 'footer'
             ) {
               isDark = true
@@ -1023,10 +1028,10 @@ export default function Navbar() {
         }
       }
 
-      // 2. Fallback check intersecting dark elements by bounding box
-      if (!isDark && !detectedBg) {
+      // 2. Fallback check intersecting dark elements by bounding box (only if scrolled down)
+      if (!isDark && !detectedBg && scrollY > 100) {
         const darkCandidates = document.querySelectorAll(
-          '[data-theme="dark"], .darkSection, footer, section[class*="dark"], section[class*="footer"], div[class*="contactCard"], section[class*="contact"]'
+          '.darkSection, footer, section[class*="footer"], div[class*="contactCard"]'
         )
         for (let i = 0; i < darkCandidates.length; i++) {
           const rect = darkCandidates[i].getBoundingClientRect()
@@ -1119,12 +1124,13 @@ export default function Navbar() {
         (s.title || '').toLowerCase() === (hoveredServiceId || '').toLowerCase()
     ) || servicesMenu[0]
 
+  const isEffectiveDark = resolvedTheme === 'dark' || isDarkSection
+
   return (
     <header
       ref={navRef}
-      className={`${styles.header} ${styles.homeHeader} ${scrolled ? styles.scrolled : ''} ${
-        isHidden ? styles.hidden : ''
-      } ${isDarkSection ? styles.darkTheme : ''}`}
+      className={`${styles.header} ${styles.homeHeader} ${scrolled ? styles.scrolled : ''} ${isHidden ? styles.hidden : ''
+        } ${isEffectiveDark ? styles.darkTheme : ''}`}
       onMouseLeave={handleMouseLeave}
     >
       <AvailabilityNotch />
@@ -1149,19 +1155,17 @@ export default function Navbar() {
               <Link
                 href="/services"
                 onClick={() => setActiveDropdown(null)}
-                className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'services' || pathname.startsWith('/services') || pathname === '/all-services'
+                className={`${styles.navLink} ${styles.navLinkBtn} ${activeDropdown === 'services' || pathname.startsWith('/services') || pathname === '/all-services'
                     ? styles.activeNav
                     : ''
-                }`}
+                  }`}
                 aria-expanded={activeDropdown === 'services'}
                 aria-haspopup="true"
               >
                 <span>Services</span>
                 <svg
-                  className={`${styles.navChevron} ${
-                    activeDropdown === 'services' ? styles.chevronRotated : ''
-                  }`}
+                  className={`${styles.navChevron} ${activeDropdown === 'services' ? styles.chevronRotated : ''
+                    }`}
                   viewBox="0 0 10 6"
                   width="10"
                   height="6"
@@ -1212,17 +1216,15 @@ export default function Navbar() {
               <Link
                 href="/services/amazon-ebay"
                 onClick={() => setActiveDropdown(null)}
-                className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'amazon' ? styles.activeNav : ''
-                }`}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${activeDropdown === 'amazon' ? styles.activeNav : ''
+                  }`}
                 aria-expanded={activeDropdown === 'amazon'}
                 aria-haspopup="true"
               >
                 <span>Amazon</span>
                 <svg
-                  className={`${styles.navChevron} ${
-                    activeDropdown === 'amazon' ? styles.chevronRotated : ''
-                  }`}
+                  className={`${styles.navChevron} ${activeDropdown === 'amazon' ? styles.chevronRotated : ''
+                    }`}
                   viewBox="0 0 10 6"
                   width="10"
                   height="6"
@@ -1273,17 +1275,15 @@ export default function Navbar() {
               <Link
                 href="/services"
                 onClick={() => setActiveDropdown(null)}
-                className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'objectives' ? styles.activeNav : ''
-                }`}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${activeDropdown === 'objectives' ? styles.activeNav : ''
+                  }`}
                 aria-expanded={activeDropdown === 'objectives'}
                 aria-haspopup="true"
               >
                 <span>Business Objectives</span>
                 <svg
-                  className={`${styles.navChevron} ${
-                    activeDropdown === 'objectives' ? styles.chevronRotated : ''
-                  }`}
+                  className={`${styles.navChevron} ${activeDropdown === 'objectives' ? styles.chevronRotated : ''
+                    }`}
                   viewBox="0 0 10 6"
                   width="10"
                   height="6"
@@ -1331,17 +1331,15 @@ export default function Navbar() {
               <Link
                 href="/industries"
                 onClick={() => setActiveDropdown(null)}
-                className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'industries' ? styles.activeNav : ''
-                }`}
+                className={`${styles.navLink} ${styles.navLinkBtn} ${activeDropdown === 'industries' ? styles.activeNav : ''
+                  }`}
                 aria-expanded={activeDropdown === 'industries'}
                 aria-haspopup="true"
               >
                 <span>Industries</span>
                 <svg
-                  className={`${styles.navChevron} ${
-                    activeDropdown === 'industries' ? styles.chevronRotated : ''
-                  }`}
+                  className={`${styles.navChevron} ${activeDropdown === 'industries' ? styles.chevronRotated : ''
+                    }`}
                   viewBox="0 0 10 6"
                   width="10"
                   height="6"
@@ -1389,19 +1387,17 @@ export default function Navbar() {
               <Link
                 href="/work"
                 onClick={() => setActiveDropdown(null)}
-                className={`${styles.navLink} ${styles.navLinkBtn} ${
-                  activeDropdown === 'results' || pathname.startsWith('/work')
+                className={`${styles.navLink} ${styles.navLinkBtn} ${activeDropdown === 'results' || pathname.startsWith('/work')
                     ? styles.activeNav
                     : ''
-                }`}
+                  }`}
                 aria-expanded={activeDropdown === 'results'}
                 aria-haspopup="true"
               >
                 <span>Results</span>
                 <svg
-                  className={`${styles.navChevron} ${
-                    activeDropdown === 'results' ? styles.chevronRotated : ''
-                  }`}
+                  className={`${styles.navChevron} ${activeDropdown === 'results' ? styles.chevronRotated : ''
+                    }`}
                   viewBox="0 0 10 6"
                   width="10"
                   height="6"
@@ -1475,8 +1471,10 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right: Contact Us CTA Button & Mobile Hamburger */}
+        {/* Right: Contact Us CTA Button, Theme Toggle & Mobile Hamburger */}
         <div className={styles.actionWrapper}>
+          <ThemeToggle isDarkSection={isEffectiveDark} />
+
           <Button
             href="/contact"
             variant="secondary"
@@ -1524,14 +1522,17 @@ export default function Navbar() {
             >
               <div className={styles.drawerHeader}>
                 <Logo />
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={styles.drawerCloseBtn}
-                  aria-label="Close menu"
-                >
-                  ✕
-                </button>
+                <div className={styles.drawerHeaderActions}>
+                  <ThemeToggle isDarkSection={isEffectiveDark} compact />
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={styles.drawerCloseBtn}
+                    aria-label="Close menu"
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
 
               <div className={styles.drawerBody}>
@@ -1546,9 +1547,8 @@ export default function Navbar() {
                       Services
                     </span>
                     <span
-                      className={`${styles.accordionIcon} ${
-                        mobileAccordion === 'services' ? styles.accordionIconOpen : ''
-                      }`}
+                      className={`${styles.accordionIcon} ${mobileAccordion === 'services' ? styles.accordionIconOpen : ''
+                        }`}
                     >
                       ▾
                     </span>
@@ -1603,9 +1603,8 @@ export default function Navbar() {
                       Amazon
                     </span>
                     <span
-                      className={`${styles.accordionIcon} ${
-                        mobileAccordion === 'amazon' ? styles.accordionIconOpen : ''
-                      }`}
+                      className={`${styles.accordionIcon} ${mobileAccordion === 'amazon' ? styles.accordionIconOpen : ''
+                        }`}
                     >
                       ▾
                     </span>
@@ -1650,9 +1649,8 @@ export default function Navbar() {
                       Business Objectives
                     </span>
                     <span
-                      className={`${styles.accordionIcon} ${
-                        mobileAccordion === 'objectives' ? styles.accordionIconOpen : ''
-                      }`}
+                      className={`${styles.accordionIcon} ${mobileAccordion === 'objectives' ? styles.accordionIconOpen : ''
+                        }`}
                     >
                       ▾
                     </span>
@@ -1695,9 +1693,8 @@ export default function Navbar() {
                       Industries
                     </span>
                     <span
-                      className={`${styles.accordionIcon} ${
-                        mobileAccordion === 'industries' ? styles.accordionIconOpen : ''
-                      }`}
+                      className={`${styles.accordionIcon} ${mobileAccordion === 'industries' ? styles.accordionIconOpen : ''
+                        }`}
                     >
                       ▾
                     </span>
@@ -1747,9 +1744,8 @@ export default function Navbar() {
                       Results
                     </span>
                     <span
-                      className={`${styles.accordionIcon} ${
-                        mobileAccordion === 'results' ? styles.accordionIconOpen : ''
-                      }`}
+                      className={`${styles.accordionIcon} ${mobileAccordion === 'results' ? styles.accordionIconOpen : ''
+                        }`}
                     >
                       ▾
                     </span>

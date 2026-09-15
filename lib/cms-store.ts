@@ -22,7 +22,7 @@ const DEFAULT_GLOBAL: GlobalSectionsRecord = {
   footerHeading: 'Digital Growth,',
   footerHeadingHighlight: 'Delivered.',
   footerPhone: '+44 191 348 3900',
-  footerEmail: 'info@krtaskerdigital.com',
+  footerEmail: 'info@krtaskerdigital.co.uk',
   footerAddress: 'Unit 304 3rd Floor Aidan House, Sunderland Rd, Tynegate Precinct, Gateshead NE8 3HU',
   footerHours: '24/7 Service\nMonday - Sunday',
   footerCopyright: '© 2026 KR Tasker Digital. All Rights Reserved.',

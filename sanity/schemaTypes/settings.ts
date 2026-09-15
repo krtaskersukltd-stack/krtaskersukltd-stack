@@ -81,7 +81,7 @@ export const settingsType = defineType({
       name: 'footerEmail',
       title: 'Footer Email Address',
       type: 'string',
-      initialValue: 'info@krtaskerdigital.com',
+      initialValue: 'info@krtaskerdigital.co.uk',
     }),
     defineField({
       name: 'footerAddress',
