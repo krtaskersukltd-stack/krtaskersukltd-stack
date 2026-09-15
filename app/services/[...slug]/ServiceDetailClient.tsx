@@ -54,12 +54,32 @@ const FEATURE_IMAGES_BY_SLUG: Record<string, string[]> = {
   ],
 }
 
+const MAIN_CATEGORY_SLUGS = [
+  'web-development',
+  'marketing',
+  'digital-marketing',
+  'ppc',
+  'seo',
+  'social-media',
+  'email-marketing',
+  'ai-automation',
+  'graphic-design',
+  'branding',
+  'websites-apps',
+  'ai-solutions',
+  'amazon-ebay',
+  'b2b-enterprise',
+  'b2c-consumer',
+  'ecommerce-retail',
+  'saas-technology',
+]
+
 export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
-  // If template is category / hub, or has capabilities defined, render Category Hub layout
+  // If it is a top-level category hub or has capabilities defined, render Category Hub layout
   const isCategoryHub =
+    MAIN_CATEGORY_SLUGS.includes(srv.slug) ||
     srv.template === 'category' ||
-    (srv.capabilities && srv.capabilities.length > 0) ||
-    ['b2b-enterprise', 'b2c-consumer', 'ecommerce-retail', 'saas-technology'].includes(srv.slug)
+    (srv.capabilities && srv.capabilities.length > 0)
 
   if (isCategoryHub) {
     return <MainServiceHub srv={srv} />

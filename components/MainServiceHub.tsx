@@ -27,10 +27,150 @@ const DEFAULT_CAPABILITIES: ServiceCapability[] = [
   { name: 'SEO', slug: '/services/seo' },
   { name: 'PPC', slug: '/services/ppc' },
   { name: 'Social Media Marketing', slug: '/services/social-media' },
-  { name: 'Google Ads', slug: '/services/ppc' },
+  { name: 'Google Ads', slug: '/services/marketing/google-ads' },
   { name: 'Email Marketing', slug: '/services/email-marketing' },
   { name: 'CRO', slug: '/services/digital-360' },
 ]
+
+const CAPABILITIES_BY_CATEGORY: Record<string, ServiceCapability[]> = {
+  'web-development': [
+    { name: 'Website Design & Development', slug: '/services/web-development' },
+    { name: 'Web Design', slug: '/services/web-development/web-design' },
+    { name: 'Custom Web Development', slug: '/services/web-development/custom-web-development' },
+    { name: 'E-Commerce Web Development', slug: '/services/web-development/ecommerce-development' },
+    { name: 'WordPress Development', slug: '/services/web-development/wordpress-development' },
+    { name: 'Shopify Development', slug: '/services/web-development/shopify-development' },
+    { name: 'UI/UX Design', slug: '/services/web-development/ui-ux-design' },
+    { name: 'CMS Development', slug: '/services/web-development/cms-development' },
+    { name: 'B2B', slug: '/services/b2b-enterprise' },
+    { name: 'SaaS', slug: '/services/saas-technology' },
+  ],
+  'marketing': [
+    { name: 'Digital 360', slug: '/services/digital-360' },
+    { name: 'Social Media Marketing', slug: '/services/social-media/social-media-marketing' },
+    { name: 'PPC / PPC Management', slug: '/services/marketing/google-ads/ppc-management' },
+    { name: 'Google Ads', slug: '/services/marketing/google-ads' },
+    { name: 'Google Search Ads', slug: '/services/marketing/google-ads/google-search-ads' },
+    { name: 'Google Shopping Ads', slug: '/services/marketing/google-ads/google-shopping-ads' },
+    { name: 'Google Display Ads', slug: '/services/marketing/google-ads/google-display-ads' },
+    { name: 'YouTube Ads', slug: '/services/marketing/google-ads/youtube-ads' },
+  ],
+  'digital-marketing': [
+    { name: 'Digital 360', slug: '/services/digital-360' },
+    { name: 'SEO', slug: '/services/seo' },
+    { name: 'PPC', slug: '/services/ppc' },
+    { name: 'Social Media Marketing', slug: '/services/social-media' },
+    { name: 'Google Ads', slug: '/services/marketing/google-ads' },
+    { name: 'Email Marketing', slug: '/services/email-marketing' },
+    { name: 'CRO', slug: '/services/digital-360' },
+  ],
+  'ppc': [
+    { name: 'Google Ads', slug: '/services/marketing/google-ads' },
+    { name: 'Google Search Ads', slug: '/services/marketing/google-ads/google-search-ads' },
+    { name: 'Google Shopping Ads', slug: '/services/marketing/google-ads/google-shopping-ads' },
+    { name: 'Google Display Ads', slug: '/services/marketing/google-ads/google-display-ads' },
+    { name: 'YouTube Ads', slug: '/services/marketing/google-ads/youtube-ads' },
+    { name: 'PPC Management', slug: '/services/marketing/google-ads/ppc-management' },
+    { name: 'Meta Ads', slug: '/services/marketing' },
+    { name: 'Facebook Ads', slug: '/services/marketing' },
+    { name: 'Microsoft Ads', slug: '/services/marketing' },
+    { name: 'LinkedIn Ads', slug: '/services/marketing' },
+    { name: 'TikTok Ads', slug: '/services/marketing' },
+    { name: 'X (Twitter) Ads', slug: '/services/marketing' },
+    { name: 'Conversion Tracking', slug: '/services/ppc/conversion-tracking' },
+  ],
+  'seo': [
+    { name: 'Local SEO', slug: '/services/seo/local-seo' },
+    { name: 'International SEO', slug: '/services/seo/international-seo' },
+    { name: 'National SEO', slug: '/services/seo/national-seo' },
+    { name: 'E-Commerce SEO', slug: '/services/seo/ecommerce-seo' },
+    { name: 'Technical SEO', slug: '/services/seo/technical-seo' },
+    { name: 'On-Page SEO', slug: '/services/seo/on-page-seo' },
+    { name: 'Off-Page SEO', slug: '/services/seo/off-page-seo' },
+    { name: 'SEO Audit (Free)', slug: '/services/seo/seo-audit' },
+    { name: 'Content Marketing', slug: '/services/seo/content-marketing' },
+    { name: 'Google Penalty Recovery', slug: '/services/seo/google-penalty-recovery' },
+    { name: 'AI SEO', slug: '/services/seo/ai-seo' },
+    { name: 'Link Building', slug: '/services/seo/link-building' },
+    { name: 'Lead Generation SEO', slug: '/services/seo/lead-generation-seo' },
+  ],
+  'social-media': [
+    { name: 'Social Media Management', slug: '/services/social-media/social-media-management' },
+    { name: 'Social Media Marketing', slug: '/services/social-media/social-media-marketing' },
+    { name: 'Social Media Strategy', slug: '/services/social-media/social-media-strategy' },
+    { name: 'Social Media Content Creation', slug: '/services/social-media/social-media-content-creation' },
+    { name: 'Community Management', slug: '/services/social-media/community-management' },
+    { name: 'Social Media Audit', slug: '/services/social-media/social-media-audit' },
+    { name: 'Influencer Marketing', slug: '/services/social-media/influencer-marketing' },
+    { name: 'Social Media Consulting', slug: '/services/social-media/social-media-consulting' },
+  ],
+  'email-marketing': [
+    { name: 'Email Automation', slug: '/services/email-marketing/email-automation' },
+    { name: 'Email Campaign Management', slug: '/services/email-marketing/email-campaign-management' },
+    { name: 'Email Marketing Strategy', slug: '/services/email-marketing/email-marketing-strategy' },
+    { name: 'Email Design', slug: '/services/email-marketing/email-design' },
+    { name: 'Email List Building', slug: '/services/email-marketing/email-list-building' },
+    { name: 'Email Copywriting', slug: '/services/email-marketing/email-copywriting' },
+    { name: 'Email Marketing Audit', slug: '/services/email-marketing/email-marketing-audit' },
+  ],
+  'ai-automation': [
+    { name: 'AI Chatbot / AI Chatbot Development', slug: '/services/ai-automation/ai-chatbot-development' },
+    { name: 'AI Voice Agent / AI Voice Agents', slug: '/services/ai-automation/ai-voice-agents' },
+    { name: 'CRM Automation', slug: '/services/ai-automation/crm-automation' },
+    { name: 'AI Integration', slug: '/services/ai-automation/ai-integration' },
+    { name: 'AI Consulting', slug: '/services/ai-automation/ai-consulting-uk' },
+    { name: 'AI Workflow Automation', slug: '/services/ai-automation/ai-workflow-automation' },
+    { name: 'Marketing Automation', slug: '/services/ai-automation/marketing-automation' },
+  ],
+  'graphic-design': [
+    { name: 'Graphic Design', slug: '/services/graphic-design' },
+    { name: 'Logo Design / Logo Making', slug: '/services/graphic-design/logo-design' },
+    { name: 'Brand Identity Design / Branding', slug: '/services/graphic-design/brand-identity-design' },
+    { name: '3D Design & Automation', slug: '/services/graphic-design/3d-design-automation' },
+    { name: 'Poster Design', slug: '/services/graphic-design/poster-design' },
+    { name: 'Banner Design', slug: '/services/graphic-design/banner-design' },
+    { name: 'Social Media Graphics', slug: '/services/graphic-design/social-media-graphics' },
+  ],
+}
+
+const CATEGORY_IMAGE_MAP: Record<string, { img1: string; img2: string }> = {
+  'web-development': {
+    img1: '/images/services/web-app-design.png',
+    img2: '/images/services/seo-brand-strategy.png',
+  },
+  'marketing': {
+    img1: '/images/services/digital-marketing.png',
+    img2: '/images/services/seo-brand-strategy.png',
+  },
+  'digital-marketing': {
+    img1: '/images/services/digital-marketing.png',
+    img2: '/images/services/seo-brand-strategy.png',
+  },
+  'ppc': {
+    img1: '/images/services/digital-marketing.png',
+    img2: '/images/services/seo-brand-strategy.png',
+  },
+  'seo': {
+    img1: '/images/services/seo-brand-strategy.png',
+    img2: '/images/services/digital-marketing.png',
+  },
+  'social-media': {
+    img1: '/images/services/digital-marketing.png',
+    img2: '/images/services/graphic-branding.jpg',
+  },
+  'email-marketing': {
+    img1: '/images/services/email-marketing.jpg',
+    img2: '/images/services/digital-marketing.png',
+  },
+  'ai-automation': {
+    img1: '/images/services/ai-automation.jpg',
+    img2: '/images/services/digital-marketing.png',
+  },
+  'graphic-design': {
+    img1: '/images/services/graphic-branding.jpg',
+    img2: '/images/services/web-app-design.png',
+  },
+}
 
 function renderHeroHeading(text: string | undefined, serviceName: string) {
   if (!text) {
@@ -125,9 +265,14 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
   const capabilitiesList: ServiceCapability[] =
     srv.capabilities && srv.capabilities.length > 0
       ? srv.capabilities
-      : DEFAULT_CAPABILITIES
+      : CAPABILITIES_BY_CATEGORY[srv.slug] || DEFAULT_CAPABILITIES
   const [activeCapabilityIndex, setActiveCapabilityIndex] = useState(0)
   const activeCapability = capabilitiesList[activeCapabilityIndex] || capabilitiesList[0]
+
+  const categoryImgs = CATEGORY_IMAGE_MAP[srv.slug] || {
+    img1: '/images/services/digital-marketing.png',
+    img2: '/images/services/seo-brand-strategy.png',
+  }
 
   // Parse hero description into clean paragraphs
   const heroParagraphs = (srv.heroDescription || '')
@@ -304,16 +449,16 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
               <div className={styles.capabilityImages}>
                 <div className={styles.capabilityImage}>
                   <Image
-                    src="/images/services/digital-marketing.png"
-                    alt="Digital marketing campaign strategy"
+                    src={categoryImgs.img1}
+                    alt={`${srv.name} strategy showcase`}
                     fill
                     sizes="(max-width: 768px) 50vw, 320px"
                   />
                 </div>
                 <div className={styles.capabilityImage}>
                   <Image
-                    src="/images/services/seo-brand-strategy.png"
-                    alt="Digital marketing technology"
+                    src={categoryImgs.img2}
+                    alt={`${srv.name} digital technology`}
                     fill
                     sizes="(max-width: 768px) 50vw, 320px"
                   />

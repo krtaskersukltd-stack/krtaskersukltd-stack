@@ -183,8 +183,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function DynamicServicePage({ params }: PageProps) {
   const { slug } = await params
-  const slugPath = Array.isArray(slug) ? slug.join('/') : slug
-  if (slugPath === 'digital-marketing') redirect('/services')
   const srv = await resolveService(slug)
 
   if (!srv || srv.status === 'draft') {
