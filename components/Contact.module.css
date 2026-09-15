@@ -563,24 +563,24 @@
   align-items: center;
   justify-content: center;
   padding: 13px 32px;
-  background-color: var(--teal, #0c4651);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  border: 1px solid var(--lime, #e6ff2a);
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgba(230, 255, 42, 0.25);
 }
 
 .btnSubmit:hover:not(:disabled) {
-  background-color: var(--lime, #e6ff2a);
+  background-color: #f1ff52;
   color: #0b0f12;
-  border-color: var(--lime, #e6ff2a);
+  border-color: #f1ff52;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(230, 255, 42, 0.35);
+  box-shadow: 0 8px 24px rgba(230, 255, 42, 0.4);
 }
 
 .btnSubmit:disabled {

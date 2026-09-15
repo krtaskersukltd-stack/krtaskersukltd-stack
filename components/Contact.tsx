@@ -179,10 +179,7 @@ export default function Contact() {
           <div className={styles.grid}>
             {/* Left Column: Let's Connect */}
             <div className={styles.leftCol}>
-              <div className={styles.availableBadge}>
-                <span className={styles.greenDot} />
-                <span>Available For New Projects</span>
-              </div>
+             
 
               <AnimatedHeading as="h2" className={styles.mainHeading}>
                 Let&apos;s Connect
