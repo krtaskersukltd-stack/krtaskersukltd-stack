@@ -3,7 +3,7 @@
 import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import styles from './Contact.module.css'
 import ScrollFillText from './ScrollFillText'
 
@@ -55,6 +55,106 @@ const INTEREST_OPTIONS = [
   'Other',
 ]
 
+export const SUB_SERVICES_DATA: { category: string; services: string[] }[] = [
+  {
+    category: 'Web Development & Apps',
+    services: [
+      'Website Design & Development',
+      'Web Design',
+      'Custom Web Development',
+      'E-Commerce Web Development',
+      'Shopify Development',
+      'WordPress Development',
+      'UI/UX Design',
+      'CMS Development',
+      'SaaS Platform Engineering',
+      'B2B Web Solutions',
+    ],
+  },
+  {
+    category: 'SEO & Search Growth',
+    services: [
+      'Local SEO',
+      'International SEO',
+      'National SEO',
+      'E-Commerce SEO',
+      'Technical SEO',
+      'On-Page SEO',
+      'Off-Page SEO',
+      'Free SEO Audit',
+      'Content Marketing',
+      'AI SEO & GEO Optimization',
+      'Link Building',
+      'Lead Generation SEO',
+    ],
+  },
+  {
+    category: 'PPC & Digital Advertising',
+    services: [
+      'PPC Management',
+      'Google Search Ads',
+      'Google Shopping Ads',
+      'Google Display Ads',
+      'YouTube Ads',
+      'Social Media Ads (Meta / TikTok)',
+    ],
+  },
+  {
+    category: 'AI & Automation',
+    services: [
+      'AI Chatbot Development',
+      'AI Voice Agents',
+      'CRM Automation',
+      'AI Integration & Consulting',
+      'AI Workflow Automation',
+      'Marketing Automation',
+    ],
+  },
+  {
+    category: 'Creative & Graphic Design',
+    services: [
+      'Graphic Design',
+      'Logo Design / Logo Making',
+      'Brand Identity Design / Branding',
+      '3D Design & Motion',
+      'Social Media Graphics',
+      'Banner & Poster Design',
+    ],
+  },
+  {
+    category: 'Social Media Marketing',
+    services: [
+      'Social Media Management',
+      'Social Media Strategy',
+      'Social Media Content Creation',
+      'Community Management',
+      'Influencer Marketing',
+      'Social Media Audit',
+    ],
+  },
+  {
+    category: 'Email Marketing',
+    services: [
+      'Email Automation Sequences',
+      'Email Campaign Management',
+      'Email Marketing Strategy',
+      'Email Design & Templates',
+      'Email Copywriting & List Building',
+    ],
+  },
+  {
+    category: 'Amazon & Marketplaces',
+    services: [
+      'Full Service Amazon Management',
+      'Amazon PPC Management',
+      'Amazon SEO',
+      'Enhanced Brand Content (A+)',
+      'Amazon Storefront Design',
+      'Account Health & Reinstatements',
+    ],
+  },
+]
+
 const BUDGET_OPTIONS = [
   '< £5,000',
   '£5,000 to £10,000',
@@ -83,6 +183,43 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [subServiceSearch, setSubServiceSearch] = useState('')
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isDropdownOpen])
+
+  const allSubServices = useMemo(
+    () => SUB_SERVICES_DATA.flatMap((cat) => cat.services),
+    []
+  )
+
+  const selectedSubServices = useMemo(
+    () => selectedInterests.filter((item) => allSubServices.includes(item)),
+    [selectedInterests, allSubServices]
+  )
+
+  const filteredCategories = useMemo(() => {
+    if (!subServiceSearch.trim()) return SUB_SERVICES_DATA
+    const q = subServiceSearch.toLowerCase()
+    return SUB_SERVICES_DATA.map((cat) => ({
+      ...cat,
+      services: cat.services.filter((s) => s.toLowerCase().includes(q)),
+    })).filter((cat) => cat.services.length > 0)
+  }, [subServiceSearch])
 
   const firstNameInputRef = useRef<HTMLInputElement>(null)
 
@@ -255,6 +392,92 @@ export default function Contact() {
                 </a>
               </div>
 
+              {/* Address & Social Media Links */}
+              <div className={styles.bottomContactWrapper}>
+                {/* Office Address Card */}
+                <a
+                  href="https://maps.google.com/?q=Office+%23+7,+Tynegate+Precinct,+Gateshead+NE8+3HU"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.contactItemLink}
+                  aria-label="Visit Office: Office # 7, Tynegate Precinct, Gateshead NE8 3HU"
+                >
+                  <div className={styles.contactIconCircle}>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div className={styles.contactItemText}>
+                    <span className={styles.contactItemLabel}>Office Address</span>
+                    <span className={styles.contactItemValue}>Office # 7, Tynegate Precinct, Gateshead NE8 3HU</span>
+                  </div>
+                </a>
+
+                {/* Social Media Links */}
+                <div className={styles.socialBlock}>
+                  <span className={styles.socialLabel}>Follow Us</span>
+                  <div className={styles.socialLinksRow}>
+                    <a
+                      href="https://www.linkedin.com/company/kr-tasker-digital/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialButton}
+                      aria-label="Follow KR Tasker Digital on LinkedIn"
+                    >
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.67 1.67 0 1 0-.02-3.34 1.67 1.67 0 0 0 .02 3.34M7.86 18.5V10.13H5.07V18.5h2.79z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61571387696002"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialButton}
+                      aria-label="Follow KR Tasker Digital on Facebook"
+                    >
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/krtaskerdigital/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialButton}
+                      aria-label="Follow KR Tasker Digital on Instagram"
+                    >
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.tiktok.com/@krtaskerdigital"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialButton}
+                      aria-label="Follow KR Tasker Digital on TikTok"
+                    >
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.5-2.86V9.32a6.38 6.38 0 1 0 5.95 6.35V8.73a8.16 8.16 0 0 0 4.77 1.52V6.81c-.34 0-.67-.04-1-.12Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Stats Counters */}
               <div className={styles.statsRow}>
                 <div className={styles.statBlock}>
@@ -342,7 +565,157 @@ export default function Contact() {
                           </button>
                         )
                       })}
+
+                      {/* Dropdown for All Sub-Services */}
+                      <div className={styles.subServicesDropdownWrapper} ref={dropdownRef}>
+                        <button
+                          type="button"
+                          onClick={() => setIsDropdownOpen((prev) => !prev)}
+                          className={`${styles.pillBtn} ${styles.subServiceDropdownTrigger} ${
+                            isDropdownOpen || selectedSubServices.length > 0
+                              ? styles.subServiceDropdownTriggerActive
+                              : ''
+                          }`}
+                          aria-haspopup="listbox"
+                          aria-expanded={isDropdownOpen}
+                        >
+                          <span className={styles.pillBtnText}>
+                            {selectedSubServices.length > 0
+                              ? `Sub-Services (${selectedSubServices.length})`
+                              : 'All Sub-Services'}
+                          </span>
+                          <svg
+                            className={`${styles.dropdownArrow} ${
+                              isDropdownOpen ? styles.dropdownArrowOpen : ''
+                            }`}
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg>
+                        </button>
+
+                        {isDropdownOpen && (
+                          <div className={styles.subServicesMenu}>
+                            <div className={styles.subServicesMenuHeader}>
+                              <span className={styles.subServicesMenuTitle}>
+                                Choose Specific Sub-Services
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => setIsDropdownOpen(false)}
+                                className={styles.subServicesCloseBtn}
+                                aria-label="Close menu"
+                              >
+                                ✕
+                              </button>
+                            </div>
+
+                            <div className={styles.subServicesSearchBox}>
+                              <svg
+                                className={styles.searchIcon}
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                aria-hidden="true"
+                              >
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                              </svg>
+                              <input
+                                type="text"
+                                placeholder="Search all sub-services..."
+                                value={subServiceSearch}
+                                onChange={(e) => setSubServiceSearch(e.target.value)}
+                                className={styles.subServicesSearchInput}
+                              />
+                              {subServiceSearch && (
+                                <button
+                                  type="button"
+                                  onClick={() => setSubServiceSearch('')}
+                                  className={styles.clearSearchBtn}
+                                  aria-label="Clear search"
+                                >
+                                  ✕
+                                </button>
+                              )}
+                            </div>
+
+                            <div className={styles.subServicesListScroll}>
+                              {filteredCategories.length === 0 ? (
+                                <div className={styles.noResultsText}>
+                                  No sub-services match &quot;{subServiceSearch}&quot;
+                                </div>
+                              ) : (
+                                filteredCategories.map((group) => (
+                                  <div key={group.category} className={styles.subServiceCatGroup}>
+                                    <div className={styles.subServiceCatLabel}>
+                                      {group.category}
+                                    </div>
+                                    <div className={styles.subServiceCatItems}>
+                                      {group.services.map((serviceName) => {
+                                        const isChecked = selectedInterests.includes(serviceName)
+                                        return (
+                                          <button
+                                            key={serviceName}
+                                            type="button"
+                                            onClick={() => toggleInterest(serviceName)}
+                                            className={`${styles.subServiceItem} ${
+                                              isChecked ? styles.subServiceItemActive : ''
+                                            }`}
+                                          >
+                                            <span className={styles.subServiceCheck}>
+                                              {isChecked ? '✓' : ''}
+                                            </span>
+                                            <span className={styles.subServiceName}>
+                                              {serviceName}
+                                            </span>
+                                          </button>
+                                        )
+                                      })}
+                                    </div>
+                                  </div>
+                                ))
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
+
+                    {/* Selected Sub-Services Chips */}
+                    {selectedSubServices.length > 0 && (
+                      <div className={styles.selectedSubServicesRow}>
+                        <span className={styles.selectedSubServicesLabel}>
+                          Selected Sub-Services:
+                        </span>
+                        <div className={styles.selectedChipsList}>
+                          {selectedSubServices.map((sub) => (
+                            <span key={sub} className={styles.selectedSubChip}>
+                              {sub}
+                              <button
+                                type="button"
+                                onClick={() => toggleInterest(sub)}
+                                className={styles.removeChipBtn}
+                                aria-label={`Remove ${sub}`}
+                              >
+                                ✕
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Section 2: Personal & Company Details (2-Column Grid) */}

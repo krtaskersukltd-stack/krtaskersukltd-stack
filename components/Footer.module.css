@@ -663,6 +663,16 @@
     border-top: 1px solid rgba(248, 247, 242, 0.24);
   }
 
+  .getInTouch {
+    padding-left: 88px;
+    box-sizing: border-box;
+  }
+
+  .getInTouchLink,
+  .getInTouchAddress {
+    overflow-wrap: anywhere;
+  }
+
   .linkColumn {
     border-bottom: 1px solid rgba(248, 247, 242, 0.24);
   }
@@ -748,7 +758,7 @@
   }
 
   .bigTextWrapper {
-    margin: 58px 0 42px;
+    margin: 58px 0 24px;
   }
 
   .bigText {
@@ -789,7 +799,9 @@
   .mobileSocials {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
+    padding-bottom: 8px;
   }
 }
 
@@ -819,6 +831,10 @@
   .linksArea {
     grid-template-columns: 1fr;
     width: 100%;
+  }
+
+  .getInTouch {
+    padding-left: 82px;
   }
 
   .bigText {

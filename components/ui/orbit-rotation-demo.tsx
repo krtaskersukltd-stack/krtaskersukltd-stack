@@ -10,7 +10,7 @@ import {
   FaLinkedin,
   FaNodeJs,
   FaReact,
-  FaTwitter,
+  FaTiktok,
 } from "react-icons/fa"
 import {
   SiFacebook,
@@ -33,7 +33,7 @@ export function OrbitRotationDemo() {
     { Icon: SiRedux, name: "Redux" },
     { Icon: SiTypescript, name: "TypeScript" },
     { Icon: FaGithub, name: "GitHub" },
-    { Icon: FaTwitter, name: "Twitter" },
+    { Icon: FaTiktok, name: "TikTok" },
     { Icon: FaLinkedin, name: "LinkedIn" },
     { Icon: FaInstagram, name: "Instagram" },
     { Icon: FaGoogle, name: "Google" },

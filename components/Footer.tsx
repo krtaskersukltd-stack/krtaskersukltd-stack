@@ -68,7 +68,6 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
     socialFacebook: 'https://www.facebook.com/profile.php?id=61571387696002',
     socialLinkedin: 'https://www.linkedin.com/company/kr-tasker-digital/',
     socialInstagram: 'https://www.instagram.com/krtaskerdigital/',
-    socialTwitter: '',
     footerColumns: DEFAULT_FOOTER_COLUMNS,
     ...initialData,
   })
@@ -119,16 +118,12 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
       icon: 'instagram',
       show: Boolean(footerData.socialInstagram !== undefined ? footerData.socialInstagram : true),
     },
-    ...(footerData.socialTwitter
-      ? [
-        {
-          name: 'Twitter',
-          href: footerData.socialTwitter,
-          icon: 'twitter',
-          show: true,
-        },
-      ]
-      : []),
+    {
+      name: 'TikTok',
+      href: 'https://www.tiktok.com/@krtaskerdigital',
+      icon: 'tiktok',
+      show: true,
+    },
   ].filter((s) => s.show && s.href)
 
   const renderSocialIcons = (animated = true) => (
@@ -185,17 +180,12 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
             </svg>
           )}
 
-          {icon === 'twitter' && (
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          {icon === 'tiktok' && (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.5-2.86V9.32a6.38 6.38 0 1 0 5.95 6.35V8.73a8.16 8.16 0 0 0 4.77 1.52V6.81c-.34 0-.67-.04-1-.12Z" />
             </svg>
           )}
+
         </motion.a>
       ))}
     </>
@@ -368,6 +358,10 @@ export default function Footer({ initialData }: { initialData?: Partial<GlobalSe
                 <span className={styles.textCream}> {footerData.footerHeadingHighlight || 'Delivered.'}</span>
               </AnimatedHeading>
             </motion.div>
+
+            <nav className={styles.mobileSocials} aria-label="Social media links">
+              {renderSocialIcons(true)}
+            </nav>
           </div>
         </div>
       </div>

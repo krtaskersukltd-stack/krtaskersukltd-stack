@@ -76,7 +76,7 @@ export default function Hero() {
             className={styles.ctaGroup}
           >
             <Button href="/contact" arrow>Start A Project</Button>
-            <Button href="/work" variant="secondary">View Our Work</Button>
+            <Button href="/services" variant="secondary">All Services</Button>
           </motion.div>
         </motion.div>
       </div>

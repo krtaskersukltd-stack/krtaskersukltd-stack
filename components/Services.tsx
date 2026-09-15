@@ -36,6 +36,8 @@ const tagToSlug: Record<string, string> = {
   'Content Marketing': '/services/seo/content-marketing',
   'Google Penalty Recovery': '/services/seo/google-penalty-recovery',
   'AI SEO': '/services/seo/ai-seo',
+  'Link Building': '/services/seo/link-building',
+  'Lead Generation SEO': '/services/seo/lead-generation-seo',
 
   // Web Services
   'Web Design': '/services/web-development/web-design',
@@ -45,6 +47,8 @@ const tagToSlug: Record<string, string> = {
   'Shopify Development': '/services/web-development/shopify-development',
   'UI/UX Design': '/services/web-development/ui-ux-design',
   'CMS Development': '/services/web-development/cms-development',
+  'B2B': '/services/b2b-enterprise',
+  'SaaS': '/services/saas-technology',
 
   // Marketing
   'Google Ads': '/services/marketing/google-ads',
@@ -53,6 +57,7 @@ const tagToSlug: Record<string, string> = {
   'Google Display Ads': '/services/marketing/google-ads/google-display-ads',
   'YouTube Ads': '/services/marketing/google-ads/youtube-ads',
   'PPC Management': '/services/marketing/google-ads/ppc-management',
+  'Digital 360': '/services/digital-360',
 
   // Graphic Designing
   'Logo Design': '/services/graphic-design/logo-design',
@@ -60,6 +65,7 @@ const tagToSlug: Record<string, string> = {
   'Poster Design': '/services/graphic-design/poster-design',
   'Banner Design': '/services/graphic-design/banner-design',
   'Social Media Graphics': '/services/graphic-design/social-media-graphics',
+  '3D Design & Automation': '/services/graphic-design/3d-design-automation',
 
   // Social Media
   'Social Media Management': '/services/social-media/social-media-management',
@@ -77,6 +83,8 @@ const tagToSlug: Record<string, string> = {
   'AI Chatbot Development': '/services/ai-automation/ai-chatbot-development',
   'AI Voice Agents': '/services/ai-automation/ai-voice-agents',
   'Marketing Automation': '/services/ai-automation/marketing-automation',
+  'CRM Automation': '/services/ai-automation/crm-automation',
+  'AI Integration': '/services/ai-automation/ai-integration',
 
   // Email Marketing
   'Email Marketing Strategy': '/services/email-marketing/email-marketing-strategy',
@@ -94,6 +102,22 @@ const tagToSlug: Record<string, string> = {
   'Amazon Account Audit': '/services/amazon-account-audit',
   'Listing Optimization': '/services/listing-optimization',
   'Account Suspension & Reinstatement': '/services/account-suspension',
+  'SOPs': '/services/sops',
+  'Amazon Consulting': '/services/amazon-consulting',
+  'Book a Coaching Call': '/services/book-a-coaching-call',
+  'Brand Guidelines': '/services/brand-guidelines',
+  'Brand Story': '/services/brand-story',
+  'Brand Store': '/services/brand-store',
+  'Listing Images': '/services/listing-images',
+  'Enhanced Brand Content A+': '/services/enhanced-brand-content-a-plus',
+  'Main Image CTR Hack': '/services/main-image-ctr-hack',
+  'Full Listing Optimization': '/services/full-listing-optimization',
+  'Listing Reinstatement': '/services/listing-reinstatement',
+  'PPC Advertising Audit': '/services/ppc-advertising-audit',
+  'Brand Name Change': '/services/brand-name-change',
+  'Troubleshooting Hours': '/services/troubleshooting-hours',
+  'UPC to GS1 Change': '/services/upc-to-gs1-change',
+  'Remote Fulfillment with FBA Setup': '/services/remote-fulfillment-fba-setup',
 }
 
 const servicesData: ServiceItem[] = [
@@ -108,8 +132,13 @@ const servicesData: ServiceItem[] = [
       'On-Page SEO',
       'Off-Page SEO',
       'National SEO',
+      'International SEO',
       'SEO Audit',
       'Content Marketing',
+      'Google Penalty Recovery',
+      'AI SEO',
+      'Link Building',
+      'Lead Generation SEO',
     ],
     isDark: true,
     link: '/services/seo',
@@ -127,6 +156,9 @@ const servicesData: ServiceItem[] = [
       'WordPress Development',
       'Shopify Development',
       'UI/UX Design',
+      'CMS Development',
+      'B2B',
+      'SaaS',
     ],
     isDark: false,
     link: '/services/web-development',
@@ -144,6 +176,8 @@ const servicesData: ServiceItem[] = [
       'Google Display Ads',
       'YouTube Ads',
       'PPC Management',
+      'Digital 360',
+      'Social Media Marketing',
     ],
     isDark: true,
     link: '/services/marketing',
@@ -160,6 +194,7 @@ const servicesData: ServiceItem[] = [
       'Poster Design',
       'Banner Design',
       'Social Media Graphics',
+      '3D Design & Automation',
     ],
     isDark: false,
     link: '/services/graphic-design',
@@ -176,6 +211,9 @@ const servicesData: ServiceItem[] = [
       'Social Media Strategy',
       'Social Media Content Creation',
       'Influencer Marketing',
+      'Community Management',
+      'Social Media Audit',
+      'Social Media Consulting',
     ],
     isDark: true,
     link: '/services/social-media',
@@ -192,6 +230,8 @@ const servicesData: ServiceItem[] = [
       'AI Chatbot Development',
       'AI Voice Agents',
       'Marketing Automation',
+      'CRM Automation',
+      'AI Integration',
     ],
     isDark: false,
     link: '/services/ai-automation',
@@ -208,6 +248,8 @@ const servicesData: ServiceItem[] = [
       'Email Automation',
       'Email List Building',
       'Email Design',
+      'Email Copywriting',
+      'Email Marketing Audit',
     ],
     isDark: true,
     link: '/services/email-marketing',
@@ -225,6 +267,22 @@ const servicesData: ServiceItem[] = [
       'Amazon Account Audit',
       'Listing Optimization',
       'Account Suspension & Reinstatement',
+      'SOPs',
+      'Amazon Consulting',
+      'Book a Coaching Call',
+      'Brand Guidelines',
+      'Brand Story',
+      'Brand Store',
+      'Listing Images',
+      'Enhanced Brand Content A+',
+      'Main Image CTR Hack',
+      'Full Listing Optimization',
+      'Listing Reinstatement',
+      'PPC Advertising Audit',
+      'Brand Name Change',
+      'Troubleshooting Hours',
+      'UPC to GS1 Change',
+      'Remote Fulfillment with FBA Setup',
     ],
     isDark: false,
     link: '/services/amazon-ebay',
@@ -234,6 +292,11 @@ const servicesData: ServiceItem[] = [
 ]
 
 function ServiceCard({ service }: { service: ServiceItem }) {
+  const tagRows = [
+    service.tags.slice(0, Math.ceil(service.tags.length / 2)),
+    service.tags.slice(Math.ceil(service.tags.length / 2)),
+  ]
+
   return (
     <div
       className={`${styles.card} ${service.isDark ? styles.cardDark : styles.cardLight}`}
@@ -249,14 +312,18 @@ function ServiceCard({ service }: { service: ServiceItem }) {
 
         {/* Pill Tags */}
         <div className={styles.tags}>
-          {service.tags.map((tag) => (
-            <Link
-              key={tag}
-              href={tagToSlug[tag] || service.link}
-              className={`${styles.tag} ${service.isDark ? styles.tagDark : styles.tagLight}`}
-            >
-              {tag}
-            </Link>
+          {tagRows.map((row, rowIndex) => (
+            <div className={styles.tagRow} key={rowIndex}>
+              {row.map((tag) => (
+                <Link
+                  key={tag}
+                  href={tagToSlug[tag] || service.link}
+                  className={`${styles.tag} ${service.isDark ? styles.tagDark : styles.tagLight}`}
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
           ))}
         </div>
 

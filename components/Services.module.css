@@ -166,8 +166,21 @@
 /* Tag Pills */
 .tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 255, 42, 0.65) transparent;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: max-content;
 }
 
 .tag {
@@ -178,6 +191,7 @@
   border-radius: 9999px;
   letter-spacing: 0.01em;
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   text-decoration: none;
   cursor: pointer;

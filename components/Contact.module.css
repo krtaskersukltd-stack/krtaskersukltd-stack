@@ -270,6 +270,66 @@
   line-height: 1.35;
 }
 
+/* Bottom Contact Area (Address & Socials) */
+.bottomContactWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.socialBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.socialLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.socialLinksRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socialButton {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.socialButton:hover {
+  background: var(--lime, #e6ff2a);
+  border-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(230, 255, 42, 0.3);
+}
+
+.socialButton:active {
+  transform: scale(0.95);
+}
+
 /* ================= RIGHT COLUMN (NEW CONTACT FORM) ================= */
 .rightCol {
   width: 100%;
@@ -284,6 +344,7 @@
 
 /* Interest Selection Section */
 .interestSection {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -373,6 +434,320 @@
   white-space: nowrap;
 }
 
+/* Sub-Services Dropdown */
+.subServicesDropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.subServiceDropdownTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.subServiceDropdownTrigger:hover {
+  border-color: var(--lime, #e6ff2a);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.subServiceDropdownTriggerActive {
+  background-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  border-color: var(--lime, #e6ff2a);
+  box-shadow: 0 0 0 2px rgba(230, 255, 42, 0.4), 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dropdownArrow {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.dropdownArrowOpen {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Overlay */
+.subServicesMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: auto;
+  width: min(420px, calc(100vw - 48px));
+  max-height: 400px;
+  background: linear-gradient(145deg, #094751 0%, #05333a 100%);
+  border: 1.5px solid var(--lime, #e6ff2a);
+  border-radius: 12px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(230, 255, 42, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: dropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subServicesMenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.subServicesMenuTitle {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lime, #e6ff2a);
+}
+
+.subServicesCloseBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.subServicesCloseBtn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.subServicesSearchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  margin: 10px 14px 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+}
+
+.subServicesSearchBox:focus-within {
+  border-color: var(--lime, #e6ff2a);
+}
+
+.searchIcon {
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.subServicesSearchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.subServicesSearchInput::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.clearSearchBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.subServicesListScroll {
+  overflow-y: auto;
+  padding: 8px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 270px;
+}
+
+.subServicesListScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.subServicesListScroll::-webkit-scrollbar-thumb {
+  background: rgba(230, 255, 42, 0.35);
+  border-radius: 3px;
+}
+
+.subServiceCatGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subServiceCatLabel {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.subServiceCatItems {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.subServiceItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.subServiceItem:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+.subServiceItemActive {
+  background: rgba(230, 255, 42, 0.12);
+  border-color: rgba(230, 255, 42, 0.4);
+  color: var(--lime, #e6ff2a);
+  font-weight: 600;
+}
+
+.subServiceCheck {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #0b0f12;
+  transition: all 0.15s ease;
+}
+
+.subServiceItemActive .subServiceCheck {
+  background: var(--lime, #e6ff2a);
+  border-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+}
+
+.subServiceName {
+  flex: 1;
+}
+
+.noResultsText {
+  padding: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Selected Sub-services chips */
+.selectedSubServicesRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(230, 255, 42, 0.35);
+  border-radius: 8px;
+}
+
+.selectedSubServicesLabel {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--lime, #e6ff2a);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.selectedChipsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.selectedSubChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(230, 255, 42, 0.16);
+  border: 1px solid var(--lime, #e6ff2a);
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.removeChipBtn {
+  background: none;
+  border: none;
+  color: var(--lime, #e6ff2a);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.removeChipBtn:hover {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
 /* 2-Column Inputs Grid */
 .inputsGrid {
   display: grid;
@@ -404,27 +779,38 @@
 
 .cleanInput {
   width: 100%;
-  height: 46px;
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  padding: 0 14px;
+  height: 48px;
+  background-color: transparent;
+  border: 1.5px solid var(--lime, #e6ff2a);
+  border-radius: 8px;
+  padding: 0 16px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: #0f172a;
+  color: #ffffff;
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
 .cleanInput::placeholder {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
 }
 
 .cleanInput:focus {
   border-color: var(--lime, #e6ff2a);
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.3);
+  background-color: rgba(230, 255, 42, 0.05);
+  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.28);
+}
+
+.cleanInput:-webkit-autofill,
+.cleanInput:-webkit-autofill:hover,
+.cleanInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0px 1000px #094751 inset;
+  box-shadow: 0 0 0px 1000px #094751 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  border: 1.5px solid var(--lime, #e6ff2a);
 }
 
 /* Budget Selector */
@@ -482,15 +868,15 @@
 /* Clean Textarea */
 .cleanTextarea {
   width: 100%;
-  min-height: 120px;
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  padding: 12px 14px;
+  min-height: 130px;
+  background-color: transparent;
+  border: 1.5px solid var(--lime, #e6ff2a);
+  border-radius: 8px;
+  padding: 14px 16px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   line-height: 1.5;
-  color: #0f172a;
+  color: #ffffff;
   outline: none;
   resize: vertical;
   transition: all 0.2s ease;
@@ -498,14 +884,15 @@
 }
 
 .cleanTextarea::placeholder {
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
   font-size: 0.875rem;
 }
 
 .cleanTextarea:focus {
   border-color: var(--lime, #e6ff2a);
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.3);
+  background-color: rgba(230, 255, 42, 0.05);
+  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.28);
 }
 
 /* Checkbox Group */
@@ -714,6 +1101,17 @@
   .budgetPillBtn {
     padding: 7px 11px;
     font-size: 0.8125rem;
+  }
+
+  .subServicesDropdownWrapper {
+    position: static;
+  }
+
+  .subServicesMenu {
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   .cleanInput {
