@@ -18,7 +18,6 @@ import type { ServiceRecord, ServiceCapability } from '@/lib/cms-types'
 import WorkTogetherMarquee from './WorkTogetherMarquee'
 import ScrollFillText from './ScrollFillText'
 import Button from './Button'
-import ViewAllServicesSection from './ViewAllServicesSection'
 
 const DEFAULT_BANNER = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
 const DEFAULT_VISION_IMAGE = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop'
@@ -239,8 +238,110 @@ export default function MainServiceHub({ srv }: { srv: ServiceRecord }) {
         </div>
       </section>
 
-      {/* 3. Atomic-style "View All Our Services" Interactive Section */}
-      <ViewAllServicesSection srv={srv} />
+      {/* 3. Are You A Startup Brand + Our Company Capabilities Section */}
+      <section className={styles.capabilitiesSection}>
+        <div className={styles.container}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={styles.capabilitiesIntro}
+          >
+            <AnimatedHeading as="h2" className={styles.capabilitiesHeading}>
+              <span className={styles.sectionTag}>
+                {srv.capabilitiesEyebrow || srv.eyebrow || srv.name}
+              </span>{' '}
+              {renderCapabilitiesHeading(srv.capabilitiesHeading)}
+            </AnimatedHeading>
+          </motion.div>
+
+          <div className={styles.capabilitiesGrid}>
+            <div className={styles.capabilitiesLeft}>
+              <AnimatedHeading as="h3" className={styles.capabilitiesTitle}>
+                Our <span className={styles.tealAccent}>{srv.name}</span> Services
+              </AnimatedHeading>
+              <div
+                className={styles.capabilitiesList}
+                role="tablist"
+                aria-label={`${srv.name} capabilities`}
+              >
+                {capabilitiesList.map((cap, idx) => (
+                  <button
+                    key={`${cap.name}-${idx}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === activeCapabilityIndex}
+                    onClick={() => setActiveCapabilityIndex(idx)}
+                    className={`${styles.capabilityItem} ${
+                      idx === activeCapabilityIndex
+                        ? styles.capabilityItemActive
+                        : ''
+                    }`}
+                  >
+                    <span>{cap.name}</span>
+                    <span
+                      className={
+                        idx === activeCapabilityIndex
+                          ? styles.capabilityCircleFeatured
+                          : styles.capabilityCircle
+                      }
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <motion.div
+              key={activeCapabilityIndex}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className={styles.capabilitiesRight}
+            >
+              <div className={styles.capabilityImages}>
+                <div className={styles.capabilityImage}>
+                  <Image
+                    src="/images/services/digital-marketing.png"
+                    alt="Digital marketing campaign strategy"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 320px"
+                  />
+                </div>
+                <div className={styles.capabilityImage}>
+                  <Image
+                    src="/images/services/seo-brand-strategy.png"
+                    alt="Digital marketing technology"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 320px"
+                  />
+                </div>
+              </div>
+              <div className={styles.capabilityDetail}>
+                <h4>
+                  <span aria-hidden="true">•</span> {activeCapability.name}
+                </h4>
+                <p>
+                  {activeCapability.description ||
+                    `A leading full-service ${activeCapability.name} solution built to outthink, outcreate and outperform—combining strategy, creative execution and measurable growth.`}
+                </p>
+                <Link
+                  href={
+                    activeCapability.slug.startsWith('/')
+                      ? activeCapability.slug
+                      : `/services/${activeCapability.slug}`
+                  }
+                  className={styles.capabilityExplore}
+                >
+                  Explore More
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* 4. Marquee Section */}
       <WorkTogetherMarquee />
