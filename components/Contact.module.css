@@ -47,8 +47,8 @@
     radial-gradient(circle at 17% 36%, rgba(19, 121, 135, 0.58), transparent 43%),
     radial-gradient(circle at 72% 45%, rgba(8, 79, 91, 0.36), transparent 46%),
     linear-gradient(112deg, #0c5c68 0%, #0b4b56 45%, #04363d 100%);
-  border-radius: clamp(28px, 3.1vw, 50px);
-  padding: clamp(42px, 5vw, 76px) clamp(28px, 3vw, 48px);
+  border-radius: clamp(24px, 3vw, 40px);
+  padding: clamp(36px, 4.5vw, 64px) clamp(24px, 3.5vw, 52px);
   box-shadow:
     0 24px 60px -15px rgba(5, 38, 44, 0.4),
     0 4px 20px rgba(0, 0, 0, 0.08);
@@ -60,10 +60,9 @@
 /* 2-Column Main Grid */
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.91fr) minmax(0, 1.09fr);
-  gap: clamp(42px, 5vw, 76px);
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(36px, 4.5vw, 64px);
   align-items: start;
-  padding-bottom: 0;
 }
 
 /* ================= LEFT COLUMN ================= */
@@ -82,9 +81,9 @@
   background: #ffffff;
   color: #0b0f12;
   font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 10px 14px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 8px 14px;
   border-radius: 9999px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.01em;
@@ -101,13 +100,11 @@
 }
 
 @keyframes pulseDot {
-
   0%,
   100% {
     opacity: 1;
     transform: scale(1);
   }
-
   50% {
     opacity: 0.6;
     transform: scale(1.2);
@@ -117,22 +114,22 @@
 /* Main Heading */
 .mainHeading {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 6.2vw, 6.25rem);
+  font-size: clamp(2.8rem, 5vw, 5rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--lime, #e6ff2a);
-  margin: clamp(34px, 3.6vw, 56px) 0 clamp(24px, 2.5vw, 36px);
+  margin: clamp(24px, 3vw, 42px) 0 clamp(18px, 2vw, 28px);
 }
 
 /* Paragraph description */
 .description {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.45vw, 1.5rem);
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.82);
-  margin: 0 0 clamp(24px, 2.5vw, 36px);
-  max-width: 650px;
+  font-size: clamp(0.95rem, 1.25vw, 1.2rem);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 clamp(20px, 2.5vw, 32px);
+  max-width: 540px;
 }
 
 /* Get In Touch Pill Button */
@@ -146,7 +143,7 @@
   font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 700;
-  padding: 12px 32px;
+  padding: 12px 30px;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
@@ -160,10 +157,10 @@
   box-shadow: 0 10px 24px rgba(230, 255, 42, 0.35);
 }
 
-/* Direct Contact Info (Phone & Email) */
+/* Direct Contact Info */
 .directContactInfo {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 12px;
   margin-top: clamp(24px, 3vw, 36px);
   width: 100%;
@@ -173,10 +170,10 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 18px;
+  padding: 10px 16px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
+  border-radius: 12px;
   text-decoration: none;
   color: #ffffff;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -192,8 +189,8 @@
 }
 
 .contactIconCircle {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: rgba(230, 255, 42, 0.15);
   color: var(--lime, #e6ff2a);
@@ -219,7 +216,7 @@
 .contactItemLabel {
   font-family: var(--font-body);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.65);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -227,7 +224,7 @@
 
 .contactItemValue {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.01em;
@@ -242,22 +239,22 @@
 .statsRow {
   display: flex;
   align-items: flex-start;
-  gap: clamp(24px, 3.2vw, 48px);
-  margin-top: clamp(28px, 3.5vw, 48px);
+  gap: clamp(20px, 3vw, 36px);
+  margin-top: clamp(24px, 3vw, 40px);
   flex-wrap: nowrap;
 }
 
 .statBlock {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1 1 0;
   min-width: 0;
 }
 
 .statNumber {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 4.2vw, 4.25rem);
+  font-size: clamp(2.2rem, 3.5vw, 3.5rem);
   font-weight: 600;
   line-height: 1;
   color: #ffffff;
@@ -267,14 +264,13 @@
 
 .statLabel {
   font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.1vw, 1.125rem);
+  font-size: clamp(0.8125rem, 1vw, 0.95rem);
   color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
   line-height: 1.35;
-  white-space: nowrap;
 }
 
-/* ================= RIGHT COLUMN (FORM) ================= */
+/* ================= RIGHT COLUMN (NEW CONTACT FORM) ================= */
 .rightCol {
   width: 100%;
 }
@@ -282,154 +278,313 @@
 .formElement {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 2.7vw, 40px);
+  gap: 24px;
   width: 100%;
 }
 
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 64px);
-  width: 100%;
-}
-
-.formGroup {
+/* Interest Selection Section */
+.interestSection {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 100%;
+  gap: 8px;
 }
 
-.inputLabel {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formSectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
   font-weight: 700;
   color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-/* Pill Input Styles */
-.pillInput {
+.supportTicketNote {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.supportTicketLink {
+  color: var(--lime, #e6ff2a);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.supportTicketLink:hover {
+  opacity: 0.85;
+}
+
+.subHeadingLabel {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2px;
+}
+
+.pillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pillBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.pillBtn:hover {
+  border-color: var(--lime, #e6ff2a);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.pillBtnSelected {
+  background-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  border-color: var(--lime, #e6ff2a);
+  box-shadow: 0 0 0 2px rgba(230, 255, 42, 0.4), 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pillBtnText {
+  white-space: nowrap;
+}
+
+/* 2-Column Inputs Grid */
+.inputsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
   width: 100%;
-  height: 62px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.fieldLabel {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.requiredStar {
+  color: var(--lime, #e6ff2a);
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+.cleanInput {
+  width: 100%;
+  height: 46px;
   background-color: #ffffff;
   border: 1px solid transparent;
-  border-radius: 9999px;
-  padding: 0 34px;
+  border-radius: 6px;
+  padding: 0 14px;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
-  color: #11161d;
+  font-size: 0.9375rem;
+  color: #0f172a;
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
-.pillInput::placeholder {
+.cleanInput::placeholder {
   color: #94a3b8;
   font-weight: 400;
 }
 
-.pillInput:focus {
-  background-color: #ffffff;
+.cleanInput:focus {
   border-color: var(--lime, #e6ff2a);
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.25);
+  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.3);
 }
 
-/* Select Dropdown Wrapper */
-.selectWrapper {
-  position: relative;
-  width: 100%;
+/* Budget Selector */
+.budgetSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.pillSelect {
-  width: 100%;
-  height: 62px;
+.budgetPillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.budgetPillBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
   background-color: #ffffff;
-  border: 1px solid transparent;
-  border-radius: 9999px;
-  padding: 0 52px 0 34px;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
-  color: #11161d;
-  outline: none;
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.pillSelect:focus {
-  background-color: #ffffff;
+.budgetPillBtn:hover {
   border-color: var(--lime, #e6ff2a);
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.25);
+  transform: translateY(-1px);
 }
 
-.selectChevron {
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #334155;
-  pointer-events: none;
+.budgetPillSelected {
+  background-color: #ffffff;
+  color: #0b0f12;
+  border: 2px solid var(--lime, #e6ff2a);
+  box-shadow: 0 0 0 1px var(--lime, #e6ff2a), 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Textarea Message */
-.pillTextarea {
+.activeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--lime, #e6ff2a);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Clean Textarea */
+.cleanTextarea {
   width: 100%;
-  min-height: 230px;
+  min-height: 120px;
   background-color: #ffffff;
   border: 1px solid transparent;
-  border-radius: 20px;
-  padding: 20px 34px;
+  border-radius: 6px;
+  padding: 12px 14px;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.15vw, 1.125rem);
-  color: #11161d;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #0f172a;
   outline: none;
   resize: vertical;
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
-.pillTextarea::placeholder {
+.cleanTextarea::placeholder {
   color: #94a3b8;
   font-weight: 400;
+  font-size: 0.875rem;
 }
 
-.pillTextarea:focus {
-  background-color: #ffffff;
+.cleanTextarea:focus {
   border-color: var(--lime, #e6ff2a);
-  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.25);
+  box-shadow: 0 0 0 3px rgba(230, 255, 42, 0.3);
 }
 
-/* Submit Button */
-.btnSubmit {
+/* Checkbox Group */
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.customCheckbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--lime, #e6ff2a);
+  cursor: pointer;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.checkboxText {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.privacyLink {
+  color: var(--lime, #e6ff2a);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.privacyLink:hover {
+  opacity: 0.85;
+}
+
+/* Submit Row */
+.submitRow {
   display: flex;
   align-items: center;
+  margin-top: 6px;
+}
+
+.btnSubmit {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 62px;
-  background: var(--lime, #e6ff2a);
-  color: #0b0f12;
+  padding: 13px 32px;
+  background-color: var(--teal, #0c4651);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   font-weight: 700;
-  border: none;
-  border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.25s ease;
-  margin-top: -8px;
-  box-shadow: 0 8px 20px rgba(230, 255, 42, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .btnSubmit:hover:not(:disabled) {
-  background: #f1ff52;
+  background-color: var(--lime, #e6ff2a);
+  color: #0b0f12;
+  border-color: var(--lime, #e6ff2a);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(230, 255, 42, 0.35);
+  box-shadow: 0 8px 24px rgba(230, 255, 42, 0.35);
 }
 
 .btnSubmit:disabled {
-  opacity: 0.65;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -437,7 +592,7 @@
 .successWrapper {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(230, 255, 42, 0.3);
-  border-radius: 24px;
+  border-radius: 20px;
   padding: 36px 28px;
   text-align: center;
   display: flex;
@@ -447,13 +602,13 @@
 }
 
 .successIcon {
-  width: 54px;
-  height: 54px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--lime, #e6ff2a);
   color: #0b0f12;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -461,7 +616,7 @@
 
 .successTitle {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -498,30 +653,24 @@
   color: #ff6b6b;
   font-family: var(--font-body);
   font-size: 0.875rem;
+  font-weight: 500;
   margin: 0;
 }
 
-
 /* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .description {
-    max-width: 100%;
+  .leftCol {
+    max-width: 600px;
   }
 
-  .statsRow {
-    gap: 36px;
-    margin-top: 56px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-inline: var(--container-pad);
+  .directContactInfo {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
@@ -539,82 +688,58 @@
   }
 
   .card {
-    padding: 24px 18px 28px;
-    border-radius: 24px;
+    padding: 24px 16px 28px;
+    border-radius: 20px;
   }
 
   .grid {
     gap: 28px;
   }
 
-  .formRow {
+  .inputsGrid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .formElement {
-    gap: 16px;
+    gap: 18px;
   }
 
-  .formGroup {
-    gap: 8px;
+  .pillsGrid,
+  .budgetPillsGrid {
+    gap: 6px;
   }
 
-  .inputLabel {
-    font-size: 0.9rem;
+  .pillBtn,
+  .budgetPillBtn {
+    padding: 7px 11px;
+    font-size: 0.8125rem;
   }
 
-  .pillInput,
-  .pillSelect {
-    height: 50px;
-    padding-left: 20px;
-    font-size: 0.95rem;
+  .cleanInput {
+    height: 42px;
+    font-size: 0.875rem;
   }
 
-  .pillSelect {
-    padding-right: 44px;
-  }
-
-  .mainHeading {
-    font-size: clamp(2.2rem, 9vw, 3rem);
-    margin: 22px 0 16px;
-  }
-
-  .description {
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-  }
-
-  .directContactInfo {
-    margin-top: 18px;
-  }
-
-  .statsRow {
-    gap: clamp(16px, 4vw, 24px);
-    margin-top: 24px;
-    flex-wrap: nowrap;
-  }
-
-  .statNumber {
-    font-size: clamp(2rem, 7vw, 2.75rem);
-  }
-
-  .statLabel {
-    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-    white-space: normal;
-  }
-
-
-
-  .pillTextarea {
-    min-height: 130px;
-    padding: 15px 20px;
-    font-size: 0.95rem;
+  .cleanTextarea {
+    min-height: 100px;
+    font-size: 0.875rem;
   }
 
   .btnSubmit {
-    height: 50px;
-    margin-top: 0;
-    font-size: 1rem;
+    width: 100%;
+  }
+
+  .statsRow {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .statLabel {
+    font-size: 0.8125rem;
   }
 }

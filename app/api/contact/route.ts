@@ -43,20 +43,28 @@ export async function POST(request: Request) {
     }
 
     const data = parsed.data
+    const fullName = (data.firstName && data.lastName)
+      ? `${data.firstName} ${data.lastName}`.trim()
+      : (data.name || data.firstName || data.lastName || 'Anonymous Lead')
     const servicesText = Array.isArray(data.services) ? data.services.join(', ') : ''
     const createdAt = new Date().toISOString()
+    const metaDetails = [
+      data.jobTitle ? `Job Title: ${data.jobTitle}` : null,
+      data.companyName ? `Company: ${data.companyName}` : null,
+      data.message ? `Message: ${data.message}` : null,
+    ].filter(Boolean).join('\n')
 
     // 1. Save Lead to CMS Database
     try {
       const existingEnquiries = await getCmsEnquiries()
       const newEnquiry: ContactEnquiryRecord = {
         id: `enq-${Date.now()}`,
-        name: data.name,
+        name: fullName,
         email: data.email,
         phone: data.phone || '',
         service: servicesText || 'General Enquiry',
         budget: data.budget || 'N/A',
-        message: data.message,
+        message: metaDetails || data.message || '',
         status: 'new',
         createdAt,
       }
@@ -73,12 +81,14 @@ export async function POST(request: Request) {
           from: fromEmail,
           to: [notificationEmail],
           replyTo: data.email,
-          subject: `⚡ New Lead: ${data.name} (${servicesText || 'Project Enquiry'})`,
+          subject: `⚡ New Lead: ${fullName} (${servicesText || 'Project Enquiry'})`,
           html: renderInternalLeadEmailHTML({
-            name: data.name,
+            name: fullName,
             email: data.email,
             phone: data.phone,
             city: data.city,
+            jobTitle: data.jobTitle,
+            companyName: data.companyName,
             servicesText,
             budget: data.budget,
             message: data.message,
@@ -96,7 +106,7 @@ export async function POST(request: Request) {
           from: fromEmail,
           to: [data.email],
           subject: `Enquiry Received — KR Tasker Digital`,
-          html: renderClientConfirmationEmailHTML(data.name),
+          html: renderClientConfirmationEmailHTML(data.firstName || fullName || 'there'),
         })
         console.log('✅ Auto-confirmation email sent to client:', data.email)
       } catch (clientMailErr) {

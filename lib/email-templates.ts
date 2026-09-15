@@ -3,6 +3,8 @@ export interface InternalLeadEmailProps {
   email: string
   phone?: string
   city?: string
+  jobTitle?: string
+  companyName?: string
   servicesText?: string
   budget?: string
   message: string
@@ -106,6 +108,16 @@ export function renderInternalLeadEmailHTML(data: InternalLeadEmailProps): strin
                   <td width="50%" valign="top" style="padding-bottom:16px;">
                     <span style="display:block; font-size:11px; font-weight:700; color:#0C4651; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; opacity:0.7;">City / Location</span>
                     <span style="font-size:15px; color:#0C4651;">${data.city || 'N/A'}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" style="padding-bottom:16px;">
+                    <span style="display:block; font-size:11px; font-weight:700; color:#0C4651; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; opacity:0.7;">Job Title</span>
+                    <span style="font-size:15px; color:#0C4651;">${data.jobTitle || 'N/A'}</span>
+                  </td>
+                  <td width="50%" valign="top" style="padding-bottom:16px;">
+                    <span style="display:block; font-size:11px; font-weight:700; color:#0C4651; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; opacity:0.7;">Company Name</span>
+                    <span style="font-size:15px; color:#0C4651;">${data.companyName || 'N/A'}</span>
                   </td>
                 </tr>
                 <tr>

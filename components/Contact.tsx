@@ -2,9 +2,9 @@
 
 import AnimatedHeading from '@/components/AnimatedHeading'
 import { motion, useInView } from 'framer-motion'
+import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import styles from './Contact.module.css'
-import CustomSelect from './CustomSelect'
 import ScrollFillText from './ScrollFillText'
 
 function AnimatedCounter({ to, suffix = '', duration = 2 }: { to: number; suffix?: string; duration?: number }) {
@@ -44,62 +44,89 @@ function AnimatedCounter({ to, suffix = '', duration = 2 }: { to: number; suffix
   )
 }
 
-const servicesOptions = [
-  'Digital 360',
-  'Web Design',
-  'Website Development',
-  'Branding & Creative',
-  'SEO & Organic Growth',
+const INTEREST_OPTIONS = [
+  'Website Design',
+  'SEO',
   'PPC & Social Ads',
-  'Shopify & E-Commerce',
-  'AI Transformation',
+  'End-to-End Marketing',
+  'Creative & Branding',
+  'Consulting',
+  'General Support',
+  'Other',
 ]
 
-const budgetOptions = [
-  '2000£',
-  'Under £1,000',
-  '£1,000 - £3,000',
-  '£3,000 - £5,000',
-  '£5,000 - £10,000',
-  '£10,000+',
+const BUDGET_OPTIONS = [
+  '< £5,000',
+  '£5,000 to £10,000',
+  '£10,000 to £30,000',
+  '£30,000 to £50,000',
+  '£50,000+',
+  'Not Sure, Please Advise',
 ]
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    service: 'Digital 360',
-    budget: '2000£',
+    phone: '',
+    jobTitle: '',
+    companyName: '',
     message: '',
+    privacyConsent: false,
+    marketingConsent: false,
   })
+
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(['Website Design'])
+  const [selectedBudget, setSelectedBudget] = useState<string>('£5,000 to £10,000')
 
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  const nameInputRef = useRef<HTMLInputElement>(null)
+  const firstNameInputRef = useRef<HTMLInputElement>(null)
 
   const handleFocusForm = () => {
-    nameInputRef.current?.focus()
-    nameInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    firstNameInputRef.current?.focus()
+    firstNameInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
+  const toggleInterest = (interest: string) => {
+    setSelectedInterests((prev) =>
+      prev.includes(interest) ? prev.filter((item) => item !== interest) : [...prev, interest]
+    )
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
     setSubmitError(null)
+
+    if (!formData.privacyConsent) {
+      setSubmitError('Please agree to the privacy policy to submit the form.')
+      return
+    }
+
+    setIsSubmitting(true)
+
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim()
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
+          name: fullName,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           email: formData.email,
+          phone: formData.phone,
+          jobTitle: formData.jobTitle,
+          companyName: formData.companyName,
+          services: selectedInterests,
+          budget: selectedBudget,
           message: formData.message,
-          services: [formData.service],
-          budget: formData.budget,
-          phone: '',
+          privacyConsent: formData.privacyConsent,
+          marketingConsent: formData.marketingConsent,
           city: '',
           website: '',
         }),
@@ -123,7 +150,7 @@ export default function Contact() {
   return (
     <section className={styles.contactSec} id="contact">
       <div className={styles.container}>
-        {/* Top Header Text matching reference */}
+        {/* Top Header Text */}
         <motion.div
           className={styles.sectionHeader}
           initial={{ opacity: 0, y: 24 }}
@@ -141,7 +168,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Main Teal Card */}
+        {/* Main Card */}
         <motion.div
           className={styles.card}
           initial={{ opacity: 0, y: 32 }}
@@ -162,8 +189,8 @@ export default function Contact() {
               </AnimatedHeading>
 
               <p className={styles.description}>
-                Feel Free To Contact Me If Having Any Questions. I&apos;m Available For New Projects Or
-                Just For Chatting.
+                Feel Free To Contact Us If Having Any Questions. We&apos;re Available For New Projects Or
+                Strategic Advisory.
               </p>
 
               <button
@@ -175,7 +202,7 @@ export default function Contact() {
                 <span>Get In Touch</span>
               </button>
 
-              {/* Direct Contact Details: Phone & Email */}
+              {/* Direct Contact Details */}
               <div className={styles.directContactInfo}>
                 <a
                   href="tel:+441913483900"
@@ -249,27 +276,34 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right Column: Interactive Form */}
+            {/* Right Column: Reference-Style Contact Form */}
             <div className={styles.rightCol}>
               {isSubmitted ? (
                 <div className={styles.successWrapper}>
                   <div className={styles.successIcon}>✓</div>
-                  <AnimatedHeading as="h3" className={styles.successTitle}>Request Sent!</AnimatedHeading>
+                  <AnimatedHeading as="h3" className={styles.successTitle}>
+                    Request Sent!
+                  </AnimatedHeading>
                   <p className={styles.successDesc}>
-                    Thank you, <strong>{formData.name}</strong>. We&apos;ve received your message and will
-                    be in touch within 1 business day.
+                    Thank you, <strong>{formData.firstName || 'there'}</strong>. We&apos;ve received your project inquiry and will be in touch within 1 business day.
                   </p>
                   <button
                     type="button"
                     onClick={() => {
                       setIsSubmitted(false)
                       setFormData({
-                        name: '',
+                        firstName: '',
+                        lastName: '',
                         email: '',
-                        service: 'Digital 360',
-                        budget: '2000£',
+                        phone: '',
+                        jobTitle: '',
+                        companyName: '',
                         message: '',
+                        privacyConsent: false,
+                        marketingConsent: false,
                       })
+                      setSelectedInterests(['Website Design'])
+                      setSelectedBudget('£5,000 to £10,000')
                     }}
                     className={styles.btnReset}
                   >
@@ -278,89 +312,210 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className={styles.formElement}>
-                  {/* Row 1: Name & Email */}
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label className={styles.inputLabel} htmlFor="contact-name">
-                        Name
+                  {/* Section 1: Interest Selection */}
+                  <div className={styles.interestSection}>
+                    <div className={styles.sectionTitleRow}>
+                      <h3 className={styles.formSectionTitle}>I&apos;m Interested In:</h3>
+                    </div>
+                    <p className={styles.supportTicketNote}>
+                      Already a client with a problem on something we manage?{' '}
+                      <a
+                        href="mailto:info@krtaskerdigital.co.uk?subject=Support%20Ticket%20Request"
+                        className={styles.supportTicketLink}
+                      >
+                        Raise a support ticket
+                      </a>{' '}
+                      instead.
+                    </p>
+
+                    <label className={styles.subHeadingLabel}>Please select all that apply:</label>
+
+                    <div className={styles.pillsGrid}>
+                      {INTEREST_OPTIONS.map((interest) => {
+                        const isSelected = selectedInterests.includes(interest)
+                        return (
+                          <button
+                            key={interest}
+                            type="button"
+                            onClick={() => toggleInterest(interest)}
+                            className={`${styles.pillBtn} ${isSelected ? styles.pillBtnSelected : ''}`}
+                            aria-pressed={isSelected}
+                          >
+                            <span className={styles.pillBtnText}>{interest}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Section 2: Personal & Company Details (2-Column Grid) */}
+                  <div className={styles.inputsGrid}>
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-first-name">
+                        First Name<span className={styles.requiredStar}>*</span>
                       </label>
                       <input
-                        ref={nameInputRef}
-                        id="contact-name"
+                        ref={firstNameInputRef}
+                        id="contact-first-name"
                         type="text"
-                        placeholder="John Doe"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={styles.pillInput}
+                        placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        className={styles.cleanInput}
                         required
                       />
                     </div>
 
-                    <div className={styles.formGroup}>
-                      <label className={styles.inputLabel} htmlFor="contact-email">
-                        Email
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-last-name">
+                        Last Name<span className={styles.requiredStar}>*</span>
+                      </label>
+                      <input
+                        id="contact-last-name"
+                        type="text"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        className={styles.cleanInput}
+                        required
+                      />
+                    </div>
+
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-email">
+                        Email<span className={styles.requiredStar}>*</span>
                       </label>
                       <input
                         id="contact-email"
                         type="email"
-                        placeholder="john@krtaskerdigital.com"
+                        placeholder="Enter your Email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={styles.pillInput}
+                        className={styles.cleanInput}
                         required
                       />
                     </div>
-                  </div>
 
-                  {/* Row 2: Services & Budget */}
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label className={styles.inputLabel} htmlFor="contact-service">
-                        Services
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-phone">
+                        Phone<span className={styles.requiredStar}>*</span>
                       </label>
-                      <CustomSelect
-                        id="contact-service"
-                        name="service"
-                        value={formData.service}
-                        options={servicesOptions}
-                        onChange={(val) => setFormData({ ...formData, service: val })}
+                      <input
+                        id="contact-phone"
+                        type="tel"
+                        placeholder="Enter your Phone Number"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className={styles.cleanInput}
+                        required
                       />
                     </div>
 
-                    <div className={styles.formGroup}>
-                      <label className={styles.inputLabel} htmlFor="contact-budget">
-                        Budget
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-job-title">
+                        Job Title
                       </label>
-                      <CustomSelect
-                        id="contact-budget"
-                        name="budget"
-                        value={formData.budget}
-                        options={budgetOptions}
-                        onChange={(val) => setFormData({ ...formData, budget: val })}
+                      <input
+                        id="contact-job-title"
+                        type="text"
+                        placeholder="Enter your Job Title"
+                        value={formData.jobTitle}
+                        onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
+                        className={styles.cleanInput}
+                      />
+                    </div>
+
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel} htmlFor="contact-company-name">
+                        Company Name
+                      </label>
+                      <input
+                        id="contact-company-name"
+                        type="text"
+                        placeholder="Enter your Company Name"
+                        value={formData.companyName}
+                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                        className={styles.cleanInput}
                       />
                     </div>
                   </div>
 
-                  {/* Row 3: Message Textarea */}
-                  <div className={styles.formGroup}>
-                    <label className={styles.inputLabel} htmlFor="contact-message">
-                      Message
+                  {/* Section 3: Budget Selector */}
+                  <div className={styles.budgetSection}>
+                    <label className={styles.fieldLabel}>Do You Have a Budget in Mind?</label>
+                    <div className={styles.budgetPillsGrid}>
+                      {BUDGET_OPTIONS.map((budget) => {
+                        const isSelected = selectedBudget === budget
+                        return (
+                          <button
+                            key={budget}
+                            type="button"
+                            onClick={() => setSelectedBudget(budget)}
+                            className={`${styles.budgetPillBtn} ${isSelected ? styles.budgetPillSelected : ''}`}
+                            aria-pressed={isSelected}
+                          >
+                            <span className={styles.pillBtnText}>{budget}</span>
+                            {isSelected && <span className={styles.activeDot} />}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Section 4: Message / How Can We Help? */}
+                  <div className={styles.formField}>
+                    <label className={styles.fieldLabel} htmlFor="contact-message">
+                      How Can We Help?
                     </label>
                     <textarea
                       id="contact-message"
-                      placeholder="Type your message here......"
+                      placeholder="Please include any details you feel would be beneficial for us to know including scope, timelines, budget, pain points we can help you with, services of interest, etc..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className={styles.pillTextarea}
+                      className={styles.cleanTextarea}
                       rows={4}
-                      required
                     />
                   </div>
 
+                  {/* Section 5: Checkboxes */}
+                  <div className={styles.checkboxGroup}>
+                    <label className={styles.checkboxLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.privacyConsent}
+                        onChange={(e) => setFormData({ ...formData, privacyConsent: e.target.checked })}
+                        className={styles.customCheckbox}
+                        required
+                      />
+                      <span className={styles.checkboxText}>
+                        I understand that KR Tasker Digital will securely hold my data in accordance with their{' '}
+                        <Link href="/privacy" className={styles.privacyLink} target="_blank">
+                          privacy policy
+                        </Link>
+                        .{' '}
+                        <span className={styles.requiredStar}>*</span>
+                      </span>
+                    </label>
+
+                    <label className={styles.checkboxLabel}>
+                      <input
+                        type="checkbox"
+                        checked={formData.marketingConsent}
+                        onChange={(e) => setFormData({ ...formData, marketingConsent: e.target.checked })}
+                        className={styles.customCheckbox}
+                      />
+                      <span className={styles.checkboxText}>
+                        I&apos;d like to receive marketing emails, tips, and updates from KR Tasker Digital. You can unsubscribe at any time.
+                      </span>
+                    </label>
+                  </div>
+
                   {/* Submit Button */}
-                  <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-                    <span>{isSubmitting ? 'Sending Request...' : 'Submit a form'}</span>
-                  </button>
+                  <div className={styles.submitRow}>
+                    <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
+                      <span>{isSubmitting ? 'Sending Request...' : 'Submit Form'}</span>
+                    </button>
+                  </div>
 
                   {submitError && <p className={styles.errorText}>{submitError}</p>}
                 </form>
