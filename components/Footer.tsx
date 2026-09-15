@@ -12,15 +12,14 @@ const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Services',
     links: [
-      { label: 'Digital Marketing', href: '/services' },
-      { label: 'Websites & Apps', href: '/services/websites-apps' },
-      { label: 'Ai Solutions', href: '/services/ai-solutions' },
+      { label: 'Web Development', href: '/services/web-development' },
+      { label: 'Digital Marketing', href: '/services/marketing' },
       { label: 'PPC', href: '/services/ppc' },
-      { label: 'SMM', href: '/services/social-media' },
       { label: 'SEO', href: '/services/seo' },
-      { label: 'Branding', href: '/services/branding' },
-      { label: 'Graphics', href: '/services/graphic-design' },
-      { label: 'Amazon', href: '/services/amazon-ebay' },
+      { label: 'Social Media Marketing', href: '/services/social-media' },
+      { label: 'Email Marketing', href: '/services/email-marketing' },
+      { label: 'AI Automation', href: '/services/ai-automation' },
+      { label: 'Designing', href: '/services/graphic-design' },
     ],
   },
   {

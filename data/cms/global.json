@@ -23,40 +23,36 @@
       "title": "Services",
       "links": [
         {
+          "label": "Web Development",
+          "href": "/services/web-development"
+        },
+        {
           "label": "Digital Marketing",
-          "href": "/services"
-        },
-        {
-          "label": "Websites & Apps",
-          "href": "/services/websites-apps"
-        },
-        {
-          "label": "Ai Solutions",
-          "href": "/services/ai-solutions"
+          "href": "/services/marketing"
         },
         {
           "label": "PPC",
           "href": "/services/ppc"
         },
         {
-          "label": "SMM",
-          "href": "/services/social-media"
-        },
-        {
           "label": "SEO",
           "href": "/services/seo"
         },
         {
-          "label": "Branding",
-          "href": "/services/branding"
+          "label": "Social Media Marketing",
+          "href": "/services/social-media"
         },
         {
-          "label": "Graphics",
+          "label": "Email Marketing",
+          "href": "/services/email-marketing"
+        },
+        {
+          "label": "AI Automation",
+          "href": "/services/ai-automation"
+        },
+        {
+          "label": "Designing",
           "href": "/services/graphic-design"
-        },
-        {
-          "label": "Amazon",
-          "href": "/services/amazon-ebay"
         }
       ]
     },
