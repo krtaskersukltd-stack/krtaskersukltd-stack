@@ -55,12 +55,13 @@ const FEATURE_IMAGES_BY_SLUG: Record<string, string[]> = {
 }
 
 export default function ServiceDetailClient({ srv }: { srv: ServiceRecord }) {
-  const cleanSlug = srv.slug.replace(/^\/services\//, '').replace(/^\//, '').replace(/\/$/, '').toLowerCase()
-  const isSubPage = cleanSlug.includes('/')
+  // If template is category / hub, or has capabilities defined, render Category Hub layout
+  const isCategoryHub =
+    srv.template === 'category' ||
+    (srv.capabilities && srv.capabilities.length > 0) ||
+    ['b2b-enterprise', 'b2c-consumer', 'ecommerce-retail', 'saas-technology'].includes(srv.slug)
 
-  // Level-1 category pages (e.g. /services/ppc, /services/web-development, /services/seo, etc.)
-  // render the MainServiceHub which contains the "View All Our Services" section with tabs for hover items
-  if (!isSubPage) {
+  if (isCategoryHub) {
     return <MainServiceHub srv={srv} />
   }
 
