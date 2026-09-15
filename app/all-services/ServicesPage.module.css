@@ -436,3 +436,61 @@
     font-size: 13px;
   }
 }
+
+/* ================= DARK THEME STYLES ================= */
+:global([data-theme="dark"]) .page,
+:global([data-theme="dark"]) .hero,
+:global([data-theme="dark"]) .whatWeDoSec {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .title,
+:global([data-theme="dark"]) .sectionHeading,
+:global([data-theme="dark"]) .categoryHeadline,
+:global([data-theme="dark"]) .subServiceName {
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .subtitle {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+:global([data-theme="dark"]) .sectionHeader,
+:global([data-theme="dark"]) .serviceRow {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+:global([data-theme="dark"]) .subServiceItem {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .subServiceItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+:global([data-theme="dark"]) .subServiceItem:hover .subServiceName,
+:global([data-theme="dark"]) .subServiceItem:first-child .subServiceName {
+  color: var(--lime, #e6ff2a);
+}
+
+:global([data-theme="dark"]) .subServiceDot {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+:global([data-theme="dark"]) .subServiceItem:first-child .subServiceDot,
+:global([data-theme="dark"]) .subServiceItem:hover .subServiceDot {
+  background-color: var(--lime, #e6ff2a);
+}
+
+:global([data-theme="dark"]) .arrowBtn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .subServiceItem:first-child .arrowBtn,
+:global([data-theme="dark"]) .subServiceItem:hover .arrowBtn {
+  background: var(--lime, #e6ff2a);
+  color: var(--teal, #0c4651);
+}
+

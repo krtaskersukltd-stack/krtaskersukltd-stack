@@ -331,33 +331,42 @@
 }
 
 .capabilitiesList {
+  display: flex;
+  flex-direction: column;
   gap: 0;
+  width: 100%;
 }
 
 .capabilityItem {
   width: 100%;
-  min-height: 43px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 12px 0;
   border: 0;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(11, 15, 18, 0.12);
   border-radius: 0;
   background: transparent;
   color: #111827;
   font: 500 15px/1.2 "Inter", sans-serif;
   text-align: left;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.capabilityItem:hover {
+  color: var(--teal, #0c4651);
 }
 
 .capabilityItemActive {
   color: var(--teal, #0c4651);
-  border-bottom-color: var(--teal, #0c4651);
   font-weight: 700;
 }
 
 .capabilitiesRight {
   padding: 0;
-  gap: 12px;
+  gap: 14px;
 }
 
 @media (min-width: 993px) {
@@ -371,14 +380,14 @@
 .capabilityImages {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .capabilityImage {
   position: relative;
   min-height: clamp(175px, 16vw, 235px);
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #e8e9e4;
 }
 
@@ -388,8 +397,8 @@
 
 .capabilityDetail {
   min-height: 148px;
-  padding: clamp(18px, 2vw, 28px);
-  border-radius: 14px;
+  padding: clamp(20px, 2.2vw, 30px);
+  border-radius: 16px;
   background: var(--teal, #0c4651);
   color: #ffffff;
   box-shadow: 0 15px 32px rgba(12, 70, 81, 0.2);
@@ -399,25 +408,36 @@
   margin: 0 0 10px;
   color: var(--lime, #e6ff2a);
   font: 700 clamp(20px, 2vw, 28px)/1.1 "Cabinet Grotesk", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .capabilityDetail p {
   max-width: 760px;
-  margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.86);
+  margin: 0 0 20px;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .capabilityExplore {
   display: inline-flex;
-  padding: 9px 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
   border-radius: 999px;
   background: var(--lime, #e6ff2a);
   color: #0b0f12;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.capabilityExplore:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(230, 255, 42, 0.4);
 }
 
 /* 5. Vision / Remove Waffle Section */
